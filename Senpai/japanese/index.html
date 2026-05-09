@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Japanese Hub — Senpai Business Japanese</title>
+  <meta name="description" content="Chọn giai đoạn học tiếng Nhật Business phù hợp — từ N3 lên Business Pro cho người làm IT dự án Nhật." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/main.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <style>
+    /* ── Navbar (consistent với existing files) ── */
+    .navbar {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--color-surface);
+      border-bottom: 1px solid var(--color-border);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+    .navbar__inner {
+      max-width: 1140px; margin-inline: auto;
+      padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
+    }
+    .navbar__brand {
+      font-family: var(--font-jp); font-size: 1.25rem; font-weight: 900;
+      color: var(--color-primary);
+      display: flex; align-items: center; gap: 6px;
+    }
+    .navbar__brand .kanji { font-size: 1.4rem; }
+    .navbar__nav { display: flex; align-items: center; gap: 24px; }
+    .navbar__nav li { list-style: none; }
+    .navbar__nav a { font-size: 0.88rem; font-weight: 500; color: var(--color-text-muted); transition: color 0.2s; }
+    .navbar__nav a:hover, .navbar__nav a.active { color: var(--color-text); }
+    .link--cta { background: var(--color-primary); color: #fff !important; padding: 6px 16px; border-radius: 6px; }
+    .link--cta:hover { background: var(--color-primary-dark) !important; }
+
+    /* ── Page hero ── */
+    .hub-hero {
+      background: linear-gradient(135deg, #FFF9F9 0%, #F0F4FF 100%);
+      border-bottom: 1px solid var(--color-border);
+      padding: 52px 0 44px;
+      text-align: center;
+    }
+    [data-theme="dark"] .hub-hero { background: linear-gradient(135deg, #0F0F1A 0%, #16163A 100%); }
+    .hub-hero__eyebrow {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--color-primary); background: #FEE2E2; padding: 4px 12px; border-radius: 999px;
+      margin-bottom: 16px;
+    }
+    .hub-hero__title { font-family: var(--font-jp); font-size: clamp(26px, 4vw, 40px); font-weight: 900; margin-bottom: 12px; }
+    .hub-hero__desc { font-size: 1rem; color: var(--color-text-muted); max-width: 540px; margin-inline: auto; line-height: 1.7; margin-bottom: 0; }
+
+    /* ── Continue learning banner ── */
+    .continue-banner {
+      background: linear-gradient(90deg, var(--color-accent) 0%, #4A5FA3 100%);
+      color: #fff; border-radius: 12px;
+      padding: 16px 24px;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      margin-bottom: 32px; flex-wrap: wrap;
+    }
+    .continue-banner__left { display: flex; align-items: center; gap: 12px; }
+    .continue-banner__icon { font-size: 1.8rem; }
+    .continue-banner__label { font-size: 0.78rem; opacity: 0.8; text-transform: uppercase; letter-spacing: 0.06em; }
+    .continue-banner__title { font-weight: 700; font-size: 1rem; }
+    .continue-banner__btn {
+      background: rgba(255,255,255,0.2); color: #fff; border: 1.5px solid rgba(255,255,255,0.4);
+      padding: 8px 20px; border-radius: 8px; font-size: 0.88rem; font-weight: 600;
+      cursor: pointer; transition: background 0.2s; white-space: nowrap; text-decoration: none;
+    }
+    .continue-banner__btn:hover { background: rgba(255,255,255,0.3); }
+    #continue-banner { display: none; }
+
+    /* ── Stage grid ── */
+    .stage-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 20px; padding-block: 40px;
+    }
+    @media(max-width:640px) { .stage-grid { grid-template-columns: 1fr; } }
+
+    .stage-card {
+      background: var(--color-surface); border: 1.5px solid var(--color-border);
+      border-radius: 16px; padding: 28px; cursor: pointer;
+      transition: all 0.2s; position: relative; overflow: hidden;
+      text-decoration: none; display: block; color: inherit;
+    }
+    .stage-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.12); transform: translateY(-3px); }
+    .stage-card--active { border-color: var(--color-primary); }
+    .stage-card--locked { opacity: 0.55; cursor: default; pointer-events: none; }
+
+    .stage-card__stripe {
+      position: absolute; top: 0; left: 0; right: 0; height: 4px;
+    }
+    .stripe-1 { background: var(--color-primary); }
+    .stripe-2 { background: var(--color-accent); }
+    .stripe-3 { background: #7C3AED; }
+    .stripe-4 { background: var(--color-success); }
+
+    .stage-card__top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 12px; }
+    .stage-card__num { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-muted); }
+    .stage-card__icon { font-size: 2rem; }
+    .stage-card__title { font-family: var(--font-jp); font-size: 1.15rem; font-weight: 800; margin-bottom: 4px; line-height: 1.3; }
+    .stage-card__jp { font-family: var(--font-jp); font-size: 0.9rem; color: var(--color-text-muted); margin-bottom: 10px; }
+    .stage-card__desc { font-size: 0.875rem; color: var(--color-text-muted); line-height: 1.6; margin-bottom: 16px; }
+    .stage-card__tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+    .stage-card__tag { background: var(--color-surface-alt); border: 1px solid var(--color-border); border-radius: 6px; padding: 2px 8px; font-size: 0.75rem; color: var(--color-text-muted); }
+
+    .stage-card__footer { display: flex; align-items: center; justify-content: space-between; }
+    .stage-card__meta { font-size: 0.8rem; color: var(--color-text-muted); }
+
+    .stage-badge { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; border-radius: 999px; font-size: 0.72rem; font-weight: 700; }
+    .badge-available  { background: #D1FAE5; color: #065F46; }
+    .badge-active     { background: #FEE2E2; color: var(--color-primary); }
+    .badge-coming     { background: var(--color-surface-alt); color: var(--color-text-muted); }
+
+    .stage-card__progress-wrap { margin-top: 14px; }
+    .stage-card__progress-label { display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--color-text-muted); margin-bottom: 5px; }
+    .stage-progress-bar { height: 6px; background: var(--color-surface-alt); border-radius: 999px; overflow: hidden; }
+    .stage-progress-fill { height: 100%; border-radius: 999px; transition: width 0.6s ease; }
+    .fill-1 { background: var(--color-primary); }
+    .fill-2 { background: var(--color-accent); }
+    .fill-3 { background: #7C3AED; }
+    .fill-4 { background: var(--color-success); }
+
+    /* ── Footer ── */
+    .hub-tip {
+      text-align: center; padding: 20px; color: var(--color-text-muted);
+      font-size: 0.875rem; background: var(--color-surface-alt);
+      border-radius: 12px; margin-bottom: 60px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="navbar__inner">
+    <a href="../index.html" class="navbar__brand">
+      <span class="kanji">先</span> Senpai
+    </a>
+    <ul class="navbar__nav">
+      <li><a href="index.html" class="active link--cta">🇯🇵 Japanese Hub</a></li>
+      <li><a href="vocabulary/index.html">🔤 Từ vựng</a></li>
+      <li><a href="../phrases.html">📚 Phrase Bank</a></li>
+      <li>
+        <button onclick="toggleTheme()" style="background:none;border:1px solid var(--color-border);border-radius:6px;padding:5px 10px;cursor:pointer;font-size:0.85rem;">🌙</button>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Hero -->
+<div class="hub-hero">
+  <div class="hub-hero__eyebrow">🎌 Business Japanese</div>
+  <h1 class="hub-hero__title">学習ステージを選択してください</h1>
+  <p class="hub-hero__desc">Chọn giai đoạn phù hợp với trình độ hiện tại. Mỗi stage xây dựng trên nền tảng của stage trước.<br/>Khuyến nghị bắt đầu từ <strong>Stage 2</strong> nếu đã có nền N3 và đang làm dự án IT Nhật.</p>
+</div>
+
+<div class="container">
+  <!-- Continue Learning Banner (hiện nếu đã có tiến độ) -->
+  <div id="continue-banner" class="continue-banner">
+    <div class="continue-banner__left">
+      <div class="continue-banner__icon">▶️</div>
+      <div>
+        <div class="continue-banner__label">Tiếp tục học</div>
+        <div class="continue-banner__title" id="continue-title">Stage 2 — Business Email</div>
+      </div>
+    </div>
+    <a href="#" id="continue-link" class="continue-banner__btn">Tiếp tục →</a>
+  </div>
+
+  <!-- Stage Grid -->
+  <div class="stage-grid">
+
+    <!-- Stage 1 -->
+    <a href="../stage/stage1/index.html" class="stage-card">
+      <div class="stage-card__stripe stripe-1"></div>
+      <div class="stage-card__top">
+        <div class="stage-card__num">Stage 1 · 4–6 tuần</div>
+        <div class="stage-card__icon">🌱</div>
+      </div>
+      <div class="stage-card__title">N3 Nâng cao</div>
+      <div class="stage-card__jp">職場の基礎</div>
+      <div class="stage-card__desc">Hội thoại văn phòng cơ bản, điện thoại, kính ngữ 丁寧語, đọc email nội bộ. Nền tảng trước khi vào business.</div>
+      <div class="stage-card__tags">
+        <span class="stage-card__tag">Ngữ pháp N3</span>
+        <span class="stage-card__tag">Từ vựng VP</span>
+        <span class="stage-card__tag">Điện thoại</span>
+        <span class="stage-card__tag">Email cơ bản</span>
+      </div>
+      <div class="stage-card__footer">
+        <span class="stage-card__meta">4 modules · 16 bài học</span>
+        <span class="stage-badge badge-coming">🔜 Sắp ra mắt</span>
+      </div>
+      <div class="stage-card__progress-wrap">
+        <div class="stage-card__progress-label"><span>Tiến độ</span><span id="s1-pct">0%</span></div>
+        <div class="stage-progress-bar"><div class="stage-progress-fill fill-1" id="fill-1" style="width:0%"></div></div>
+      </div>
+    </a>
+
+    <!-- Stage 2 — ACTIVE, có content -->
+    <a href="stage2/index.html" class="stage-card stage-card--active">
+      <div class="stage-card__stripe stripe-2"></div>
+      <div class="stage-card__top">
+        <div class="stage-card__num">Stage 2 · 6–8 tuần</div>
+        <div class="stage-card__icon">💼</div>
+      </div>
+      <div class="stage-card__title">N2 Business Foundation</div>
+      <div class="stage-card__jp">ビジネス基礎</div>
+      <div class="stage-card__desc">Email công sở, họp hành, báo cáo tiến độ, keigo 尊敬語, tiếp khách Nhật — core skills cho dự án offshore.</div>
+      <div class="stage-card__tags">
+        <span class="stage-card__tag">📧 Email</span>
+        <span class="stage-card__tag">🎌 Keigo</span>
+        <span class="stage-card__tag">📊 Reporting</span>
+        <span class="stage-card__tag">🤝 Meeting</span>
+        <span class="stage-card__tag">☕ Reception</span>
+      </div>
+      <div class="stage-card__footer">
+        <span class="stage-card__meta">6 modules · 24 bài học</span>
+        <span class="stage-badge badge-active">🔥 MVP — Học ngay</span>
+      </div>
+      <div class="stage-card__progress-wrap">
+        <div class="stage-card__progress-label"><span>Tiến độ</span><span id="s2-pct">0%</span></div>
+        <div class="stage-progress-bar"><div class="stage-progress-fill fill-2" id="fill-2" style="width:0%"></div></div>
+      </div>
+    </a>
+
+    <!-- Stage 3 -->
+    <a href="../stage/stage3/index.html" class="stage-card">
+      <div class="stage-card__stripe stripe-3"></div>
+      <div class="stage-card__top">
+        <div class="stage-card__num">Stage 3 · 8–10 tuần</div>
+        <div class="stage-card__icon">🚀</div>
+      </div>
+      <div class="stage-card__title">N1 Business Advanced</div>
+      <div class="stage-card__jp">上級ビジネス</div>
+      <div class="stage-card__desc">Keigo toàn diện 謙譲語, thuyết trình slide, xử lý delay/bug/scope change, đàm phán với khách Nhật.</div>
+      <div class="stage-card__tags">
+        <span class="stage-card__tag">謙譲語</span>
+        <span class="stage-card__tag">Presentation</span>
+        <span class="stage-card__tag">Crisis Mgmt</span>
+        <span class="stage-card__tag">Đàm phán</span>
+      </div>
+      <div class="stage-card__footer">
+        <span class="stage-card__meta">6 modules · 24 bài học</span>
+        <span class="stage-badge badge-coming">🔜 Sắp ra mắt</span>
+      </div>
+      <div class="stage-card__progress-wrap">
+        <div class="stage-card__progress-label"><span>Tiến độ</span><span id="s3-pct">0%</span></div>
+        <div class="stage-progress-bar"><div class="stage-progress-fill fill-3" id="fill-3" style="width:0%"></div></div>
+      </div>
+    </a>
+
+    <!-- Stage 4 -->
+    <a href="../stage/stage4/index.html" class="stage-card">
+      <div class="stage-card__stripe stripe-4"></div>
+      <div class="stage-card__top">
+        <div class="stage-card__num">Stage 4 · 6–8 tuần+</div>
+        <div class="stage-card__icon">🏆</div>
+      </div>
+      <div class="stage-card__title">Business Pro</div>
+      <div class="stage-card__jp">プロレベル</div>
+      <div class="stage-card__desc">IT Japanese chuyên sâu, văn bản chính thức 稟議書/報告書, luyện thi BJT và JLPT N1. Không có điểm kết thúc.</div>
+      <div class="stage-card__tags">
+        <span class="stage-card__tag">IT Japanese</span>
+        <span class="stage-card__tag">稟議書</span>
+        <span class="stage-card__tag">BJT Prep</span>
+        <span class="stage-card__tag">JLPT N1</span>
+      </div>
+      <div class="stage-card__footer">
+        <span class="stage-card__meta">4 modules · Liên tục</span>
+        <span class="stage-badge badge-coming">🔜 Sắp ra mắt</span>
+      </div>
+      <div class="stage-card__progress-wrap">
+        <div class="stage-card__progress-label"><span>Tiến độ</span><span id="s4-pct">0%</span></div>
+        <div class="stage-progress-bar"><div class="stage-progress-fill fill-4" id="fill-4" style="width:0%"></div></div>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="hub-tip">
+    💡 <strong>Tip:</strong> Bắt đầu với <strong>Stage 2 → Module Email → Bài 1</strong> nếu bạn đang làm dự án IT và cần viết email tiếng Nhật ngay.
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__inner">
+      <div class="site-footer__brand">
+        <h3>先輩 Senpai</h3>
+        <p>Business Japanese e-learning<br/>dành riêng cho ngành IT</p>
+      </div>
+      <div class="site-footer__links">
+        <h4>Stages</h4>
+        <ul>
+          <li><a href="stage2/index.html">Stage 2 — N2 Business</a></li>
+          <li><a href="../stage/stage1/index.html">Stage 1 — N3 (Coming)</a></li>
+          <li><a href="../stage/stage3/index.html">Stage 3 — N1 (Coming)</a></li>
+          <li><a href="../stage/stage4/index.html">Stage 4 — Pro (Coming)</a></li>
+        </ul>
+      </div>
+      <div class="site-footer__links">
+        <h4>Công cụ</h4>
+        <ul>
+          <li><a href="vocabulary/index.html">Flashcard từ vựng</a></li>
+          <li><a href="../phrases.html">Kho mẫu câu IT</a></li>
+          <li><a href="../index.html">← Trang chủ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="site-footer__bottom">© 2026 Senpai — Business Japanese for IT Professionals</div>
+  </div>
+</footer>
+
+<script src="../assets/js/theme.js"></script>
+<script src="../assets/js/progress.js"></script>
+<script>
+// Hiển thị tiến độ từng stage & continue banner
+(function() {
+  const S2_LESSONS = ['s2-email-01','s2-email-02','s2-email-03','s2-meet-01','s2-meet-02','s2-report-01'];
+  const pct2 = calculateProgress(S2_LESSONS);
+  document.getElementById('s2-pct').textContent = pct2 + '%';
+  document.getElementById('fill-2').style.width = pct2 + '%';
+
+  // Continue banner: tìm bài đầu tiên chưa xong
+  const next = getNextLesson(S2_LESSONS);
+  if (next && pct2 > 0) {
+    const titleMap = {
+      's2-email-01': 'Email — Bài 1: Xin chào khi join dự án mới',
+      's2-email-02': 'Email — Bài 2: Xác nhận yêu cầu sau meeting',
+      's2-meet-01':  'Meeting — Bài 1: Khi không hiểu ý khách',
+      's2-report-01':'Reporting — Bài 1: Báo cáo tiến độ & delay',
+    };
+    const linkMap = {
+      's2-email-01': 'stage2/email/lesson-01.html',
+      's2-email-02': 'stage2/email/lesson-02.html',
+      's2-meet-01':  'stage2/meeting/lesson-01.html',
+      's2-report-01':'stage2/reporting/lesson-01.html',
+    };
+    document.getElementById('continue-title').textContent = titleMap[next] || next;
+    document.getElementById('continue-link').href = linkMap[next] || 'stage2/index.html';
+    document.getElementById('continue-banner').style.display = 'flex';
+  }
+})();
+</script>
+</body>
+</html>

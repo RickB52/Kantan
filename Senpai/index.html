@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Senpai — ビジネス日本語 for IT Professionals</title>
+  <meta name="description" content="Tiếng Nhật công sở thực chiến cho người làm IT. Học email, họp hành, báo cáo, keigo chuẩn mực — phù hợp dự án offshore/nearshore Nhật." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="assets/css/components.css" />
+  <link rel="stylesheet" href="assets/css/landing.css" />
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════
+     HEADER
+══════════════════════════════════════════════ -->
+<header class="site-header">
+  <div class="container">
+    <div class="site-header__inner">
+
+      <a href="index.html" class="site-header__logo">
+        <span class="logo-kanji">先</span>
+        <span>Senpai</span>
+      </a>
+
+      <nav class="site-header__nav">
+        <a href="japanese/index.html">コース</a>
+        <a href="vocabulary/index.html">単語帳</a>
+        <a href="phrases.html">フレーズ集</a>
+        <button class="theme-toggle" onclick="toggleTheme()" title="Dark/Light mode">🌙</button>
+        <a href="japanese/index.html" class="btn btn--primary btn--sm">学習を始める →</a>
+      </nav>
+
+    </div>
+  </div>
+</header>
+
+<!-- ══════════════════════════════════════════════
+     HERO SECTION
+══════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero__content">
+
+      <div class="hero__badge">
+        <span class="badge badge--red">IT × Business Japanese</span>
+      </div>
+
+      <h1 class="hero__title">
+        日本語で、<br/>
+        <span class="hero__title--accent">プロとして</span>活躍しよう
+      </h1>
+      <p class="hero__subtitle">
+        Tiếng Nhật công sở thực chiến dành riêng cho <strong>Dev, BA, PM, Comtor</strong><br/>
+        làm dự án IT với khách hàng Nhật — từ N3 lên Business Japanese tự tin.
+      </p>
+
+      <div class="hero__cta">
+        <a href="japanese/index.html" class="btn btn--primary btn--lg">
+          今すぐ学習を始める →
+        </a>
+        <a href="#roadmap" class="btn btn--secondary btn--lg">
+          学習ロードマップを見る
+        </a>
+      </div>
+
+      <div class="hero__stats">
+        <div class="hero__stat">
+          <strong>4</strong>
+          <span>Giai đoạn học</span>
+        </div>
+        <div class="hero__stat">
+          <strong>20+</strong>
+          <span>Module thực chiến</span>
+        </div>
+        <div class="hero__stat">
+          <strong>N3→N1</strong>
+          <span>Lộ trình rõ ràng</span>
+        </div>
+        <div class="hero__stat">
+          <strong>IT Focus</strong>
+          <span>Tình huống dự án thực</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="hero__visual">
+      <div class="hero__mockup">
+        <div class="hero__mockup-header">
+          <span></span><span></span><span></span>
+        </div>
+        <div class="hero__mockup-body">
+          <p class="jp-text">お世話になっております。</p>
+          <p class="jp-text">〇〇プロジェクトの進捗を<br/>ご報告いたします。</p>
+          <div class="hero__mockup-tag">✅ Email chuẩn keigo</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     FOR WHOM
+══════════════════════════════════════════════ -->
+<section class="section section--alt" id="for-whom">
+  <div class="container">
+    <div class="section-header text-center">
+      <span class="badge badge--indigo">Đối tượng học viên</span>
+      <h2>こんな方におすすめ</h2>
+      <p>Senpai thiết kế riêng cho người đi làm IT — không phải học tiếng Nhật phổ thông</p>
+    </div>
+
+    <div class="grid-4 audience-grid">
+      <div class="audience-card">
+        <div class="audience-card__icon">💻</div>
+        <h4>Developer</h4>
+        <p>Muốn report tiến độ, giải thích bug, đọc tài liệu spec bằng tiếng Nhật</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-card__icon">📋</div>
+        <h4>BA / Comtor</h4>
+        <p>Cần viết email xác nhận, tóm tắt meeting, communication hàng ngày với khách</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-card__icon">🗂️</div>
+        <h4>PM / BRSE</h4>
+        <p>Report tiến độ, xử lý delay, đàm phán scope, present slide cho khách Nhật</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-card__icon">🎯</div>
+        <h4>N4–N3 muốn lên N2/N1</h4>
+        <p>Đã có nền tảng, muốn nâng lên Business Japanese thực chiến để thăng tiến</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     ROADMAP
+══════════════════════════════════════════════ -->
+<section class="section" id="roadmap">
+  <div class="container">
+    <div class="section-header text-center">
+      <span class="badge badge--red">Lộ trình học</span>
+      <h2>学習ロードマップ</h2>
+      <p>Từ N3 lên Business Pro trong 24–32 tuần, học 3–5 giờ/tuần</p>
+    </div>
+
+    <div class="roadmap">
+      <div class="roadmap__line"></div>
+
+      <div class="roadmap__step">
+        <div class="roadmap__dot roadmap__dot--1"></div>
+        <div class="card roadmap__card">
+          <div class="roadmap__stage-label">Giai đoạn 1 · 4–6 tuần</div>
+          <h3>N3 Nâng cao<br/><span class="jp-text">職場の基礎</span></h3>
+          <p>Hội thoại văn phòng, điện thoại, email nội bộ cơ bản, kính ngữ 丁寧語</p>
+          <div class="roadmap__modules">
+            <span class="badge badge--gray">Ngữ pháp N3</span>
+            <span class="badge badge--gray">Từ vựng văn phòng</span>
+            <span class="badge badge--gray">Điện thoại</span>
+            <span class="badge badge--gray">Đọc hiểu</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="roadmap__step roadmap__step--right">
+        <div class="roadmap__dot roadmap__dot--2"></div>
+        <div class="card roadmap__card">
+          <div class="roadmap__stage-label">Giai đoạn 2 · 6–8 tuần</div>
+          <h3>N2 Business Foundation<br/><span class="jp-text">ビジネス基礎</span></h3>
+          <p>Email công sở chuẩn, họp hành, báo cáo tiến độ, 尊敬語, tiếp khách</p>
+          <div class="roadmap__modules">
+            <span class="badge badge--red">Email</span>
+            <span class="badge badge--red">Meeting</span>
+            <span class="badge badge--red">Reporting</span>
+            <span class="badge badge--red">Keigo</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="roadmap__step">
+        <div class="roadmap__dot roadmap__dot--3"></div>
+        <div class="card roadmap__card">
+          <div class="roadmap__stage-label">Giai đoạn 3 · 8–10 tuần</div>
+          <h3>N1 Business Advanced<br/><span class="jp-text">上級ビジネス</span></h3>
+          <p>Keigo toàn diện 謙譲語, presentation, xử lý delay/bug, đàm phán</p>
+          <div class="roadmap__modules">
+            <span class="badge badge--indigo">謙譲語</span>
+            <span class="badge badge--indigo">Presentation</span>
+            <span class="badge badge--indigo">Xử lý vấn đề</span>
+            <span class="badge badge--indigo">Đàm phán</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="roadmap__step roadmap__step--right">
+        <div class="roadmap__dot roadmap__dot--4"></div>
+        <div class="card roadmap__card">
+          <div class="roadmap__stage-label">Giai đoạn 4 · 6–8 tuần+</div>
+          <h3>Business Pro<br/><span class="jp-text">プロレベル</span></h3>
+          <p>IT Japanese chuyên sâu, văn bản chính thức 稟議書, luyện thi BJT/JLPT N1</p>
+          <div class="roadmap__modules">
+            <span class="badge badge--green">IT Japanese</span>
+            <span class="badge badge--green">稟議書</span>
+            <span class="badge badge--green">BJT Prep</span>
+            <span class="badge badge--green">JLPT N1</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="text-center" style="margin-top: var(--space-2xl);">
+      <a href="japanese/index.html" class="btn btn--primary btn--lg">コースを始める →</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     FEATURES
+══════════════════════════════════════════════ -->
+<section class="section section--alt" id="features">
+  <div class="container">
+    <div class="section-header text-center">
+      <span class="badge badge--indigo">Tính năng</span>
+      <h2>実践的な学習システム</h2>
+      <p>Không học ngữ pháp suông — học qua tình huống thực tế dự án IT</p>
+    </div>
+
+    <div class="grid-3">
+      <div class="feature-card card">
+        <div class="feature-card__icon">🎭</div>
+        <h4>Scenario-Based Learning</h4>
+        <p>Mỗi bài học là một tình huống thực: báo cáo delay, giải thích bug, đàm phán scope — không học chay</p>
+      </div>
+      <div class="feature-card card">
+        <div class="feature-card__icon">🤖</div>
+        <h4>AI Conversation Partner</h4>
+        <p>Luyện hội thoại tiếng Nhật với AI, nhận sửa lỗi real-time, Keigo Advisor tự động</p>
+      </div>
+      <div class="feature-card card">
+        <div class="feature-card__icon">📝</div>
+        <h4>Quiz & Practice</h4>
+        <p>Trắc nghiệm tương tác, điền từ, instant feedback — hiểu ngay tại sao đúng/sai</p>
+      </div>
+      <div class="feature-card card">
+        <div class="feature-card__icon">🃏</div>
+        <h4>Flashcard Thông Minh</h4>
+        <p>Spaced Repetition (SRS) — ôn từ vựng đúng thời điểm, đánh dấu từ khó để ôn lại</p>
+      </div>
+      <div class="feature-card card">
+        <div class="feature-card__icon">📊</div>
+        <h4>Progress Tracking</h4>
+        <p>Theo dõi tiến độ từng bài, từng module, từng giai đoạn — biết mình đang ở đâu</p>
+      </div>
+      <div class="feature-card card">
+        <div class="feature-card__icon">📚</div>
+        <h4>Phrase Bank IT</h4>
+        <p>Kho mẫu câu theo tình huống: chào hỏi, báo cáo, xin lỗi, nhờ hỗ trợ, thông báo delay</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     CTA BOTTOM
+══════════════════════════════════════════════ -->
+<section class="section cta-section">
+  <div class="container">
+    <div class="cta-box">
+      <h2>今日から始めよう</h2>
+      <p>Hàng nghìn người làm IT đang học tiếng Nhật công sở với Senpai.<br/>Bắt đầu miễn phí ngay hôm nay.</p>
+      <a href="japanese/index.html" class="btn btn--primary btn--lg">
+        無料で学習を始める →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__inner">
+
+      <div class="site-footer__brand">
+        <h3>先輩 Senpai</h3>
+        <p>Business Japanese e-learning<br/>dành riêng cho ngành IT</p>
+      </div>
+
+      <div class="site-footer__links">
+        <h4>Khóa học</h4>
+        <ul>
+          <li><a href="stage/stage1/index.html">Stage 1 — N3 Nâng cao</a></li>
+          <li><a href="stage/stage2/index.html">Stage 2 — N2 Business</a></li>
+          <li><a href="stage/stage3/index.html">Stage 3 — N1 Advanced</a></li>
+          <li><a href="stage/stage4/index.html">Stage 4 — Business Pro</a></li>
+        </ul>
+      </div>
+
+      <div class="site-footer__links">
+        <h4>Công cụ học</h4>
+        <ul>
+          <li><a href="vocabulary/index.html">Từ điển / Flashcard</a></li>
+          <li><a href="phrases.html">Kho mẫu câu IT</a></li>
+          <li><a href="japanese/index.html">Japanese Hub</a></li>
+        </ul>
+      </div>
+
+    </div>
+    <div class="site-footer__bottom">
+      © 2026 Senpai — Business Japanese for IT Professionals
+    </div>
+  </div>
+</footer>
+
+<!-- JS -->
+<script src="assets/js/theme.js"></script>
+
+</body>
+</html>

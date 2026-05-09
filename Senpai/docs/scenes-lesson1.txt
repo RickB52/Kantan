@@ -1,0 +1,357 @@
+SCENES — M2.2 EMAIL LESSON 01
+Xin chào khi join dự án mới
+================================================================================
+
+
+TỔNG QUAN
+--------------------------------------------------------------------------------
+
+SCENE   | PLATFORM       | DURATION | TYPE              | STATUS
+--------|----------------|----------|-------------------|-------
+SCENE-01 | Kling AI      | 6s       | hook              | [ ]
+SCENE-02 | Kling AI      | 8s       | setup             | [ ]
+SCENE-03 | Kling AI      | 4s       | drama             | [ ]
+SCENE-04 | Kling AI      | 5s       | drama             | [ ]
+SCENE-05 | Kling AI      | 6s       | drama             | [ ]
+SCENE-06 | Kling AI      | 5s       | drama             | [ ]
+SCENE-07 | Kling AI      | 8s       | drama             | [ ]
+SCENE-08 | CapCut / AE   | 12s      | motion graphics   | [ ]
+SCENE-09 | CapCut / AE   | 8s       | motion graphics   | [ ]
+SCENE-10 | Kling AI      | 4s       | drama             | [ ]
+SCENE-11 | CapCut / AE   | 25s      | motion graphics   | [ ]
+SCENE-12 | Kling AI      | 8s       | education         | [ ]
+SCENE-13 | CapCut / AE   | 8s       | screen animation  | [ ]
+SCENE-14 | CapCut / AE   | 8s       | screen animation  | [ ]
+SCENE-15 | Kling AI      | 30s      | culture           | [ ]
+SCENE-16 | After Effects | 8s       | motion graphics   | [ ]
+SCENE-17 | Kling AI      | 20s      | practice          | [ ]
+SCENE-18 | Kling AI      | 20s      | practice          | [ ]
+SCENE-19 | CapCut / AE   | 15s      | motion graphics   | [ ]
+SCENE-20 | Kling AI      | 12s      | cta               | [ ]
+
+Drama: 13 scenes  |  Motion Graphics: 7 scenes  |  Tổng: 20 scenes / ~7:30
+
+
+================================================================================
+KLING AI SCENES
+================================================================================
+
+
+SCENE-01 | Kling AI | 6s | hook | 0:00-0:10
+--------------------------------------------------------------------------------
+PROMPT:
+Close-up of a laptop screen showing email inbox, sent 3 days ago, zero replies.
+Soft blue office ambient light. Camera slowly zooms out to reveal a young
+Vietnamese male (25-28, short black hair, light blue button-down shirt, worried
+expression) staring at screen. Cinematic, realistic. 4K. 6 seconds.
+
+Negative: cartoon, anime, low quality
+Output file: scene-01.mp4
+
+
+SCENE-02 | Kling AI | 8s | setup | 0:10-0:30
+--------------------------------------------------------------------------------
+PROMPT:
+Open plan office Vietnam, morning. Two Vietnamese men: younger (Dynh, 25-28,
+business casual blue shirt) sitting at laptop, back slightly turned to older man,
+hands already on keyboard — confident almost dismissive posture. Older man
+(Ong Chon, 45-50, dark polo, experienced expression) stands behind, looks at
+screen for one beat with a quiet knowing expression, then walks away calmly.
+Subtle contrast between overconfidence and experience. No drama. Medium shot.
+Warm morning office light. 8 seconds.
+
+Negative: exaggerated acting, anime
+Output file: scene-02.mp4
+
+
+SCENE-03 | Kling AI | 4s | drama | 0:30-0:40
+--------------------------------------------------------------------------------
+PROMPT:
+Young Vietnamese male (Dynh: 25-28, blue shirt) at laptop, finishes typing email,
+reads with satisfied nod, clicks send confidently. Small self-satisfied smile.
+Warm office light. Close-up on face, then cut to screen showing Sent. 4 seconds.
+
+Negative: anime, cartoon
+Output file: scene-03.mp4
+
+
+SCENE-04 | Kling AI | 5s | drama | 0:40-0:52
+--------------------------------------------------------------------------------
+PROMPT:
+Japanese corporate male (40-45, neat short black hair, dark formal suit) at office
+desk reading email on monitor. Expression: neutral → very subtle frown, almost
+imperceptible. No dramatic reaction. He closes the tab and continues working.
+Quiet Japanese office. Camera holds on face. 5 seconds.
+
+Negative: exaggerated expressions, anime
+Output file: scene-04.mp4
+
+
+SCENE-05 | Kling AI | 6s | drama | 0:52-1:10
+--------------------------------------------------------------------------------
+PROMPT:
+Laptop inbox with zero new emails. Three timestamps appear one by one — 9:05,
+9:30, 10:00 AM. Young Vietnamese male (Dynh: 25-28, blue shirt) glances at screen
+each time, confidence decreasing each look. Final shot: stares at empty inbox,
+slight frown. Soft office ambient. 6 seconds.
+
+Output file: scene-05.mp4
+
+
+SCENE-06 | Kling AI | 5s | drama | 1:10-1:18
+--------------------------------------------------------------------------------
+PROMPT:
+Japanese office meeting room. Japanese corporate male (Honda Yuta: 40-45, dark
+suit) seated at meeting table, glances briefly at young Vietnamese male across
+the table (Dynh: 25-28, blue shirt). Honda's expression is neutral but quietly
+evaluating — not hostile, just reassessing. He looks away. No words exchanged.
+Medium shot. Natural meeting room light. 5 seconds.
+
+Negative: exaggerated, anime
+Output file: scene-06.mp4
+
+
+SCENE-07 | Kling AI | 8s | drama | 1:18-1:45
+--------------------------------------------------------------------------------
+PROMPT:
+Vietnamese office corridor or corner. Older Vietnamese male (Ong Chon, 45-50,
+dark polo, experienced calm demeanor) stands with younger male (Dynh, 25-28,
+blue shirt). Ong Chon holds Dynh's phone, points at the screen calmly — not
+angry, just matter-of-fact, like someone who has seen this 10 times before.
+Dynh listens. Camera holds on Dynh's face after Ong Chon speaks: expression of
+quiet realization — slightly sheepish, slightly amused at himself. 8 seconds.
+Natural office lighting.
+
+Negative: melodramatic, anime
+Output file: scene-07.mp4
+
+
+SCENE-10 | Kling AI | 4s | drama | 2:40-2:47
+--------------------------------------------------------------------------------
+PROMPT:
+Same Japanese corporate male (Honda Yuta: 40-45, dark suit) at desk, reading
+email on screen. He reads, pauses briefly, gives a single small approving nod —
+subtle, natural. Hand moves to reply. Slightly warmer lighting than previous
+Honda scenes. 4 seconds.
+
+Output file: scene-10.mp4
+
+
+SCENE-12 | Kling AI | 8s | education | 3:30-3:55
+--------------------------------------------------------------------------------
+PROMPT:
+[SPLIT SCREEN] Left side: young Vietnamese male (Dynh, 25-28, blue shirt) typing
+at laptop, focused expression. Right side: email preview text appearing as he
+types. Key phrase "フロントエンド開発を担当いたします" highlighted with red box
+when voiceover mentions it. Warm office light. 8 seconds.
+
+Output file: scene-12.mp4
+
+
+SCENE-15 | Kling AI | 30s | culture | 4:40-5:00
+--------------------------------------------------------------------------------
+PROMPT:
+Vietnamese male (Ong Chon: 45-50, dark polo, slight grey in hair, reading glasses,
+confident relaxed) sitting in small office break room or near window, warm
+afternoon light. Speaking directly to camera in relaxed storytelling mentor
+style — sharing personal experience, not lecturing. Medium shot, slightly
+intimate. Documentary style. 30 seconds.
+
+Output file: scene-15.mp4
+
+
+SCENE-17 | Kling AI | 20s | practice | 5:00-5:45
+--------------------------------------------------------------------------------
+PROMPT:
+Young Vietnamese male (Dynh: 25-28, blue shirt) sitting at laptop, genuinely
+uncertain expression — not overconfident like earlier. He looks at screen, unsure
+what to type. Older Vietnamese male (Ong Chon: 45-50, dark polo) walks past
+briskly. Dynh looks up and asks a quick question. Ong Chon pauses briefly,
+answers without stopping, walks on. Dynh nods, turns back to keyboard and types
+decisively. Office setting, natural light. 20 seconds.
+
+Output file: scene-17.mp4
+
+
+SCENE-18 | Kling AI | 20s | practice | 5:45-6:30
+--------------------------------------------------------------------------------
+PROMPT:
+[SPLIT SCENE] Part 1: Vietnamese office. Older male (Ong Chon, 45-50) sits
+across from younger male (Dynh, 25-28). Dynh listens attentively, sitting
+straight — posture different from early confident scene. Ong Chon briefs calmly.
+Part 2: Japanese office. Honda Yuta (40-45, dark suit) reads email on screen.
+Camera slow zooms into the text 引き続き. He gives a single approving nod.
+20 seconds total.
+
+Output file: scene-18.mp4
+
+
+SCENE-20 | Kling AI | 12s | cta | 7:00-7:30
+--------------------------------------------------------------------------------
+PROMPT:
+Young Vietnamese male (Dynh: 25-28, blue shirt) at laptop, opens new email.
+Screen shows Japanese subject line 週次報告 依頼. Expression: curious, slightly
+puzzled but open — different from worried HOOK expression. Camera holds on face
+2 seconds, cuts to screen. Warm office light. 12 seconds.
+
+Output file: scene-20.mp4
+
+
+================================================================================
+MOTION GRAPHICS SCENES
+Làm trong CapCut / After Effects — không dùng Kling AI
+================================================================================
+
+
+SCENE-08 | CapCut / AE | 12s | education | 1:45-2:15
+--------------------------------------------------------------------------------
+Mô tả: Email sai của Dynh hiện trên màn hình. 3 lỗi highlight đỏ lần lượt.
+
+Hướng dẫn làm:
+- Background: trắng
+- Email text: đen, font monospace
+- Lỗi 1: はじめまして → box đỏ + label "Lỗi 1 — dùng khi gặp mặt, không dùng trong email"
+- Lỗi 2: よろしくお願いします → box đỏ + label "Lỗi 2 — thiếu いたします"
+- Lỗi 3: (chỗ trống) → box đỏ + label "Lỗi 3 — không có 担当"
+- Mỗi lỗi xuất hiện cách nhau 3-4 giây
+
+Output file: scene-08-mg.mp4
+
+
+SCENE-09 | After Effects | 8s | education | 2:15-2:40
+--------------------------------------------------------------------------------
+Mô tả: Email đúng xuất hiện dòng-by-dòng, key phrases highlight xanh.
+
+Hướng dẫn làm:
+- Background: trắng
+- Text slide in từ trái, mỗi dòng cách nhau 1.5 giây
+- Highlight xanh: お世話になっております · と申します · を担当いたします · よろしくお願いいたします
+
+Output file: scene-09-mg.mp4
+
+
+SCENE-11 | CapCut / AE | 25s | education | 2:47-3:30
+--------------------------------------------------------------------------------
+Mô tả: 3 nhóm text card (OK / NG / CHÚ Ý) slide vào từ phải.
+
+Hướng dẫn làm:
+- Card xanh OK : "Dùng khi — email công việc với người Nhật / email đầu tiên / reply đầu ngày"
+- Card đỏ  NG  : "Không dùng — email nội bộ VN / chat Slack Teams"
+- Card vàng CHÚ Ý: "Reply đổi thành ご連絡ありがとうございます / không nhầm ご無沙汰しております"
+- Mỗi row slide từ phải vào, delay 0.5s giữa các row
+
+Output file: scene-11-mg.mp4
+
+
+SCENE-13 | CapCut screen record | 8s | education | 3:55-4:15
+--------------------------------------------------------------------------------
+Mô tả: Email BA variant. Highlight từ 担当.
+
+Hướng dẫn làm:
+- Screen record email template BA (要件定義のサポート...)
+- Highlight 担当 bằng box đỏ
+- Label xuất hiện: "tantou — phụ trách"
+
+Output file: scene-13-mg.mp4
+
+
+SCENE-14 | CapCut screen record | 8s | education | 4:15-4:40
+--------------------------------------------------------------------------------
+Mô tả: Click Reply → email reply với ご連絡ありがとうございます.
+
+Hướng dẫn làm:
+- Screen record inbox → cursor click Reply
+- Email reply hiện với ご連絡ありがとうございます highlight đỏ
+- Arrow annotation: "お世話 = email mới" ←→ "ご連絡 = reply"
+
+Output file: scene-14-mg.mp4
+
+
+SCENE-16 | After Effects | 8s | culture | insert trong SCENE-15
+--------------------------------------------------------------------------------
+Mô tả: 2 vòng tròn 内 (Uchi) và 外 (Soto) tách ra.
+
+Hướng dẫn làm:
+- 2 vòng tròn ban đầu overlap → animate tách ra
+- Trái: 内 (Uchi) màu xanh indigo + label 謙譲語
+- Phải: 外 (Soto) màu đỏ + label 尊敬語
+- Background trắng, minimal
+
+Output file: scene-16-mg.mp4
+
+
+SCENE-19 | CapCut / AE | 15s | recap | 6:30-7:00
+--------------------------------------------------------------------------------
+Mô tả: 3 text card bold white on dark nền + logo Senpai.
+
+Hướng dẫn làm:
+- Background: đen / tối
+- Card 1 slide up: お世話になっております — BẮT BUỘC
+- Card 2 slide up: Tổ chức trước · Tên sau
+- Card 3 slide up: Nói rõ 担当 — ngay từ email đầu
+- Kết: fade in logo Senpai DynhNC5 + senpai.vn
+
+Output file: scene-19-mg.mp4
+
+
+================================================================================
+SHORT VERSION PROMPTS
+Short 01-04 reuse footage full version. Chỉ SHORT-05 cần gen mới.
+================================================================================
+
+SHORT   | NGUỒN                        | GHI CHÚ
+--------|------------------------------|----------------------------------
+SHORT-01 | SCENE-03 + SCENE-05         | Fast cut, không gen mới
+SHORT-02 | SCENE-07                    | Trim còn 6s
+SHORT-03 | SCENE-08 + SCENE-09 + SCENE-10 | Fast cut
+SHORT-04 | SCENE-15                    | Trim còn 12s, thêm text overlay
+SHORT-05 | Mới                         | Motion graphics CapCut
+
+SHORT-05 | CapCut / AE | 6s
+Hướng dẫn làm:
+- Background tối
+- Text animate in: Bài 2 → 週次報告
+- Fade in logo Senpai DynhNC5 | senpai.vn
+
+Output file: short-05-mg.mp4
+
+
+================================================================================
+NAMING CONVENTION — LƯU FILE
+================================================================================
+
+assets/video/raw/
+  scene-01.mp4
+  scene-02.mp4
+  scene-03.mp4
+  scene-04.mp4
+  scene-05.mp4
+  scene-06.mp4
+  scene-07.mp4
+  scene-08-mg.mp4         (motion graphics)
+  scene-09-mg.mp4
+  scene-10.mp4
+  scene-11-mg.mp4
+  scene-12.mp4
+  scene-13-mg.mp4
+  scene-14-mg.mp4
+  scene-15.mp4
+  scene-16-mg.mp4
+  scene-17.mp4
+  scene-18.mp4
+  scene-19-mg.mp4
+  scene-20.mp4
+
+assets/video/audio/
+  vo-scene-01.mp3         (voiceover từng scene)
+  vo-scene-03.mp3
+  ...
+
+assets/video/export/
+  m2.2-email-lesson-01-full.mp4     (7:30)
+  m2.2-email-lesson-01-short.mp4   (1:15)
+
+
+================================================================================
+Senpai DynhNC5 | senpai.vn
+================================================================================

@@ -1,0 +1,129 @@
+/* ============================================================
+   Senpai — Lesson CSS
+   Lesson page layout, Japanese blocks, vocab, pattern, quiz
+   ============================================================ */
+
+/* ── Lesson Layout ───────────────────────────────────────────── */
+.lesson-page { max-width: 820px; margin-inline: auto; padding-block: var(--space-2xl); }
+.lesson-hero { margin-bottom: var(--space-2xl); }
+.lesson-hero__badge { margin-bottom: var(--space-md); }
+.lesson-hero__title { font-family: var(--font-jp); font-size: clamp(1.6rem,4vw,2.4rem); margin-bottom: var(--space-md); }
+.lesson-hero__meta  { display: flex; align-items: center; gap: var(--space-lg); color: var(--color-text-muted); font-size: 0.9rem; }
+
+/* ── Video Placeholder ───────────────────────────────────────── */
+.video-block {
+  background: var(--color-bg-dark);
+  border-radius: var(--radius-lg);
+  aspect-ratio: 16/9;
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: var(--space-md);
+  color: rgba(255,255,255,0.7);
+  margin-bottom: var(--space-2xl);
+}
+.video-block__icon { font-size: 3rem; }
+.video-block__text { font-size: 0.9rem; }
+
+/* ── Section Divider ─────────────────────────────────────────── */
+.lesson-section { margin-bottom: var(--space-2xl); }
+.lesson-section__title {
+  font-family: var(--font-jp);
+  font-size: 0.8rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+  border-left: 3px solid var(--color-primary);
+  padding-left: var(--space-sm);
+  margin-bottom: var(--space-lg);
+}
+
+/* ── Vocab Block ─────────────────────────────────────────────── */
+.vocab-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: var(--space-md); }
+.vocab-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-md) var(--space-lg);
+  display: flex; align-items: center; gap: var(--space-md);
+}
+.vocab-card__jp { font-family: var(--font-jp); font-size: 1.3rem; font-weight: 700; color: var(--color-accent); }
+.vocab-card__info { flex: 1; }
+.vocab-card__reading { font-size: 0.78rem; color: var(--color-text-muted); margin-bottom: 2px; }
+.vocab-card__meaning { font-size: 0.9rem; font-weight: 500; }
+.vocab-card__audio   { width: 32px; height: 32px; border-radius: 50%; background: var(--color-surface-alt); border: 1px solid var(--color-border); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0; }
+
+/* ── Pattern Block ───────────────────────────────────────────── */
+.pattern-block {
+  background: linear-gradient(135deg, #FEF3F2, #EEF2FF);
+  border: 1px solid #FECACA;
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  margin-bottom: var(--space-md);
+}
+.pattern-block__jp {
+  font-family: var(--font-jp);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  margin-bottom: var(--space-sm);
+  line-height: 1.8;
+}
+.pattern-block__reading { font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: var(--space-sm); }
+.pattern-block__meaning { font-size: 1rem; font-weight: 500; color: var(--color-text); }
+.pattern-variants { display: flex; flex-direction: column; gap: var(--space-sm); margin-top: var(--space-md); }
+.pattern-variant {
+  background: var(--color-surface);
+  border-radius: var(--radius-sm);
+  padding: var(--space-sm) var(--space-md);
+  font-family: var(--font-jp);
+  font-size: 0.95rem;
+  border-left: 3px solid var(--color-accent-light);
+}
+
+/* ── Example Block ───────────────────────────────────────────── */
+.example-block {
+  background: var(--color-surface-alt);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  border: 1px solid var(--color-border);
+}
+.example-line { display: flex; gap: var(--space-md); margin-bottom: var(--space-md); align-items: flex-start; }
+.example-line:last-child { margin-bottom: 0; }
+.example-line__speaker { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; color: var(--color-text-muted); min-width: 60px; padding-top: 4px; }
+.example-line__content { flex: 1; }
+.example-line__jp { font-family: var(--font-jp); font-size: 1rem; line-height: 1.8; margin-bottom: 2px; }
+.example-line__vi { font-size: 0.85rem; color: var(--color-text-muted); }
+.example-line__note { font-size: 0.78rem; background: #FEF9C3; border-radius: var(--radius-sm); padding: 2px 8px; margin-top: 4px; display: inline-block; }
+
+/* ── Practice (Fill-in-blank) ────────────────────────────────── */
+.practice-block { background: var(--color-surface); border: 2px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-xl); }
+.practice-question { font-family: var(--font-jp); font-size: 1.1rem; line-height: 1.8; margin-bottom: var(--space-lg); }
+.practice-input { width: 100%; padding: 12px var(--space-md); border: 2px solid var(--color-border); border-radius: var(--radius-md); font-family: var(--font-jp); font-size: 1rem; background: var(--color-bg); color: var(--color-text); transition: border-color var(--transition); }
+.practice-input:focus { outline: none; border-color: var(--color-accent); }
+.practice-input.correct { border-color: var(--color-success); background: #F0FDF4; }
+.practice-input.incorrect { border-color: var(--color-error); background: #FEF2F2; }
+.practice-feedback { margin-top: var(--space-sm); font-size: 0.9rem; font-weight: 500; min-height: 24px; }
+.practice-feedback.correct  { color: var(--color-success); }
+.practice-feedback.incorrect { color: var(--color-error); }
+
+/* ── Lesson Navigation ───────────────────────────────────────── */
+.lesson-nav { display: flex; align-items: center; justify-content: space-between; padding-top: var(--space-2xl); border-top: 1px solid var(--color-border); margin-top: var(--space-2xl); }
+.lesson-nav__prev, .lesson-nav__next { display: flex; flex-direction: column; gap: 4px; }
+.lesson-nav__label { font-size: 0.75rem; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+.lesson-nav__title { font-weight: 600; font-size: 0.95rem; }
+.lesson-nav__next  { text-align: right; }
+
+/* ── Complete Button ─────────────────────────────────────────── */
+.complete-btn {
+  display: flex; align-items: center; gap: var(--space-sm);
+  padding: 14px 32px;
+  background: var(--color-success);
+  color: #fff; border: none; border-radius: var(--radius-md);
+  font-weight: 700; font-size: 1rem; cursor: pointer;
+  transition: all var(--transition);
+}
+.complete-btn:hover { background: #059669; transform: translateY(-1px); }
+.complete-btn.completed { background: var(--color-surface-alt); color: var(--color-text-muted); cursor: default; }
+
+@media(max-width:768px) {
+  .lesson-page { padding-inline: var(--space-md); }
+  .vocab-grid  { grid-template-columns: 1fr; }
+}

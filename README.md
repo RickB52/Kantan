@@ -1,0 +1,2 @@
+# Kantan
+Japanese Traning Platform

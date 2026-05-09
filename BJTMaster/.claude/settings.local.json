@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir \"D:\\\\Dynh\\\\BJT\")",
+      "Bash(dir \"D:\\\\Dynh\\\\BJT\\\\Source_BJT\")",
+      "PowerShell(Get-ChildItem \"D:\\\\Dynh\\\\BJT\\\\Source_BJT\" -File | ForEach-Object { $_.Name })"
+    ]
+  }
+}

@@ -1,0 +1,1078 @@
+﻿<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 3: Thông báo scope change — Senpai</title>
+  <meta name="description" content="Viết email scope change chuẩn Nhật — 4 bước bắt buộc, 2 phương án cho PM chọn, edge case khi PM từ chối, writing exercise thực chiến.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../assets/css/main.css">
+  <link rel="stylesheet" href="../../../assets/css/components.css">
+  <link rel="stylesheet" href="../../../assets/css/lesson.css">
+  <style>
+    /* Senpai warning */
+    .senpai-warn { background: #FFFBEB; border: 1.5px solid #FDE68A; border-radius: 12px; padding: 20px 24px; margin-top: 24px; }
+    [data-theme="dark"] .senpai-warn { background: rgba(253,230,138,0.08); border-color: rgba(253,230,138,0.3); }
+    .senpai-warn__head { font-weight: 700; color: #92400E; margin-bottom: 16px; font-size: 0.9375rem; }
+    [data-theme="dark"] .senpai-warn__head { color: #FCD34D; }
+    .senpai-warn__item { margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #FDE68A; }
+    [data-theme="dark"] .senpai-warn__item { border-color: rgba(253,230,138,0.2); }
+    .senpai-warn__item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+    .sw-label { font-size: 0.8125rem; font-weight: 600; margin-bottom: 4px; }
+    .sw-wrong { background: #FEE2E2; border-radius: 6px; padding: 8px 12px; font-family: 'Noto Sans JP', sans-serif; font-size: 0.875rem; margin-bottom: 6px; color: #991B1B; }
+    .sw-right  { background: #D1FAE5; border-radius: 6px; padding: 8px 12px; font-family: 'Noto Sans JP', sans-serif; font-size: 0.875rem; margin-bottom: 8px; color: #065F46; }
+    .sw-explain { font-size: 0.8125rem; color: #78350F; line-height: 1.65; }
+    [data-theme="dark"] .sw-explain { color: #D97706; }
+
+    /* 4-step flow */
+    .step-flow { display: flex; flex-direction: column; gap: 0; margin-top: 20px; border: 1px solid var(--color-border-light, #E2E8F0); border-radius: 12px; overflow: hidden; }
+    .step-flow__item { display: flex; gap: 14px; padding: 14px 18px; border-bottom: 1px solid var(--color-border-light, #E2E8F0); align-items: flex-start; }
+    .step-flow__item:last-child { border-bottom: none; }
+    .step-flow__num { width: 28px; height: 28px; border-radius: 50%; background: var(--color-primary, #EF4444); color: #fff; font-weight: 700; font-size: 0.8125rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+    .step-flow__body strong { display: block; margin-bottom: 3px; font-size: 0.9375rem; }
+    .step-flow__body .jp { font-family: 'Noto Sans JP', sans-serif; font-size: 0.875rem; color: var(--color-accent, #4F46E5); display: block; margin-bottom: 3px; }
+    .step-flow__body span { font-size: 0.8125rem; color: var(--color-text-muted); }
+
+    /* Email variant tabs */
+    .email-tabs { display: flex; gap: 0; border-bottom: 2px solid var(--color-border-light, #E2E8F0); margin-bottom: 0; }
+    .email-tab { padding: 10px 18px; font-size: 0.875rem; font-weight: 600; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -2px; color: var(--color-text-muted); transition: all 0.2s; }
+    .email-tab.active { color: var(--color-primary, #EF4444); border-bottom-color: var(--color-primary, #EF4444); }
+    .email-tab-content { display: none; }
+    .email-tab-content.active { display: block; }
+
+    /* Writing exercise */
+    .writing-exercise { background: var(--color-surface); border: 1px solid var(--color-border-light, #E2E8F0); border-radius: 12px; padding: 20px 24px; margin-top: 28px; }
+    .writing-exercise__scenario { background: var(--color-background, #F8FAFC); border-radius: 8px; padding: 14px 16px; margin-bottom: 16px; font-size: 0.875rem; line-height: 1.7; }
+    .writing-exercise__scenario strong { display: block; margin-bottom: 6px; }
+    .writing-exercise__area { width: 100%; min-height: 160px; border: 1px solid var(--color-border-light, #E2E8F0); border-radius: 8px; padding: 12px 14px; font-family: 'Noto Sans JP', sans-serif; font-size: 0.875rem; line-height: 1.8; resize: vertical; background: var(--color-surface); color: var(--color-text); box-sizing: border-box; }
+    .writing-exercise__area:focus { outline: none; border-color: var(--color-primary, #EF4444); }
+    .writing-exercise__sample { display: none; margin-top: 14px; }
+    .writing-exercise__sample.show { display: block; }
+
+    /* Nâng cao */
+    .advanced-block { background: linear-gradient(135deg, #FEF2F2 0%, #EEF2FF 100%); border-radius: 12px; padding: 20px 24px; margin-top: 24px; }
+    [data-theme="dark"] .advanced-block { background: linear-gradient(135deg, rgba(239,68,68,0.08) 0%, rgba(79,70,229,0.08) 100%); }
+    .advanced-block__head { font-weight: 700; font-size: 0.9375rem; margin-bottom: 14px; }
+    .advanced-item { margin-bottom: 14px; padding-bottom: 14px; border-bottom: 1px solid rgba(0,0,0,0.06); font-size: 0.875rem; }
+    [data-theme="dark"] .advanced-item { border-color: rgba(255,255,255,0.06); }
+    .advanced-item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+    .advanced-item__tag { display: inline-block; background: var(--color-primary, #EF4444); color: #fff; font-size: 0.7rem; font-weight: 700; padding: 2px 7px; border-radius: 4px; margin-bottom: 5px; }
+    .advanced-item .jp { font-family: 'Noto Sans JP', sans-serif; }
+
+    /* Keigo note box */
+    .keigo-note { background: #EEF2FF; border-radius: 8px; padding: 12px 14px; margin-top: 10px; font-size: 0.8125rem; color: #4338CA; line-height: 1.7; }
+    [data-theme="dark"] .keigo-note { background: rgba(79,70,229,0.12); color: #818CF8; }
+
+    /* Quiz feedback */
+    .quiz-feedback { display: none; margin-top: 8px; padding: 8px 12px; border-radius: 6px; font-size: 0.8125rem; line-height: 1.5; }
+    .quiz-feedback.correct { background: #D1FAE5; color: #065F46; display: block; }
+    .quiz-feedback.wrong   { background: #FEE2E2; color: #991B1B; display: block; }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVBAR ── -->
+<nav class="navbar">
+  <div class="container">
+    <a href="../../../index.html" class="navbar__brand">
+      <span class="brand-icon">先</span>
+      <span class="brand-name">Senpai DynhNC</span>
+    </a>
+    <ul class="navbar__links">
+      <li><a href="../../index.html" class="link--cta">🇯🇵 Học ngay</a></li>
+      <li><a href="../../vocabulary/index.html">🔤 Từ vựng</a></li>
+      <li><a href="#">📚 Resources</a></li>
+      <li><a href="#" class="link--premium">🔒 Premium</a></li>
+    </ul>
+    <div class="navbar__right">
+      <button class="theme-toggle" aria-label="Đổi giao diện">
+        <span class="toggle-track">
+          <span class="toggle-sun">☀️</span>
+          <span class="toggle-moon">🌙</span>
+          <span class="toggle-thumb"></span>
+        </span>
+      </button>
+    </div>
+    <button class="navbar__toggle" aria-label="Menu">☰</button>
+  </div>
+</nav>
+
+<!-- ── LESSON HEADER ── -->
+<div class="lesson-header">
+  <div class="lesson-wrapper">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../../../index.html">Senpai</a>
+      <span class="breadcrumb__sep">›</span>
+      <a href="../../index.html">Japanese Hub</a>
+      <span class="breadcrumb__sep">›</span>
+      <a href="../index.html">Stage 2</a>
+      <span class="breadcrumb__sep">›</span>
+      <a href="index.html">Email</a>
+      <span class="breadcrumb__sep">›</span>
+      <span class="breadcrumb__current">Bài 3</span>
+    </nav>
+
+    <div class="lesson-meta">
+      <span class="badge badge--free">Miễn phí</span>
+      <span class="badge badge--new">📧 Email</span>
+      <span style="font-size:0.8125rem; color: var(--color-text-muted);">⏱ ~25 phút</span>
+    </div>
+
+    <h1>Bài 3: Thông báo scope change cho PM Nhật</h1>
+    <p class="lesson-header__sub">
+      Khi requirement thay đổi, mỗi từ bạn dùng quyết định PM có trust bạn hay không — bài này dạy đủ 4 bước và cả cách xử lý khi PM phản đối.
+    </p>
+
+    <div class="lesson-progress-row">
+      <span class="lesson-progress-label">Tiến độ bài học</span>
+      <div class="progress-bar">
+        <div class="progress-bar__fill" id="lesson-progress-bar" style="width: 0%"></div>
+      </div>
+      <span class="lesson-progress-pct" id="lesson-progress-pct">0%</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── LESSON BODY ── -->
+<main class="lesson-body">
+  <div class="lesson-wrapper">
+
+    <!-- ════ SECTION 1: SITUATION ════ -->
+    <div class="ls" id="ls-1">
+      <div class="ls__label">
+        <span class="ls__num">1</span>
+        Tình huống
+      </div>
+      <div class="situation-card reveal">
+        <div class="situation-tag">⚠️ Offshore IT · Tuần 3 · Thứ 2 sáng · Phát hiện vấn đề kỹ thuật</div>
+        <h2>Tính năng realtime search không thể làm đúng deadline — Dynh phải email Honda-san trước khi họp chiều</h2>
+        <p>
+          Team vừa hoàn thành detailed design và phát hiện: realtime search cần Elasticsearch server
+          riêng — hiện tại chưa có trong budget. Nếu giữ nguyên scope, release date 10/5 sẽ bị delay
+          ít nhất 2 tuần. Cuộc họp với Honda-san là 14:00 hôm nay — Dynh cần email trước để Honda-san
+          có thời gian đọc và chuẩn bị ý kiến.
+        </p>
+        <p style="margin-top: 8px; font-size: 0.9rem; color: var(--color-text-muted);">
+          Scope change là tình huống nhạy cảm nhất trong dự án offshore. Email sai format → PM mất trust ngay. Email đúng → PM coi Dynh là người chuyên nghiệp biết quản lý rủi ro.
+        </p>
+        <div class="situation-actors">
+          <div class="actor-chip">
+            <span class="actor-chip__role">Người gửi</span>
+            Dynh (BA / Dev Lead VN)
+          </div>
+          <div class="actor-chip">
+            <span class="actor-chip__role">Người nhận</span>
+            Honda-san (PM phía Nhật)
+          </div>
+          <div class="actor-chip">
+            <span class="actor-chip__role">Vấn đề</span>
+            Realtime search cần infra chưa có
+          </div>
+          <div class="actor-chip">
+            <span class="actor-chip__role">Deadline quyết định</span>
+            Trước họp 14:00 hôm nay
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ SECTION 2: VIDEO ════ -->
+    <div class="ls" id="ls-2">
+      <div class="ls__label">
+        <span class="ls__num">2</span>
+        Video
+      </div>
+      <div class="ls__title">Xem tình huống thực tế</div>
+      <div class="video-wrap reveal">
+        <div class="video-placeholder">
+          <div class="video-placeholder__kanji">変更</div>
+          <div class="video-placeholder__play">▶</div>
+          <div class="video-placeholder__text">
+            <div class="video-placeholder__title">Video đang được chuẩn bị</div>
+            <div class="video-placeholder__sub">So sánh: email scope change sai cách vs đúng cách — phản ứng của PM Nhật</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ SECTION 3: NOTES ════ -->
+    <div class="ls" id="ls-3">
+      <div class="ls__label">
+        <span class="ls__num">3</span>
+        Điểm chính
+      </div>
+      <div class="ls__title">4 bước bắt buộc + văn hóa quyết định của Nhật</div>
+      <div class="notes-card reveal">
+        <div class="notes-card__heading">📌 Công thức email scope change</div>
+        <ul>
+          <li>
+            <strong>① Nêu vấn đề đã xác định — không vòng vo</strong><br>
+            <span style="font-size:0.875rem; color:var(--color-text-muted);">〜という課題が判明いたしました — đã xác định được vấn đề là... Người Nhật không thích email vòng vo. Nêu thẳng vấn đề trong 1–2 câu đầu tiên sau phần mở đầu.</span>
+          </li>
+          <li>
+            <strong>② Impact cụ thể bằng số — không dùng từ mơ hồ</strong><br>
+            <span style="font-size:0.875rem; color:var(--color-text-muted);">このままでは〜に影響が出る見込みです. Impact phải có con số: "2週間の遅延" chứ không phải "しばらく遅れます". PM cần số liệu để report lên Director.</span>
+          </li>
+          <li>
+            <strong>③ Đưa ra 2 phương án — không áp đặt</strong><br>
+            <span style="font-size:0.875rem; color:var(--color-text-muted);">Văn hóa Nhật: PM không thích bị đặt vào thế "chỉ có 1 lựa chọn". Đưa 2 phương án với ưu/nhược điểm rõ ràng — PM cảm thấy được tôn trọng, dễ đồng ý hơn. Nếu bạn có recommendation, nêu nhẹ nhưng để PM quyết định.</span>
+          </li>
+          <li>
+            <strong>④ Xin phê duyệt + deadline phản hồi</strong><br>
+            <span style="font-size:0.875rem; color:var(--color-text-muted);">ご検討・ご承認いただけますでしょうか. Thêm deadline cụ thể: "〇月〇日中にご回答いただけますと" — PM biết cần quyết định trước khi nào, tránh bị treo indefinitely.</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- 4-step flow visual -->
+      <div class="step-flow reveal d1">
+        <div class="step-flow__item">
+          <div class="step-flow__num">1</div>
+          <div class="step-flow__body">
+            <strong>Nêu vấn đề</strong>
+            <span class="jp">〜という課題が判明いたしました</span>
+            <span>Thẳng thắn, không vòng vo, không xin lỗi trước</span>
+          </div>
+        </div>
+        <div class="step-flow__item">
+          <div class="step-flow__num">2</div>
+          <div class="step-flow__body">
+            <strong>Impact bằng số</strong>
+            <span class="jp">このままでは〜に〇〇の影響が出る見込みです</span>
+            <span>Ngày, tuần, cost — càng cụ thể càng tốt</span>
+          </div>
+        </div>
+        <div class="step-flow__item">
+          <div class="step-flow__num">3</div>
+          <div class="step-flow__body">
+            <strong>2 phương án</strong>
+            <span class="jp">【案①】〜 / 【案②】〜</span>
+            <span>Mỗi phương án nêu rõ ưu điểm — để PM có cơ sở quyết định</span>
+          </div>
+        </div>
+        <div class="step-flow__item">
+          <div class="step-flow__num">4</div>
+          <div class="step-flow__body">
+            <strong>Xin phê duyệt + deadline</strong>
+            <span class="jp">ご検討・ご承認いただけますでしょうか。〇日中にご回答いただけますと幸いです。</span>
+            <span>Đặt deadline rõ ràng để tránh bị bỏ lơ</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Senpai Warning -->
+      <div class="senpai-warn reveal d2">
+        <div class="senpai-warn__head">⚠️ Senpai cảnh báo — 3 lỗi nghiêm trọng trong email scope change</div>
+
+        <div class="senpai-warn__item">
+          <div class="sw-label">Lỗi 1 — Nêu impact mơ hồ, không có số liệu</div>
+          <div class="sw-wrong">❌ このままでは、リリースが難しくなる可能性があります。</div>
+          <div class="sw-right">✅ このままでは、5月10日のリリースに約2週間の遅延が生じる見込みです。</div>
+          <div class="sw-explain">
+            "難しくなる" (trở nên khó) nghe rất mơ hồ — PM không biết "khó" là delay 2 ngày hay 2 tháng.
+            PM cần báo cáo lên Director với con số cụ thể. Không có số = PM phải hỏi lại = waste thêm 1 vòng email.
+            Luôn ước tính rõ: bao nhiêu ngày delay, ảnh hưởng đến milestone nào, tăng thêm bao nhiêu cost nếu biết.
+          </div>
+        </div>
+
+        <div class="senpai-warn__item">
+          <div class="sw-label">Lỗi 2 — Dùng 思います thay vì 存じます khi đề xuất với PM</div>
+          <div class="sw-wrong">❌ フェーズ分割をご提案させていただきたいと思います。</div>
+          <div class="sw-right">✅ フェーズ分割をご提案させていただきたく存じます。</div>
+          <div class="sw-explain">
+            存じます (zonjimasu) là 謙譲語 của 思います — lịch sự cao hơn hẳn.
+            Trong email đề xuất lên PM, dùng 思います nghe như "tôi thích làm vậy" — chủ quan.
+            存じます nghe như "tôi thành kính trình bày để Ngài xem xét" — khiêm tốn đúng mức.
+          </div>
+        </div>
+
+        <div class="senpai-warn__item">
+          <div class="sw-label">Lỗi 3 — Không nêu deadline cần PM phản hồi</div>
+          <div class="sw-wrong">❌ ご検討いただけますでしょうか。よろしくお願いいたします。</div>
+          <div class="sw-right">✅ 5月1日（木）中にご回答いただけますと、対応の準備を進められます。</div>
+          <div class="sw-explain">
+            Không có deadline → PM đọc xong rồi để đó, nghĩ "sẽ reply sau" → bạn chờ mãi.
+            Email scope change thường cần quyết định gấp. Nêu rõ ngày cần phản hồi và lý do (để team chuẩn bị được).
+            Đây không phải thúc giục PM — đây là cung cấp context đầy đủ để PM ưu tiên đúng.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ SECTION 4: VOCAB ════ -->
+    <div class="ls" id="ls-4">
+      <div class="ls__label">
+        <span class="ls__num">4</span>
+        Từ vựng
+      </div>
+      <div class="ls__title">8 từ/cụm từ cốt lõi — từ vấn đề đến phê duyệt</div>
+      <div class="vocab-grid">
+
+        <div class="vocab-card reveal">
+          <div class="vocab-card__top">
+            <div class="vocab-card__word"><ruby>判明<rt>はんめい</rt></ruby></div>
+            <button class="vocab-card__audio" aria-label="Nghe phát âm">🔊</button>
+          </div>
+          <div class="vocab-card__reading">Hanmei</div>
+          <hr class="vocab-card__divider">
+          <div class="vocab-card__meaning">Đã xác định / Đã làm rõ được</div>
+          <div class="vocab-card__usage">〜という課題が判明いたしました — đã xác định được vấn đề là... Dùng いたしました (謙譲語) thay vì しました khi báo cáo lên PM.</div>
+        </div>
+
+        <div class="vocab-card reveal d1">
+          <div class="vocab-card__top">
+            <div class="vocab-card__word"><ruby>見込<rt>みこ</rt></ruby>み</div>
+            <button class="vocab-card__audio" aria-label="Nghe phát âm">🔊</button>
+          </div>
+          <div class="vocab-card__reading">Mikomi</div>
+          <hr class="vocab-card__divider">
+          <div class="vocab-card__meaning">Dự kiến / Ước tính</div>
+          <div class="vocab-card__usage">〜の見込みです — dự kiến là... Nhẹ hơn 予定 (kế hoạch đã xác định) — dùng khi nói về impact chưa chắc chắn 100%.</div>
+        </div>
+
+        <div class="vocab-card reveal d2">
+          <div class="vocab-card__top">
+            <div class="vocab-card__word"><ruby>変更<rt>へんこう</rt></ruby></div>
+            <button class="vocab-card__audio" aria-label="Nghe phát âm">🔊</button>
+          </div>
+          <div class="vocab-card__reading">Henkō</div>
+          <hr class="vocab-card__divider">
+          <div class="vocab-card__meaning">Thay đổi / Điều chỉnh</div>
+          <div class="vocab-card__usage">スコープ変更 / スケジュール変更. Trung tính hơn 修正 (sửa lỗi) — dùng khi thay đổi do yếu tố kỹ thuật hoặc business, không phải do lỗi.</div>
+        </div>
+
+        <div class="vocab-card reveal">
+          <div class="vocab-card__top">
+            <div class="vocab-card__word">ご<ruby>提案<rt>ていあん</rt></ruby></div>
+            <button class="vocab-card__audio" aria-label="Nghe phát âm">🔊</button>
+          </div>
+          <div class="vocab-card__reading">Go-teian</div>
+          <hr class="vocab-card__divider">
+          <div class="vocab-card__meaning">Đề xuất (tôn kính hóa)</div>
+          <div class="vocab-card__usage">〜をご提案させていただきたく存じます. ご + 提案 = tôn kính hóa danh từ. させていただく = xin phép làm (keigo cao). 存じます = 思います (謙譲語).</div>
+        </div>
+
+        <div class="vocab-card reveal d1">
+          <div class="vocab-card__top">
+            <div class="vocab-card__word"><ruby>承認<rt>しょうにん</rt></ruby></div>
+            <button class="vocab-card__audio" aria-label="Nghe phát âm">🔊</button>
+          </div>
+          <div class="vocab-card__reading">Shōnin</div>
+          <hr class="vocab-card__divider">
+          <div class="vocab-card__meaning">Phê duyệt / Approve</div>
+          <div class="vocab-card__usage">ご承認いただけますでしょうか. Khác với 確認 (kiểm tra) — 承認 yêu cầu PM đưa ra quyết định chính thức, thường gắn với quy trình 稟議 (ringi) trong công ty Nhật.</div>
+        </div>
+
+        <div class="vocab-card reveal d2">
+          <div class="vocab-card__top">
+            <div class="vocab-card__word"><ruby>検討<rt>けんとう</rt></ruby></div>
+            <button class="vocab-card__audio" aria-label="Nghe phát âm">🔊</button>
+          </div>
+          <div class="vocab-card__reading">Kentō</div>
+          <hr class="vocab-card__divider">
+          <div class="vocab-card__meaning">Xem xét / Cân nhắc</div>
+          <div class="vocab-card__usage">ご検討いただけますでしょうか. Nhẹ hơn 承認 — dùng khi đây là giai đoạn PM cần suy nghĩ trước khi quyết định chính thức. Thường đi trước 承認.</div>
+        </div>
+
+        <div class="vocab-card reveal">
+          <div class="vocab-card__top">
+            <div class="vocab-card__word"><ruby>分割<rt>ぶんかつ</rt></ruby></div>
+            <button class="vocab-card__audio" aria-label="Nghe phát âm">🔊</button>
+          </div>
+          <div class="vocab-card__reading">Bunkatsu</div>
+          <hr class="vocab-card__divider">
+          <div class="vocab-card__meaning">Tách / Phân chia</div>
+          <div class="vocab-card__usage">フェーズ分割 — phase splitting (tách phase). Đây là thuật ngữ quan trọng khi đề xuất giảm scope: release tính năng core trước, phần phức tạp sang phase sau.</div>
+        </div>
+
+        <div class="vocab-card reveal d1">
+          <div class="vocab-card__top">
+            <div class="vocab-card__word"><ruby>回答<rt>かいとう</rt></ruby></div>
+            <button class="vocab-card__audio" aria-label="Nghe phát âm">🔊</button>
+          </div>
+          <div class="vocab-card__reading">Kaitō</div>
+          <hr class="vocab-card__divider">
+          <div class="vocab-card__meaning">Phản hồi / Trả lời (chính thức)</div>
+          <div class="vocab-card__usage">ご回答いただけますと幸いです. Trang trọng hơn 返事 (henji). Dùng khi yêu cầu phản hồi chính thức từ PM về quyết định quan trọng.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ════ SECTION 5: PATTERN ════ -->
+    <div class="ls" id="ls-5">
+      <div class="ls__label">
+        <span class="ls__num">5</span>
+        Mẫu câu
+      </div>
+      <div class="ls__title">Mẫu câu + Edge case thực chiến</div>
+
+      <div class="pattern-card reveal">
+        <div class="pattern-card__head">⚠️ Nêu vấn đề đã xác định</div>
+        <div class="pattern-card__body">
+          <div class="pattern-main">〜という<ruby>課題<rt>かだい</rt></ruby>が<ruby>判明<rt>はんめい</rt></ruby>いたしました。</div>
+          <div class="pattern-reading">〜 to iu kadai ga hanmei itashimashita.</div>
+          <div class="pattern-meaning">Chúng tôi đã xác định được vấn đề là...</div>
+          <div class="pattern-variants" style="margin-top:12px">
+            <div class="pattern-variant pattern-variant--formal">
+              <span class="pattern-variant__tag">Ví dụ thực tế</span>
+              <div>
+                <div class="pattern-variant__text">リアルタイム検索の実装にはElasticsearchサーバーの追加が必要という課題が判明いたしました。</div>
+                <div class="pattern-variant__vn">Đã xác định: để implement realtime search cần thêm Elasticsearch server.</div>
+              </div>
+            </div>
+            <div class="pattern-variant pattern-variant--keigo">
+              <span class="pattern-variant__tag">Khi do spec thay đổi</span>
+              <div>
+                <div class="pattern-variant__text">要件の再確認により、〜が当初の想定より複雑であることが判明いたしました。</div>
+                <div class="pattern-variant__vn">Sau khi review lại requirement, phát hiện 〜 phức tạp hơn ước tính ban đầu.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pattern-card reveal d1">
+        <div class="pattern-card__head">📊 Nêu impact + deadline bị ảnh hưởng</div>
+        <div class="pattern-card__body">
+          <div class="pattern-main">このままでは〜に<ruby>約<rt>やく</rt></ruby>〇〇の<ruby>影響<rt>えいきょう</rt></ruby>が<ruby>出<rt>で</rt></ruby>る<ruby>見込<rt>みこ</rt></ruby>みです。</div>
+          <div class="pattern-reading">Kono mama de wa 〜 ni yaku 〇〇 no eikyō ga deru mikomi desu.</div>
+          <div class="pattern-meaning">Nếu giữ nguyên, dự kiến sẽ ảnh hưởng đến 〜 khoảng 〇〇.</div>
+          <div class="pattern-variants" style="margin-top:12px">
+            <div class="pattern-variant pattern-variant--formal">
+              <span class="pattern-variant__tag">Khi rủi ro chưa chắc</span>
+              <div>
+                <div class="pattern-variant__text">最悪の場合、〜に最大〇〇日の遅延が生じる可能性がございます。</div>
+                <div class="pattern-variant__vn">Trong trường hợp xấu nhất, có thể delay tối đa 〇〇 ngày. (dùng 可能性 thay 見込み khi chưa chắc)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pattern-card reveal d2">
+        <div class="pattern-card__head">✅ Đề xuất + Xin phê duyệt có deadline</div>
+        <div class="pattern-card__body">
+          <div class="pattern-main">〜をご<ruby>提案<rt>ていあん</rt></ruby>させていただきたく<ruby>存<rt>ぞん</rt></ruby>じます。〇日中にご<ruby>回答<rt>かいとう</rt></ruby>いただけますと<ruby>幸<rt>さいわ</rt></ruby>いです。</div>
+          <div class="pattern-reading">〜 wo go-teian sasete itadakitaku zonjimasu. 〇-nichi-juu ni go-kaitō itadakemasu to saiwai desu.</div>
+          <div class="pattern-meaning">Tôi muốn đề xuất... Nếu được phản hồi trước ngày 〇, chúng tôi có thể chuẩn bị ngay.</div>
+          <div class="keigo-note">
+            <strong>存じます vs 思います:</strong> 存じます (謙譲語) — đây là lựa chọn bắt buộc khi đề xuất lên PM/client. 思います nghe như đang nói chuyện với bạn bè. Sai từ này bị coi là thiếu keigo.<br>
+            <strong>幸いです</strong> — nghĩa đen "sẽ là điều may mắn" = cách lịch sự nhất để request mà không nghe như ra lệnh.
+          </div>
+        </div>
+      </div>
+
+      <!-- Edge case: khi PM phản đối -->
+      <div class="pattern-card reveal" style="border-left: 3px solid var(--color-warning, #F59E0B);">
+        <div class="pattern-card__head">🔥 Edge case — PM hỏi: "Không thể làm cả 2 đúng deadline sao?"</div>
+        <div class="pattern-card__body">
+          <div style="font-size: 0.875rem; color: var(--color-text-muted); margin-bottom: 10px;">Đây là câu hỏi thường gặp nhất — PM muốn giữ nguyên tất cả. Cách trả lời sai sẽ nghe như bào chữa.</div>
+          <div class="pattern-variants">
+            <div class="pattern-variant pattern-variant--formal">
+              <span class="pattern-variant__tag">❌ Sai</span>
+              <div>
+                <div class="pattern-variant__text">難しいです。インフラがないので無理です。</div>
+                <div class="pattern-variant__vn">Khó lắm. Không có infra nên không được. → Nghe tiêu cực, không đưa ra giải pháp.</div>
+              </div>
+            </div>
+            <div class="pattern-variant pattern-variant--keigo">
+              <span class="pattern-variant__tag">✅ Đúng</span>
+              <div>
+                <div class="pattern-variant__text">当初のスケジュールで両方対応するためには、Elasticsearchの追加費用（約〇〇万円）と環境構築期間（約1週間）が必要となります。ご予算・ご方針をご確認いただいた上で、最善の方法を検討したいと存じます。</div>
+                <div class="pattern-variant__vn">Để làm cả 2 đúng hạn, cần thêm budget (~〇〇 triệu) và 1 tuần setup. Sau khi xác nhận budget/chủ trương, chúng tôi sẽ xem xét phương án tốt nhất. → Không nói "không được", chỉ nêu điều kiện cần có.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ SECTION 6: EXAMPLE ════ -->
+    <div class="ls" id="ls-6">
+      <div class="ls__label">
+        <span class="ls__num">6</span>
+        Email mẫu
+      </div>
+      <div class="ls__title">2 version — đề xuất chuẩn và khi cần quyết định khẩn</div>
+
+      <div class="email-tabs reveal">
+        <div class="email-tab active" data-tab="standard">📗 Version A — Đề xuất 2 phương án</div>
+        <div class="email-tab" data-tab="urgent">📕 Version B — Cần quyết định khẩn trước họp</div>
+      </div>
+
+      <!-- Version A: Standard -->
+      <div class="email-tab-content active" id="tab-standard">
+        <div class="example-email reveal">
+          <div class="email-topbar">
+            <span class="email-dot email-dot--red"></span>
+            <span class="email-dot email-dot--yellow"></span>
+            <span class="email-dot email-dot--green"></span>
+            <span class="email-topbar-label">📧 Version A — hover vào từ gạch chân để xem chú thích</span>
+          </div>
+          <div class="email-fields">
+            <div class="email-field">
+              <span class="email-field__key">Đến:</span>
+              <span class="email-field__val">honda.yuta@abc-project.co.jp</span>
+            </div>
+            <div class="email-field">
+              <span class="email-field__key">Tiêu đề:</span>
+              <span class="email-field__val" style="font-family:'Noto Sans JP',sans-serif;">【ご相談】リアルタイム検索機能 — スコープ変更のご提案 / Dynh</span>
+            </div>
+          </div>
+          <div class="email-body">
+<span class="ann" data-note="Câu mở đầu bắt buộc — không bao giờ bỏ">お世話になっております。</span>
+<span class="ann" data-note="Tự giới thiệu lại — PM nhận nhiều email, cần context">ベトナムITチームのDynhです。</span>
+
+<span class="ann" data-note="【ご相談】trong subject + câu intro — PM biết ngay đây là email cần chú ý, không phải báo cáo thường">リアルタイム検索機能の実装について、ご相談がございます。</span>
+
+■ <span class="ann" data-note="判明した課題 — section nêu vấn đề. 判明 = đã làm rõ được (không còn nghi ngờ)">判明した課題</span>
+<span class="ann" data-note="判明いたしました — いたしました là 謙譲語, không dùng しました với PM">詳細設計の結果、リアルタイム検索にはElasticsearchサーバーの追加が必要という課題が判明いたしました。</span>
+<span class="ann" data-note="2週間 — con số cụ thể, không nói mơ hồ. PM cần số để report lên Director">このままでは、5月10日のリリースに約2週間の遅延が生じる見込みです。</span>
+
+■ <span class="ann" data-note="ご提案（2案）— luôn đưa 2 phương án. Người Nhật không thích bị áp đặt 1 lựa chọn">ご提案（2案）</span>
+
+<span class="ann" data-note="【案①】bracket format — convention đề xuất chuẩn Nhật, dễ scan và dễ refer lại trong reply">【案①】スケジュール延長</span>
+<span class="ann" data-note="Nêu ngày cụ thể: 5/10 → 5/24. Không nói chung chung '2 tuần sau'">リリースを5月10日→5月24日（+2週間）に変更し、リアルタイム検索も含めてリリースする。</span>
+
+【案②】<span class="ann" data-note="フェーズ分割 = phase splitting — tách tính năng phức tạp sang phase sau, release core đúng hạn. Đây thường là phương án PM Nhật prefer">フェーズ分割</span>
+<span class="ann" data-note="通常検索のみでリリース — release với tìm kiếm thông thường, không có realtime. Nêu rõ phạm vi release">5月10日は通常検索のみでリリースし、リアルタイム検索はフェーズ２（6月末予定）に移行する。</span>
+<span class="ann" data-note="Nêu lợi ích của phương án 2 — giúp PM dễ justify lên Director hơn">本案により、当初スケジュールを維持しつつ、コア機能を予定通りリリースできます。</span>
+
+<span class="ann" data-note="ご検討・ご承認 — xem xét VÀ phê duyệt. Hai bước: PM cân nhắc trước, rồi ra quyết định chính thức">ご検討・ご承認いただけますでしょうか。</span>
+<span class="ann" data-note="Deadline phản hồi cụ thể + lý do cần sớm. Không có câu này → PM để đó không reply">5月1日（木）中にご回答いただけますと、対応の準備を進められます。</span>
+
+<span class="ann" data-note="よろしくお願いいたします — câu kết chuẩn. Không dùng ご確認よろしく… vì đây là email xin phê duyệt, không phải báo cáo">よろしくお願いいたします。</span>
+
+━━━━━━━━━━━━━━━━
+Dynh / BA · Vietnam IT Team
+Mail: dynh@vietnam-it.com · Tel: +84-xxx-xxx-xxxx
+━━━━━━━━━━━━━━━━</div>
+        </div>
+      </div>
+
+      <!-- Version B: Urgent -->
+      <div class="email-tab-content" id="tab-urgent">
+        <div class="example-email reveal">
+          <div class="email-topbar">
+            <span class="email-dot email-dot--red"></span>
+            <span class="email-dot email-dot--yellow"></span>
+            <span class="email-dot email-dot--green"></span>
+            <span class="email-topbar-label">📧 Version B — khi cần quyết định trước cuộc họp chiều</span>
+          </div>
+          <div class="email-fields">
+            <div class="email-field">
+              <span class="email-field__key">Tiêu đề:</span>
+              <span class="email-field__val" style="font-family:'Noto Sans JP',sans-serif;">【至急ご相談】リアルタイム検索 スコープ変更 — 本日14時のMTG前にご確認をお願いします</span>
+            </div>
+          </div>
+          <div class="email-body">
+お世話になっております。ベトナムITチームのDynhです。
+
+<span class="ann" data-note="至急 trong subject + nêu thời hạn ngay đầu email. Người Nhật đọc email đầu tiên theo subject và dòng đầu tiên">本日14時のミーティングに先立ち、重要事項をご共有させていただきます。</span>
+
+■ 緊急の課題
+<span class="ann" data-note="本日の詳細設計レビューで判明 — nêu chính xác thời điểm phát hiện: hôm nay, trong quá trình review. Cho PM thấy team proactive, không giấu">本日の詳細設計レビューにて、</span>リアルタイム検索機能にElasticsearchサーバーの追加が必要という課題が判明いたしました。
+このままでは、5月10日のリリースに2週間の遅延が生じる見込みです。
+
+■ 暫定的なご提案
+本日のMTGで詳しくご説明いたしますが、事前に2案をご確認いただけますと幸いです。
+
+<span class="ann" data-note="暫定的 — tạm thời. Báo trước là sẽ giải thích chi tiết trong meeting, email chỉ để PM đọc trước">【案①】リリース延期：5月10日→5月24日（+2週間）
+【案②】フェーズ分割：5月10日は通常検索でリリース、リアルタイムはフェーズ２（6月末）へ</span>
+
+<span class="ann" data-note="MTGにてご判断 — sẽ xin ý kiến quyết định trong meeting. Câu này bridge email và meeting lại với nhau">本日のMTGにてご判断をいただきたく存じます。</span>
+<span class="ann" data-note="ご質問があれば事前に — mời PM hỏi trước nếu cần thêm thông tin. Cho thấy bạn sẵn sàng, không thụ động">ご質問がございましたら、MTG前にお知らせください。</span>
+
+よろしくお願いいたします。
+
+━━━━━━━━━━━━━━━━
+Dynh / BA · Vietnam IT Team
+Mail: dynh@vietnam-it.com · Tel: +84-xxx-xxx-xxxx
+━━━━━━━━━━━━━━━━</div>
+        </div>
+        <div style="background: #EEF2FF; border-radius: 8px; padding: 12px 16px; margin-top: 12px; font-size: 0.875rem;">
+          <strong style="color: #4338CA;">Điểm khác biệt Version B:</strong>
+          <ul style="margin-top: 6px; padding-left: 18px; color: #4338CA; line-height: 1.8;">
+            <li>Subject có <span style="font-family:'Noto Sans JP',sans-serif;">【至急ご相談】</span> và ghi rõ deadline trong subject</li>
+            <li>Mở đầu nêu ngay thời hạn cần quyết định (trước họp 14:00)</li>
+            <li>Gọi là "暫定的なご提案" — đề xuất tạm thời, sẽ giải thích chi tiết trong meeting</li>
+            <li>Kết bằng câu mời hỏi trước nếu cần — chủ động, không thụ động chờ</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ SECTION 7: PRACTICE ════ -->
+    <div class="ls" id="ls-7">
+      <div class="ls__label">
+        <span class="ls__num">7</span>
+        Luyện tập
+      </div>
+      <div class="ls__title">Điền từ + Viết email ngắn</div>
+
+      <div class="practice-item reveal">
+        <div class="practice-item__num">Câu 1 / 3</div>
+        <div class="practice-item__q">
+          <span class="jp">追加インフラが必要という課題が</span>
+          <input class="fill-blank" type="text" placeholder="___" data-answer="判明いたしました" aria-label="Điền vào chỗ trống">
+          <span class="jp">。</span>
+        </div>
+        <div class="practice-item__hint">💡 Gợi ý: Động từ "đã xác định được" — dùng 謙譲語 của しました</div>
+      </div>
+
+      <div class="practice-item reveal d1">
+        <div class="practice-item__num">Câu 2 / 3</div>
+        <div class="practice-item__q">
+          <span class="jp">このままでは、リリースに約2週間の</span>
+          <input class="fill-blank" type="text" placeholder="___" data-answer="影響が出る見込みです" aria-label="Điền vào chỗ trống">
+          <span class="jp">。</span>
+        </div>
+        <div class="practice-item__hint">💡 Gợi ý: "dự kiến sẽ có ảnh hưởng" — dùng 見込み không phải 予定</div>
+      </div>
+
+      <div class="practice-item reveal d2">
+        <div class="practice-item__num">Câu 3 / 3</div>
+        <div class="practice-item__q">
+          <span class="jp">フェーズ分割をご提案させていただきたく</span>
+          <input class="fill-blank" type="text" placeholder="___" data-answer="存じます" aria-label="Điền vào chỗ trống">
+          <span class="jp">。ご検討いただけますでしょうか。</span>
+        </div>
+        <div class="practice-item__hint">💡 Gợi ý: 謙譲語 của 思います — lịch sự cao, dùng khi đề xuất lên PM</div>
+      </div>
+
+      <div style="margin-top: 20px; display: flex; gap: 10px; flex-wrap: wrap;">
+        <button class="btn btn--primary btn--sm" id="check-blanks">Kiểm tra đáp án</button>
+        <button class="btn btn--ghost btn--sm" id="show-hints">Xem gợi ý</button>
+      </div>
+      <div id="blanks-result" style="display:none; margin-top:12px;"></div>
+
+      <!-- Writing Exercise -->
+      <div class="writing-exercise reveal" style="margin-top: 32px;">
+        <div class="ls__title" style="margin-bottom: 8px;">✍️ Bài viết ngắn — viết đoạn ご提案 theo tình huống</div>
+        <div class="writing-exercise__scenario">
+          <strong>Tình huống cần viết:</strong>
+          Team phát hiện tính năng export PDF cần một thư viện có phí (~$200/tháng) chưa có trong budget.
+          Nếu giữ nguyên: delay 1 tuần để xin budget approve. Phương án 1: xin thêm budget, release đúng hạn.
+          Phương án 2: MVP release không có export PDF, thêm vào tháng sau sau khi budget được duyệt.
+          <br><br>Viết đoạn từ ■ 判明した課題 đến ■ ご提案（2案） bằng tiếng Nhật.
+        </div>
+        <textarea class="writing-exercise__area" placeholder="■ 判明した課題&#10;...&#10;&#10;■ ご提案（2案）&#10;【案①】...&#10;【案②】..."></textarea>
+        <div style="margin-top: 12px;">
+          <button class="btn btn--ghost btn--sm" id="show-sample">Xem bài mẫu</button>
+        </div>
+        <div class="writing-exercise__sample" id="sample-answer">
+          <div style="font-weight: 600; font-size: 0.875rem; margin-bottom: 8px; margin-top: 4px;">Bài mẫu:</div>
+          <div class="example-email" style="margin-top: 0;">
+            <div class="email-body" style="padding: 16px 20px;">
+■ 判明した課題
+PDF出力機能の実装には有償ライブラリ（月額約$200）が必要という課題が判明いたしました。
+現在の予算に含まれていないため、予算承認の手続きに約1週間かかる見込みです。
+
+■ ご提案（2案）
+【案①】予算追加申請
+PDF出力ライブラリの費用（月額$200）をご承認いただき、当初スケジュール通り5月10日にリリースする。
+→リリース日を維持できますが、予算承認手続きが必要です。
+
+【案②】MVP先行リリース
+5月10日はPDF出力なしでリリースし、予算承認後の翌月にPDF出力機能を追加する。
+→追加費用なしでリリース日を維持できます。PDF出力は翌月の提供となります。
+            </div>
+          </div>
+          <div style="background: #EEF2FF; border-radius: 8px; padding: 12px 14px; margin-top: 10px; font-size: 0.8125rem; color: #4338CA; line-height: 1.7;">
+            <strong>Điểm cần có:</strong> ① 課題 rõ ràng với số liệu ($200/tháng, 1 tuần) ② Mỗi phương án có ưu/nhược ngắn gọn sau → ③ Tone trung tính, không chê phương án nào
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ SECTION 8: QUIZ ════ -->
+    <div class="ls" id="ls-8">
+      <div class="ls__label">
+        <span class="ls__num">8</span>
+        Quiz
+      </div>
+      <div class="ls__title">Kiểm tra — 6 câu, 4 tình huống thực tế</div>
+      <p class="quiz-desc">Đọc kỹ context trước khi chọn — một số câu có nhiều đáp án "trông ổn" nhưng chỉ 1 cái đúng nhất.</p>
+
+      <!-- Q1 — Situation -->
+      <div class="quiz-item reveal">
+        <div class="quiz-item__q">
+          <span class="quiz-item__num">1</span>
+          <strong>[Tình huống]</strong> Email scope change của bạn kết thúc bằng: <em style="font-family:'Noto Sans JP',sans-serif;">ご検討いただけますでしょうか。よろしくお願いいたします。</em> — PM đọc xong rồi không reply suốt 3 ngày. Nguyên nhân có thể là gì?
+        </div>
+        <div class="quiz-options">
+          <label class="quiz-option" data-correct="false">
+            <input type="radio" name="q1" value="a">
+            PM đang bận họp nên chưa kịp reply
+          </label>
+          <label class="quiz-option" data-correct="true">
+            <input type="radio" name="q1" value="b">
+            Email không có deadline cần phản hồi — PM không biết đây là urgent và để sau
+          </label>
+          <label class="quiz-option" data-correct="false">
+            <input type="radio" name="q1" value="c">
+            PM không đồng ý nhưng không muốn nói thẳng
+          </label>
+          <label class="quiz-option" data-correct="false">
+            <input type="radio" name="q1" value="d">
+            Câu keigo chưa đủ lịch sự nên PM bực
+          </label>
+        </div>
+        <div class="quiz-feedback" id="q1-feedback"></div>
+      </div>
+
+      <!-- Q2 — Keigo -->
+      <div class="quiz-item reveal d1">
+        <div class="quiz-item__q">
+          <span class="quiz-item__num">2</span>
+          Câu nào đúng khi đề xuất phương án lên PM Nhật?
+        </div>
+        <div class="quiz-options">
+          <label class="quiz-option" data-correct="false">
+            <input type="radio" name="q2" value="a">
+            <span class="quiz-option__jp">フェーズ分割をご提案したいと思います。</span>
+          </label>
+          <label class="quiz-option" data-correct="true">
+            <input type="radio" name="q2" value="b">
+            <span class="quiz-option__jp">フェーズ分割をご提案させていただきたく存じます。</span>
+          </label>
+          <label class="quiz-option" data-correct="false">
+            <input type="radio" name="q2" value="c">
+            <span class="quiz-option__jp">フェーズ分割を提案します。</span>
+          </label>
+          <label class="quiz-option" data-correct="false">
+            <input type="radio" name="q2" value="d">
+            <span class="quiz-option__jp">フェーズ分割がいいと思います。</span>
+          </label>
+        </div>
+        <div class="quiz-feedback" id="q2-feedback"></div>
+      </div>
+
+      <!-- Q3 — Situation -->
+      <div class="quiz-item reveal d2">
+        <div class="quiz-item__q">
+          <span class="quiz-item__num">3</span>
+          <strong>[Tình huống]</strong> PM hỏi: <em style="font-family:'Noto Sans JP',sans-serif;">"スケジュールを変えずに両方できませんか？"</em> (Không thể làm cả 2 không đổi lịch không?). Bạn trả lời thế nào?
+        </div>
+        <div class="quiz-options">
+          <label class="quiz-option" data-correct="false">
+            <input type="radio" name="q3" value="a">
+            <span class="quiz-option__jp">難しいです。インフラがないので無理です。</span>
+          </label>
+          <label class="quiz-option" data-correct="false">
+            <input type="radio" name="q3" value="b">
+            <span class="quiz-option__jp">はい、できます。やってみます。</span>
+          </label>
+          <label class="quiz-option" data-correct="true">
+            <input type="radio" name="q3" value="c">
+            <span class="quiz-option__jp">当初スケジュールで両方対応するには追加費用と1週間の準備期間が必要となります。ご予算のご確認をいただいた上で、最善の方法を検討いたします。</span>
+          </label>
+          <label class="quiz-option" data-correct="false">
+            <input type="radio" name="q3" value="d">
+            <span class="quiz-option__jp">本田さんに決めていただきたいと思います。</span>
+          </label>
+        </div>
+        <div class="quiz-feedback" id="q3-feedback"></div>
+      </div>
+
+      <!-- Q4 — Format -->
+      <div class="quiz-item reveal">
+        <div class="quiz-item__q">
+          <span class="quiz-item__num">4</span>
+          Khi đề xuất 2 phương án, tại sao nên dùng format <span style="font-family:'Noto Sans JP',sans-serif;">【案①】【案②】</span>?
+        </div>
+        <div class="quiz-options">
+          <label class="quiz-option" data-correct="false">
+            <input type="radio" name="q4" value="a">
+            Đây là quy định bắt buộc trong email công sở Nhật
+          </label>
+          <label class="quiz-option" data-correct="true">
+            <input type="radio" name="q4" value="b">
+            Dễ scan trong inbox, PM dễ refer lại trong reply ("案②でお願いします"), dễ archive và tra cứu sau
+          </label>
+          <label class="quiz-option" data-correct="false">
+            <input type="radio" name="q4" value="c">
+            Để email trông formal và chuyên nghiệp hơn
+          </label>
+          <label class="quiz-option" data-correct="false">
+            <input type="radio" name="q4" value="d">
+            Vì người Nhật không đọc văn bản dài, cần rút gọn
+          </label>
+        </div>
+        <div class="quiz-feedback" id="q4-feedback"></div>
+      </div>
+
+      <!-- Q5 — Situation -->
+      <div class="quiz-item reveal d1">
+        <div class="quiz-item__q">
+          <span class="quiz-item__num">5</span>
+          <strong>[Tình huống]</strong> Delay xảy ra vì PM Nhật thay đổi requirement ở tuần 2. Trong email scope change, bạn nên viết thế nào?
+        </div>
+        <div class="quiz-options">
+          <label class="quiz-option" data-correct="false">
+            <input type="radio" name="q5" value="a">
+            <span class="quiz-option__jp">本田さんの要件変更により遅延が発生しました。</span>
+            <span style="font-size:0.8125rem; color:var(--color-text-muted); margin-left:auto;">Chỉ trực tiếp</span>
+          </label>
+          <label class="quiz-option" data-correct="true">
+            <input type="radio" name="q5" value="b">
+            <span class="quiz-option__jp">第2週の要件変更を受けて再設計を行った結果、スケジュールに影響が生じております。</span>
+            <span style="font-size:0.8125rem; color:var(--color-text-muted); margin-left:auto;">Khách quan</span>
+          </label>
+          <label class="quiz-option" data-correct="false">
+            <input type="radio" name="q5" value="c">
+            <span class="quiz-option__jp">私どものミスにより遅延が発生しました。申し訳ございません。</span>
+            <span style="font-size:0.8125rem; color:var(--color-text-muted); margin-left:auto;">Nhận lỗi sai</span>
+          </label>
+          <label class="quiz-option" data-correct="false">
+            <input type="radio" name="q5" value="d">
+            Không đề cập đến nguyên nhân — chỉ nêu giải pháp
+          </label>
+        </div>
+        <div class="quiz-feedback" id="q5-feedback"></div>
+      </div>
+
+      <!-- Q6 — Nuance -->
+      <div class="quiz-item reveal d2">
+        <div class="quiz-item__q">
+          <span class="quiz-item__num">6</span>
+          Khác nhau giữa <span style="font-family:'Noto Sans JP',sans-serif;">ご検討ください</span> và <span style="font-family:'Noto Sans JP',sans-serif;">ご検討いただけますでしょうか</span> là gì?
+        </div>
+        <div class="quiz-options">
+          <label class="quiz-option" data-correct="false">
+            <input type="radio" name="q6" value="a">
+            Không có khác biệt — cùng nghĩa, chỉ khác độ dài
+          </label>
+          <label class="quiz-option" data-correct="false">
+            <input type="radio" name="q6" value="b">
+            ご検討ください là formal hơn vì ngắn gọn hơn
+          </label>
+          <label class="quiz-option" data-correct="true">
+            <input type="radio" name="q6" value="c">
+            ご検討ください là mệnh lệnh nhẹ (lịch sự nhưng vẫn là yêu cầu). いただけますでしょうか là hỏi xin phép — lịch sự và khiêm tốn hơn nhiều, phù hợp với PM/client cấp cao
+          </label>
+          <label class="quiz-option" data-correct="false">
+            <input type="radio" name="q6" value="d">
+            いただけますでしょうか nghe quá khách sáo, không dùng trong email thông thường
+          </label>
+        </div>
+        <div class="quiz-feedback" id="q6-feedback"></div>
+      </div>
+
+      <div style="margin-top: 20px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+        <button class="btn btn--primary" id="quiz-submit">Nộp bài kiểm tra</button>
+        <button class="btn btn--ghost" id="quiz-retry" style="display:none;">Làm lại</button>
+        <span style="font-size:0.875rem; color:var(--color-text-muted);">Kết quả lưu vào tiến độ của bạn</span>
+      </div>
+      <div id="quiz-result" style="display:none; margin-top:16px;"></div>
+    </div>
+
+    <!-- ════ NÂNG CAO ════ -->
+    <div class="ls" id="ls-advanced">
+      <div class="ls__label" style="background: linear-gradient(135deg, #FEF2F2, #EEF2FF);">
+        <span class="ls__num" style="background: linear-gradient(135deg, var(--color-primary), var(--color-accent));">+</span>
+        Nâng cao
+      </div>
+      <div class="ls__title">Hiểu sâu hơn để xử lý tình huống phức tạp</div>
+      <div class="advanced-block reveal">
+        <div class="advanced-block__head">🚀 3 điều giúp bạn vượt trội trong scope change</div>
+
+        <div class="advanced-item">
+          <div class="advanced-item__tag">Văn hóa</div>
+          <div><strong>Tại sao PM Nhật cần thời gian — quy trình 稟議 (ringi)</strong></div>
+          <div style="margin-top: 4px; font-size: 0.875rem; color: var(--color-text-muted); line-height: 1.7;">
+            Khi PM nhận email scope change, họ thường không thể tự quyết. Họ cần trình lên Director qua quy trình
+            稟議 (ringi) — tài liệu đề xuất nội bộ phải được nhiều người ký. Đây là lý do cần deadline rõ ràng:
+            PM cần đủ thời gian làm 稟議 trước deadline của bạn. Nếu cần trả lời trước thứ 5, báo PM trước thứ 3.
+          </div>
+        </div>
+
+        <div class="advanced-item">
+          <div class="advanced-item__tag">Subject</div>
+          <div><strong>【ご相談】vs 【ご連絡】vs 【至急】trong subject</strong></div>
+          <div style="margin-top: 4px; font-size: 0.875rem; color: var(--color-text-muted); line-height: 1.7;">
+            <span class="jp">【ご相談】</span> — muốn bàn bạc, cần ý kiến PM. Dùng khi còn nhiều phương án.<br>
+            <span class="jp">【ご連絡】</span> — thông báo, không cần quyết định. Dùng khi chỉ FYI.<br>
+            <span class="jp">【至急】</span> — khẩn cấp, cần quyết định ngay. Dùng ít thôi — nếu lạm dụng PM sẽ ignore.
+          </div>
+        </div>
+
+        <div class="advanced-item">
+          <div class="advanced-item__tag">Reply</div>
+          <div><strong>PM reply "会議で話しましょう" — xử lý thế nào?</strong></div>
+          <div style="margin-top: 4px; font-size: 0.875rem; color: var(--color-text-muted); line-height: 1.7;">
+            PM thường reply "hãy thảo luận trong meeting" thay vì quyết định qua email — đây là bình thường.
+            Reply lại: <span class="jp">承知いたしました。MTGにてご説明できるよう資料を準備いたします。</span>
+            (Vâng ạ. Tôi sẽ chuẩn bị tài liệu để giải thích trong cuộc họp.) — proactive, không bị động.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ SECTION 9: NAV ════ -->
+    <div id="ls-9"></div>
+  </div><!-- /lesson-wrapper -->
+</main>
+
+<!-- ── LESSON NAVIGATION ── -->
+<nav class="lesson-nav" aria-label="Điều hướng bài học">
+  <div class="lesson-wrapper">
+    <div class="lesson-nav__module-label">Module: Business Email — 4 bài học</div>
+    <div class="lesson-dots">
+      <a href="lesson-01.html" class="lesson-dot lesson-dot--done" title="Bài 1: Xin chào khi vào dự án mới">1</a>
+      <a href="lesson-02.html" class="lesson-dot lesson-dot--done" title="Bài 2: Báo cáo tiến độ hàng tuần">2</a>
+      <a href="lesson-03.html" class="lesson-dot lesson-dot--active" title="Bài 3: Thông báo scope change">3</a>
+      <span class="lesson-dot lesson-dot--locked" title="Chưa mở">4</span>
+    </div>
+    <div class="lesson-nav__btns">
+      <a href="lesson-02.html" class="btn btn--ghost">← Bài trước</a>
+      <div class="lesson-nav__center">
+        <strong>Bài 3 / 4</strong>
+        Business Email Module
+      </div>
+      <span class="btn btn--primary" style="opacity:0.4; cursor:default;">Bài tiếp theo →</span>
+    </div>
+  </div>
+</nav>
+
+<!-- ── FOOTER ── -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <div class="footer__logo">
+          <span class="brand-icon">先</span>
+          <span class="brand-name">Senpai DynhNC</span>
+        </div>
+        <p class="footer__tagline">Tiếng Nhật thực chiến cho dân IT offshore</p>
+      </div>
+      <div class="footer__links">
+        <h4>Học ngay</h4>
+        <ul>
+          <li><a href="../../index.html">Japanese Hub</a></li>
+          <li><a href="../../vocabulary/index.html">Từ vựng IT</a></li>
+        </ul>
+      </div>
+      <div class="footer__links">
+        <h4>Module Email</h4>
+        <ul>
+          <li><a href="lesson-01.html">Bài 1: Xin chào dự án mới</a></li>
+          <li><a href="lesson-02.html">Bài 2: Báo cáo tiến độ</a></li>
+          <li><a href="lesson-03.html">Bài 3: Scope change</a></li>
+          <li><a href="index.html">Bài 4: Xác nhận yêu cầu (sắp có)</a></li>
+        </ul>
+      </div>
+      <div class="footer__links">
+        <h4>Về Senpai</h4>
+        <ul>
+          <li><a href="../../../index.html">Trang chủ</a></li>
+          <li><a href="#">Premium</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>Copyright © 2026 <strong style="color:#fff">Senpai DynhNC</strong> | senpai.vn</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../../../assets/js/theme.js"></script>
+<script src="../../../assets/js/progress.js"></script>
+<script>
+// ── Email tabs
+document.querySelectorAll('.email-tab').forEach(tab => {
+  tab.addEventListener('click', function() {
+    document.querySelectorAll('.email-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.email-tab-content').forEach(c => c.classList.remove('active'));
+    this.classList.add('active');
+    document.getElementById('tab-' + this.dataset.tab).classList.add('active');
+  });
+});
+
+// ── Quiz
+const QUIZ_ANSWERS = { q1:'b', q2:'b', q3:'c', q4:'b', q5:'b', q6:'c' };
+const QUIZ_EXPLAIN = {
+  q1: { correct: 'Đúng! Không có deadline cụ thể = PM không biết đây là urgent. Luôn thêm ngày cần phản hồi và lý do cần sớm.', wrong: 'Sai. Nguyên nhân thường gặp nhất: không có deadline rõ ràng. PM đọc rồi để đó nghĩ "sẽ reply sau" — mà không biết bạn đang chờ gấp.' },
+  q2: { correct: 'Đúng! させていただきたく存じます — đây là cấp keigo chuẩn khi đề xuất lên PM. 存じます = 謙譲語 của 思います.', wrong: 'Sai. Cấp keigo đúng là させていただきたく存じます. 思います là thường, không đủ lịch sự với PM. 存じます = 謙譲語 của 思います.' },
+  q3: { correct: 'Đúng! Không nói "không được" — nêu điều kiện cần có (cost + thời gian). PM tự hiểu và quyết định. Không ai bị đặt vào thế xấu.', wrong: 'Sai. Không nói thẳng "không được" với PM. Nêu điều kiện: "có thể làm nhưng cần thêm X và Y" — để PM quyết định dựa trên thực tế.' },
+  q4: { correct: 'Đúng! 【案①】【案②】dễ scan, PM dễ refer lại ("案②でお願いします"), dễ archive và tìm lại sau. Đây là lý do thực tế nhất.', wrong: 'Sai. Lý do chính là practical: dễ scan, dễ refer lại trong reply, dễ archive. PM chỉ cần viết "案②でお願いします" là đủ — rất efficient.' },
+  q5: { correct: 'Đúng! Nêu sự kiện khách quan: "要件変更を受けて" (sau khi nhận requirement thay đổi). PM tự hiểu nguyên nhân, không ai bị blame trực tiếp.', wrong: 'Sai. Không chỉ trích PM trực tiếp, cũng không nhận lỗi sai. Nêu sự kiện: "要件変更を受けて再設計を行った結果" — khách quan, trung thực, không gây phòng thủ.' },
+  q6: { correct: 'Đúng! ご検討ください là yêu cầu nhẹ (lịch sự nhưng vẫn là yêu cầu). いただけますでしょうか là câu hỏi xin phép — lịch sự và khiêm tốn hơn nhiều.', wrong: 'Sai. Hai câu khác nhau về cấp độ: ご検討ください = yêu cầu lịch sự. いただけますでしょうか = hỏi xin phép — khiêm tốn và phù hợp hơn khi viết cho PM/client cấp cao.' }
+};
+
+document.getElementById('quiz-submit').addEventListener('click', function() {
+  let score = 0, answered = 0;
+  Object.keys(QUIZ_ANSWERS).forEach(q => {
+    const sel = document.querySelector(`input[name="${q}"]:checked`);
+    const fb = document.getElementById(`${q}-feedback`);
+    if (!sel) return;
+    answered++;
+    const ok = sel.value === QUIZ_ANSWERS[q];
+    if (ok) score++;
+    fb.textContent = (ok ? '✅ ' : '❌ ') + QUIZ_EXPLAIN[q][ok ? 'correct' : 'wrong'];
+    fb.className = 'quiz-feedback ' + (ok ? 'correct' : 'wrong');
+    document.querySelectorAll(`input[name="${q}"]`).forEach(inp => {
+      const lbl = inp.closest('.quiz-option');
+      if (inp.value === QUIZ_ANSWERS[q]) lbl.style.borderColor = '#10B981';
+      else if (inp.checked) lbl.style.borderColor = '#EF4444';
+    });
+  });
+  if (answered < 6) { alert('Vui lòng trả lời tất cả 6 câu trước khi nộp bài.'); return; }
+  const pct = Math.round(score / 6 * 100);
+  const result = document.getElementById('quiz-result');
+  result.style.display = 'block';
+  result.innerHTML = `<div style="background:${pct>=80?'#D1FAE5':'#FEF2F2'};border-radius:10px;padding:16px 20px;">
+    <div style="font-size:1.5rem;font-weight:800;color:${pct>=80?'#065F46':'#991B1B'};">${score}/6 — ${pct}%</div>
+    <div style="margin-top:4px;font-size:0.875rem;color:${pct>=80?'#065F46':'#991B1B'};">
+      ${pct>=100?'Xuất sắc! Bạn nắm vững scope change email — cả 2 version và các edge case.':pct>=80?'Tốt! Đọc lại phần Nâng cao để nắm sâu hơn về 稟議 và subject format.':'Cần ôn lại — chú ý keigo (存じます), deadline phản hồi, và cách xử lý edge case.'}
+    </div></div>`;
+  if (typeof markLessonComplete === 'function' && pct >= 80) markLessonComplete('s2-email-03');
+  if (typeof saveQuizScore === 'function') saveQuizScore('s2-email-03', pct);
+  document.getElementById('quiz-retry').style.display = 'inline-flex';
+  const bar = document.getElementById('lesson-progress-bar');
+  const pctEl = document.getElementById('lesson-progress-pct');
+  if (bar) bar.style.width = '100%';
+  if (pctEl) pctEl.textContent = '100%';
+});
+
+document.getElementById('quiz-retry').addEventListener('click', function() {
+  Object.keys(QUIZ_ANSWERS).forEach(q => {
+    document.querySelectorAll(`input[name="${q}"]`).forEach(inp => {
+      inp.checked = false;
+      inp.closest('.quiz-option').style.borderColor = '';
+    });
+    const fb = document.getElementById(`${q}-feedback`);
+    fb.className = 'quiz-feedback'; fb.textContent = '';
+  });
+  document.getElementById('quiz-result').style.display = 'none';
+  this.style.display = 'none';
+});
+
+// ── Fill-in-blank
+document.getElementById('check-blanks').addEventListener('click', function() {
+  const items = document.querySelectorAll('.practice-item input.fill-blank');
+  let correct = 0;
+  items.forEach(inp => {
+    const ok = inp.value.trim() === (inp.dataset.answer || '').trim();
+    inp.style.borderColor = ok ? '#10B981' : '#EF4444';
+    if (ok) correct++;
+  });
+  const r = document.getElementById('blanks-result');
+  r.style.display = 'block';
+  r.innerHTML = `<div style="font-size:0.875rem;color:${correct===items.length?'#065F46':'#92400E'};background:${correct===items.length?'#D1FAE5':'#FFFBEB'};border-radius:8px;padding:10px 14px;">${correct===items.length?'✅ Tất cả đúng!':`${correct}/${items.length} đúng — đáp án: 判明いたしました / 影響が出る見込みです / 存じます`}</div>`;
+});
+
+document.getElementById('show-hints').addEventListener('click', function() {
+  document.querySelectorAll('.practice-item .practice-item__hint').forEach(h => h.style.display = 'block');
+});
+
+document.getElementById('show-sample').addEventListener('click', function() {
+  document.getElementById('sample-answer').classList.add('show');
+  this.style.display = 'none';
+});
+</script>
+</body>
+</html>

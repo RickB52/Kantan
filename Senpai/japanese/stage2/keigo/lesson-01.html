@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 1: 丁寧 ngữ trong email IT — Senpai</title>
+  <meta name="description" content="Học cách dùng 丁寧語 (lịch sự ngữ) chuẩn xác trong email công sở IT. Từ お世話になります đến よろしくお願いいたします.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../assets/css/main.css">
+  <link rel="stylesheet" href="../../../assets/css/components.css">
+  <link rel="stylesheet" href="../../../assets/css/lesson.css">
+  <style>
+    .lesson-wrapper { max-width: 800px; margin: 0 auto; padding: 0 20px; }
+    .ls-section { margin-bottom: 60px; scroll-margin-top: 100px; }
+    .ls-label { 
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--color-primary); margin-bottom: 16px;
+    }
+    .ls-num {
+      width: 24px; height: 24px; border-radius: 50%; background: var(--color-primary);
+      color: #fff; display: flex; align-items: center; justify-content: center; font-size: 11px;
+    }
+    .ls-title { font-size: 24px; font-weight: 800; margin-bottom: 24px; color: var(--color-text); }
+    
+    .quiz-container { display: flex; flex-direction: column; gap: 24px; }
+    .quiz-question { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 12px; padding: 24px; }
+    .quiz-question__text { font-weight: 600; margin-bottom: 16px; font-size: 16px; }
+    .quiz-options { display: grid; grid-template-columns: 1fr; gap: 10px; }
+    .quiz-option { 
+      display: flex; align-items: center; gap: 12px; padding: 12px 16px; 
+      border: 1px solid var(--color-border); border-radius: 8px; background: var(--color-background);
+      cursor: pointer; text-align: left; transition: all 0.2s;
+    }
+    .quiz-option:hover:not(:disabled) { border-color: var(--color-primary); background: var(--color-surface); }
+    .quiz-option.correct { background: #D1FAE5; border-color: #10B981; color: #065F46; }
+    .quiz-option.incorrect { background: #FEE2E2; border-color: #EF4444; color: #991B1B; }
+    .quiz-option__letter { 
+      width: 24px; height: 24px; border-radius: 50%; background: var(--color-surface);
+      display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; border: 1px solid var(--color-border);
+    }
+    .quiz-feedback { margin-top: 16px; padding: 12px; border-radius: 8px; font-size: 14px; display: none; }
+    .quiz-feedback.correct { display: block; background: #ECFDF5; color: #065F46; border: 1px solid #10B981; }
+    .quiz-feedback.incorrect { display: block; background: #FEF2F2; color: #991B1B; border: 1px solid #EF4444; }
+
+    .quiz-result { margin-top: 32px; padding: 32px; border-radius: 16px; text-align: center; display: none; }
+    .quiz-result--pass { background: #D1FAE5; border: 2px solid #10B981; }
+    .quiz-result--fail { background: #FEE2E2; border: 2px solid #EF4444; }
+    .quiz-result__score { font-size: 48px; font-weight: 800; margin-bottom: 8px; }
+
+    .ann { border-bottom: 2px dashed #CBD5E1; cursor: help; position: relative; }
+    .ann:hover { background: #F1F5F9; }
+    .ann::after {
+      content: attr(data-note);
+      position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%);
+      width: 240px; padding: 10px; background: #1E293B; color: #fff;
+      font-size: 12px; line-height: 1.5; border-radius: 6px;
+      visibility: hidden; opacity: 0; transition: all 0.2s; z-index: 10;
+      pointer-events: none; text-align: left; font-weight: 400;
+    }
+    .ann:hover::after { visibility: visible; opacity: 1; bottom: calc(100% + 10px); }
+
+    .practice-card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 12px; padding: 24px; }
+    .practice-item { margin-bottom: 20px; }
+    .practice-q { font-family: var(--font-jp); font-size: 18px; margin-bottom: 8px; line-height: 2; }
+    .fill-blank { 
+      border: none; border-bottom: 2px solid var(--color-border); 
+      background: #F8FAFC; padding: 2px 8px; width: 140px; font-family: var(--font-jp); font-size: 18px; text-align: center;
+    }
+    .fill-blank:focus { outline: none; border-bottom-color: var(--color-primary); }
+    .fill-blank.correct { color: var(--color-success); border-bottom-color: var(--color-success); }
+    .fill-blank.wrong { color: var(--color-error); border-bottom-color: var(--color-error); }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVBAR ── -->
+<nav class="navbar">
+  <div class="container">
+    <a href="../../../index.html" class="navbar__brand">
+      <span class="brand-icon">先</span>
+      <span class="brand-name">Senpai DynhNC5</span>
+    </a>
+    <ul class="navbar__links">
+      <li><a href="../../index.html" class="link--cta">🇯🇵 Học ngay</a></li>
+      <li><a href="../../vocabulary/index.html">🔤 Từ vựng</a></li>
+      <li><a href="#">📚 Resources</a></li>
+      <li><a href="#" class="link--premium">🔒 Premium</a></li>
+    </ul>
+    <div class="navbar__right">
+      <button class="theme-toggle" aria-label="Đổi giao diện">
+        <span class="toggle-track">
+          <span class="toggle-sun">☀️</span>
+          <span class="toggle-moon">🌙</span>
+          <span class="toggle-thumb"></span>
+        </span>
+      </button>
+    </div>
+    <button class="navbar__toggle" aria-label="Menu">☰</button>
+  </div>
+</nav>
+
+<!-- ── LESSON HEADER ── -->
+<div class="lesson-header" style="background: linear-gradient(135deg, #FFF1F2 0%, #FFE4E6 100%); border-bottom: 1px solid #FECACA; padding: 40px 0;">
+  <div class="lesson-wrapper">
+    <nav class="breadcrumb" style="font-size: 13px; color: var(--color-text-muted); margin-bottom: 16px;">
+      <a href="../../../index.html">Senpai</a> › 
+      <a href="../../index.html">Japanese Hub</a> › 
+      <a href="../index.html">Stage 2</a> › 
+      <a href="index.html">Keigo</a> › 
+      <span style="color: var(--color-text); font-weight: 600;">Bài 1</span>
+    </nav>
+    <div style="display: flex; gap: 8px; margin-bottom: 12px;">
+      <span class="badge badge--free">Miễn phí</span>
+      <span class="badge" style="background: #E11D48; color: #fff;">🎌 Keigo</span>
+    </div>
+    <h1 style="font-size: clamp(24px, 5vw, 32px); font-weight: 800; color: var(--color-text); line-height: 1.2; margin-bottom: 8px;">Bài 1: <ruby>丁寧語<rt>ていねいご</rt></ruby> trong email IT</h1>
+    <p style="font-size: 16px; color: var(--color-text-muted); max-width: 600px;">
+      Học cách dùng <ruby>丁寧語<rt>ていねいご</rt></ruby> (Lịch sự ngữ) chuẩn xác để tạo ấn tượng chuyên nghiệp ngay từ email đầu tiên join dự án.
+    </p>
+  </div>
+</div>
+
+<!-- ── LESSON BODY ── -->
+<main style="padding: 60px 0;">
+  <div class="lesson-wrapper">
+
+    <!-- 1. [Hero] SITUATION -->
+    <section class="ls-section">
+      <div class="ls-label"><span class="ls-num">1</span> Tình huống</div>
+      <div class="ls-title">Dynh gia nhập dự án mới</div>
+      <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 16px; padding: 32px; box-shadow: var(--shadow-sm);">
+        <p style="font-size: 17px; line-height: 1.7; color: var(--color-text);">
+          Dynh vừa được assign vào một dự án quan trọng với khách hàng Nhật. Để bắt đầu công việc, Dynh cần gửi một email tự giới thiệu bản thân đến team đối tác.
+        </p>
+        <p style="font-size: 17px; line-height: 1.7; color: var(--color-text); margin-top: 16px;">
+          Trong môi trường công sở Nhật, việc sử dụng <strong><ruby>丁寧語<rt>ていねいご</rt></ruby> (Lịch sự ngữ)</strong> đúng cách là chìa khóa để xây dựng lòng tin. Dynh phải đảm bảo email của mình không quá suồng sã nhưng cũng không quá cứng nhắc.
+        </p>
+      </div>
+    </section>
+
+    <!-- 2. [Video] VIDEO PLACEHOLDER -->
+    <section class="ls-section">
+      <div class="ls-label"><span class="ls-num">2</span> Video bài học</div>
+      <div class="ls-title">Hướng dẫn phát âm & Ngữ cảnh</div>
+      <div class="video-block" style="background: linear-gradient(135deg, #1e293b, #0f172a); border-radius: 16px; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; flex-direction: column; color: #fff;">
+        <div style="font-size: 64px; margin-bottom: 16px; color: #E11D48;">🎬</div>
+        <div style="font-size: 20px; font-weight: 700;">Video đang được cập nhật</div>
+        <p style="font-size: 14px; color: #94a3b8; margin-top: 8px;">Phần video hướng dẫn chi tiết cách dùng Teineigo</p>
+      </div>
+    </section>
+
+    <!-- 3. [Notes] NOTES -->
+    <section class="ls-section">
+      <div class="ls-label"><span class="ls-num">3</span> Điểm chính</div>
+      <div class="ls-title">Quy tắc <ruby>丁寧語<rt>ていねいご</rt></ruby> cơ bản</div>
+      <div style="background: #FFFBEB; border: 1px solid #FDE68A; border-radius: 16px; padding: 32px;">
+        <ul style="display: flex; flex-direction: column; gap: 16px; list-style: none; padding: 0;">
+          <li style="display: flex; gap: 12px; font-size: 16px; line-height: 1.6;">
+            <span style="color: #D97706;">✅</span>
+            <span><strong>Kết thúc bằng です/ます:</strong> Đây là nền tảng của Teineigo. Luôn dùng thể lịch sự thay vì thể ngắn.</span>
+          </li>
+          <li style="display: flex; gap: 12px; font-size: 16px; line-height: 1.6;">
+            <span style="color: #D97706;">✅</span>
+            <span><strong>Sử dụng tiền tố お/ご:</strong> Thêm vào trước danh từ để thể hiện sự <ruby>尊重<rt>そんちょう</rt></ruby> (VD: <ruby>お仕事<rt>おしごと</rt></ruby>, <ruby>ご確認<rt>ごかくにん</rt></ruby>).</span>
+          </li>
+          <li style="display: flex; gap: 12px; font-size: 16px; line-height: 1.6;">
+            <span style="color: #D97706;">✅</span>
+            <span><strong><ruby>お世話<rt>おせわ</rt></ruby>になります:</strong> Câu "vạn năng" để mở đầu email, thể hiện sự biết ơn vì sự <ruby>協力<rt>きょうりょく</rt></ruby>.</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 4. [Vocab] VOCABULARY -->
+    <section class="ls-section">
+      <div class="ls-label"><span class="ls-num">4</span> Từ vựng quan trọng</div>
+      <div class="ls-title">5 cụm từ "vàng" trong email</div>
+      <div class="vocab-grid">
+        <div class="vocab-card">
+          <div class="vocab-card__info">
+            <div class="vocab-card__reading">O-sewa ni narimasu</div>
+            <div class="vocab-card__jp"><ruby>お世話<rt>おせわ</rt></ruby>になります</div>
+            <div class="vocab-card__meaning">Kính chào / Cảm ơn sự quan tâm</div>
+          </div>
+          <button class="vocab-card__audio">🔊</button>
+        </div>
+        <div class="vocab-card">
+          <div class="vocab-card__info">
+            <div class="vocab-card__reading">Yoroshiku onegai itashimasu</div>
+            <div class="vocab-card__jp">よろしくお<ruby>願<rt>ねが</rt></ruby>いいたします</div>
+            <div class="vocab-card__meaning">Rất mong được hợp tác</div>
+          </div>
+          <button class="vocab-card__audio">🔊</button>
+        </div>
+        <div class="vocab-card">
+          <div class="vocab-card__info">
+            <div class="vocab-card__reading">Go-kakunin kudasai</div>
+            <div class="vocab-card__jp">ご<ruby>確認<rt>かくにん</rt></ruby>ください</div>
+            <div class="vocab-card__meaning">Xin vui lòng xác nhận</div>
+          </div>
+          <button class="vocab-card__audio">🔊</button>
+        </div>
+        <div class="vocab-card">
+          <div class="vocab-card__info">
+            <div class="vocab-card__reading">Go-renraku itashimasu</div>
+            <div class="vocab-card__jp">ご<ruby>連絡<rt>れんらく</rt></ruby>いたします</div>
+            <div class="vocab-card__meaning">Tôi sẽ liên hệ lại</div>
+          </div>
+          <button class="vocab-card__audio">🔊</button>
+        </div>
+        <div class="vocab-card">
+          <div class="vocab-card__info">
+            <div class="vocab-card__reading">O-tesuu desu ga</div>
+            <div class="vocab-card__jp">お<ruby>手数<rt>てすう</rt></ruby>ですが</div>
+            <div class="vocab-card__meaning">Xin lỗi vì đã làm phiền</div>
+          </div>
+          <button class="vocab-card__audio">🔊</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. [Pattern] PATTERN -->
+    <section class="ls-section">
+      <div class="ls-label"><span class="ls-num">5</span> Mẫu câu cốt lõi</div>
+      <div class="ls-title">Yêu cầu lịch sự với お/ご...ください</div>
+      <div class="pattern-block">
+        <div class="pattern-block__jp">お/ご + [<ruby>名詞<rt>めいし</rt></ruby>] + ください</div>
+        <p class="pattern-block__meaning">Dùng để đưa ra yêu cầu hoặc nhờ vả khách hàng/cấp trên một cách lịch sự.</p>
+        <div class="pattern-variants">
+          <div class="pattern-variant">
+            <ruby>資料<rt>しりょう</rt></ruby>をご<ruby>確認<rt>かくにん</rt></ruby>ください。<br>
+            <span style="font-size: 0.85rem; color: var(--color-text-muted);">Xin vui lòng xác nhận tài liệu.</span>
+          </div>
+          <div class="pattern-variant">
+            お<ruby>返事<rt>へんじ</rt></ruby>をください。<br>
+            <span style="font-size: 0.85rem; color: var(--color-text-muted);">Xin vui lòng cho tôi câu trả lời.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. [Example] EXAMPLE -->
+    <section class="ls-section">
+      <div class="ls-label"><span class="ls-num">6</span> Email mẫu</div>
+      <div class="ls-title">Email tự giới thiệu khi join dự án</div>
+      <div class="example-block" style="font-family: 'Noto Sans JP', sans-serif; line-height: 2;">
+        <div style="margin-bottom: 24px;">
+          <span class="ann" data-note="Họ tên người nhận + Chức vụ"><ruby>本田様<rt>ほんださま</rt></ruby></span><br>
+          <span class="ann" data-note="Câu chào hỏi vạn năng mở đầu email">いつもお<ruby>世話<rt>せわ</rt></ruby>になっております。</span>
+        </div>
+        <div style="margin-bottom: 24px;">
+          <span class="ann" data-note="Giới thiệu bản thân dùng thể lịch sự">ベトナムチームのDynhと<ruby>申<rt>もう</rt></ruby>します。</span><br>
+          <span class="ann" data-note="Thông báo về việc gia nhập dự án">このたび、ABCプロジェクトに<ruby>参加<rt>さんか</rt></ruby>することになりました。</span>
+        </div>
+        <div style="margin-bottom: 24px;">
+          <span class="ann" data-note="Cam kết nỗ lực trong công việc">プロジェクトの<ruby>成功<rt>せいこう</rt></ruby>に<ruby>向<rt>む</rt></ruby>けて、<ruby>精一杯努<rt>せいいっぱいつと</rt></ruby>めます。</span><br>
+          <span class="ann" data-note="Câu kết bắt buộc trong email business">どうぞよろしくお<ruby>願<rt>ねが</rt></ruby>いいたします。</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. [Practice] PRACTICE -->
+    <section class="ls-section">
+      <div class="ls-label"><span class="ls-num">7</span> Luyện tập</div>
+      <div class="ls-title">Điền vào chỗ trống</div>
+      <div class="practice-card">
+        <div class="practice-item">
+          <div class="practice-q">
+            1. <ruby>資料<rt>しりょう</rt></ruby>を <input type="text" class="fill-blank" data-answer="ご確認" placeholder="ご..."> ください。
+          </div>
+        </div>
+        <div class="practice-item">
+          <div class="practice-q">
+            2. どうぞよろしくお <input type="text" class="fill-blank" data-answer="願いいたし" placeholder="..."> ます。
+          </div>
+        </div>
+        <div style="margin-top: 24px;">
+          <button class="btn btn--primary btn--sm" onclick="checkPractice()">Kiểm tra đáp án</button>
+          <span id="practice-feedback" style="margin-left: 16px; font-weight: 600;"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. [Quiz] QUIZ -->
+    <section class="ls-section">
+      <div class="ls-label"><span class="ls-num">8</span> Trắc nghiệm</div>
+      <div class="ls-title">Kiểm tra kiến thức</div>
+      <div class="quiz-container">
+        <!-- Sẽ được render bởi quiz.js -->
+      </div>
+      
+      <div class="quiz-result" id="lesson-quiz-result">
+        <div class="quiz-result__score">0%</div>
+        <p class="quiz-result__text">Bạn cần đạt 80% để hoàn thành bài học này.</p>
+        <button class="btn btn--primary" style="margin-top: 16px;" onclick="retryQuiz()">Làm lại Quiz</button>
+      </div>
+
+      <div style="margin-top: 32px; text-align: center;">
+        <button class="btn btn--accent" id="btn-show-result" style="display: none;" onclick="showQuizResult('s2-keigo-01')">Xem kết quả & Hoàn thành</button>
+      </div>
+    </section>
+
+    <!-- 9. [Nav] NAV -->
+    <section class="ls-section" style="border-top: 1px solid var(--color-border); padding-top: 40px;">
+      <div style="display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;">
+        <div>
+          <div style="font-size: 12px; color: var(--color-text-muted); text-transform: uppercase; margin-bottom: 4px;">Tiến độ Module</div>
+          <div class="progress-bar" style="width: 200px; height: 8px;">
+            <div class="progress-bar__fill" style="width: 0%;"></div>
+          </div>
+        </div>
+        <div style="display: flex; gap: 12px;">
+          <a href="index.html" class="btn btn--ghost">← Danh sách bài</a>
+          <button class="complete-btn" onclick="markLessonComplete('s2-keigo-01')">Đánh dấu đã học</button>
+          <a href="lesson-02.html" class="btn btn--primary">Bài tiếp theo →</a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<!-- ── FOOTER ── -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__bottom">
+      <p>Copyright © 2026 <strong>DynhNC5</strong> | senpai.vn</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../../../assets/js/theme.js"></script>
+<script src="../../../assets/js/progress.js"></script>
+<script src="../../../assets/js/quiz.js"></script>
+<script>
+  // 1. Khởi tạo Quiz
+  const questions = [
+    {
+      id: 'q1',
+      question: 'Tiền tố nào dùng cho từ gốc Nhật (Wago) như "仕事" (Công việc)?',
+      options: [
+        { text: 'お', correct: true },
+        { text: 'ご', correct: false },
+        { text: 'み', correct: false },
+        { text: '御', correct: false }
+      ],
+      explanation: 'Với từ gốc Nhật như 仕事, thường dùng tiền tố お.'
+    },
+    {
+      id: 'q2',
+      question: 'Tiền tố nào dùng cho từ gốc Hán (Kango) như "確認" (Xác nhận)?',
+      options: [
+        { text: 'お', correct: false },
+        { text: 'ご', correct: true },
+        { text: '御', correct: false },
+        { text: 'う', correct: false }
+      ],
+      explanation: 'Với các từ gốc Hán như 確認, thường dùng tiền tố ご.'
+    },
+    {
+      id: 'q3',
+      question: 'Trong "お返事" (Câu trả lời), tại sao dùng "お" dù "返事" là từ gốc Hán?',
+      options: [
+        { text: 'Vì đây là trường hợp ngoại lệ phổ biến', correct: true },
+        { text: 'Vì 返事 là từ gốc Nhật', correct: false },
+        { text: 'Vì dùng ご là sai ngữ pháp', correct: false },
+        { text: 'Vì お nghe hay hơn', correct: false }
+      ],
+      explanation: '返事 là một ngoại lệ phổ biến dùng お thay vì ご.'
+    }
+  ];
+
+  initQuiz(questions);
+
+  const originalSelectAnswer = window.selectAnswer;
+  window.selectAnswer = function(qid, idx) {
+    originalSelectAnswer(qid, idx);
+    const totalAnswered = Object.keys(_answers).length;
+    if (totalAnswered === questions.length) {
+      document.getElementById('btn-show-result').style.display = 'inline-block';
+    }
+  };
+
+  function checkPractice() {
+    const inputs = document.querySelectorAll('.fill-blank');
+    let allCorrect = true;
+    inputs.forEach(input => {
+      const answer = input.getAttribute('data-answer');
+      if (input.value.trim() === answer) {
+        input.classList.add('correct');
+        input.classList.remove('wrong');
+      } else {
+        input.classList.add('wrong');
+        input.classList.remove('correct');
+        allCorrect = false;
+      }
+    });
+    
+    const feedback = document.getElementById('practice-feedback');
+    if (allCorrect) {
+      feedback.textContent = '✅ Tuyệt vời!';
+      feedback.style.color = 'var(--color-success)';
+    } else {
+      feedback.textContent = '❌ Thử lại nhé!';
+      feedback.style.color = 'var(--color-error)';
+    }
+  }
+
+  window.MODULE_LESSONS = ['s2-keigo-01', 's2-keigo-02', 's2-keigo-03'];
+  initProgressUI('s2-keigo-01');
+  
+  const pct = calculateProgress(window.MODULE_LESSONS);
+  const fill = document.querySelector('.progress-bar__fill');
+  if (fill) fill.style.width = pct + '%';
+</script>
+</body>
+</html>

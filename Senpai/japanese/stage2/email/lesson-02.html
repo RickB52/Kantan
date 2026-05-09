@@ -1,0 +1,1067 @@
+﻿<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 2: Báo cáo tiến độ hàng tuần — Senpai</title>
+  <meta name="description" content="Viết email 週次報告 chuẩn Nhật — 5 phần bắt buộc, biến thể khi delay, edge case thực chiến, quiz tình huống.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../assets/css/main.css">
+  <link rel="stylesheet" href="../../../assets/css/components.css">
+  <link rel="stylesheet" href="../../../assets/css/lesson.css">
+  <style>
+    /* Senpai warning */
+    .senpai-warn { background: #FFFBEB; border: 1.5px solid #FDE68A; border-radius: 12px; padding: 20px 24px; margin-top: 24px; }
+    [data-theme="dark"] .senpai-warn { background: rgba(253,230,138,0.08); border-color: rgba(253,230,138,0.3); }
+    .senpai-warn__head { font-weight: 700; color: #92400E; margin-bottom: 16px; font-size: 0.9375rem; }
+    [data-theme="dark"] .senpai-warn__head { color: #FCD34D; }
+    .senpai-warn__item { margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #FDE68A; }
+    [data-theme="dark"] .senpai-warn__item { border-color: rgba(253,230,138,0.2); }
+    .senpai-warn__item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+    .sw-label { font-size: 0.8125rem; font-weight: 600; margin-bottom: 4px; }
+    .sw-wrong { background: #FEE2E2; border-radius: 6px; padding: 8px 12px; font-family: 'Noto Sans JP', sans-serif; font-size: 0.875rem; margin-bottom: 6px; color: #991B1B; }
+    .sw-right  { background: #D1FAE5; border-radius: 6px; padding: 8px 12px; font-family: 'Noto Sans JP', sans-serif; font-size: 0.875rem; margin-bottom: 8px; color: #065F46; }
+    .sw-explain { font-size: 0.8125rem; color: #78350F; line-height: 1.65; }
+    [data-theme="dark"] .sw-explain { color: #D97706; }
+
+    /* Pattern summary table */
+    .pattern-summary { margin-top: 24px; border: 1px solid var(--color-border-light, #E2E8F0); border-radius: 10px; overflow: hidden; }
+    .pattern-summary__head { background: var(--color-background, #F8FAFC); padding: 10px 16px; font-weight: 600; font-size: 0.875rem; color: var(--color-text-muted); border-bottom: 1px solid var(--color-border-light, #E2E8F0); }
+    .pattern-summary__row { display: grid; grid-template-columns: 1fr 1.6fr 1fr; gap: 0; border-bottom: 1px solid var(--color-border-light, #E2E8F0); }
+    .pattern-summary__row:last-child { border-bottom: none; }
+    .pattern-summary__cell { padding: 12px 14px; font-size: 0.875rem; border-right: 1px solid var(--color-border-light, #E2E8F0); }
+    .pattern-summary__cell:last-child { border-right: none; }
+    .pattern-summary__cell .jp { font-family: 'Noto Sans JP', sans-serif; display: block; margin-bottom: 2px; }
+    .pattern-summary__cell .vn { font-size: 0.8rem; color: var(--color-text-muted); }
+    @media (max-width: 600px) {
+      .pattern-summary__row { grid-template-columns: 1fr; }
+      .pattern-summary__cell { border-right: none; }
+    }
+
+    /* Status badge */
+    .status-badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 700; }
+    .status-badge--done    { background: #D1FAE5; color: #065F46; }
+    .status-badge--wip     { background: #EEF2FF; color: #4338CA; }
+    .status-badge--plan    { background: #F1F5F9; color: #475569; }
+    .status-badge--issue   { background: #FEF2F2; color: #B91C1C; }
+
+    /* Email variant tabs */
+    .email-tabs { display: flex; gap: 0; border-bottom: 2px solid var(--color-border-light, #E2E8F0); margin-bottom: 0; }
+    .email-tab { padding: 10px 18px; font-size: 0.875rem; font-weight: 600; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -2px; color: var(--color-text-muted); transition: all 0.2s; }
+    .email-tab.active { color: var(--color-primary, #EF4444); border-bottom-color: var(--color-primary, #EF4444); }
+    .email-tab-content { display: none; }
+    .email-tab-content.active { display: block; }
+
+    /* Writing exercise */
+    .writing-exercise { background: var(--color-surface); border: 1px solid var(--color-border-light, #E2E8F0); border-radius: 12px; padding: 20px 24px; margin-top: 28px; }
+    .writing-exercise__scenario { background: var(--color-background, #F8FAFC); border-radius: 8px; padding: 14px 16px; margin-bottom: 16px; font-size: 0.875rem; line-height: 1.7; }
+    .writing-exercise__scenario strong { display: block; margin-bottom: 6px; }
+    .writing-exercise__area { width: 100%; min-height: 160px; border: 1px solid var(--color-border-light, #E2E8F0); border-radius: 8px; padding: 12px 14px; font-family: 'Noto Sans JP', sans-serif; font-size: 0.875rem; line-height: 1.8; resize: vertical; background: var(--color-surface); color: var(--color-text); box-sizing: border-box; }
+    .writing-exercise__area:focus { outline: none; border-color: var(--color-primary, #EF4444); }
+    .writing-exercise__sample { display: none; margin-top: 14px; }
+    .writing-exercise__sample.show { display: block; }
+
+    /* Nâng cao block */
+    .advanced-block { background: linear-gradient(135deg, #FEF2F2 0%, #EEF2FF 100%); border-radius: 12px; padding: 20px 24px; margin-top: 24px; }
+    [data-theme="dark"] .advanced-block { background: linear-gradient(135deg, rgba(239,68,68,0.08) 0%, rgba(79,70,229,0.08) 100%); }
+    .advanced-block__head { font-weight: 700; font-size: 0.9375rem; margin-bottom: 14px; color: var(--color-text); }
+    .advanced-item { margin-bottom: 14px; padding-bottom: 14px; border-bottom: 1px solid rgba(0,0,0,0.06); font-size: 0.875rem; }
+    [data-theme="dark"] .advanced-item { border-color: rgba(255,255,255,0.06); }
+    .advanced-item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+    .advanced-item__tag { display: inline-block; background: var(--color-primary, #EF4444); color: #fff; font-size: 0.7rem; font-weight: 700; padding: 2px 7px; border-radius: 4px; margin-bottom: 5px; }
+    .advanced-item .jp { font-family: 'Noto Sans JP', sans-serif; }
+
+    /* Quiz feedback */
+    .quiz-feedback { display: none; margin-top: 8px; padding: 8px 12px; border-radius: 6px; font-size: 0.8125rem; line-height: 1.5; }
+    .quiz-feedback.correct { background: #D1FAE5; color: #065F46; display: block; }
+    .quiz-feedback.wrong   { background: #FEE2E2; color: #991B1B; display: block; }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVBAR ── -->
+<nav class="navbar">
+  <div class="container">
+    <a href="../../../index.html" class="navbar__brand">
+      <span class="brand-icon">先</span>
+      <span class="brand-name">Senpai DynhNC</span>
+    </a>
+    <ul class="navbar__links">
+      <li><a href="../../index.html" class="link--cta">🇯🇵 Học ngay</a></li>
+      <li><a href="../../vocabulary/index.html">🔤 Từ vựng</a></li>
+      <li><a href="#">📚 Resources</a></li>
+      <li><a href="#" class="link--premium">🔒 Premium</a></li>
+    </ul>
+    <div class="navbar__right">
+      <button class="theme-toggle" aria-label="Đổi giao diện">
+        <span class="toggle-track">
+          <span class="toggle-sun">☀️</span>
+          <span class="toggle-moon">🌙</span>
+          <span class="toggle-thumb"></span>
+        </span>
+      </button>
+    </div>
+    <button class="navbar__toggle" aria-label="Menu">☰</button>
+  </div>
+</nav>
+
+<!-- ── LESSON HEADER ── -->
+<div class="lesson-header">
+  <div class="lesson-wrapper">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../../../index.html">Senpai</a>
+      <span class="breadcrumb__sep">›</span>
+      <a href="../../index.html">Japanese Hub</a>
+      <span class="breadcrumb__sep">›</span>
+      <a href="../index.html">Stage 2</a>
+      <span class="breadcrumb__sep">›</span>
+      <a href="index.html">Email</a>
+      <span class="breadcrumb__sep">›</span>
+      <span class="breadcrumb__current">Bài 2</span>
+    </nav>
+
+    <div class="lesson-meta">
+      <span class="badge badge--free">Miễn phí</span>
+      <span class="badge badge--new">📧 Email</span>
+      <span style="font-size:0.8125rem; color: var(--color-text-muted);">⏱ ~25 phút</span>
+    </div>
+
+    <h1>Bài 2: Báo cáo tiến độ hàng tuần (週次報告)</h1>
+    <p class="lesson-header__sub">
+      Email xuất hiện mỗi thứ 6 — viết đúng lần đầu, tái sử dụng mãi. Bài này cover cả tình huống bình thường lẫn khi có delay.
+    </p>
+
+    <div class="lesson-progress-row">
+      <span class="lesson-progress-label">Tiến độ bài học</span>
+      <div class="progress-bar">
+        <div class="progress-bar__fill" id="lesson-progress-bar" style="width: 0%"></div>
+      </div>
+      <span class="lesson-progress-pct" id="lesson-progress-pct">0%</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── LESSON BODY ── -->
+<main class="lesson-body">
+  <div class="lesson-wrapper">
+
+    <!-- ════ SECTION 1: SITUATION ════ -->
+    <div class="ls" id="ls-1">
+      <div class="ls__label">
+        <span class="ls__num">1</span>
+        Tình huống
+      </div>
+      <div class="situation-card reveal">
+        <div class="situation-tag">📋 Dự án offshore · Thứ 6, 16:45 · Tuần 3</div>
+        <h2>Honda-san chờ email báo cáo trước 17:30 — và tuần này có vấn đề Dynh chưa dám báo</h2>
+        <p>
+          Mỗi thứ 6, Honda-san compile báo cáo tổng hợp gửi lên Director bên Nhật trước 18:00.
+          Team VN phải gửi 週次報告 trước 17:30. Tuần này, task API integration bị delay 2 ngày
+          vì phía Nhật chưa xác nhận spec. Dynh phải báo cáo — và phải báo đúng cách.
+        </p>
+        <p style="margin-top: 8px; font-size: 0.9rem; color: var(--color-text-muted);">
+          Bài này dạy cả 2 version: email tuần bình thường và email khi có vấn đề cần báo PM.
+        </p>
+        <div class="situation-actors">
+          <div class="actor-chip">
+            <span class="actor-chip__role">Người gửi</span>
+            Dynh (BA / Developer VN)
+          </div>
+          <div class="actor-chip">
+            <span class="actor-chip__role">Người nhận</span>
+            Honda-san (PM phía Nhật)
+          </div>
+          <div class="actor-chip">
+            <span class="actor-chip__role">Tần suất</span>
+            Mỗi thứ 6, trước 17:30
+          </div>
+          <div class="actor-chip">
+            <span class="actor-chip__role">Rủi ro tuần này</span>
+            API spec chưa confirmed
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ SECTION 2: VIDEO ════ -->
+    <div class="ls" id="ls-2">
+      <div class="ls__label">
+        <span class="ls__num">2</span>
+        Video
+      </div>
+      <div class="ls__title">Xem tình huống thực tế</div>
+      <div class="video-wrap reveal">
+        <div class="video-placeholder">
+          <div class="video-placeholder__kanji">報告</div>
+          <div class="video-placeholder__play">▶</div>
+          <div class="video-placeholder__text">
+            <div class="video-placeholder__title">Video đang được chuẩn bị</div>
+            <div class="video-placeholder__sub">Honda-san so sánh email báo cáo đủ chuẩn vs thiếu thông tin — và reaction khi bị giấu vấn đề</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ SECTION 3: NOTES ════ -->
+    <div class="ls" id="ls-3">
+      <div class="ls__label">
+        <span class="ls__num">3</span>
+        Điểm chính
+      </div>
+      <div class="ls__title">Cấu trúc 5 phần của email 週次報告</div>
+      <div class="notes-card reveal">
+        <div class="notes-card__heading">📝 5 phần không thể thiếu — và tại sao</div>
+        <ul>
+          <li>
+            <strong>① Mở đầu — tuần nào, ai báo cáo</strong><br>
+            <span style="font-size:0.875rem; color:var(--color-text-muted);">Honda-san compile báo cáo từ nhiều team. Subject phải có 【週次報告】 + tên dự án + tuần. Body cần nhắc lại: ai, báo cáo tuần nào — vì PM không nhớ tất cả email đã nhận.</span>
+          </li>
+          <li>
+            <strong>② Đã hoàn thành — 完了事項 (かんりょうじこう)</strong><br>
+            <span style="font-size:0.875rem; color:var(--color-text-muted);">Liệt kê rõ ràng từng task xong. Dùng ■ phân section, ・ cho từng bullet. Chỉ viết 完了 khi task xong 100% — không ghi nếu còn 90%.</span>
+          </li>
+          <li>
+            <strong>③ Đang tiến hành — 進行中 (しんこうちゅう)</strong><br>
+            <span style="font-size:0.875rem; color:var(--color-text-muted);">Task đang làm, chưa xong. Nếu có thể, thêm % tiến độ để PM biết mức độ. Ví dụ: レビュー中（60%完了）.</span>
+          </li>
+          <li>
+            <strong>④ Vấn đề / Rủi ro — 課題 (かだい)</strong><br>
+            <span style="font-size:0.875rem; color:var(--color-text-muted);">Quy tắc vàng trong văn hóa Nhật: báo sớm, đừng giấu. PM biết vấn đề sớm = còn thời gian xử lý. Giấu đến phút chót = mất trust hoàn toàn. Luôn kèm 対応策 (hướng xử lý) — đừng chỉ nêu vấn đề rồi im.</span>
+          </li>
+          <li>
+            <strong>⑤ Kế hoạch tuần sau — 来週の予定</strong><br>
+            <span style="font-size:0.875rem; color:var(--color-text-muted);">PM cần biết để lên lịch, assign resource, và chuẩn bị cho meeting. Thiếu phần này khiến PM phải hỏi lại — waste thêm 1 vòng email.</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Senpai Warning -->
+      <div class="senpai-warn reveal d1">
+        <div class="senpai-warn__head">⚠️ Senpai cảnh báo — 3 lỗi người Việt hay mắc trong 週次報告</div>
+
+        <div class="senpai-warn__item">
+          <div class="sw-label">Lỗi 1 — Ghi 完了 khi task chưa xong 100%</div>
+          <div class="sw-wrong">❌ ・APIの実装が完了しました。（実際は80%）</div>
+          <div class="sw-right">✅ ・APIの実装を進めています。（現在80%完了）</div>
+          <div class="sw-explain">
+            完了しました = xong hoàn toàn. Nếu ghi 完了 mà sau đó PM phát hiện chưa xong, trust mất ngay.
+            Nếu đang ở 80%, dùng 進めています + ghi % trong ngoặc — trung thực và rõ ràng.
+          </div>
+        </div>
+
+        <div class="senpai-warn__item">
+          <div class="sw-label">Lỗi 2 — Báo vấn đề nhưng không kèm hướng xử lý</div>
+          <div class="sw-wrong">❌ ・外部APIの仕様が未確定です。（chỉ nêu vấn đề, im luôn）</div>
+          <div class="sw-right">✅ ・外部APIの仕様が未確定のため、スケジュールに影響が出る可能性があります。<br>　対応策：〇〇様にご確認をお願いしたいと考えております。</div>
+          <div class="sw-explain">
+            Nêu vấn đề mà không có hướng xử lý khiến PM phải nghĩ thay bạn.
+            Người Nhật expect: vấn đề + nguyên nhân + tác động + hướng xử lý (dù chưa chắc chắn). Nếu chưa có giải pháp, viết: 対応を検討中です (đang cân nhắc cách xử lý).
+          </div>
+        </div>
+
+        <div class="senpai-warn__item">
+          <div class="sw-label">Lỗi 3 — Subject email không đúng format 【】</div>
+          <div class="sw-wrong">❌ Subject: 週次報告 ABCプロジェクト</div>
+          <div class="sw-right">✅ Subject: 【週次報告】ABCプロジェクト — 第3週 (4/28〜5/2) / Dynh</div>
+          <div class="sw-explain">
+            Dấu ngoặc 【】 là convention tiêu đề email Nhật — dễ scan trong inbox, dễ lọc, dễ archive.
+            Thiếu tuần số (第〇週) và ngày cụ thể → PM không biết đây là báo cáo tuần nào khi search lại sau.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ SECTION 4: VOCAB ════ -->
+    <div class="ls" id="ls-4">
+      <div class="ls__label">
+        <span class="ls__num">4</span>
+        Từ vựng
+      </div>
+      <div class="ls__title">8 từ cốt lõi — xuyên suốt mọi báo cáo</div>
+      <div class="vocab-grid">
+
+        <div class="vocab-card reveal">
+          <div class="vocab-card__top">
+            <div class="vocab-card__word"><ruby>進捗<rt>しんちょく</rt></ruby></div>
+            <button class="vocab-card__audio" aria-label="Nghe phát âm">🔊</button>
+          </div>
+          <div class="vocab-card__reading">Shinchoku</div>
+          <hr class="vocab-card__divider">
+          <div class="vocab-card__meaning">Tiến độ</div>
+          <div class="vocab-card__usage">進捗報告 / 進捗をご報告いたします. Từ xuất hiện trong Subject và dòng đầu tiên của mọi báo cáo tiến độ.</div>
+        </div>
+
+        <div class="vocab-card reveal d1">
+          <div class="vocab-card__top">
+            <div class="vocab-card__word"><ruby>完了<rt>かんりょう</rt></ruby></div>
+            <button class="vocab-card__audio" aria-label="Nghe phát âm">🔊</button>
+          </div>
+          <div class="vocab-card__reading">Kanryou</div>
+          <hr class="vocab-card__divider">
+          <div class="vocab-card__meaning">Hoàn thành (100%)</div>
+          <div class="vocab-card__usage">〜が完了しました. Chỉ dùng khi xong hoàn toàn. Task 90% → dùng 進めています thay thế.</div>
+        </div>
+
+        <div class="vocab-card reveal d2">
+          <div class="vocab-card__top">
+            <div class="vocab-card__word"><ruby>課題<rt>かだい</rt></ruby></div>
+            <button class="vocab-card__audio" aria-label="Nghe phát âm">🔊</button>
+          </div>
+          <div class="vocab-card__reading">Kadai</div>
+          <hr class="vocab-card__divider">
+          <div class="vocab-card__meaning">Vấn đề / Thách thức cần giải quyết</div>
+          <div class="vocab-card__usage">現在の課題 — vấn đề hiện tại. Nhẹ hơn 問題 (mondai) — ít negative hơn, phù hợp để báo PM hơn.</div>
+        </div>
+
+        <div class="vocab-card reveal">
+          <div class="vocab-card__top">
+            <div class="vocab-card__word"><ruby>対応策<rt>たいおうさく</rt></ruby></div>
+            <button class="vocab-card__audio" aria-label="Nghe phát âm">🔊</button>
+          </div>
+          <div class="vocab-card__reading">Taiou-saku</div>
+          <hr class="vocab-card__divider">
+          <div class="vocab-card__meaning">Phương án xử lý / Giải pháp đối ứng</div>
+          <div class="vocab-card__usage">対応策として〜 — phương án xử lý là... Luôn đi kèm với 課題. Không có 対応策 = chỉ đang than vấn đề.</div>
+        </div>
+
+        <div class="vocab-card reveal d1">
+          <div class="vocab-card__top">
+            <div class="vocab-card__word"><ruby>予定<rt>よてい</rt></ruby></div>
+            <button class="vocab-card__audio" aria-label="Nghe phát âm">🔊</button>
+          </div>
+          <div class="vocab-card__reading">Yotei</div>
+          <hr class="vocab-card__divider">
+          <div class="vocab-card__meaning">Kế hoạch / Lịch dự kiến</div>
+          <div class="vocab-card__usage">〜の予定です / 〜を予定しております (keigo hơn). Khác với 計画 (keikaku) — yotei thiên về lịch cụ thể, keikaku thiên về kế hoạch dài hạn.</div>
+        </div>
+
+        <div class="vocab-card reveal d2">
+          <div class="vocab-card__top">
+            <div class="vocab-card__word"><ruby>影響<rt>えいきょう</rt></ruby></div>
+            <button class="vocab-card__audio" aria-label="Nghe phát âm">🔊</button>
+          </div>
+          <div class="vocab-card__reading">Eikyou</div>
+          <hr class="vocab-card__divider">
+          <div class="vocab-card__meaning">Tác động / Ảnh hưởng</div>
+          <div class="vocab-card__usage">スケジュールに影響が出る可能性があります — có khả năng ảnh hưởng đến schedule. Từ quan trọng khi báo delay.</div>
+        </div>
+
+        <div class="vocab-card reveal">
+          <div class="vocab-card__top">
+            <div class="vocab-card__word"><ruby>未確定<rt>みかくてい</rt></ruby></div>
+            <button class="vocab-card__audio" aria-label="Nghe phát âm">🔊</button>
+          </div>
+          <div class="vocab-card__reading">Mi-kakutei</div>
+          <hr class="vocab-card__divider">
+          <div class="vocab-card__meaning">Chưa được xác nhận / Chưa chốt</div>
+          <div class="vocab-card__usage">仕様が未確定 — spec chưa chốt. 未 là prefix "chưa" — 未完了 (chưa hoàn thành), 未対応 (chưa xử lý).</div>
+        </div>
+
+        <div class="vocab-card reveal d1">
+          <div class="vocab-card__top">
+            <div class="vocab-card__word"><ruby>確認<rt>かくにん</rt></ruby></div>
+            <button class="vocab-card__audio" aria-label="Nghe phát âm">🔊</button>
+          </div>
+          <div class="vocab-card__reading">Kakunin</div>
+          <hr class="vocab-card__divider">
+          <div class="vocab-card__meaning">Xác nhận / Kiểm tra</div>
+          <div class="vocab-card__usage">ご確認よろしくお願いいたします — nhờ PM xem và xác nhận. Khác với よろしくお願いいたします (general) — ご確認 chỉ rõ action PM cần làm.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ════ SECTION 5: PATTERN ════ -->
+    <div class="ls" id="ls-5">
+      <div class="ls__label">
+        <span class="ls__num">5</span>
+        Mẫu câu
+      </div>
+      <div class="ls__title">Mẫu câu theo từng tình huống</div>
+
+      <div class="pattern-card reveal">
+        <div class="pattern-card__head">✅ Báo task đã hoàn thành</div>
+        <div class="pattern-card__body">
+          <div class="pattern-main">〜が<ruby>完了<rt>かんりょう</rt></ruby>しました。</div>
+          <div class="pattern-reading">〜 ga kanryou shimashita.</div>
+          <div class="pattern-meaning">... đã hoàn thành.</div>
+          <div class="pattern-variants" style="margin-top:12px">
+            <div class="pattern-variant pattern-variant--formal">
+              <span class="pattern-variant__tag">Keigo hơn</span>
+              <div>
+                <div class="pattern-variant__text">〜が完了いたしました。</div>
+                <div class="pattern-variant__vn">... đã hoàn thành (lịch sự cao — dùng khi gửi cho Director)</div>
+              </div>
+            </div>
+            <div class="pattern-variant pattern-variant--keigo">
+              <span class="pattern-variant__tag">Khi sắp xong</span>
+              <div>
+                <div class="pattern-variant__text">〜がほぼ完了しました。（残り確認作業のみ）</div>
+                <div class="pattern-variant__vn">... gần như hoàn thành. (Chỉ còn việc confirm) — dùng khi 95%, không phải 100%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pattern-card reveal d1">
+        <div class="pattern-card__head">🔄 Báo task đang tiến hành</div>
+        <div class="pattern-card__body">
+          <div class="pattern-main">〜に<ruby>取<rt>と</rt></ruby>り<ruby>組<rt>く</rt></ruby>んでいます。（現在〇〇%<ruby>完了<rt>かんりょう</rt></ruby>）</div>
+          <div class="pattern-reading">〜 ni torikunde imasu. (Genzai 〇〇% kanryou)</div>
+          <div class="pattern-meaning">Đang tập trung xử lý... (hiện tại hoàn thành 〇〇%)</div>
+          <div class="pattern-variants" style="margin-top:12px">
+            <div class="pattern-variant pattern-variant--formal">
+              <span class="pattern-variant__tag">Nhẹ hơn</span>
+              <div>
+                <div class="pattern-variant__text">〜を進めています。</div>
+                <div class="pattern-variant__vn">Đang tiến hành... (dùng cho task nhỏ, routine)</div>
+              </div>
+            </div>
+            <div class="pattern-variant pattern-variant--casual">
+              <span class="pattern-variant__tag">Khi bị block</span>
+              <div>
+                <div class="pattern-variant__text">〜について対応中です。〇〇を待っている状況です。</div>
+                <div class="pattern-variant__vn">Đang xử lý... Hiện đang chờ 〇〇. (khi bị block bởi yếu tố ngoài)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pattern-card reveal d2">
+        <div class="pattern-card__head">⚠️ Báo vấn đề + hướng xử lý</div>
+        <div class="pattern-card__body">
+          <div class="pattern-main">〜のため、〜に<ruby>影響<rt>えいきょう</rt></ruby>が<ruby>出<rt>で</rt></ruby>る<ruby>可能性<rt>かのうせい</rt></ruby>があります。</div>
+          <div class="pattern-reading">〜 no tame, 〜 ni eikyou ga deru kanousei ga arimasu.</div>
+          <div class="pattern-meaning">Do 〜, có khả năng ảnh hưởng đến 〜.</div>
+          <div class="pattern-variants" style="margin-top:12px">
+            <div class="pattern-variant pattern-variant--keigo">
+              <span class="pattern-variant__tag">Kèm giải pháp</span>
+              <div>
+                <div class="pattern-variant__text">対応策として、〇〇様にご確認をお願いしたいと考えております。</div>
+                <div class="pattern-variant__vn">Hướng xử lý: muốn nhờ 〇〇 xác nhận lại.</div>
+              </div>
+            </div>
+            <div class="pattern-variant pattern-variant--formal">
+              <span class="pattern-variant__tag">Khi chưa có giải pháp</span>
+              <div>
+                <div class="pattern-variant__text">現在、対応方法を検討しております。ご相談させていただけますでしょうか。</div>
+                <div class="pattern-variant__vn">Hiện đang cân nhắc cách xử lý. Có thể xin ý kiến không? (Trung thực + xin hỗ trợ)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pattern Summary Table -->
+      <div class="pattern-summary reveal">
+        <div class="pattern-summary__head">📋 Bảng tóm tắt — chọn mẫu câu theo trạng thái task</div>
+        <div class="pattern-summary__row" style="background: var(--color-background);">
+          <div class="pattern-summary__cell"><strong>Trạng thái</strong></div>
+          <div class="pattern-summary__cell"><strong>Mẫu câu</strong></div>
+          <div class="pattern-summary__cell"><strong>Lưu ý</strong></div>
+        </div>
+        <div class="pattern-summary__row">
+          <div class="pattern-summary__cell"><span class="status-badge status-badge--done">Xong 100%</span></div>
+          <div class="pattern-summary__cell"><span class="jp">〜が完了しました</span><span class="vn">Đã hoàn thành</span></div>
+          <div class="pattern-summary__cell" style="font-size:0.8rem; color:var(--color-text-muted);">Chỉ dùng khi thực sự 100%</div>
+        </div>
+        <div class="pattern-summary__row">
+          <div class="pattern-summary__cell"><span class="status-badge status-badge--wip">Đang làm</span></div>
+          <div class="pattern-summary__cell"><span class="jp">〜に取り組んでいます（〇〇%）</span><span class="vn">Đang tiến hành (〇〇%)</span></div>
+          <div class="pattern-summary__cell" style="font-size:0.8rem; color:var(--color-text-muted);">Thêm % rõ ràng hơn</div>
+        </div>
+        <div class="pattern-summary__row">
+          <div class="pattern-summary__cell"><span class="status-badge status-badge--plan">Tuần sau</span></div>
+          <div class="pattern-summary__cell"><span class="jp">〜を予定しております</span><span class="vn">Dự kiến sẽ...</span></div>
+          <div class="pattern-summary__cell" style="font-size:0.8rem; color:var(--color-text-muted);">Kèm ngày cụ thể nếu có</div>
+        </div>
+        <div class="pattern-summary__row">
+          <div class="pattern-summary__cell"><span class="status-badge status-badge--issue">Có vấn đề</span></div>
+          <div class="pattern-summary__cell"><span class="jp">〜影響が出る可能性があります<br>対応策として〜</span><span class="vn">Có rủi ro + hướng xử lý</span></div>
+          <div class="pattern-summary__cell" style="font-size:0.8rem; color:var(--color-text-muted);">Luôn có 対応策 đi kèm</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ SECTION 6: EXAMPLE ════ -->
+    <div class="ls" id="ls-6">
+      <div class="ls__label">
+        <span class="ls__num">6</span>
+        Email mẫu
+      </div>
+      <div class="ls__title">2 version — tuần bình thường và tuần có vấn đề</div>
+
+      <!-- Tabs -->
+      <div class="email-tabs reveal">
+        <div class="email-tab active" data-tab="normal">📗 Version A — Tuần bình thường</div>
+        <div class="email-tab" data-tab="issue">📕 Version B — Khi có delay</div>
+      </div>
+
+      <!-- Tab: Normal -->
+      <div class="email-tab-content active" id="tab-normal">
+        <div class="example-email reveal">
+          <div class="email-topbar">
+            <span class="email-dot email-dot--red"></span>
+            <span class="email-dot email-dot--yellow"></span>
+            <span class="email-dot email-dot--green"></span>
+            <span class="email-topbar-label">📧 Version A — hover vào từ gạch chân để xem chú thích</span>
+          </div>
+          <div class="email-fields">
+            <div class="email-field">
+              <span class="email-field__key">Tiêu đề:</span>
+              <span class="email-field__val" style="font-family:'Noto Sans JP',sans-serif;">【週次報告】ABCプロジェクト — 第3週 (4/28〜5/2) / Dynh</span>
+            </div>
+          </div>
+          <div class="email-body">
+<span class="ann" data-note="Mở đầu chuẩn — không bao giờ bỏ. Dù gửi lần thứ 50 vẫn phải có">お世話になっております。</span>
+<span class="ann" data-note="Giới thiệu lại + tuần báo cáo — PM nhận nhiều email, cần context">ベトナムITチームのDynhです。</span>
+<span class="ann" data-note="ご報告いたします — keigo hơn 報告します. いたします = 謙譲語 của します">今週（4月28日〜5月2日）の進捗をご報告いたします。</span>
+
+<span class="ann" data-note="■ phân section — convention báo cáo Nhật. Dùng nhất quán, không dùng - hay * thay thế">■ 今週の完了事項</span>
+<span class="ann" data-note="完了しました — xong 100%. Chỉ viết dòng này khi thực sự xong hoàn toàn">・ログイン画面のUI実装が完了しました。</span>
+・APIとの接続テストが完了しました。
+
+■ <span class="ann" data-note="進行中 — đang tiến hành. Dùng cho section header thay vì lặp に取り組んでいます">進行中の作業</span>
+・<span class="ann" data-note="に取り組んでいます — đang tập trung xử lý. Mạnh hơn 進めています, phù hợp với task quan trọng">データベース設計書のレビューに取り組んでいます。</span>（現在60%完了）
+・単体テストの作成を進めています。
+
+■ <span class="ann" data-note="課題なし — không có vấn đề. Vẫn cần ghi rõ thay vì bỏ section này — PM cần biết không có gì bất thường">現在の課題</span>
+<span class="ann" data-note="特に課題はございません — viết rõ 'không có vấn đề'. Không được bỏ section 課題 vì PM sẽ tưởng bạn quên">特に課題はございません。引き続き予定通り進める見込みです。</span>
+
+■ <span class="ann" data-note="来週の予定 — PM cần biết để chuẩn bị. Kèm ngày cụ thể nếu có deadline">来週の予定</span>
+・データベース設計書のレビュー完了（予定：5月7日）
+・<span class="ann" data-note="を予定しております — lịch sự hơn の予定です, phù hợp với báo cáo lên PM">結合テストの開始を予定しております。</span>
+
+<span class="ann" data-note="ご確認よろしくお願いいたします — kết thúc chuẩn cho email báo cáo. Khác với よろしくお願いいたします — ご確認 chỉ rõ PM cần review">以上、ご確認よろしくお願いいたします。</span>
+
+━━━━━━━━━━━━━━━━
+Dynh / Vietnam IT Team / BA
+Mail: dynh@vietnam-it.com · Tel: +84-xxx-xxx-xxxx
+━━━━━━━━━━━━━━━━</div>
+        </div>
+      </div>
+
+      <!-- Tab: Issue -->
+      <div class="email-tab-content" id="tab-issue">
+        <div class="example-email reveal">
+          <div class="email-topbar">
+            <span class="email-dot email-dot--red"></span>
+            <span class="email-dot email-dot--yellow"></span>
+            <span class="email-dot email-dot--green"></span>
+            <span class="email-topbar-label">📧 Version B — khi tuần này có vấn đề cần báo PM</span>
+          </div>
+          <div class="email-fields">
+            <div class="email-field">
+              <span class="email-field__key">Tiêu đề:</span>
+              <span class="email-field__val" style="font-family:'Noto Sans JP',sans-serif;">【週次報告】ABCプロジェクト — 第3週 (4/28〜5/2) / Dynh ※課題あり</span>
+            </div>
+          </div>
+          <div class="email-body">
+お世話になっております。
+ベトナムITチームのDynhです。
+今週（4月28日〜5月2日）の進捗をご報告いたします。
+
+■ 今週の完了事項
+・ログイン画面のUI実装が完了しました。
+・単体テストの作成が完了しました。
+
+■ 進行中の作業
+<span class="ann" data-note="に取り組んでいます + % — trung thực về tiến độ, không ghi 完了 khi chưa xong">・APIとの接続テストに取り組んでいます。</span>（現在40%完了）
+
+■ <span class="ann" data-note="※課題あり trong subject báo hiệu có vấn đề — PM scan inbox thấy ngay và biết cần chú ý email này">現在の課題</span>
+<span class="ann" data-note="〜のため — nguyên nhân. Báo rõ lý do trước khi nêu tác động">外部APIの仕様が未確定のため、</span><span class="ann" data-note="スケジュールに影響が出る可能性 — có khả năng ảnh hưởng. Dùng 可能性 (khả năng) thay vì khẳng định chắc chắn — chính xác và bớt alarming hơn">接続テストのスケジュールに影響が出る可能性があります。</span>
+<span class="ann" data-note="最大で〇〇日の遅延 — ước tính cụ thể giúp PM lên kế hoạch. Không để mơ hồ 'có thể delay'">現時点では最大で2日程度の遅延が見込まれます。</span>
+
+<span class="ann" data-note="対応策として — hướng xử lý. Luôn bắt đầu bằng cụm từ này khi chuyển sang giải pháp">対応策として、</span><span class="ann" data-note="ご確認をお願いしたいと考えております — muốn nhờ xác nhận. と考えております làm mềm request, không nghe ra lệnh">〇〇様に仕様のご確認をお願いしたいと考えております。</span>
+<span class="ann" data-note="ご判断をお願いできますでしょうか — xin ý kiến PM về phương án xử lý. できますでしょうか = có thể...không? (lịch sự nhất)">ご指示・ご判断をお願いできますでしょうか。</span>
+
+■ 来週の予定
+・外部API仕様の確認が取れ次第、接続テストを再開いたします。
+<span class="ann" data-note="確認が取れ次第 — ngay khi xác nhận được. 次第 = ngay khi, ngay sau khi — thể hiện sẽ hành động ngay">・データベース設計書のレビューを継続する予定です。</span>
+
+以上、ご確認よろしくお願いいたします。
+ご不便をおかけして申し訳ございません。
+
+━━━━━━━━━━━━━━━━
+Dynh / Vietnam IT Team / BA
+Mail: dynh@vietnam-it.com · Tel: +84-xxx-xxx-xxxx
+━━━━━━━━━━━━━━━━</div>
+        </div>
+        <div style="background: #EEF2FF; border-radius: 8px; padding: 12px 16px; margin-top: 12px; font-size: 0.875rem;">
+          <strong style="color: #4338CA;">Điểm khác biệt của Version B:</strong>
+          <ul style="margin-top: 6px; padding-left: 18px; color: #4338CA; line-height: 1.8;">
+            <li>Subject có thêm <span style="font-family:'Noto Sans JP',sans-serif;">※課題あり</span> — PM biết ngay cần đọc kỹ</li>
+            <li>課題 section có nguyên nhân + tác động + ước tính delay cụ thể</li>
+            <li>Có 対応策 rõ ràng + câu xin ý kiến PM</li>
+            <li>Kết email thêm câu xin lỗi vì gây phiền: <span style="font-family:'Noto Sans JP',sans-serif;">ご不便をおかけして申し訳ございません</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ SECTION 7: PRACTICE ════ -->
+    <div class="ls" id="ls-7">
+      <div class="ls__label">
+        <span class="ls__num">7</span>
+        Luyện tập
+      </div>
+      <div class="ls__title">Điền từ + Viết đoạn báo cáo</div>
+      <p class="practice-desc">Phần 1: điền vào chỗ trống. Phần 2: viết email từ thông tin cho sẵn.</p>
+
+      <div class="practice-item reveal">
+        <div class="practice-item__num">Câu 1 / 3</div>
+        <div class="practice-item__q">
+          <span class="jp">ログイン画面のUI実装が</span>
+          <input class="fill-blank" type="text" placeholder="___" data-answer="完了しました" aria-label="Điền vào chỗ trống">
+          <span class="jp">。</span>
+        </div>
+        <div class="practice-item__hint">💡 Gợi ý: Task đã xong 100% — dùng từ "hoàn thành" + thì quá khứ lịch sự</div>
+      </div>
+
+      <div class="practice-item reveal d1">
+        <div class="practice-item__num">Câu 2 / 3</div>
+        <div class="practice-item__q">
+          <span class="jp">外部APIの仕様が未確定のため、スケジュールに</span>
+          <input class="fill-blank" type="text" placeholder="___" data-answer="影響が出る可能性があります" aria-label="Điền vào chỗ trống">
+          <span class="jp">。</span>
+        </div>
+        <div class="practice-item__hint">💡 Gợi ý: "có khả năng ảnh hưởng đến" — mẫu câu báo rủi ro</div>
+      </div>
+
+      <div class="practice-item reveal d2">
+        <div class="practice-item__num">Câu 3 / 3</div>
+        <div class="practice-item__q">
+          <span class="jp">以上、ご</span>
+          <input class="fill-blank" type="text" placeholder="___" data-answer="確認よろしくお願いいたします" aria-label="Điền vào chỗ trống">
+          <span class="jp">。</span>
+        </div>
+        <div class="practice-item__hint">💡 Gợi ý: Câu kết chuẩn cho email báo cáo — nhờ PM xem và xác nhận</div>
+      </div>
+
+      <div style="margin-top: 20px; display: flex; gap: 10px; flex-wrap: wrap;">
+        <button class="btn btn--primary btn--sm" id="check-blanks">Kiểm tra đáp án</button>
+        <button class="btn btn--ghost btn--sm" id="show-hints">Xem gợi ý</button>
+      </div>
+      <div id="blanks-result" style="display:none; margin-top:12px;"></div>
+
+      <!-- Writing Exercise -->
+      <div class="writing-exercise reveal" style="margin-top: 32px;">
+        <div class="ls__title" style="margin-bottom: 8px;">✍️ Bài viết ngắn — tự viết đoạn 課題</div>
+        <div class="writing-exercise__scenario">
+          <strong>Thông tin bạn cần viết thành tiếng Nhật:</strong>
+          Tuần này, server staging bị lỗi vào thứ 4 và thứ 5, làm team không chạy được integration test.
+          Ước tính delay khoảng 1–2 ngày. Hướng xử lý: đang phối hợp với team infrastructure để fix,
+          dự kiến resolve trước thứ 2 tuần sau.
+        </div>
+        <textarea class="writing-exercise__area" placeholder="Viết phần ■ 現在の課題 bằng tiếng Nhật..."></textarea>
+        <div style="margin-top: 12px; display: flex; gap: 10px;">
+          <button class="btn btn--ghost btn--sm" id="show-sample">Xem bài mẫu</button>
+        </div>
+        <div class="writing-exercise__sample" id="sample-answer">
+          <div style="font-weight: 600; font-size: 0.875rem; margin-bottom: 8px; margin-top: 4px;">Bài mẫu:</div>
+          <div class="example-email" style="margin-top: 0;">
+            <div class="email-body" style="padding: 16px 20px;">
+■ 現在の課題
+ステージングサーバーが水曜・木曜と不安定な状態となり、結合テストの実施ができませんでした。
+その影響で、1〜2日程度の遅延が見込まれます。
+
+対応策として、インフラチームと連携して原因調査を進めております。
+来週月曜日までに解消できる見込みです。ご迷惑をおかけして申し訳ございません。
+            </div>
+          </div>
+          <div style="background: #EEF2FF; border-radius: 8px; padding: 12px 14px; margin-top: 10px; font-size: 0.8125rem; color: #4338CA; line-height: 1.7;">
+            <strong>Điểm cần chú ý:</strong> ① Nêu sự kiện cụ thể (ngày nào, vấn đề gì) ② Ước tính tác động bằng số ③ Có 対応策 + timeline dự kiến resolve ④ Câu xin lỗi cuối đoạn
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ SECTION 8: QUIZ ════ -->
+    <div class="ls" id="ls-8">
+      <div class="ls__label">
+        <span class="ls__num">8</span>
+        Quiz
+      </div>
+      <div class="ls__title">Kiểm tra — 6 câu tình huống thực tế</div>
+      <p class="quiz-desc">4/6 câu dựa trên tình huống thực — đọc kỹ context trước khi chọn.</p>
+
+      <!-- Q1 — Situation -->
+      <div class="quiz-item reveal">
+        <div class="quiz-item__q">
+          <span class="quiz-item__num">1</span>
+          <strong>[Tình huống]</strong> Task review tài liệu của bạn đã xong 90%. Bạn ghi vào 完了事項 là: <em style="font-family:'Noto Sans JP',sans-serif;">ドキュメントレビューが完了しました。</em> — điều gì xảy ra?
+        </div>
+        <div class="quiz-options">
+          <label class="quiz-option" data-correct="false">
+            <input type="radio" name="q1" value="a">
+            Bình thường — 90% là gần xong rồi, ghi vậy được
+          </label>
+          <label class="quiz-option" data-correct="true">
+            <input type="radio" name="q1" value="b">
+            PM hiểu là xong hoàn toàn — khi phát hiện chưa xong, trust bị mất ngay
+          </label>
+          <label class="quiz-option" data-correct="false">
+            <input type="radio" name="q1" value="c">
+            PM sẽ hỏi lại để confirm thêm
+          </label>
+          <label class="quiz-option" data-correct="false">
+            <input type="radio" name="q1" value="d">
+            Không sao — PM hiểu là approximate
+          </label>
+        </div>
+        <div class="quiz-feedback" id="q1-feedback"></div>
+      </div>
+
+      <!-- Q2 — Situation -->
+      <div class="quiz-item reveal d1">
+        <div class="quiz-item__q">
+          <span class="quiz-item__num">2</span>
+          <strong>[Tình huống]</strong> API integration bị delay do phía Nhật chưa xác nhận spec. Bạn viết trong phần 課題: <em style="font-family:'Noto Sans JP',sans-serif;">外部APIの仕様が未確定です。</em> rồi kết thúc. Điều gì còn thiếu?
+        </div>
+        <div class="quiz-options">
+          <label class="quiz-option" data-correct="false">
+            <input type="radio" name="q2" value="a">
+            Không thiếu gì — đã báo vấn đề là đủ
+          </label>
+          <label class="quiz-option" data-correct="false">
+            <input type="radio" name="q2" value="b">
+            Thiếu câu xin lỗi
+          </label>
+          <label class="quiz-option" data-correct="true">
+            <input type="radio" name="q2" value="c">
+            Thiếu tác động đến schedule và 対応策 (hướng xử lý)
+          </label>
+          <label class="quiz-option" data-correct="false">
+            <input type="radio" name="q2" value="d">
+            Thiếu ngày phát hiện vấn đề
+          </label>
+        </div>
+        <div class="quiz-feedback" id="q2-feedback"></div>
+      </div>
+
+      <!-- Q3 — Format -->
+      <div class="quiz-item reveal d2">
+        <div class="quiz-item__q">
+          <span class="quiz-item__num">3</span>
+          Subject email báo cáo tuần nào dưới đây đúng format chuẩn Nhật nhất?
+        </div>
+        <div class="quiz-options">
+          <label class="quiz-option" data-correct="false">
+            <input type="radio" name="q3" value="a">
+            <span class="quiz-option__jp">週次報告 ABCプロジェクト Nguyen</span>
+          </label>
+          <label class="quiz-option" data-correct="false">
+            <input type="radio" name="q3" value="b">
+            <span class="quiz-option__jp">報告：第3週 ABCプロジェクト</span>
+          </label>
+          <label class="quiz-option" data-correct="true">
+            <input type="radio" name="q3" value="c">
+            <span class="quiz-option__jp">【週次報告】ABCプロジェクト — 第3週 (4/28〜5/2) / Dynh</span>
+          </label>
+          <label class="quiz-option" data-correct="false">
+            <input type="radio" name="q3" value="d">
+            <span class="quiz-option__jp">Weekly Report Week3 ABC</span>
+          </label>
+        </div>
+        <div class="quiz-feedback" id="q3-feedback"></div>
+      </div>
+
+      <!-- Q4 — Situation -->
+      <div class="quiz-item reveal">
+        <div class="quiz-item__q">
+          <span class="quiz-item__num">4</span>
+          <strong>[Tình huống]</strong> Tuần này không có vấn đề gì. Bạn nên xử lý phần 課題 thế nào?
+        </div>
+        <div class="quiz-options">
+          <label class="quiz-option" data-correct="false">
+            <input type="radio" name="q4" value="a">
+            Bỏ hẳn section 課題 — không có gì thì không cần viết
+          </label>
+          <label class="quiz-option" data-correct="true">
+            <input type="radio" name="q4" value="b">
+            Giữ section 課題, viết rõ: <span class="quiz-option__jp" style="display:inline;">特に課題はございません。引き続き予定通り進める見込みです。</span>
+          </label>
+          <label class="quiz-option" data-correct="false">
+            <input type="radio" name="q4" value="c">
+            Viết <span class="quiz-option__jp" style="display:inline;">なし</span> vào section 課題
+          </label>
+          <label class="quiz-option" data-correct="false">
+            <input type="radio" name="q4" value="d">
+            Merge section 課題 vào 進行中の作業
+          </label>
+        </div>
+        <div class="quiz-feedback" id="q4-feedback"></div>
+      </div>
+
+      <!-- Q5 — Nuance -->
+      <div class="quiz-item reveal d1">
+        <div class="quiz-item__q">
+          <span class="quiz-item__num">5</span>
+          Câu nào diễn đạt đúng "đang tiến hành review tài liệu, hiện tại đã xong 60%"?
+        </div>
+        <div class="quiz-options">
+          <label class="quiz-option" data-correct="false">
+            <input type="radio" name="q5" value="a">
+            <span class="quiz-option__jp">ドキュメントレビューが60%完了しました。</span>
+          </label>
+          <label class="quiz-option" data-correct="true">
+            <input type="radio" name="q5" value="b">
+            <span class="quiz-option__jp">ドキュメントレビューに取り組んでいます。（現在60%完了）</span>
+          </label>
+          <label class="quiz-option" data-correct="false">
+            <input type="radio" name="q5" value="c">
+            <span class="quiz-option__jp">ドキュメントレビューは60%です。</span>
+          </label>
+          <label class="quiz-option" data-correct="false">
+            <input type="radio" name="q5" value="d">
+            <span class="quiz-option__jp">ドキュメントレビューをほぼ完了しました。</span>
+          </label>
+        </div>
+        <div class="quiz-feedback" id="q5-feedback"></div>
+      </div>
+
+      <!-- Q6 — Situation -->
+      <div class="quiz-item reveal d2">
+        <div class="quiz-item__q">
+          <span class="quiz-item__num">6</span>
+          <strong>[Tình huống]</strong> Delay xảy ra do lỗi từ phía team Nhật (họ chưa gửi spec đúng hạn). Trong email báo cáo, bạn nên xử lý thế nào?
+        </div>
+        <div class="quiz-options">
+          <label class="quiz-option" data-correct="false">
+            <input type="radio" name="q6" value="a">
+            Viết thẳng: <span class="quiz-option__jp" style="display:inline;">日本側の仕様提供が遅れているため delay しました。</span>
+          </label>
+          <label class="quiz-option" data-correct="false">
+            <input type="radio" name="q6" value="b">
+            Không nhắc đến — chờ Honda-san tự biết
+          </label>
+          <label class="quiz-option" data-correct="true">
+            <input type="radio" name="q6" value="c">
+            Báo thực tế khách quan: <span class="quiz-option__jp" style="display:inline;">仕様書の受領が遅れているため〜に影響が出ております。</span> — không chỉ trích, chỉ nêu sự kiện
+          </label>
+          <label class="quiz-option" data-correct="false">
+            <input type="radio" name="q6" value="d">
+            Xin lỗi thay cho phía Nhật
+          </label>
+        </div>
+        <div class="quiz-feedback" id="q6-feedback"></div>
+      </div>
+
+      <div style="margin-top: 20px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+        <button class="btn btn--primary" id="quiz-submit">Nộp bài kiểm tra</button>
+        <button class="btn btn--ghost" id="quiz-retry" style="display:none;">Làm lại</button>
+        <span style="font-size:0.875rem; color:var(--color-text-muted);">Kết quả lưu vào tiến độ của bạn</span>
+      </div>
+      <div id="quiz-result" style="display:none; margin-top:16px;"></div>
+    </div>
+
+    <!-- ════ NÂNG CAO ════ -->
+    <div class="ls" id="ls-advanced">
+      <div class="ls__label" style="background: linear-gradient(135deg, #FEF2F2, #EEF2FF);">
+        <span class="ls__num" style="background: linear-gradient(135deg, var(--color-primary), var(--color-accent));">+</span>
+        Nâng cao
+      </div>
+      <div class="ls__title">3 kỹ thuật dùng được ngay tuần tới</div>
+      <div class="advanced-block reveal">
+        <div class="advanced-block__head">🚀 Nâng level 週次報告 của bạn</div>
+
+        <div class="advanced-item">
+          <div class="advanced-item__tag">Format</div>
+          <div><strong>Dùng 【】 để tạo category trong subject</strong></div>
+          <div style="margin-top: 4px; font-family:'Noto Sans JP',sans-serif; font-size:0.875rem; color:var(--color-text-muted);">
+            【週次報告】= báo cáo thường. 【週次報告】※課題あり = có vấn đề cần chú ý. 【緊急】= khẩn cấp.
+            PM scan inbox bằng subject — 【】giúp họ triage email nhanh hơn 10 lần.
+          </div>
+        </div>
+
+        <div class="advanced-item">
+          <div class="advanced-item__tag">Tinh tế</div>
+          <div><strong>Khi delay do phía Nhật — nêu sự kiện, không chỉ trích</strong></div>
+          <div style="margin-top: 4px; font-size:0.875rem; color:var(--color-text-muted);">
+            <span class="jp">❌ 日本側の確認が遅れているため delay しました</span> — nghe như đang trách.<br>
+            <span class="jp">✅ 仕様書の受領が遅れているため、スケジュールに影響が出ております</span> — nêu sự kiện khách quan, PM hiểu ngay nhưng không ai bị blame.
+          </div>
+        </div>
+
+        <div class="advanced-item">
+          <div class="advanced-item__tag">Chuyên nghiệp</div>
+          <div><strong>Reply ngay khi PM hỏi lại về báo cáo</strong></div>
+          <div style="margin-top: 4px; font-size:0.875rem; color:var(--color-text-muted);">
+            Nếu PM reply email báo cáo để hỏi thêm, bắt đầu bằng:<br>
+            <span class="jp">ご確認いただきありがとうございます。ご質問の件ですが、〜</span><br>
+            (Cảm ơn đã xem. Về câu hỏi của anh/chị, ...) — không bắt đầu lại bằng お世話になっております khi reply trong cùng thread.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ SECTION 9: NAV ════ -->
+    <div id="ls-9"></div>
+  </div><!-- /lesson-wrapper -->
+</main>
+
+<!-- ── LESSON NAVIGATION ── -->
+<nav class="lesson-nav" aria-label="Điều hướng bài học">
+  <div class="lesson-wrapper">
+    <div class="lesson-nav__module-label">Module: Business Email — 4 bài học</div>
+    <div class="lesson-dots">
+      <a href="lesson-01.html" class="lesson-dot lesson-dot--done" title="Bài 1: Xin chào khi vào dự án mới">1</a>
+      <a href="lesson-02.html" class="lesson-dot lesson-dot--active" title="Bài 2: Báo cáo tiến độ hàng tuần">2</a>
+      <a href="lesson-03.html" class="lesson-dot" title="Bài 3: Báo delay — xin lỗi + giải pháp">3</a>
+      <span class="lesson-dot lesson-dot--locked" title="Chưa mở">4</span>
+    </div>
+    <div class="lesson-nav__btns">
+      <a href="lesson-01.html" class="btn btn--ghost">← Bài trước</a>
+      <div class="lesson-nav__center">
+        <strong>Bài 2 / 4</strong>
+        Business Email Module
+      </div>
+      <a href="lesson-03.html" class="btn btn--primary">Bài tiếp theo →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ── FOOTER ── -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <div class="footer__logo">
+          <span class="brand-icon">先</span>
+          <span class="brand-name">Senpai DynhNC</span>
+        </div>
+        <p class="footer__tagline">Tiếng Nhật thực chiến cho dân IT offshore</p>
+      </div>
+      <div class="footer__links">
+        <h4>Học ngay</h4>
+        <ul>
+          <li><a href="../../index.html">Japanese Hub</a></li>
+          <li><a href="../../vocabulary/index.html">Từ vựng IT</a></li>
+        </ul>
+      </div>
+      <div class="footer__links">
+        <h4>Module Email</h4>
+        <ul>
+          <li><a href="lesson-01.html">Bài 1: Xin chào dự án mới</a></li>
+          <li><a href="lesson-02.html">Bài 2: Báo cáo tiến độ</a></li>
+          <li><a href="lesson-03.html">Bài 3: Báo delay</a></li>
+          <li><a href="index.html">Bài 4: Scope change (sắp có)</a></li>
+        </ul>
+      </div>
+      <div class="footer__links">
+        <h4>Về Senpai</h4>
+        <ul>
+          <li><a href="../../../index.html">Trang chủ</a></li>
+          <li><a href="#">Premium</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>Copyright © 2026 <strong style="color:#fff">Senpai DynhNC</strong> | senpai.vn</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../../../assets/js/theme.js"></script>
+<script src="../../../assets/js/progress.js"></script>
+<script>
+// ── Email tabs
+document.querySelectorAll('.email-tab').forEach(tab => {
+  tab.addEventListener('click', function() {
+    document.querySelectorAll('.email-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.email-tab-content').forEach(c => c.classList.remove('active'));
+    this.classList.add('active');
+    document.getElementById('tab-' + this.dataset.tab).classList.add('active');
+  });
+});
+
+// ── Quiz
+const QUIZ_ANSWERS = { q1:'b', q2:'c', q3:'c', q4:'b', q5:'b', q6:'c' };
+const QUIZ_EXPLAIN = {
+  q1: { correct: 'Đúng! 完了 = xong 100%. PM tin vào báo cáo của bạn — nếu phát hiện chưa xong là mất trust ngay. Task 90% → dùng に取り組んでいます + ghi %.', wrong: 'Sai. 完了しました = xong hoàn toàn. Task 90% chưa được dùng từ này. Khi PM phát hiện sai sự thật, trust mất ngay.' },
+  q2: { correct: 'Đúng! Báo vấn đề mà không có tác động + hướng xử lý = đẩy gánh nặng suy nghĩ sang PM. Luôn cần: vấn đề → tác động đến schedule → 対応策.', wrong: 'Sai. Thiếu quan trọng nhất: tác động đến schedule (影響が出る可能性) và 対応策 (hướng xử lý cụ thể).' },
+  q3: { correct: 'Đúng! 【】format chuẩn, có tên dự án + số tuần + ngày cụ thể + tên người gửi — PM scan inbox thấy ngay mọi thông tin cần thiết.', wrong: 'Sai. Format chuẩn: 【週次報告】Tên dự án — Số tuần (ngày〜ngày) / Tên người gửi. 【】là convention bắt buộc trong email Nhật.' },
+  q4: { correct: 'Đúng! Không bao giờ bỏ section 課題 — PM cần xác nhận là không có gì bất thường. 特に課題はございません rõ ràng và lịch sự hơn chỉ bỏ trống.', wrong: 'Sai. Không bỏ section 課題 — PM sẽ tưởng bạn quên hoặc có vấn đề giấu. Viết rõ 特に課題はございません để confirm mọi thứ ổn.' },
+  q5: { correct: 'Đúng! に取り組んでいます + % trong ngoặc là cách chuẩn nhất — rõ trạng thái "đang làm" và mức độ hoàn thành cụ thể.', wrong: 'Sai. 完了しました = xong 100%. Task 60% phải dùng に取り組んでいます (đang tiến hành) + ghi % cụ thể trong ngoặc.' },
+  q6: { correct: 'Đúng! Nêu sự kiện khách quan (仕様書の受領が遅れている) thay vì chỉ trích trực tiếp. PM hiểu ngay nguyên nhân nhưng không ai bị blame — giữ được quan hệ tốt.', wrong: 'Sai. Không chỉ trích phía Nhật dù là lỗi của họ. Nêu sự kiện khách quan: "spec chưa nhận được" → PM tự hiểu nguyên nhân mà không ai bị đặt vào thế phòng thủ.' }
+};
+
+document.getElementById('quiz-submit').addEventListener('click', function() {
+  let score = 0, answered = 0;
+  Object.keys(QUIZ_ANSWERS).forEach(q => {
+    const sel = document.querySelector(`input[name="${q}"]:checked`);
+    const fb = document.getElementById(`${q}-feedback`);
+    if (!sel) return;
+    answered++;
+    const ok = sel.value === QUIZ_ANSWERS[q];
+    if (ok) score++;
+    fb.textContent = (ok ? '✅ ' : '❌ ') + QUIZ_EXPLAIN[q][ok ? 'correct' : 'wrong'];
+    fb.className = 'quiz-feedback ' + (ok ? 'correct' : 'wrong');
+    document.querySelectorAll(`input[name="${q}"]`).forEach(inp => {
+      const lbl = inp.closest('.quiz-option');
+      if (inp.value === QUIZ_ANSWERS[q]) lbl.style.borderColor = '#10B981';
+      else if (inp.checked) lbl.style.borderColor = '#EF4444';
+    });
+  });
+  if (answered < 6) { alert('Vui lòng trả lời tất cả 6 câu trước khi nộp bài.'); return; }
+  const pct = Math.round(score / 6 * 100);
+  const result = document.getElementById('quiz-result');
+  result.style.display = 'block';
+  result.innerHTML = `<div style="background:${pct>=80?'#D1FAE5':'#FEF2F2'};border-radius:10px;padding:16px 20px;">
+    <div style="font-size:1.5rem;font-weight:800;color:${pct>=80?'#065F46':'#991B1B'};">${score}/6 — ${pct}%</div>
+    <div style="margin-top:4px;font-size:0.875rem;color:${pct>=80?'#065F46':'#991B1B'};">
+      ${pct>=100?'Xuất sắc! Bạn nắm vững 週次報告 cả hai version bình thường lẫn khi có issue.':pct>=80?'Tốt! Xem lại những câu sai và đọc phần Nâng cao.':'Cần ôn lại — chú ý phần 課題 + 対応策 và format Subject.'}
+    </div></div>`;
+  if (typeof markLessonComplete === 'function' && pct >= 80) markLessonComplete('s2-email-02');
+  if (typeof saveQuizScore === 'function') saveQuizScore('s2-email-02', pct);
+  document.getElementById('quiz-retry').style.display = 'inline-flex';
+  const bar = document.getElementById('lesson-progress-bar');
+  const pctEl = document.getElementById('lesson-progress-pct');
+  if (bar) bar.style.width = '100%';
+  if (pctEl) pctEl.textContent = '100%';
+});
+
+document.getElementById('quiz-retry').addEventListener('click', function() {
+  Object.keys(QUIZ_ANSWERS).forEach(q => {
+    document.querySelectorAll(`input[name="${q}"]`).forEach(inp => {
+      inp.checked = false;
+      inp.closest('.quiz-option').style.borderColor = '';
+    });
+    const fb = document.getElementById(`${q}-feedback`);
+    fb.className = 'quiz-feedback'; fb.textContent = '';
+  });
+  document.getElementById('quiz-result').style.display = 'none';
+  this.style.display = 'none';
+});
+
+// ── Fill-in-blank
+document.getElementById('check-blanks').addEventListener('click', function() {
+  const items = document.querySelectorAll('.practice-item input.fill-blank');
+  let correct = 0;
+  items.forEach(inp => {
+    const ans = (inp.dataset.answer || '').trim();
+    const val = inp.value.trim();
+    if (val === ans) { inp.style.borderColor = '#10B981'; correct++; }
+    else { inp.style.borderColor = '#EF4444'; }
+  });
+  const r = document.getElementById('blanks-result');
+  r.style.display = 'block';
+  r.innerHTML = `<div style="font-size:0.875rem;color:${correct===items.length?'#065F46':'#92400E'};background:${correct===items.length?'#D1FAE5':'#FFFBEB'};border-radius:8px;padding:10px 14px;">${correct===items.length?'✅ Tất cả đúng!':`${correct}/${items.length} đúng — đáp án: 完了しました / 影響が出る可能性があります / 確認よろしくお願いいたします`}</div>`;
+});
+
+document.getElementById('show-hints').addEventListener('click', function() {
+  document.querySelectorAll('.practice-item .practice-item__hint').forEach(h => h.style.display = 'block');
+});
+
+// ── Writing sample
+document.getElementById('show-sample').addEventListener('click', function() {
+  document.getElementById('sample-answer').classList.add('show');
+  this.style.display = 'none';
+});
+</script>
+</body>
+</html>

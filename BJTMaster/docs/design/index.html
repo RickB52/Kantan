@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BJT Master — Design Prototype</title>
+
+  <!-- React + ReactDOM (development build for Babel compat) -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <!-- Babel standalone: transpile JSX in browser -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <!-- Google Fonts: Noto Sans JP + Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Design system styles -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; background: #f0eee9; font-family: 'Inter', 'Noto Sans JP', sans-serif; }
+    #root { min-height: 100%; }
+
+    /* Toolbar */
+    #toolbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 9999;
+      background: rgba(15,26,71,0.96); backdrop-filter: blur(8px);
+      display: flex; align-items: center; gap: 12px;
+      padding: 10px 20px; box-shadow: 0 2px 12px rgba(0,0,0,.3);
+    }
+    #toolbar .logo {
+      font-weight: 700; font-size: 16px; color: white; letter-spacing: -.02em;
+      display: flex; align-items: center; gap: 8px;
+    }
+    #toolbar .logo span { opacity: .6; font-weight: 400; font-size: 13px; }
+    #toolbar .sep { width: 1px; height: 20px; background: rgba(255,255,255,.2); }
+    #toolbar .section-btns { display: flex; gap: 6px; flex-wrap: wrap; }
+    #toolbar button {
+      padding: 5px 14px; border-radius: 6px; border: 1px solid rgba(255,255,255,.2);
+      background: transparent; color: rgba(255,255,255,.8); font-size: 12px;
+      cursor: pointer; transition: all .15s; white-space: nowrap;
+    }
+    #toolbar button:hover { background: rgba(255,255,255,.15); color: white; }
+    #toolbar button.active { background: #2563EB; border-color: #2563EB; color: white; }
+    #toolbar .hint { margin-left: auto; font-size: 11px; color: rgba(255,255,255,.4); }
+
+    #canvas-root { padding-top: 56px; }
+
+    /* Loading state */
+    #loading {
+      display: flex; align-items: center; justify-content: center;
+      height: 80vh; flex-direction: column; gap: 16px;
+      color: rgba(60,50,40,.6); font-size: 15px;
+    }
+    .spinner {
+      width: 36px; height: 36px; border: 3px solid rgba(37,99,235,.2);
+      border-top-color: #2563EB; border-radius: 50%;
+      animation: spin .7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+
+<div id="toolbar">
+  <div class="logo">
+    <div style="width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#1E3A8A,#2563EB);display:flex;align-items:center;justify-content:center;color:white;font-size:14px;font-weight:700;">能</div>
+    BJT Master <span>Design Prototype</span>
+  </div>
+  <div class="sep"></div>
+  <div class="section-btns" id="section-btns">
+    <button onclick="showSection('all')" class="active" id="btn-all">All Screens</button>
+    <button onclick="showSection('auth')" id="btn-auth">Auth / Onboarding</button>
+    <button onclick="showSection('home')" id="btn-home">Home</button>
+    <button onclick="showSection('learn')" id="btn-learn">Learn (Keigo, Reading, Vocab)</button>
+    <button onclick="showSection('mock')" id="btn-mock">Mock Test / AI / Paywall</button>
+  </div>
+  <div class="hint">Click screen → fullscreen &nbsp;|&nbsp; ← → navigate</div>
+</div>
+
+<div id="canvas-root">
+  <div id="loading">
+    <div class="spinner"></div>
+    Loading design prototype…
+  </div>
+</div>
+
+<!-- Load all JSX modules as text/babel -->
+<script type="text/babel" data-presets="react" src="shared.jsx"></script>
+<script type="text/babel" data-presets="react" src="ios-frame.jsx"></script>
+<script type="text/babel" data-presets="react" src="design-canvas.jsx"></script>
+<script type="text/babel" data-presets="react" src="screens-auth.jsx"></script>
+<script type="text/babel" data-presets="react" src="screens-home.jsx"></script>
+<script type="text/babel" data-presets="react" src="screens-learn.jsx"></script>
+<script type="text/babel" data-presets="react" src="screens-mock.jsx"></script>
+
+<script type="text/babel" data-presets="react">
+// ─── Main App: assemble all screens into the canvas ───────────────────────
+
+function App() {
+  return (
+    <div id="all-sections">
+
+      {/* ── Auth & Onboarding ── */}
+      <div className="design-section" data-section="auth">
+        <DesignCanvas>
+          <DCSection id="auth" title="Auth & Onboarding" subtitle="S-AUTH-01 → S-AUTH-09">
+            <DCArtboard id="welcome"    label="Welcome"               width={320} height={640}><WelcomeScreen /></DCArtboard>
+            <DCArtboard id="signup"     label="Sign Up"               width={320} height={640}><SignUpScreen /></DCArtboard>
+            <DCArtboard id="signin"     label="Sign In"               width={320} height={640}><SignInScreen /></DCArtboard>
+            <DCArtboard id="onboard1"   label="Onboard 1 – Target"    width={320} height={640}><OnboardingTargetScreen /></DCArtboard>
+            <DCArtboard id="onboard2"   label="Onboard 2 – Daily Goal" width={320} height={640}><OnboardingGoalScreen /></DCArtboard>
+          </DCSection>
+        </DesignCanvas>
+      </div>
+
+      {/* ── Home ── */}
+      <div className="design-section" data-section="home">
+        <DesignCanvas>
+          <DCSection id="home" title="Home / Dashboard" subtitle="S-HOME-01 → S-HOME-03">
+            <DCArtboard id="home-main"  label="Home Dashboard"        width={320} height={640}><HomeScreen /></DCArtboard>
+            <DCArtboard id="profile"    label="Profile"               width={320} height={640}><ProfileScreen /></DCArtboard>
+          </DCSection>
+        </DesignCanvas>
+      </div>
+
+      {/* ── Learn ── */}
+      <div className="design-section" data-section="learn">
+        <DesignCanvas>
+          <DCSection id="learn" title="Learn — Keigo · Reading · Vocab" subtitle="A2 · B3 · A1">
+            <DCArtboard id="keigo-ov"   label="Keigo Overview"        width={320} height={640}><KeigoOverviewScreen /></DCArtboard>
+            <DCArtboard id="keigo-dr"   label="Keigo Drill"           width={320} height={640}><KeignoDrillScreen /></DCArtboard>
+            <DCArtboard id="reading"    label="Reading Practice"       width={320} height={640}><ReadingScreen /></DCArtboard>
+            <DCArtboard id="flashcard"  label="Vocab Flashcard (SRS)"  width={320} height={640}><FlashcardScreen /></DCArtboard>
+          </DCSection>
+        </DesignCanvas>
+      </div>
+
+      {/* ── Mock Test + AI + Paywall ── */}
+      <div className="design-section" data-section="mock">
+        <DesignCanvas>
+          <DCSection id="mock" title="Mock Test · AI Tutor · Paywall" subtitle="Track C + AI + Subscription">
+            <DCArtboard id="mock-test"  label="Mock Test In-Progress"  width={320} height={640}><MockTestScreen /></DCArtboard>
+            <DCArtboard id="result"     label="Test Result"            width={320} height={640}><ResultScreen /></DCArtboard>
+            <DCArtboard id="ai-sheet"   label="AI Explanation Sheet"   width={320} height={640}><AIExplainScreen /></DCArtboard>
+            <DCArtboard id="paywall"    label="Paywall"                width={320} height={640}><PaywallScreen /></DCArtboard>
+          </DCSection>
+        </DesignCanvas>
+      </div>
+
+    </div>
+  );
+}
+
+// ─── Section filter ────────────────────────────────────────────────────────
+window.showSection = function(id) {
+  document.querySelectorAll('[id^="btn-"]').forEach(b => b.classList.remove('active'));
+  document.getElementById('btn-' + id)?.classList.add('active');
+  document.querySelectorAll('.design-section').forEach(el => {
+    el.style.display = (id === 'all' || el.dataset.section === id) ? 'block' : 'none';
+  });
+};
+
+// ─── Mount ─────────────────────────────────────────────────────────────────
+document.getElementById('loading').remove();
+ReactDOM.createRoot(document.getElementById('canvas-root')).render(<App />);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,317 @@
+{
+  "meta": {
+    "section": "keigo",
+    "module": "A2",
+    "total": 20,
+    "note": "Original BJT-style Keigo quiz questions based on 文化庁「敬語の指針」(2007) framework."
+  },
+  "questions": [
+
+    {
+      "id": "K-001",
+      "type": "keigo_quiz",
+      "level": "J4",
+      "topic": "尊敬語・基本",
+      "instruction": "（　）に入る最も適切な敬語表現を選んでください。",
+      "passage": null,
+      "question": "社長が会議室に（　）。",
+      "choices": ["います", "おります", "いらっしゃいます", "まいります"],
+      "answer_index": 2,
+      "explanation_ja": "「いらっしゃる」は「いる/来る/行く」の尊敬語。社長（目上）の動作には尊敬語を使う。「おります」は謙譲語Ⅱ（自分側）。",
+      "explanation_vi": "「いらっしゃる」 là kính ngữ của 「いる/来る/行く」. Dùng khi nói về hành động của người bề trên. 「おります」 là khiêm nhường ngữ (nói về bản thân)."
+    },
+    {
+      "id": "K-002",
+      "type": "keigo_quiz",
+      "level": "J4",
+      "topic": "謙譲語・基本",
+      "instruction": "（　）に入る最も適切な敬語表現を選んでください。",
+      "question": "明日、御社に（　）予定です。（自分が相手先へ行く）",
+      "choices": ["いらっしゃる", "まいる", "おいでになる", "行かれる"],
+      "answer_index": 1,
+      "explanation_ja": "「まいる」は「行く/来る」の謙譲語Ⅱ（丁重語）。自分の動作を丁重に述べる。「いらっしゃる」「おいでになる」は尊敬語なので自分には使えない。",
+      "explanation_vi": "「まいる」 là khiêm nhường ngữ của 「行く/来る」, dùng khi nói về hành động của bản thân một cách lịch sự. Không dùng kính ngữ cho hành động của bản thân."
+    },
+    {
+      "id": "K-003",
+      "type": "keigo_quiz",
+      "level": "J3",
+      "topic": "謙譲語Ⅰ・方向性",
+      "instruction": "（　）に入る最も適切な敬語表現を選んでください。",
+      "question": "先ほど田中部長にご報告（　）。",
+      "choices": ["いたしました", "されました", "なさいました", "くださいました"],
+      "answer_index": 0,
+      "explanation_ja": "「ご〜いたす」は謙譲語Ⅰ。自分が目上の人（田中部長）へ向かう動作に使う。「なさいました」「くださいました」は尊敬語で目上の動作に使う。",
+      "explanation_vi": "「ご〜いたす」 là khiêm nhường ngữ I, dùng khi hành động của bản thân hướng đến người bề trên. 「なさる」「くださる」là kính ngữ dành cho người bề trên."
+    },
+    {
+      "id": "K-004",
+      "type": "keigo_quiz",
+      "level": "J3",
+      "topic": "ウチ・ソト",
+      "instruction": "社外の人に対して正しい表現を選んでください。",
+      "question": "（電話応対）「田中は只今席を（　）。」",
+      "choices": ["おはずれになっています", "はずれていらっしゃいます", "外しております", "おはずれされています"],
+      "answer_index": 2,
+      "explanation_ja": "社外の人に対して自社の人（ウチ）には謙譲語を使う。「外しております」が正しい。「いらっしゃいます」は尊敬語で自社の人に使うのは誤り（ウチ・ソトの原則違反）。",
+      "explanation_vi": "Với người ngoài công ty (ソト), nói về nhân viên nội bộ (ウチ) phải dùng khiêm nhường ngữ. 「外しております」là chuẩn. Tuyệt đối không dùng「いらっしゃる」cho người ウチ khi nói với người ソト."
+    },
+    {
+      "id": "K-005",
+      "type": "keigo_quiz",
+      "level": "J3",
+      "topic": "受け取り・もらう",
+      "instruction": "（　）に入る最も適切な敬語表現を選んでください。",
+      "question": "部長から資料を（　）。",
+      "choices": ["いただきました", "くださいました", "もらいました", "拝受しました"],
+      "answer_index": 0,
+      "explanation_ja": "「いただく」は謙譲語Ⅰ。自分が上位者からもらう場合に使う。「くださいました」も正しいが、主語が「部長」になる（「部長がくださいました」）。ここでは「私が」いただいたので「いただきました」が最適。",
+      "explanation_vi": "「いただく」 là khiêm nhường ngữ I của 「もらう」, dùng khi chủ thể là bản thân nhận từ người bề trên. 「くださる」thì chủ thể là người cho (bề trên)."
+    },
+    {
+      "id": "K-006",
+      "type": "keigo_quiz",
+      "level": "J2",
+      "topic": "謙譲語Ⅰ vs Ⅱ",
+      "instruction": "下線部の敬語の種類として正しいものを選んでください。",
+      "question": "「弊社を代表して、一言ご挨拶申し上げます。」の「申し上げます」",
+      "choices": [
+        "尊敬語",
+        "謙譲語Ⅰ（向かう先を高める）",
+        "謙譲語Ⅱ（丁重語）",
+        "丁寧語"
+      ],
+      "answer_index": 1,
+      "explanation_ja": "「申し上げる」は謙譲語Ⅰ。「ご挨拶申し上げます」は挨拶という行為が聴衆（向かう先）に向かい、その相手を高める。謙譲語Ⅱ（丁重語）は向かう先を特定しない点で異なる。",
+      "explanation_vi": "「申し上げる」 là khiêm nhường ngữ I - hành động hướng đến người nghe cụ thể và tôn trọng họ. Khác với khiêm nhường ngữ II (丁重語) không xác định đối tượng cụ thể."
+    },
+    {
+      "id": "K-007",
+      "type": "keigo_quiz",
+      "level": "J2",
+      "topic": "謙譲語Ⅰ vs Ⅱ",
+      "instruction": "下線部の敬語の種類として正しいものを選んでください。",
+      "question": "「私は毎朝６時に参ります。」の「参ります」",
+      "choices": [
+        "尊敬語",
+        "謙譲語Ⅰ",
+        "謙譲語Ⅱ（丁重語）",
+        "丁寧語"
+      ],
+      "answer_index": 2,
+      "explanation_ja": "「まいる」は謙譲語Ⅱ（丁重語）。向かう先が特定されない「毎朝6時に来る」という自分の動作を丁重に述べているだけ。「申す」「おる」「いたす」なども丁重語。",
+      "explanation_vi": "「まいる」ở đây là khiêm nhường ngữ II (丁重語) - chỉ nói lịch sự về hành động của bản thân mà không hướng đến ai cụ thể. So sánh: 「社長に報告にまいりました」= khiêm nhường ngữ I (hướng đến cụ thể)."
+    },
+    {
+      "id": "K-008",
+      "type": "keigo_quiz",
+      "level": "J2",
+      "topic": "尊敬語・動詞変換",
+      "instruction": "「言う」の尊敬語として正しいものを選んでください。",
+      "question": "お客様が（　）ことには、納期を早めてほしいとのことでした。",
+      "choices": ["申した", "おっしゃった", "言われた", "述べられた"],
+      "answer_index": 1,
+      "explanation_ja": "「おっしゃる」は「言う」の尊敬語。「申す」は謙譲語（自分側）。「言われた」は敬語として不十分（受身形の混同）。「述べられた」も敬語として弱い。",
+      "explanation_vi": "「おっしゃる」 là kính ngữ của 「言う」. 「申す」 là khiêm nhường ngữ (dùng cho bản thân). Đừng nhầm「言われた」(dạng bị động) với kính ngữ."
+    },
+    {
+      "id": "K-009",
+      "type": "keigo_quiz",
+      "level": "J1",
+      "topic": "複合敬語・お〜いたす",
+      "instruction": "最も適切な敬語表現を選んでください。",
+      "question": "資料をお送り（　）します。（自分が相手に送る）",
+      "choices": ["いたし", "なさい", "され", "くださり"],
+      "answer_index": 0,
+      "explanation_ja": "「お〜いたす」は謙譲語Ⅰの複合形。「お送りいたします」は自分の行為が相手に向かうことを丁重に表現する最も格式高い言い方。",
+      "explanation_vi": "「お〜いたす」 là dạng kết hợp của khiêm nhường ngữ I. 「お送りいたします」là cách nói lịch sự nhất khi hành động của bản thân hướng đến người nhận."
+    },
+    {
+      "id": "K-010",
+      "type": "keigo_quiz",
+      "level": "J1",
+      "topic": "よくある誤用",
+      "instruction": "敬語の誤りがある表現はどれですか。",
+      "question": "次のうち、誤った敬語表現はどれですか。",
+      "choices": [
+        "部長がおっしゃったことを確認いたします。",
+        "お客様がご覧になっている資料です。",
+        "社長がおっしゃられました。",
+        "担当者に確認してご報告いたします。"
+      ],
+      "answer_index": 2,
+      "explanation_ja": "「おっしゃられました」は二重敬語（尊敬語「おっしゃる」＋受身/尊敬「られる」の重複）。正しくは「おっしゃいました」。",
+      "explanation_vi": "「おっしゃられました」 là kính ngữ kép (二重敬語) - lỗi phổ biến. 「おっしゃる」đã là kính ngữ rồi, không thêm「られる」nữa. Đúng: 「おっしゃいました」."
+    },
+    {
+      "id": "K-011",
+      "type": "keigo_quiz",
+      "level": "J1",
+      "topic": "よくある誤用・させていただく",
+      "instruction": "「させていただく」の正しい使い方を選んでください。",
+      "question": "次のうち、「させていただく」の使い方が適切なものはどれですか。",
+      "choices": [
+        "本日はお時間をいただかせていただきありがとうございます。",
+        "会議を来週に変更させていただきたいのですが。",
+        "資料を読ませていただきました。（誰の許可も不要な場合）",
+        "トイレに行かせていただきます。"
+      ],
+      "answer_index": 1,
+      "explanation_ja": "「させていただく」は①相手の許可を得た②自分が恩恵を受ける、の両条件が必要。「会議を変更させていただく」は相手に許可を求める文脈で自然。Aは「いただかせていただき」で二重。C・Dは許可不要の行為に使っており不自然。",
+      "explanation_vi": "「させていただく」 cần 2 điều kiện: ① được phép ② bản thân hưởng lợi. Trong 「変更させていただきたい」= đang xin phép thay đổi → phù hợp. A là kính ngữ kép; C/D không cần xin phép nên không tự nhiên."
+    },
+    {
+      "id": "K-012",
+      "type": "keigo_quiz",
+      "level": "J1+",
+      "topic": "電話応対",
+      "instruction": "電話応対として最も適切な表現を選んでください。",
+      "question": "（電話）「田中部長はいらっしゃいますか？」と聞かれた場合の正しい返答は？",
+      "choices": [
+        "「はい、田中はいらっしゃいます。少々お待ちください。」",
+        "「田中は只今席を外しております。よろしければご伝言を承ります。」",
+        "「田中部長は只今外出されておられます。」",
+        "「はい、田中でございます。」"
+      ],
+      "answer_index": 1,
+      "explanation_ja": "Aは社内の人に「いらっしゃいます」を使っており誤り（ウチ・ソト原則違反）。Cは「外出されておられます」で二重敬語。Dは田中本人が電話に出た場合の表現。Bが正しい：ウチの人を謙譲語（おります）で表現＋適切な応対。",
+      "explanation_vi": "A: sai vì dùng「いらっしゃいます」cho người nội bộ (vi phạm ウチ・ソト). C: 二重敬語. D: chỉ dùng khi bản thân田中trả lời. B đúng: dùng謙譲語「おります」cho người ウチ khi nói với ソト."
+    },
+    {
+      "id": "K-013",
+      "type": "keigo_quiz",
+      "level": "J3",
+      "topic": "メール敬語・書き出し",
+      "instruction": "ビジネスメールの書き出しとして最も適切な表現を選んでください。",
+      "question": "初めてメールを送る取引先への書き出しとして最も適切なものはどれですか。",
+      "choices": [
+        "「こんにちは。株式会社ABCの田中です。」",
+        "「はじめまして。株式会社ABCの田中と申します。」",
+        "「お疲れ様です。株式会社ABCの田中です。」",
+        "「ご苦労様です。ABCの田中と申します。」"
+      ],
+      "answer_index": 1,
+      "explanation_ja": "初めての取引先には「はじめまして」と「〜と申します」（謙譲語）が適切。「お疲れ様」は社内・身内向け。「ご苦労様」は目下の人への労いで社外に使うのは不適切。",
+      "explanation_vi": "「はじめまして〜と申します」là chuẩn khi gặp lần đầu với đối tác ngoài. 「お疲れ様」dùng nội bộ. 「ご苦労様」dùng với cấp dưới, không dùng với đối tác."
+    },
+    {
+      "id": "K-014",
+      "type": "keigo_quiz",
+      "level": "J3",
+      "topic": "依頼表現",
+      "instruction": "最も丁寧な依頼表現を選んでください。",
+      "question": "顧客に資料の送付を依頼するとき、最も丁寧な表現はどれですか。",
+      "choices": [
+        "「資料を送ってください。」",
+        "「資料をお送りください。」",
+        "「資料をお送りいただけますでしょうか。」",
+        "「資料を送っていただけますか。」"
+      ],
+      "answer_index": 2,
+      "explanation_ja": "依頼の丁寧度：A<B<D<C。「お〜いただけますでしょうか」は「〜ていただく」＋疑問形で最も遠回しで丁寧。ビジネスメールでは特にCが最適。",
+      "explanation_vi": "Mức độ lịch sự: A<B<D<C. 「お〜いただけますでしょうか」là cách nhờ vả lịch sự nhất, gián tiếp nhất. Chuẩn trong email kinh doanh."
+    },
+    {
+      "id": "K-015",
+      "type": "keigo_quiz",
+      "level": "J2",
+      "topic": "訪問・来客応対",
+      "instruction": "来客応対として最も適切な表現を選んでください。",
+      "question": "お客様が来社された際の案内として正しいものはどれですか。",
+      "choices": [
+        "「田中がお待ちしていますので、こちらへどうぞ。」",
+        "「田中がお待ちになっています。こちらへどうぞ。」",
+        "「田中がお待ちしております。こちらへご案内いたします。」",
+        "「田中がお待ちされています。ご案内します。」"
+      ],
+      "answer_index": 2,
+      "explanation_ja": "自社の田中は謙譲語「お待ちしております」で表現。お客様の動作（ご案内する相手）には「いたします」。Bは「お待ちになって」で田中を尊敬語にしており誤り。Dの「お待ちされています」は文法的に不自然。",
+      "explanation_vi": "Nhân viên nội bộ (田中) → khiêm nhường ngữ「お待ちしております」. Hành động với khách→「ご案内いたします」. B sai: dùng kính ngữ cho người ウチ."
+    },
+    {
+      "id": "K-016",
+      "type": "keigo_quiz",
+      "level": "J2",
+      "topic": "断り・お断り表現",
+      "instruction": "取引先の依頼を丁重に断る表現として最も適切なものを選んでください。",
+      "question": "相手からの無理な依頼を丁重に断る際、最も適切な表現はどれですか。",
+      "choices": [
+        "「それはできません。」",
+        "「難しいと思います。」",
+        "「諸般の事情により、ご期待に沿いかねる状況でございます。」",
+        "「無理です。別の方にお願いください。」"
+      ],
+      "answer_index": 2,
+      "explanation_ja": "「〜かねる」は「できない」の丁重な表現。「諸般の事情により」で理由を暗示しつつ断る、ビジネスにおける定型的な断り表現。A・Dは直接的すぎる。Bは曖昧で責任回避的。",
+      "explanation_vi": "「〜かねる」= không thể (nói lịch sự). 「諸般の事情により〜かねる」là mẫu từ chối chuẩn trong kinh doanh, ngụ ý lý do mà không nói thẳng."
+    },
+    {
+      "id": "K-017",
+      "type": "keigo_quiz",
+      "level": "J1",
+      "topic": "会議での敬語",
+      "instruction": "会議中の発言として最も適切な表現を選んでください。",
+      "question": "会議で自分の意見を言いたいとき、最も適切な表現はどれですか。",
+      "choices": [
+        "「私の意見を言います。」",
+        "「一点、よろしいでしょうか。私は〜と考えております。」",
+        "「私が思うには〜ですね。」",
+        "「〜じゃないですか？」"
+      ],
+      "answer_index": 1,
+      "explanation_ja": "「一点、よろしいでしょうか」で発言の許可を求めてから「〜と考えております」（謙譲表現）で意見を述べる。これが最もビジネス的に適切な表現。",
+      "explanation_vi": "「一点、よろしいでしょうか」= xin phép phát biểu → sau đó dùng「考えております」(khiêm nhường). Đây là cách phát biểu ý kiến chuẩn trong họp."
+    },
+    {
+      "id": "K-018",
+      "type": "keigo_quiz",
+      "level": "J1+",
+      "topic": "敬語の総合判断",
+      "instruction": "次の会話の（　）に入る最も適切な表現を選んでください。",
+      "question": "（上司から）「山田さん、この件について鈴木部長にご確認いただけますか？」\n（自分の返答）「（　）。」",
+      "choices": [
+        "かしこまりました。すぐに確認します。",
+        "承知しました。ただいまご確認いたします。",
+        "了解です。今から行きます。",
+        "分かりました。確認してきます。"
+      ],
+      "answer_index": 1,
+      "explanation_ja": "「承知しました」は上司への返事として適切。「ご確認いたします」は自分が鈴木部長へ向かう謙譲語Ⅰ。「了解です」はカジュアルすぎ。「かしこまりました」も正しいが、「ただいまご確認いたします」まで揃っているBが最も完全。",
+      "explanation_vi": "「承知しました」+ 「ご確認いたします」(謙譲語I hướng đến部長). 「了解です」quá thông thường. 「かしこまりました」cũng đúng nhưng B hoàn chỉnh hơn."
+    },
+    {
+      "id": "K-019",
+      "type": "keigo_quiz",
+      "level": "J1+",
+      "topic": "書き言葉の敬語",
+      "instruction": "ビジネス文書の表現として最も適切なものを選んでください。",
+      "question": "書類を受け取ったことを伝えるビジネス文書表現として最も適切なのはどれですか。",
+      "choices": [
+        "「書類をもらいました。」",
+        "「書類を受け取りました。」",
+        "「書類を拝受いたしました。」",
+        "「書類をいただきました。」"
+      ],
+      "answer_index": 2,
+      "explanation_ja": "「拝受（はいじゅ）いたしました」は書き言葉で最も格式高い「受け取った」の謙譲表現。「拝〜」系（拝見・拝受・拝読）は書き言葉の謙譲語。口語では「いただきました」で十分。",
+      "explanation_vi": "「拝受いたしました」 là cách viết trang trọng nhất để xác nhận đã nhận. Prefix「拝」(拝見・拝受・拝読) dùng trong văn viết. Còn「いただきました」phù hợp hơn cho lời nói."
+    },
+    {
+      "id": "K-020",
+      "type": "keigo_quiz",
+      "level": "J1+",
+      "topic": "敬語の誤用・trap",
+      "instruction": "下線部の敬語表現が正しいものを選んでください。",
+      "question": "次のうち、下線部の敬語が正しい文はどれですか。",
+      "choices": [
+        "お客様が__ご覧になられ__ている資料です。",
+        "先ほど部長が__おっしゃっていた__件について確認します。",
+        "弊社の担当者が__いらっしゃいます__ので、少々お待ちください。",
+        "ご注文の品を__お持ちいたし__ました。"
+      ],
+      "answer_index": 3,
+      "explanation_ja": "A「ご覧になられ」は二重敬語。C「いらっしゃいます」を自社担当者（ウチ）に使うのはウチ・ソト原則違反。B「おっしゃっていた」は「おっしゃっておられた」の方が丁寧だが文法的には許容。D「お持ちいたしました」は「お〜いたす」の正しい謙譲語Ⅰの複合形。",
+      "explanation_vi": "A: 二重敬語 (誤). C: 「いらっしゃる」cho người ウチ = sai (誤). B: chấp nhận được nhưng không hoàn hảo. D: 「お持ちいたす」= dạng khiêm nhường I kết hợp đúng chuẩn."
+    }
+  ]
+}

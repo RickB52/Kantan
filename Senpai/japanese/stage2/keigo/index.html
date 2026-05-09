@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Keigo Cơ Bản — M2.1 · Senpai</title>
+  <meta name="description" content="Module Keigo Cơ Bản: học cách dùng 丁寧語 và 尊敬語 chuẩn xác trong dự án IT offshore — từ いらっしゃる đến なさる.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../assets/css/main.css">
+  <link rel="stylesheet" href="../../../assets/css/components.css">
+  <style>
+    .module-hero {
+      background: linear-gradient(135deg, #FFF1F2 0%, #FFE4E6 100%);
+      border-bottom: 1px solid #FECACA;
+      padding: 44px 0 36px;
+    }
+    [data-theme="dark"] .module-hero {
+      background: linear-gradient(135deg, #4c0519 0%, #881337 100%);
+      border-bottom-color: #9f1239;
+    }
+    .module-hero__tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #E11D48;
+      background: rgba(255,255,255,0.8);
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+    [data-theme="dark"] .module-hero__tag { background: rgba(255,255,255,0.1); color: #FDA4AF; }
+    .module-hero__title {
+      font-size: clamp(24px, 4vw, 36px);
+      font-weight: 800;
+      color: var(--color-text);
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+    .module-hero__jp {
+      font-family: var(--font-jp);
+      font-size: 18px;
+      color: #E11D48;
+      margin-bottom: 12px;
+    }
+    [data-theme="dark"] .module-hero__jp { color: #FDA4AF; }
+    .module-hero__desc {
+      font-size: 15px;
+      color: var(--color-text-muted);
+      max-width: 520px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    .module-hero__meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .module-meta-pill {
+      font-size: 12.5px;
+      font-weight: 500;
+      color: var(--color-text-muted);
+      background: rgba(255,255,255,0.7);
+      padding: 5px 12px;
+      border-radius: 999px;
+      border: 1px solid #FECACA;
+    }
+    [data-theme="dark"] .module-meta-pill {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.15);
+    }
+    .module-progress-wrap { margin-top: 20px; }
+    .module-progress-bar {
+      background: rgba(225,29,72,0.2);
+      border-radius: 999px;
+      height: 6px;
+      max-width: 280px;
+    }
+    .module-progress-fill {
+      background: #E11D48;
+      border-radius: 999px;
+      height: 100%;
+      transition: width 0.6s ease;
+    }
+    .module-progress-label {
+      font-size: 12px;
+      color: var(--color-text-muted);
+      margin-top: 5px;
+    }
+
+    /* Lessons list */
+    .lessons-content { padding: 52px 0 80px; }
+    .lessons-section-title {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-text-muted);
+      margin-bottom: 24px;
+    }
+    .lessons-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .lesson-row {
+      display: grid;
+      grid-template-columns: 56px 1fr auto;
+      align-items: center;
+      gap: 16px;
+      background: var(--color-surface);
+      border: 1.5px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: 20px 22px;
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+      text-decoration: none;
+      color: inherit;
+    }
+    .lesson-row:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      border-color: #E11D48;
+    }
+    .lesson-row--done { border-left: 4px solid var(--color-success); }
+    .lesson-row--locked { opacity: 0.6; pointer-events: none; }
+
+    .lesson-row__num {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: #FFF1F2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      font-weight: 700;
+      color: #E11D48;
+      flex-shrink: 0;
+    }
+    .lesson-row--done .lesson-row__num {
+      background: var(--color-success-light);
+      color: var(--color-success);
+    }
+    [data-theme="dark"] .lesson-row__num { background: rgba(225,29,72,0.15); }
+
+    .lesson-row__body { min-width: 0; }
+    .lesson-row__title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--color-text);
+      margin-bottom: 4px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .lesson-row__sub {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .lesson-row__jp {
+      font-family: var(--font-jp);
+      font-size: 13px;
+      color: var(--color-text-muted);
+    }
+    .lesson-row__time {
+      font-size: 12px;
+      color: var(--color-text-muted);
+    }
+    .lesson-row__action {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Reveal animation */
+    .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.45s ease, transform 0.45s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    .d1 { transition-delay: 0.07s; }
+    .d2 { transition-delay: 0.14s; }
+
+    @media (max-width: 580px) {
+      .lesson-row { grid-template-columns: 44px 1fr; }
+      .lesson-row__action { display: none; }
+      .lesson-row__title { font-size: 14px; white-space: normal; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVBAR ── -->
+<nav class="navbar">
+  <div class="container">
+    <a href="../../../index.html" class="navbar__brand">
+      <span class="brand-icon">先</span>
+      <span class="brand-name">Senpai DynhNC5</span>
+    </a>
+    <ul class="navbar__links">
+      <li><a href="../../index.html" class="link--cta">🇯🇵 Học ngay</a></li>
+      <li><a href="../../vocabulary/index.html">🔤 Từ vựng</a></li>
+      <li><a href="#">📚 Resources</a></li>
+      <li><a href="#" class="link--premium">🔒 Premium</a></li>
+    </ul>
+    <div class="navbar__right">
+      <button class="theme-toggle" aria-label="Đổi giao diện">
+        <span class="toggle-track">
+          <span class="toggle-sun">☀️</span>
+          <span class="toggle-moon">🌙</span>
+          <span class="toggle-thumb"></span>
+        </span>
+      </button>
+    </div>
+    <button class="navbar__toggle" aria-label="Menu">☰</button>
+  </div>
+</nav>
+
+<!-- ── BREADCRUMB ── -->
+<div style="background: var(--color-surface); border-bottom: 1px solid var(--color-border-light); padding: 10px 0;">
+  <div class="container">
+    <nav style="font-size: 13px; color: var(--color-text-muted); display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+      <a href="../../../index.html" style="color: var(--color-text-muted);">Senpai</a>
+      <span>›</span>
+      <a href="../../index.html" style="color: var(--color-text-muted);">Business Japanese</a>
+      <span>›</span>
+      <a href="../index.html" style="color: var(--color-text-muted);">Giai đoạn 2</a>
+      <span>›</span>
+      <span style="color: var(--color-text); font-weight: 600;">Keigo Cơ Bản</span>
+    </nav>
+  </div>
+</div>
+
+<!-- ── MODULE HERO ── -->
+<div class="module-hero">
+  <div class="container">
+    <div class="module-hero__tag">🎌 M2.1 · Keigo</div>
+    <h1 class="module-hero__title">Keigo Cơ Bản</h1>
+    <div class="module-hero__jp">丁寧語 → 尊敬語</div>
+    <p class="module-hero__desc">
+      Hiểu và dùng đúng 丁寧語 và 尊敬語. Từ いらっしゃる, おっしゃる, なさる đến các mẫu keigo thường gặp trong dự án IT.
+    </p>
+    <div class="module-hero__meta">
+      <span class="module-meta-pill">📝 3 bài học</span>
+      <span class="module-meta-pill">⏱ ~60 phút</span>
+      <span class="module-meta-pill">🆓 Miễn phí</span>
+      <span class="module-meta-pill">🎯 N2 Level</span>
+    </div>
+    <div class="module-progress-wrap">
+      <div class="module-progress-bar">
+        <div class="module-progress-fill" id="keigo-prog-fill" style="width: 0%"></div>
+      </div>
+      <div class="module-progress-label" id="keigo-prog-label">Đang tính tiến độ...</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── LESSONS ── -->
+<div class="lessons-content">
+  <div class="container">
+    <div class="lessons-section-title">Danh sách bài học</div>
+
+    <div class="lessons-list">
+
+      <!-- Lesson 01 -->
+      <a href="lesson-01.html" class="lesson-row reveal" id="row-keigo-01">
+        <div class="lesson-row__num" id="num-keigo-01">01</div>
+        <div class="lesson-row__body">
+          <div class="lesson-row__title">丁寧語 trong email IT</div>
+          <div class="lesson-row__sub">
+            <span class="lesson-row__jp">ITメールの丁寧 ngữ (ていねいご)</span>
+            <span class="lesson-row__time">⏱ ~20 phút</span>
+          </div>
+        </div>
+        <div class="lesson-row__action">
+          <span class="badge badge--free">Cơ bản</span>
+          <span style="font-size: 18px; color: #E11D48;">→</span>
+        </div>
+      </a>
+
+      <!-- Lesson 02 -->
+      <a href="lesson-02.html" class="lesson-row reveal d1" id="row-keigo-02">
+        <div class="lesson-row__num" id="num-keigo-02">02</div>
+        <div class="lesson-row__body">
+          <div class="lesson-row__title">尊敬語 — いらっしゃる, おっしゃる, なさる</div>
+          <div class="lesson-row__sub">
+            <span class="lesson-row__jp">尊敬語 (そんけいご) の基本</span>
+            <span class="lesson-row__time">⏱ ~20 phút</span>
+          </div>
+        </div>
+        <div class="lesson-row__action">
+          <span class="badge badge--free">Nâng cao</span>
+          <span style="font-size: 18px; color: #E11D48;">→</span>
+        </div>
+      </a>
+
+      <!-- Lesson 03 -->
+      <a href="lesson-03.html" class="lesson-row reveal d2" id="row-keigo-03">
+        <div class="lesson-row__num" id="num-keigo-03">03</div>
+        <div class="lesson-row__body">
+          <div class="lesson-row__title">Phân biệt 丁寧語 vs 尊敬語 thực chiến</div>
+          <div class="lesson-row__sub">
+            <span class="lesson-row__jp">丁寧語と尊敬語の使い分け</span>
+            <span class="lesson-row__time">⏱ ~20 phút</span>
+          </div>
+        </div>
+        <div class="lesson-row__action">
+          <span class="badge badge--free">Thực chiến</span>
+          <span style="font-size: 18px; color: #E11D48;">→</span>
+        </div>
+      </a>
+
+    </div><!-- /lessons-list -->
+
+    <!-- Back to stage -->
+    <div style="margin-top: 40px;">
+      <a href="../index.html" class="btn btn--ghost">← Quay lại Giai đoạn 2</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <div class="footer__logo">
+          <span class="brand-icon">先</span>
+          <span class="brand-name">Senpai DynhNC5</span>
+        </div>
+        <p class="footer__tagline">Business Japanese thực chiến cho dân IT offshore</p>
+      </div>
+      <div class="footer__links">
+        <h4>Module Keigo</h4>
+        <ul>
+          <li><a href="lesson-01.html">Bài 1 — 丁寧語 cơ bản</a></li>
+          <li><a href="lesson-02.html">Bài 2 — 尊敬語 cốt lõi</a></li>
+          <li><a href="lesson-03.html">Bài 3 — Phân biệt thực chiến</a></li>
+        </ul>
+      </div>
+      <div class="footer__links">
+        <h4>Module khác</h4>
+        <ul>
+          <li><a href="../email/index.html">📧 Business Email</a></li>
+          <li><a href="../meeting/index.html">🤝 Họp hành</a></li>
+        </ul>
+      </div>
+      <div class="footer__links">
+        <h4>Điều hướng</h4>
+        <ul>
+          <li><a href="../../../index.html">Trang chủ</a></li>
+          <li><a href="../../index.html">Japanese Hub</a></li>
+          <li><a href="../index.html">Giai đoạn 2</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>Copyright © 2026 <strong style="color:#fff">DynhNC5</strong> | senpai.vn</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../../../assets/js/theme.js"></script>
+<script src="../../../assets/js/progress.js"></script>
+<script>
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.05 });
+  revealEls.forEach(el => obs.observe(el));
+
+  // Progress + trạng thái từng bài
+  const lessons = [
+    { id: 's2-keigo-01', rowId: 'row-keigo-01', numId: 'num-keigo-01' },
+    { id: 's2-keigo-02', rowId: 'row-keigo-02', numId: 'num-keigo-02' },
+    { id: 's2-keigo-03', rowId: 'row-keigo-03', numId: 'num-keigo-03' },
+  ];
+  let doneCount = 0;
+  if (typeof isLessonComplete === 'function') {
+    lessons.forEach(l => {
+      if (isLessonComplete(l.id)) {
+        doneCount++;
+        const row = document.getElementById(l.rowId);
+        const num = document.getElementById(l.numId);
+        if (row) row.classList.add('lesson-row--done');
+        if (num) num.textContent = '✓';
+      }
+    });
+  }
+  const totalLessons = lessons.length;
+  const pct = Math.round((doneCount / totalLessons) * 100);
+  document.getElementById('keigo-prog-fill').style.width = pct + '%';
+  document.getElementById('keigo-prog-label').textContent = doneCount + ' / ' + totalLessons + ' bài hoàn thành';
+</script>
+</body>
+</html>

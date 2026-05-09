@@ -1,0 +1,425 @@
+﻿<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mẫu Câu Cố Định — Senpai</title>
+  <meta name="description" content="Kho mẫu câu tiếng Nhật công sở theo tình huống: Email, Meeting, Báo cáo, Xin lỗi, Nhờ hỗ trợ, Từ chối, Delay.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/main.css">
+  <link rel="stylesheet" href="../../assets/css/components.css">
+  <style>
+    .phrases-hero {
+      background: linear-gradient(135deg, #F5F3FF 0%, #EDE9FE 100%);
+      border-bottom: 1px solid #DDD6FE;
+      padding: 44px 0 36px;
+    }
+    [data-theme="dark"] .phrases-hero {
+      background: linear-gradient(135deg, #2d1f63 0%, #1e1040 100%);
+      border-bottom-color: #3d2a80;
+    }
+    .phrases-hero__tag {
+      display: inline-flex;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #7C3AED;
+      background: rgba(255,255,255,0.8);
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+    [data-theme="dark"] .phrases-hero__tag { background: rgba(255,255,255,0.1); }
+    .phrases-hero__title {
+      font-size: clamp(24px, 4vw, 36px);
+      font-weight: 800;
+      color: var(--color-text);
+      margin-bottom: 10px;
+    }
+    .phrases-hero__desc {
+      font-size: 15px;
+      color: var(--color-text-muted);
+      max-width: 500px;
+      line-height: 1.6;
+    }
+
+    /* ── Content ── */
+    .phrases-content { padding: 52px 0 80px; }
+
+    /* Search */
+    .phrase-search {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 32px;
+      max-width: 440px;
+    }
+    .phrase-search input {
+      flex: 1;
+      padding: 10px 16px;
+      border: 1.5px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      background: var(--color-surface);
+      font-size: 14px;
+      color: var(--color-text);
+      outline: none;
+      transition: border-color var(--transition);
+    }
+    .phrase-search input:focus { border-color: #7C3AED; }
+    .phrase-search input::placeholder { color: var(--color-text-muted); }
+
+    /* Category sections */
+    .phrase-category { margin-bottom: 48px; }
+    .phrase-category__header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--color-border-light);
+    }
+    .phrase-category__icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      background: #F5F3FF;
+    }
+    [data-theme="dark"] .phrase-category__icon { background: rgba(124,58,237,0.15); }
+    .phrase-category__title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--color-text);
+    }
+    .phrase-category__count {
+      font-size: 12px;
+      color: var(--color-text-muted);
+      background: var(--color-background);
+      padding: 2px 8px;
+      border-radius: 999px;
+    }
+
+    .phrase-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .phrase-card {
+      background: var(--color-surface);
+      border: 1.5px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 16px 20px;
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+    .phrase-card:hover { border-color: #7C3AED; box-shadow: var(--shadow-sm); }
+    .phrase-card__jp {
+      font-family: var(--font-jp);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--color-text);
+      margin-bottom: 4px;
+      line-height: 1.4;
+    }
+    .phrase-card__read {
+      font-family: var(--font-jp);
+      font-size: 12px;
+      color: #7C3AED;
+      margin-bottom: 6px;
+    }
+    .phrase-card__vn {
+      font-size: 14px;
+      color: var(--color-text);
+      margin-bottom: 6px;
+    }
+    .phrase-card__use {
+      font-size: 12.5px;
+      color: var(--color-text-muted);
+      background: var(--color-background);
+      padding: 4px 10px;
+      border-radius: 6px;
+      display: inline-block;
+    }
+    .phrase-card.hidden { display: none; }
+
+    /* Tip box */
+    .keigo-tip {
+      background: linear-gradient(135deg, #7C3AED, #4F46E5);
+      border-radius: var(--radius-xl);
+      padding: 28px;
+      color: #fff;
+      margin-bottom: 48px;
+    }
+    .keigo-tip__title { font-size: 16px; font-weight: 700; margin-bottom: 10px; }
+    .keigo-tip__body { font-size: 13.5px; opacity: 0.85; line-height: 1.6; }
+    .keigo-tip__levels {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .keigo-level {
+      background: rgba(255,255,255,0.12);
+      border-radius: 10px;
+      padding: 12px;
+      font-size: 12.5px;
+    }
+    .keigo-level__name { font-weight: 700; margin-bottom: 4px; }
+    .keigo-level__ex { font-family: var(--font-jp); opacity: 0.85; font-size: 13px; }
+    @media (max-width: 600px) { .keigo-tip__levels { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVBAR ── -->
+<nav class="navbar">
+  <div class="container">
+    <a href="../../index.html" class="navbar__brand">
+      <span class="brand-icon">先</span>
+      <span class="brand-name">Senpai DynhNC</span>
+    </a>
+    <ul class="navbar__links">
+      <li><a href="../index.html" class="link--cta">🇯🇵 Học ngay</a></li>
+      <li><a href="index.html" class="link--active">🔤 Từ vựng</a></li>
+      <li><a href="#">📚 Resources</a></li>
+      <li><a href="#" class="link--premium">🔒 Premium</a></li>
+    </ul>
+    <div class="navbar__right">
+      <button class="theme-toggle" aria-label="Đổi giao diện">
+        <span class="toggle-track">
+          <span class="toggle-sun">☀️</span>
+          <span class="toggle-moon">🌙</span>
+          <span class="toggle-thumb"></span>
+        </span>
+      </button>
+    </div>
+    <button class="navbar__toggle" aria-label="Menu">☰</button>
+  </div>
+</nav>
+
+<!-- ── BREADCRUMB ── -->
+<div style="background: var(--color-surface); border-bottom: 1px solid var(--color-border-light); padding: 10px 0;">
+  <div class="container">
+    <nav style="font-size: 13px; color: var(--color-text-muted); display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+      <a href="../../index.html" style="color: var(--color-text-muted);">Senpai</a>
+      <span>›</span>
+      <a href="../index.html" style="color: var(--color-text-muted);">Business Japanese</a>
+      <span>›</span>
+      <a href="index.html" style="color: var(--color-text-muted);">Từ vựng</a>
+      <span>›</span>
+      <span style="color: var(--color-text); font-weight: 600;">Mẫu Câu Cố Định</span>
+    </nav>
+  </div>
+</div>
+
+<!-- ── HERO ── -->
+<div class="phrases-hero">
+  <div class="container">
+    <div class="phrases-hero__tag">💬 Phrase Bank</div>
+    <h1 class="phrases-hero__title">Kho Mẫu Câu Cố Định</h1>
+    <p class="phrases-hero__desc">
+      Những mẫu câu bạn dùng đi dùng lại mỗi ngày trong dự án Nhật. Tra nhanh, dùng ngay — chia theo tình huống thực tế.
+    </p>
+  </div>
+</div>
+
+<!-- ── CONTENT ── -->
+<div class="phrases-content">
+  <div class="container">
+
+    <!-- Search -->
+    <div class="phrase-search">
+      <input type="text" id="phrase-search" placeholder="🔍 Tìm mẫu câu tiếng Nhật hoặc tiếng Việt..." oninput="filterPhrases(this.value)">
+    </div>
+
+    <!-- Keigo tip -->
+    <div class="keigo-tip reveal">
+      <div class="keigo-tip__title">🎌 Hiểu 3 cấp độ Keigo</div>
+      <div class="keigo-tip__body">Tiếng Nhật công sở có 3 cấp độ lịch sự. Biết dùng đúng cấp = được tôn trọng ngay.</div>
+      <div class="keigo-tip__levels">
+        <div class="keigo-level">
+          <div class="keigo-level__name">丁寧語 — Lịch sự cơ bản</div>
+          <div class="keigo-level__ex">わかりました / です・ます</div>
+        </div>
+        <div class="keigo-level">
+          <div class="keigo-level__name">尊敬語 — Tôn kính</div>
+          <div class="keigo-level__ex">いらっしゃいます / おっしゃいます</div>
+        </div>
+        <div class="keigo-level">
+          <div class="keigo-level__name">謙譲語 — Khiêm nhường</div>
+          <div class="keigo-level__ex">おります / 申します / 拝見します</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ CHÀO HỎI ════ -->
+    <div class="phrase-category reveal" data-cat="greeting">
+      <div class="phrase-category__header">
+        <div class="phrase-category__icon">👋</div>
+        <div class="phrase-category__title">Chào Hỏi</div>
+        <span class="phrase-category__count">5 mẫu</span>
+      </div>
+      <div class="phrase-list">
+        <div class="phrase-card"><div class="phrase-card__jp">お世話になっております。</div><div class="phrase-card__read">おせわになっております</div><div class="phrase-card__vn">Cảm ơn vì luôn quan tâm đến chúng tôi.</div><span class="phrase-card__use">📧 Mở đầu email — bắt buộc</span></div>
+        <div class="phrase-card"><div class="phrase-card__jp">お疲れ様です。</div><div class="phrase-card__read">おつかれさまです</div><div class="phrase-card__vn">Cảm ơn vì công sức của bạn.</div><span class="phrase-card__use">🤝 Chào đồng nghiệp trong ngày</span></div>
+        <div class="phrase-card"><div class="phrase-card__jp">よろしくお願いいたします。</div><div class="phrase-card__read">よろしくおねがいいたします</div><div class="phrase-card__vn">Kính nhờ anh/chị hỗ trợ.</div><span class="phrase-card__use">📧🤝 Câu kết — dùng ở khắp nơi</span></div>
+        <div class="phrase-card"><div class="phrase-card__jp">初めまして、〜と申します。</div><div class="phrase-card__read">はじめまして、〜ともうします</div><div class="phrase-card__vn">Rất vui được làm quen, tôi là 〜.</div><span class="phrase-card__use">📧 Email giới thiệu lần đầu</span></div>
+        <div class="phrase-card"><div class="phrase-card__jp">失礼いたします。</div><div class="phrase-card__read">しつれいいたします</div><div class="phrase-card__vn">Tôi xin phép. / Xin lỗi đã làm phiền.</div><span class="phrase-card__use">🤝 Vào / ra phòng họp, kết thúc cuộc gọi</span></div>
+      </div>
+    </div>
+
+    <!-- ════ EMAIL ════ -->
+    <div class="phrase-category reveal" data-cat="email">
+      <div class="phrase-category__header">
+        <div class="phrase-category__icon">📧</div>
+        <div class="phrase-category__title">Email Công Sở</div>
+        <span class="phrase-category__count">8 mẫu</span>
+      </div>
+      <div class="phrase-list">
+        <div class="phrase-card"><div class="phrase-card__jp">ご確認のほど、よろしくお願いいたします。</div><div class="phrase-card__read">ごかくにんのほど、よろしくおねがいいたします</div><div class="phrase-card__vn">Kính nhờ anh/chị xem xét và xác nhận.</div><span class="phrase-card__use">📧 Gửi tài liệu cần review</span></div>
+        <div class="phrase-card"><div class="phrase-card__jp">ご質問がございましたら、お気軽にお申し付けください。</div><div class="phrase-card__read">ごしつもんがございましたら、おきがるにおもうしつけください</div><div class="phrase-card__vn">Nếu có thắc mắc, xin hãy cho tôi biết.</div><span class="phrase-card__use">📧 Câu kết thân thiện</span></div>
+        <div class="phrase-card"><div class="phrase-card__jp">以上、ご報告いたします。</div><div class="phrase-card__read">いじょう、ごほうこくいたします</div><div class="phrase-card__vn">Trên đây là toàn bộ báo cáo của tôi.</div><span class="phrase-card__use">📧 Kết email báo cáo</span></div>
+        <div class="phrase-card"><div class="phrase-card__jp">ご連絡いたします。</div><div class="phrase-card__read">ごれんらくいたします</div><div class="phrase-card__vn">Tôi sẽ liên lạc lại.</div><span class="phrase-card__use">📧 Hứa sẽ update sau</span></div>
+        <div class="phrase-card"><div class="phrase-card__jp">添付ファイルをご確認ください。</div><div class="phrase-card__read">てんぷファイルをごかくにんください</div><div class="phrase-card__vn">Kính nhờ anh/chị xem file đính kèm.</div><span class="phrase-card__use">📧 Khi gửi file</span></div>
+        <div class="phrase-card"><div class="phrase-card__jp">ご多忙のところ恐れ入りますが、</div><div class="phrase-card__read">ごたぼうのところおそれいりますが</div><div class="phrase-card__vn">Tôi biết anh/chị đang bận, nhưng...</div><span class="phrase-card__use">📧 Nhờ vả khi biết đối phương bận</span></div>
+        <div class="phrase-card"><div class="phrase-card__jp">ご承認いただけますでしょうか。</div><div class="phrase-card__read">ごしょうにんいただけますでしょうか</div><div class="phrase-card__vn">Anh/chị có thể phê duyệt không ạ?</div><span class="phrase-card__use">📧 Xin approval từ cấp trên</span></div>
+        <div class="phrase-card"><div class="phrase-card__jp">取り急ぎ、ご連絡まで。</div><div class="phrase-card__read">とりいそぎ、ごれんらくまで</div><div class="phrase-card__vn">Trước mắt xin thông báo nhanh.</div><span class="phrase-card__use">📧 Email gấp — nội dung tạm thời</span></div>
+      </div>
+    </div>
+
+    <!-- ════ MEETING ════ -->
+    <div class="phrase-category reveal" data-cat="meeting">
+      <div class="phrase-category__header">
+        <div class="phrase-category__icon">🤝</div>
+        <div class="phrase-category__title">Meeting / Họp Hành</div>
+        <span class="phrase-category__count">8 mẫu</span>
+      </div>
+      <div class="phrase-list">
+        <div class="phrase-card"><div class="phrase-card__jp">それでは、会議を始めたいと思います。</div><div class="phrase-card__read">それでは、かいぎをはじめたいとおもいます</div><div class="phrase-card__vn">Vậy, chúng ta bắt đầu cuộc họp nhé.</div><span class="phrase-card__use">🤝 Mở đầu họp</span></div>
+        <div class="phrase-card"><div class="phrase-card__jp">確認させていただいてもよろしいでしょうか。</div><div class="phrase-card__read">かくにんさせていただいてもよろしいでしょうか</div><div class="phrase-card__vn">Tôi có thể xác nhận lại được không ạ?</div><span class="phrase-card__use">🤝 Hỏi lại khi chưa chắc</span></div>
+        <div class="phrase-card"><div class="phrase-card__jp">恐れ入りますが、もう一度おっしゃっていただけますか。</div><div class="phrase-card__read">おそれいりますが、もういちどおっしゃっていただけますか</div><div class="phrase-card__vn">Xin lỗi, anh/chị có thể nói lại một lần nữa được không?</div><span class="phrase-card__use">🤝 Khi không nghe rõ</span></div>
+        <div class="phrase-card"><div class="phrase-card__jp">少々お待ちください。</div><div class="phrase-card__read">しょうしょうおまちください</div><div class="phrase-card__vn">Vui lòng đợi một chút.</div><span class="phrase-card__use">🤝 Xin thêm thời gian xử lý</span></div>
+        <div class="phrase-card"><div class="phrase-card__jp">ご意見はいかがでしょうか。</div><div class="phrase-card__read">ごいけんはいかがでしょうか</div><div class="phrase-card__vn">Anh/chị có ý kiến gì không ạ?</div><span class="phrase-card__use">🤝 Mời ý kiến trong họp</span></div>
+        <div class="phrase-card"><div class="phrase-card__jp">以上で会議を終わりにしたいと思います。</div><div class="phrase-card__read">いじょうでかいぎをおわりにしたいとおもいます</div><div class="phrase-card__vn">Vậy là kết thúc cuộc họp.</div><span class="phrase-card__use">🤝 Kết thúc họp</span></div>
+        <div class="phrase-card"><div class="phrase-card__jp">議事録を共有いたします。</div><div class="phrase-card__read">ぎじろくをきょうゆういたします</div><div class="phrase-card__vn">Tôi sẽ gửi biên bản cuộc họp.</div><span class="phrase-card__use">🤝 Sau họp — gửi minutes</span></div>
+        <div class="phrase-card"><div class="phrase-card__jp">ご参加いただきありがとうございました。</div><div class="phrase-card__read">ごさんかいただきありがとうございました</div><div class="phrase-card__vn">Cảm ơn anh/chị đã tham gia.</div><span class="phrase-card__use">🤝 Cảm ơn sau họp</span></div>
+      </div>
+    </div>
+
+    <!-- ════ BÁO CÁO ════ -->
+    <div class="phrase-category reveal" data-cat="report">
+      <div class="phrase-category__header">
+        <div class="phrase-category__icon">📊</div>
+        <div class="phrase-category__title">Báo Cáo / Reporting</div>
+        <span class="phrase-category__count">6 mẫu</span>
+      </div>
+      <div class="phrase-list">
+        <div class="phrase-card"><div class="phrase-card__jp">現在、〜について対応中です。</div><div class="phrase-card__read">げんざい、〜についてたいおうちゅうです</div><div class="phrase-card__vn">Hiện tại, chúng tôi đang xử lý vấn đề 〜.</div><span class="phrase-card__use">📊 Báo cáo trạng thái xử lý</span></div>
+        <div class="phrase-card"><div class="phrase-card__jp">原因を調査中でございます。</div><div class="phrase-card__read">げんいんをちょうさちゅうでございます</div><div class="phrase-card__vn">Chúng tôi đang điều tra nguyên nhân.</div><span class="phrase-card__use">📊 Khi chưa xác định được nguyên nhân</span></div>
+        <div class="phrase-card"><div class="phrase-card__jp">〜までに完了する予定です。</div><div class="phrase-card__read">〜までにかんりょうするよていです</div><div class="phrase-card__vn">Dự kiến sẽ hoàn thành trước 〜.</div><span class="phrase-card__use">📊 Thông báo deadline</span></div>
+        <div class="phrase-card"><div class="phrase-card__jp">進捗率は〜%となっております。</div><div class="phrase-card__read">しんちょくりつは〜%となっております</div><div class="phrase-card__vn">Tiến độ hiện tại đạt 〜%.</div><span class="phrase-card__use">📊 Weekly report</span></div>
+        <div class="phrase-card"><div class="phrase-card__jp">リスクとして〜が挙げられます。</div><div class="phrase-card__read">リスクとして〜があげられます</div><div class="phrase-card__vn">Rủi ro được xác định là 〜.</div><span class="phrase-card__use">📊 Báo cáo risk</span></div>
+        <div class="phrase-card"><div class="phrase-card__jp">修正が完了いたしました。</div><div class="phrase-card__read">しゅうせいがかんりょういたしました</div><div class="phrase-card__vn">Đã hoàn thành việc sửa lỗi.</div><span class="phrase-card__use">📊 Báo cáo fix bug xong</span></div>
+      </div>
+    </div>
+
+    <!-- ════ XIN LỖI / DELAY ════ -->
+    <div class="phrase-category reveal" data-cat="apology">
+      <div class="phrase-category__header">
+        <div class="phrase-category__icon">🙇</div>
+        <div class="phrase-category__title">Xin Lỗi / Báo Delay</div>
+        <span class="phrase-category__count">5 mẫu</span>
+      </div>
+      <div class="phrase-list">
+        <div class="phrase-card"><div class="phrase-card__jp">大変申し訳ございません。</div><div class="phrase-card__read">たいへんもうしわけございません</div><div class="phrase-card__vn">Tôi thành thật xin lỗi. (cấp độ cao nhất)</div><span class="phrase-card__use">🙇 Lỗi nghiêm trọng với khách hàng</span></div>
+        <div class="phrase-card"><div class="phrase-card__jp">ご迷惑をおかけして、誠に申し訳ございません。</div><div class="phrase-card__read">ごめいわくをおかけして、まことにもうしわけございません</div><div class="phrase-card__vn">Rất xin lỗi vì đã gây phiền cho anh/chị.</div><span class="phrase-card__use">🙇 Gây ảnh hưởng đến đối phương</span></div>
+        <div class="phrase-card"><div class="phrase-card__jp">納期について、〜日間延期させていただきたく存じます。</div><div class="phrase-card__read">のうきについて、〜にちかんえんきさせていただきたくぞんじます</div><div class="phrase-card__vn">Về deadline, tôi muốn xin dời 〜 ngày.</div><span class="phrase-card__use">🙇 Báo delay + xin gia hạn</span></div>
+        <div class="phrase-card"><div class="phrase-card__jp">再発防止に努めてまいります。</div><div class="phrase-card__read">さいはつぼうしにつとめてまいります</div><div class="phrase-card__vn">Chúng tôi sẽ nỗ lực ngăn chặn tái phát.</div><span class="phrase-card__use">🙇 Cam kết sau khi xin lỗi</span></div>
+        <div class="phrase-card"><div class="phrase-card__jp">ご不便をおかけしており、大変申し訳ございません。</div><div class="phrase-card__read">ごふべんをおかけしており、たいへんもうしわけございません</div><div class="phrase-card__vn">Tôi xin lỗi vì đã gây bất tiện cho anh/chị.</div><span class="phrase-card__use">🙇 Bug/issue gây ảnh hưởng user</span></div>
+      </div>
+    </div>
+
+    <!-- ════ NHỜ HỖ TRỢ ════ -->
+    <div class="phrase-category reveal" data-cat="request">
+      <div class="phrase-category__header">
+        <div class="phrase-category__icon">🙏</div>
+        <div class="phrase-category__title">Nhờ Hỗ Trợ / Từ Chối Mềm</div>
+        <span class="phrase-category__count">5 mẫu</span>
+      </div>
+      <div class="phrase-list">
+        <div class="phrase-card"><div class="phrase-card__jp">ご支援いただけますでしょうか。</div><div class="phrase-card__read">ごしえんいただけますでしょうか</div><div class="phrase-card__vn">Anh/chị có thể hỗ trợ được không ạ?</div><span class="phrase-card__use">🙏 Nhờ hỗ trợ lịch sự</span></div>
+        <div class="phrase-card"><div class="phrase-card__jp">ご検討いただけますでしょうか。</div><div class="phrase-card__read">ごけんとういただけますでしょうか</div><div class="phrase-card__vn">Anh/chị có thể cân nhắc không ạ?</div><span class="phrase-card__use">🙏 Đề xuất — chờ quyết định</span></div>
+        <div class="phrase-card"><div class="phrase-card__jp">難しい状況でございますが、善処いたします。</div><div class="phrase-card__read">むずかしいじょうきょうでございますが、ぜんしょいたします</div><div class="phrase-card__vn">Tình huống khó, nhưng tôi sẽ cố gắng hết sức.</div><span class="phrase-card__use">🙏 Từ chối mềm / không hứa chắc</span></div>
+        <div class="phrase-card"><div class="phrase-card__jp">社内で確認してからご回答いたします。</div><div class="phrase-card__read">しゃないでかくにんしてからごかいとういたします</div><div class="phrase-card__vn">Tôi sẽ xác nhận nội bộ rồi trả lời.</div><span class="phrase-card__use">🙏 Chưa có câu trả lời ngay</span></div>
+        <div class="phrase-card"><div class="phrase-card__jp">スケジュールの都合上、難しい状況です。</div><div class="phrase-card__read">スケジュールのつごうじょう、むずかしいじょうきょうです</div><div class="phrase-card__vn">Do lịch trình, việc này khó thực hiện được.</div><span class="phrase-card__use">🙏 Từ chối do bận lịch</span></div>
+      </div>
+    </div>
+
+    <!-- Back -->
+    <div style="margin-top: 16px;">
+      <a href="index.html" class="btn btn--ghost">← Quay lại Từ vựng</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <div class="footer__logo">
+          <span class="brand-icon">先</span>
+          <span class="brand-name">Senpai DynhNC</span>
+        </div>
+        <p class="footer__tagline">Business Japanese thực chiến cho dân IT offshore</p>
+      </div>
+      <div class="footer__links">
+        <h4>Mẫu câu</h4>
+        <ul>
+          <li><a href="#greeting">Chào hỏi</a></li>
+          <li><a href="#email">Email</a></li>
+          <li><a href="#meeting">Meeting</a></li>
+          <li><a href="#report">Báo cáo</a></li>
+        </ul>
+      </div>
+      <div class="footer__links">
+        <h4>Học thêm</h4>
+        <ul>
+          <li><a href="index.html">🃏 Flashcard</a></li>
+          <li><a href="../stage2/email/index.html">📧 Email Module</a></li>
+          <li><a href="../stage2/meeting/index.html">🤝 Meeting Module</a></li>
+        </ul>
+      </div>
+      <div class="footer__links">
+        <h4>Điều hướng</h4>
+        <ul>
+          <li><a href="../../index.html">Trang chủ</a></li>
+          <li><a href="../index.html">Japanese Hub</a></li>
+          <li><a href="#">Premium</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>Copyright © 2026 <strong style="color:#fff">Senpai DynhNC</strong> | senpai.vn</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/js/theme.js"></script>
+<script>
+function filterPhrases(q) {
+  const term = q.toLowerCase().trim();
+  document.querySelectorAll('.phrase-card').forEach(function (card) {
+    const text = card.textContent.toLowerCase();
+    card.classList.toggle('hidden', term !== '' && !text.includes(term));
+  });
+}
+</script>
+</body>
+</html>

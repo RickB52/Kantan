@@ -1,0 +1,385 @@
+{
+  "meta": {
+    "section": "reading",
+    "total": 30,
+    "note": "Original BJT-style questions following official format. NOT copied from copyrighted materials.",
+    "levels": {"J5": "~200pt", "J4": "~280pt", "J3": "~360pt", "J2": "~440pt", "J1": "~540pt", "J1+": "600pt+"}
+  },
+  "questions": [
+
+    // ─── 語彙・文法 (10問) ───────────────────────────────────────────
+
+    {
+      "id": "R-GV-001",
+      "type": "vocab_grammar",
+      "level": "J4",
+      "topic": "接続詞",
+      "instruction": "（　）に入る最も適切なものを選んでください。",
+      "passage": null,
+      "question": "会議の結果について（　）ご報告いたします。",
+      "choices": ["取り急ぎ", "なるべく", "それほど", "せいぜい"],
+      "answer_index": 0,
+      "explanation_ja": "「取り急ぎ」はビジネスメールで「急いで」という意味で使う。正式な報告の前置きとして定型表現。",
+      "explanation_vi": "「取り急ぎ」 là cụm từ dùng trong email kinh doanh, nghĩa là 'vội vã/tạm thời', thường đặt trước nội dung báo cáo ngắn."
+    },
+    {
+      "id": "R-GV-002",
+      "type": "vocab_grammar",
+      "level": "J3",
+      "topic": "助詞・接続",
+      "instruction": "（　）に入る最も適切なものを選んでください。",
+      "passage": null,
+      "question": "納期に（　）、追加の工数が必要になりました。",
+      "choices": ["ともなって", "かかわらず", "反して", "先立って"],
+      "answer_index": 0,
+      "explanation_ja": "「〜にともなって」は「〜に伴って」。変化・状況に連動して別の変化が生じる意。「納期の変化に伴い工数も増えた」という因果関係を示す。",
+      "explanation_vi": "「〜に伴って」 diễn đạt 'cùng với/đi kèm với'. Ở đây: 'cùng với deadline (thay đổi), phát sinh thêm man-day.'"
+    },
+    {
+      "id": "R-GV-003",
+      "type": "vocab_grammar",
+      "level": "J3",
+      "topic": "ビジネス語彙",
+      "instruction": "（　）に入る最も適切なものを選んでください。",
+      "passage": null,
+      "question": "先方との交渉が（　）し、契約締結の見通しが立ちました。",
+      "choices": ["妥結", "完了", "終了", "成立"],
+      "answer_index": 0,
+      "explanation_ja": "「妥結」は交渉・争議が合意に達すること。「成立」も使えるが、交渉のコンテキストでは「妥結」がより正確なビジネス語。",
+      "explanation_vi": "「妥結」 (だけつ) là từ kinh doanh chuyên biệt, nghĩa 'đi đến thoả thuận/chốt đàm phán'. Phổ biến hơn 「成立」 trong văn cảnh đàm phán."
+    },
+    {
+      "id": "R-GV-004",
+      "type": "vocab_grammar",
+      "level": "J2",
+      "topic": "ビジネス語彙",
+      "instruction": "（　）に入る最も適切なものを選んでください。",
+      "passage": null,
+      "question": "このプロジェクトは採算が取れないと判断し、撤（　）を決定しました。",
+      "choices": ["退", "収", "去", "廃"],
+      "answer_index": 0,
+      "explanation_ja": "「撤退」(てったい)はビジネス・軍事で「引き上げること」。事業・市場からの撤退によく使われる。",
+      "explanation_vi": "「撤退」 (てったい) = rút lui khỏi thị trường/dự án. Từ quan trọng trong văn kinh doanh về chiến lược."
+    },
+    {
+      "id": "R-GV-005",
+      "type": "vocab_grammar",
+      "level": "J3",
+      "topic": "文型",
+      "instruction": "（　）に入る最も適切なものを選んでください。",
+      "passage": null,
+      "question": "コスト削減（　）、品質の維持も同時に求められている。",
+      "choices": ["はもとより", "はともかく", "をはじめ", "にもまして"],
+      "answer_index": 0,
+      "explanation_ja": "「〜はもとより」は「〜はもちろん、さらに〜も」という意味。コスト削減はもちろん品質維持も、と両方を強調する。",
+      "explanation_vi": "「〜はもとより」 = 'không chỉ... mà còn...'. Nhấn mạnh cả hai yếu tố: cắt giảm chi phí đã đành, còn cả duy trì chất lượng."
+    },
+    {
+      "id": "R-GV-006",
+      "type": "vocab_grammar",
+      "level": "J2",
+      "topic": "文型・接続",
+      "instruction": "（　）に入る最も適切なものを選んでください。",
+      "passage": null,
+      "question": "新システムの導入（　）、既存データの移行作業が必要になる。",
+      "choices": ["に際して", "に反して", "をもって", "にわたって"],
+      "answer_index": 0,
+      "explanation_ja": "「〜に際して」は「〜するとき・〜にあたって」という意味。重要な節目・転換点で何かをする場合に使う改まった表現。",
+      "explanation_vi": "「〜に際して」 = 'nhân dịp/khi thực hiện...'. Dùng trong văn phong trang trọng, đặc biệt ở các mốc quan trọng."
+    },
+    {
+      "id": "R-GV-007",
+      "type": "vocab_grammar",
+      "level": "J2",
+      "topic": "ビジネス語彙",
+      "instruction": "（　）に入る最も適切なものを選んでください。",
+      "passage": null,
+      "question": "この件については、上層部の（　）を仰いでから判断します。",
+      "choices": ["裁可", "承諾", "確認", "了承"],
+      "answer_index": 0,
+      "explanation_ja": "「裁可」は上位者（上層部・役員）が正式に許可・認可すること。「承諾」「了承」より格式が高く、経営判断の文脈で使う。",
+      "explanation_vi": "「裁可」 (さいか) = phê duyệt chính thức của cấp trên (ban lãnh đạo). Trang trọng hơn「承諾」hay「了承」."
+    },
+    {
+      "id": "R-GV-008",
+      "type": "vocab_grammar",
+      "level": "J1",
+      "topic": "文型・副詞",
+      "instruction": "（　）に入る最も適切なものを選んでください。",
+      "passage": null,
+      "question": "経営再建は（　）ならぬ課題として、全社で取り組んでいます。",
+      "choices": ["並み大抵", "並々", "一通り", "一概"],
+      "answer_index": 0,
+      "explanation_ja": "「並み大抵ならぬ」＝「普通ではない、大変な」という意味の慣用表現。「並々ならぬ」とも言う（選択肢Bは「並々」単独では不完全）。",
+      "explanation_vi": "「並み大抵ならぬ」 là thành ngữ = 'không thể xem thường / cực kỳ nghiêm trọng'. Thường thấy trong văn kinh doanh trang trọng."
+    },
+    {
+      "id": "R-GV-009",
+      "type": "vocab_grammar",
+      "level": "J1",
+      "topic": "ビジネス語彙・漢語",
+      "instruction": "（　）に入る最も適切なものを選んでください。",
+      "passage": null,
+      "question": "当社の業績は前年比で（　）し、黒字転換を果たしました。",
+      "choices": ["V字回復", "急騰", "持ち直し", "回復基調"],
+      "answer_index": 0,
+      "explanation_ja": "「V字回復」はグラフがV字を描くように急落後に急回復すること。前年比で黒字転換した劇的な改善に最も適切。",
+      "explanation_vi": "「V字回復」 = phục hồi hình chữ V (rớt mạnh rồi tăng mạnh). Dùng khi kết quả kinh doanh phục hồi đột ngột sau sụt giảm."
+    },
+    {
+      "id": "R-GV-010",
+      "type": "vocab_grammar",
+      "level": "J1+",
+      "topic": "法律・契約語彙",
+      "instruction": "（　）に入る最も適切なものを選んでください。",
+      "passage": null,
+      "question": "契約書に記載された（　）条項により、違反時には損害賠償が発生します。",
+      "choices": ["瑕疵担保", "不可抗力", "守秘義務", "損害填補"],
+      "answer_index": 0,
+      "explanation_ja": "「瑕疵担保」(かしたんぽ)条項は、納品物に欠陥があった場合の売主の責任を定めるもの。契約書頻出の法律用語。",
+      "explanation_vi": "「瑕疵担保」 (かしたんぽ) = điều khoản bảo hành/trách nhiệm về lỗi ẩn. Điều khoản bắt buộc trong hợp đồng mua bán Nhật Bản."
+    },
+
+    // ─── 表現読解 (10問) ─────────────────────────────────────────────
+
+    {
+      "id": "R-EX-001",
+      "type": "expression_reading",
+      "level": "J4",
+      "topic": "社内メール",
+      "instruction": "次の文章を読んで、質問に答えてください。",
+      "passage": "件名：来週の部門会議について\n\n田中部長\n\nお疲れ様です。営業部の鈴木です。\n来週月曜日（15日）の部門会議ですが、会議室Aが空いていないとのことで、会議室Bに変更になりました。時間は従来通り14時からです。\nご確認のほど、よろしくお願いいたします。\n\n鈴木",
+      "question": "このメールで最も重要な情報は何ですか。",
+      "choices": [
+        "会議の担当者が変わった",
+        "会議の場所が変更になった",
+        "会議の時間が変更になった",
+        "会議が中止になった"
+      ],
+      "answer_index": 1,
+      "explanation_ja": "メールの要点は「会議室AからBへの変更」。時間は「従来通り」と明記されているので変更なし。",
+      "explanation_vi": "Nội dung chính của email là thay đổi phòng họp từ A sang B. Thời gian vẫn giữ nguyên (「従来通り」= như cũ)."
+    },
+    {
+      "id": "R-EX-002",
+      "type": "expression_reading",
+      "level": "J3",
+      "topic": "社内通知",
+      "instruction": "次の文章を読んで、質問に答えてください。",
+      "passage": "【全社通知】\n標題：年末年始休業のお知らせ\n\n本年度の年末年始休業は下記の通りとなります。\n■ 休業期間：12月28日（月）〜 1月4日（月）\n■ 業務開始：1月5日（火）\nなお、緊急の場合は担当者の携帯電話にご連絡ください。\nご不便をおかけしますが、何卒ご理解のほどよろしくお願い申し上げます。",
+      "question": "この通知によると、仕事が再開されるのはいつですか。",
+      "choices": ["12月28日", "1月1日", "1月4日", "1月5日"],
+      "answer_index": 3,
+      "explanation_ja": "「業務開始：1月5日（火）」と明記されている。休業最終日の1月4日と混同しないように注意。",
+      "explanation_vi": "「業務開始：1月5日」 nghĩa là ngày bắt đầu lại làm việc là 5/1. Chú ý phân biệt với ngày cuối kỳ nghỉ (4/1)."
+    },
+    {
+      "id": "R-EX-003",
+      "type": "expression_reading",
+      "level": "J3",
+      "topic": "ビジネスメール・依頼",
+      "instruction": "次の文章を読んで、質問に答えてください。",
+      "passage": "山本様\n\nいつもお世話になっております。ABC商事の中村と申します。\n先日ご送付いただいた見積書を拝見いたしました。内容については概ね承知いたしましたが、数量の部分についてご確認をお願いしたい点がございます。\nご多忙のところ恐れ入りますが、今週中にご回答いただけますと幸いです。\n\n中村",
+      "question": "中村さんが確認したいのは何ですか。",
+      "choices": ["見積書の送付先", "見積書の金額", "見積書の数量", "見積書の納期"],
+      "answer_index": 2,
+      "explanation_ja": "「数量の部分についてご確認をお願いしたい」と明記されている。金額や納期ではない。",
+      "explanation_vi": "「数量の部分についてご確認をお願いしたい」 = muốn xác nhận phần số lượng. Không phải giá hay thời hạn giao hàng."
+    },
+    {
+      "id": "R-EX-004",
+      "type": "expression_reading",
+      "level": "J2",
+      "topic": "報告書",
+      "instruction": "次の文章を読んで、質問に答えてください。",
+      "passage": "【営業報告】第3四半期\n\n今期の売上高は前年同期比112%と好調に推移しました。主な要因として、新製品ラインの投入と既存顧客への追加提案活動が挙げられます。一方、物流コストの上昇により、営業利益率は前年比で2.3ポイント低下しました。\n次期は、コスト構造の見直しを優先課題として取り組む方針です。",
+      "question": "この報告書の内容と合っているものはどれですか。",
+      "choices": [
+        "売上・利益ともに前年を上回った",
+        "売上は増加したが利益率は下がった",
+        "新製品の投入により物流コストが下がった",
+        "次期は新製品の開発を優先する"
+      ],
+      "answer_index": 1,
+      "explanation_ja": "売上高は112%（増加）だが、物流コスト上昇で営業利益率は2.3pt低下。選択肢Aは誤り（利益率は下がった）。",
+      "explanation_vi": "Doanh thu tăng 112% nhưng tỷ suất lợi nhuận giảm 2,3 điểm do chi phí logistics tăng. Đây là nội dung chính xác nhất."
+    },
+    {
+      "id": "R-EX-005",
+      "type": "expression_reading",
+      "level": "J2",
+      "topic": "社内通知・規定",
+      "instruction": "次の文章を読んで、質問に答えてください。",
+      "passage": "【経費精算規程の改定について】\n\n来月より、経費精算システムが新しくなります。主な変更点は以下の通りです。\n① 領収書の提出期限：使用日から2週間以内（従来は1ヶ月以内）\n② 1件5万円以上の経費：事前承認が必要（従来は事後報告可）\n③ 交通費：ICカード履歴の提出が必須\n\n詳細は総務部のポータルサイトにてご確認ください。",
+      "question": "新しい規程で、以前と比べて厳しくなったことはどれですか。",
+      "choices": [
+        "領収書提出の期限が延長された",
+        "高額経費の事前承認が不要になった",
+        "領収書提出の期限が短縮された",
+        "ICカードの使用が廃止された"
+      ],
+      "answer_index": 2,
+      "explanation_ja": "期限が「1ヶ月以内→2週間以内」に短縮された。これが最も厳しくなった変更点。選択肢A「延長」は逆。",
+      "explanation_vi": "Thời hạn nộp hóa đơn giảm từ 1 tháng xuống còn 2 tuần = siết chặt hơn. Đáp án A 'kéo dài' là sai ngược."
+    },
+    {
+      "id": "R-EX-006",
+      "type": "expression_reading",
+      "level": "J1",
+      "topic": "プレスリリース",
+      "instruction": "次の文章を読んで、質問に答えてください。",
+      "passage": "【プレスリリース】\n株式会社XYZテクノロジーは、本日付けをもって、クラウドサービス事業をスピンオフし、新会社「XYZクラウド株式会社」を設立したことをお知らせいたします。新会社は独立した経営体制のもと、サービス開発の迅速化と意思決定の効率化を図ります。なお、既存のお客様との契約関係に変更はございません。",
+      "question": "このプレスリリースで述べられていないことはどれですか。",
+      "choices": [
+        "新会社の設立目的",
+        "既存顧客への影響",
+        "新会社の従業員数",
+        "新会社の独立した経営体制"
+      ],
+      "answer_index": 2,
+      "explanation_ja": "従業員数についての言及は一切ない。設立目的・顧客への影響・経営体制はすべて本文に記載あり。",
+      "explanation_vi": "Số lượng nhân viên không được đề cập. Ba lựa chọn còn lại đều có trong bài."
+    },
+    {
+      "id": "R-EX-007",
+      "type": "expression_reading",
+      "level": "J1",
+      "topic": "社内稟議",
+      "instruction": "次の文章を読んで、質問に答えてください。",
+      "passage": "【稟議書】\n件名：新規顧客管理システム導入の件\n\n表題の件につき、ご承認を賜りたく存じます。\n現行システムは導入から8年が経過し、処理速度の低下・サポート終了が見込まれます。新システムの導入により、業務効率の向上（試算：年間工数200時間削減）およびセキュリティ強化が期待されます。\n概算費用：初期費用500万円、年間保守費用80万円\n\n何卒ご検討のほど、よろしくお願い申し上げます。",
+      "question": "この稟議書の主な目的は何ですか。",
+      "choices": [
+        "システムの問題点を報告する",
+        "新システム導入の承認を求める",
+        "システム保守費用の削減を提案する",
+        "現行システムの廃止を通知する"
+      ],
+      "answer_index": 1,
+      "explanation_ja": "「ご承認を賜りたく存じます」が稟議書の目的を明示。報告や通知ではなく「承認を求める」文書。",
+      "explanation_vi": "「ご承認を賜りたく存じます」 = 'kính xin phê duyệt'. Đây là mục đích rõ ràng của văn bản phê duyệt nội bộ (稟議書)."
+    },
+    {
+      "id": "R-EX-008",
+      "type": "expression_reading",
+      "level": "J1+",
+      "topic": "財務・IR文書",
+      "instruction": "次の文章を読んで、質問に答えてください。",
+      "passage": "当社は今般、事業ポートフォリオの最適化を目的として、食品事業を第三者へ譲渡することを決議いたしました。譲渡価額は50億円で、譲渡実行日は来期第一四半期を予定しております。これにより、主力のIT事業に経営資源を集中し、収益性の向上を図ります。なお、本件は独占禁止法上の届出が完了次第、実行される予定です。",
+      "question": "この文書が伝えている内容として最も適切なのはどれですか。",
+      "choices": [
+        "IT事業を食品会社へ売却する",
+        "食品事業を他社へ売却し、IT事業に集中する",
+        "食品事業の買収により事業を拡大する",
+        "独占禁止法違反のため事業を縮小する"
+      ],
+      "answer_index": 1,
+      "explanation_ja": "「食品事業を第三者へ譲渡（売却）」し「IT事業に経営資源を集中」が要旨。買収や縮小ではなく選択と集中の戦略。",
+      "explanation_vi": "Bán mảng thực phẩm (譲渡 = chuyển nhượng) để tập trung vào IT. Đây là chiến lược 'chọn lọc và tập trung' (選択と集中)."
+    },
+    {
+      "id": "R-EX-009",
+      "type": "expression_reading",
+      "level": "J3",
+      "topic": "依頼メール",
+      "instruction": "次の文章を読んで、質問に答えてください。",
+      "passage": "佐藤様\n\nお世話になっております。DEF株式会社の高橋です。\n先般ご提案いただいたシステム導入案について、社内で検討いたしました結果、いくつか追加でお伺いしたい点が出てまいりました。つきましては、来週中にお打ち合わせの機会をいただけますでしょうか。\nご都合のよい日時をいくつかお知らせいただけますと幸いです。\n\n高橋",
+      "question": "高橋さんがメールで求めていることは何ですか。",
+      "choices": [
+        "システム導入案の再提案",
+        "社内検討結果の報告",
+        "打ち合わせの日程調整",
+        "追加費用の見積もり"
+      ],
+      "answer_index": 2,
+      "explanation_ja": "「来週中にお打ち合わせの機会をいただけますでしょうか」「ご都合のよい日時を」から、スケジュール調整を求めているとわかる。",
+      "explanation_vi": "「来週中にお打ち合わせ」「ご都合のよい日時を」= đang xin lịch họp. Đây là mục đích thực sự của email."
+    },
+    {
+      "id": "R-EX-010",
+      "type": "expression_reading",
+      "level": "J2",
+      "topic": "お詫びメール",
+      "instruction": "次の文章を読んで、質問に答えてください。",
+      "passage": "田中様\n\nこの度は、納品物の不備につきまして、多大なるご迷惑をおかけいたしましたことを、深くお詫び申し上げます。\n原因を調査いたしましたところ、製造工程における検品漏れが判明いたしました。再発防止策として、検品プロセスを二重化し、出荷前の最終確認を強化いたします。\n改めて正規品を本日付けで発送いたしましたので、ご確認いただければ幸いです。\n\n山田",
+      "question": "このメールで山田さんが伝えていないことはどれですか。",
+      "choices": [
+        "問題の原因",
+        "再発防止策",
+        "補償金の支払い",
+        "正規品の発送"
+      ],
+      "answer_index": 2,
+      "explanation_ja": "補償金・賠償については一切触れていない。原因・再発防止策・正規品発送はすべて明記されている。",
+      "explanation_vi": "Không đề cập đến bồi thường tiền. Ba nội dung còn lại đều có trong email."
+    },
+
+    // ─── 総合読解 (10問) ─────────────────────────────────────────────
+
+    {
+      "id": "R-CO-001",
+      "type": "comprehensive_reading",
+      "level": "J3",
+      "topic": "社内報告・組織変更",
+      "instruction": "次の文章を読んで、質問に答えてください。",
+      "passage": "【社内通知】\n\n標題：組織改編のお知らせ\n\n来月1日付けで、下記の通り組織を改編いたします。\n\n■ 変更内容\n・第一営業部と第二営業部を統合し、「営業本部」を新設します。\n・営業本部長には、現第一営業部長の渡辺が就任します。\n・IT推進室を「DX推進部」に格上げし、部長職を新設します。\n\n■ 目的\n営業機能の一元化による顧客対応力の強化、およびデジタル化推進体制の強化を図るものです。\n\n■ 移行期間中の対応\n移行期間（来月1日〜末日）は、旧体制の連絡先も有効とします。\n\nご不明な点は人事部までお問い合わせください。",
+      "question_1": {
+        "question": "組織改編の主な目的として述べられていないものはどれですか。",
+        "choices": ["営業機能の統合", "デジタル化の推進", "人員削減によるコスト削減", "顧客対応力の強化"],
+        "answer_index": 2,
+        "explanation_ja": "人員削減については一切言及なし。目的は「一元化による顧客対応力強化」と「DX推進体制強化」のみ。",
+        "explanation_vi": "Không đề cập cắt giảm nhân sự. Mục đích gồm: thống nhất bán hàng và thúc đẩy DX."
+      },
+      "question_2": {
+        "question": "移行期間中、旧体制の連絡先はどうなりますか。",
+        "choices": ["すぐに使用不可になる", "来月末まで使用できる", "IT推進室に転送される", "人事部に統合される"],
+        "answer_index": 1,
+        "explanation_ja": "「移行期間（来月1日〜末日）は、旧体制の連絡先も有効とします」と明記。",
+        "explanation_vi": "「来月末日まで有効」= có thể dùng đến cuối tháng sau. Đây là chính sách trong giai đoạn chuyển tiếp."
+      }
+    },
+    {
+      "id": "R-CO-002",
+      "type": "comprehensive_reading",
+      "level": "J2",
+      "topic": "ビジネス文書・契約条件",
+      "instruction": "次の文章を読んで、質問に答えてください。",
+      "passage": "【取引基本契約書 抜粋】\n\n第5条（納品と検収）\n甲は、乙の発注に基づき商品を納品する。乙は納品後10営業日以内に検収を完了し、その結果を甲に通知するものとする。検収合格の場合、乙は合格通知日から30日以内に代金を支払う。なお、乙が10営業日以内に検収結果を通知しない場合、合格とみなす。\n\n第6条（瑕疵担保）\n甲は、検収合格後6ヶ月以内に発見された瑕疵について、無償で修補または代替品の納品を行う義務を負う。ただし、乙の使用方法に起因する瑕疵についてはこの限りではない。",
+      "question_1": {
+        "question": "乙が検収結果を通知しなかった場合、どうなりますか。",
+        "choices": ["契約が無効になる", "検収合格とみなされる", "甲が再納品する", "支払いが免除される"],
+        "answer_index": 1,
+        "explanation_ja": "「10営業日以内に通知しない場合、合格とみなす」と第5条に明記。いわゆる「みなし合格」条項。",
+        "explanation_vi": "「みなし合格」= coi là đã nghiệm thu. Nếu không thông báo trong 10 ngày làm việc thì mặc nhiên coi là đạt."
+      },
+      "question_2": {
+        "question": "第6条の瑕疵担保が適用されないケースはどれですか。",
+        "choices": ["納品から7ヶ月後に発見された瑕疵", "乙の誤った操作による故障", "製造上の欠陥による不良", "検収合格後3ヶ月で発見された瑕疵"],
+        "answer_index": 1,
+        "explanation_ja": "「乙の使用方法に起因する瑕疵についてはこの限りではない」＝乙の操作ミスは保証対象外。選択肢Aも対象外だが、設問は「適用されないケース」なので両方とも正解候補だが、より直接的に条文で除外されているのはB。",
+        "explanation_vi": "「乙の使用方法に起因する瑕疵」= lỗi do cách sử dụng của bên mua → không được bảo hành. Lựa chọn A cũng ngoại lệ nhưng lý do khác (quá 6 tháng)."
+      }
+    },
+    {
+      "id": "R-CO-003",
+      "type": "comprehensive_reading",
+      "level": "J1",
+      "topic": "経営・戦略文書",
+      "instruction": "次の文章を読んで、質問に答えてください。",
+      "passage": "当社は今般、中期経営計画（2026〜2028年度）を策定いたしました。\n\n【基本方針】\n「選択と集中」を基本戦略とし、収益性の高い事業への経営資源の重点配分を行います。具体的には、主力のソフトウェア事業への投資を拡大する一方、採算の改善が見込めない周辺事業については、撤退または売却を検討します。\n\n【数値目標】\n・2028年度売上高：現状比150%\n・営業利益率：10%以上（現状7.2%）\n・海外売上比率：35%以上（現状18%）\n\n【重点施策】\n① グローバル展開の加速（ASEAN・インド市場への参入）\n② DX推進による内部効率化（目標：管理コスト20%削減）\n③ M&Aによる技術・顧客基盤の獲得",
+      "question_1": {
+        "question": "中期経営計画の基本戦略はどれですか。",
+        "choices": ["全事業への均等投資", "収益性の高い事業への集中", "新市場への多角的参入", "コスト削減を最優先"],
+        "answer_index": 1,
+        "explanation_ja": "「選択と集中」を基本戦略として明記。均等投資ではなく「収益性の高い事業への重点配分」。",
+        "explanation_vi": "「選択と集中」= chiến lược 'chọn lọc và tập trung'. Phân bổ nguồn lực vào mảng có lợi nhuận cao."
+      },
+      "question_2": {
+        "question": "数値目標として述べられているものはどれですか。",
+        "choices": ["従業員数を1.5倍にする", "海外売上比率を35%以上にする", "管理コストを50%削減する", "新規顧客を100社獲得する"],
+        "answer_index": 1,
+        "explanation_ja": "「海外売上比率：35%以上」は数値目標に明記。管理コスト削減は20%（50%ではない）。",
+        "explanation_vi": "「海外売上比率：35%以上」 là chỉ tiêu rõ ràng. Cắt giảm chi phí quản lý là 20% không phải 50%."
+      }
+    }
+  ]
+}

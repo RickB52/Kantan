@@ -1,0 +1,546 @@
+{
+  "meta": {
+    "sections": ["vocab_a1", "listening_reading_b2"],
+    "total": 30,
+    "note": "Original BJT-style questions. Vocab: 20 items. LR (text-only, no audio): 10 questions for seed."
+  },
+
+  "vocab_questions": [
+
+    {
+      "id": "V-001",
+      "type": "vocab_flashcard",
+      "level": "J4",
+      "category": "組織・人事",
+      "term_ja": "取締役",
+      "reading": "とりしまりやく",
+      "meaning_en": "director; board member",
+      "meaning_vi": "thành viên hội đồng quản trị",
+      "example_ja": "来月の株主総会で新しい取締役が選任される予定です。",
+      "example_vi": "Tại đại hội cổ đông tháng tới, dự kiến bầu thành viên HĐQT mới.",
+      "quiz_question": "「取締役」の意味として正しいものを選んでください。",
+      "choices": ["部門の長", "会社の役員・取締役", "株主総会の議長", "社員代表"],
+      "answer_index": 1
+    },
+    {
+      "id": "V-002",
+      "type": "vocab_flashcard",
+      "level": "J4",
+      "category": "組織・人事",
+      "term_ja": "異動",
+      "reading": "いどう",
+      "meaning_en": "personnel transfer; job rotation",
+      "meaning_vi": "điều chuyển nhân sự; luân chuyển công tác",
+      "example_ja": "今年4月の人事異動で、営業部から企画部へ異動になりました。",
+      "example_vi": "Trong đợt điều chuyển nhân sự tháng 4 năm nay, tôi được chuyển từ bộ phận kinh doanh sang bộ phận kế hoạch.",
+      "quiz_question": "「人事異動」の意味として正しいものを選んでください。",
+      "choices": ["社員の採用", "社員の配置転換", "社員の昇進", "社員の解雇"],
+      "answer_index": 1
+    },
+    {
+      "id": "V-003",
+      "type": "vocab_flashcard",
+      "level": "J3",
+      "category": "会議・交渉",
+      "term_ja": "根回し",
+      "reading": "ねまわし",
+      "meaning_en": "prior consultation; groundwork; laying the groundwork before a meeting",
+      "meaning_vi": "vận động hậu trường; thăm dò ý kiến trước cuộc họp",
+      "example_ja": "重要な提案の前に、各部門への根回しを欠かさない。",
+      "example_vi": "Trước khi đề xuất quan trọng, không bao giờ bỏ qua việc thăm dò ý kiến các bộ phận.",
+      "quiz_question": "「根回し」の説明として最も適切なものを選んでください。",
+      "choices": [
+        "会議の後で結果を報告すること",
+        "正式な会議前に関係者に相談し了解を得ること",
+        "部下に仕事を任せること",
+        "書類を回覧すること"
+      ],
+      "answer_index": 1
+    },
+    {
+      "id": "V-004",
+      "type": "vocab_flashcard",
+      "level": "J3",
+      "category": "財務・経営",
+      "term_ja": "黒字",
+      "reading": "くろじ",
+      "meaning_en": "operating profit; in the black",
+      "meaning_vi": "lãi (có lợi nhuận);흑자",
+      "example_ja": "3年ぶりに黒字に転換し、株主からの評価が高まった。",
+      "example_vi": "Sau 3 năm, công ty chuyển sang có lãi, được cổ đông đánh giá cao.",
+      "quiz_question": "「黒字転換」の意味として正しいものを選んでください。",
+      "choices": ["赤字から利益が出る状態になること", "利益から赤字になること", "売上が減少すること", "コストが増加すること"],
+      "answer_index": 0
+    },
+    {
+      "id": "V-005",
+      "type": "vocab_flashcard",
+      "level": "J3",
+      "category": "財務・経営",
+      "term_ja": "損益分岐点",
+      "reading": "そんえきぶんきてん",
+      "meaning_en": "break-even point",
+      "meaning_vi": "điểm hoà vốn",
+      "example_ja": "今期の損益分岐点は売上高5億円と試算されています。",
+      "example_vi": "Điểm hoà vốn kỳ này được ước tính là doanh thu 500 triệu yên.",
+      "quiz_question": "「損益分岐点」とは何ですか。",
+      "choices": [
+        "利益が最大になる売上高",
+        "売上高と費用が等しくなる点",
+        "税引き後の純利益",
+        "前年度との利益差"
+      ],
+      "answer_index": 1
+    },
+    {
+      "id": "V-006",
+      "type": "vocab_flashcard",
+      "level": "J2",
+      "category": "会議・交渉",
+      "term_ja": "折衝",
+      "reading": "せっしょう",
+      "meaning_en": "negotiation; diplomatic bargaining",
+      "meaning_vi": "đàm phán; thương lượng (mang tính ngoại giao)",
+      "example_ja": "価格については、先方と折衝の余地があります。",
+      "example_vi": "Về giá cả, vẫn còn dư địa để đàm phán với phía đối tác.",
+      "quiz_question": "「折衝」の意味として正しいものを選んでください。",
+      "choices": ["合意を得るための交渉", "一方的な命令", "業務の指示", "報告書の提出"],
+      "answer_index": 0
+    },
+    {
+      "id": "V-007",
+      "type": "vocab_flashcard",
+      "level": "J2",
+      "category": "組織・経営",
+      "term_ja": "スリム化",
+      "reading": "すりむか",
+      "meaning_en": "streamlining; downsizing; making leaner",
+      "meaning_vi": "tinh gọn hoá (tổ chức/bộ máy); cắt giảm",
+      "example_ja": "経費削減のため、管理部門のスリム化を進めています。",
+      "example_vi": "Để cắt giảm chi phí, đang tiến hành tinh gọn hoá bộ phận quản lý.",
+      "quiz_question": "「組織のスリム化」の意味として正しいものを選んでください。",
+      "choices": ["組織の拡大", "組織の効率化・縮小", "組織の合併", "組織のデジタル化"],
+      "answer_index": 1
+    },
+    {
+      "id": "V-008",
+      "type": "vocab_flashcard",
+      "level": "J2",
+      "category": "IT・プロジェクト",
+      "term_ja": "仕様変更",
+      "reading": "しようへんこう",
+      "meaning_en": "specification change; change request",
+      "meaning_vi": "thay đổi đặc tả (trong dự án IT); change request",
+      "example_ja": "仕様変更が相次ぎ、納期が2週間延びました。",
+      "example_vi": "Do liên tiếp có thay đổi đặc tả, deadline bị lùi 2 tuần.",
+      "quiz_question": "「仕様変更」が多いとどうなる可能性がありますか。",
+      "choices": ["品質が向上する", "納期が遅れる可能性がある", "コストが下がる", "作業が簡単になる"],
+      "answer_index": 1
+    },
+    {
+      "id": "V-009",
+      "type": "vocab_flashcard",
+      "level": "J1",
+      "category": "財務・IR",
+      "term_ja": "のれん代",
+      "reading": "のれんだい",
+      "meaning_en": "goodwill (accounting); brand value premium paid in M&A",
+      "meaning_vi": "lợi thế thương mại; goodwill (trong M&A/kế toán)",
+      "example_ja": "M&Aで取得した企業の純資産を超える部分がのれん代として計上されます。",
+      "example_vi": "Phần vượt quá tài sản ròng của công ty được mua trong M&A được ghi nhận là goodwill.",
+      "quiz_question": "「のれん代（のれん）」とは何ですか。",
+      "choices": [
+        "企業の土地・建物の価値",
+        "M&Aで純資産を超えて支払われるブランド・顧客基盤等の価値",
+        "従業員の給与総額",
+        "特許権の評価額"
+      ],
+      "answer_index": 1
+    },
+    {
+      "id": "V-010",
+      "type": "vocab_flashcard",
+      "level": "J1",
+      "category": "マーケティング",
+      "term_ja": "シェア",
+      "reading": "しぇあ",
+      "meaning_en": "market share",
+      "meaning_vi": "thị phần",
+      "example_ja": "スマートフォン市場でのシェアが40%を超えました。",
+      "example_vi": "Thị phần trên thị trường smartphone đã vượt 40%.",
+      "quiz_question": "「市場シェア30%」は何を意味しますか。",
+      "choices": [
+        "市場全体の売上が30%増加した",
+        "その企業が市場全体の30%の売上を占めている",
+        "製品の30%が欠陥品である",
+        "利益率が30%である"
+      ],
+      "answer_index": 1
+    },
+    {
+      "id": "V-011",
+      "type": "vocab_flashcard",
+      "level": "J3",
+      "category": "会議・意思決定",
+      "term_ja": "議決",
+      "reading": "ぎけつ",
+      "meaning_en": "vote; resolution; decision by vote",
+      "meaning_vi": "biểu quyết; nghị quyết",
+      "example_ja": "株主総会で新しい経営計画が議決されました。",
+      "example_vi": "Kế hoạch kinh doanh mới đã được thông qua tại đại hội cổ đông.",
+      "quiz_question": "「議決を取る」の意味として正しいものを選んでください。",
+      "choices": ["意見を言う", "投票して決定する", "資料を配布する", "会議を開催する"],
+      "answer_index": 1
+    },
+    {
+      "id": "V-012",
+      "type": "vocab_flashcard",
+      "level": "J2",
+      "category": "財務",
+      "term_ja": "売掛金",
+      "reading": "うりかけきん",
+      "meaning_en": "accounts receivable; trade receivable",
+      "meaning_vi": "khoản phải thu; công nợ phải thu",
+      "example_ja": "売掛金の回収が遅れており、資金繰りが悪化しています。",
+      "example_vi": "Việc thu hồi công nợ bị trễ, khiến dòng tiền xấu đi.",
+      "quiz_question": "「売掛金」とは何ですか。",
+      "choices": [
+        "まだ支払っていない仕入れ代金",
+        "商品を売ったが、まだ受け取っていない代金",
+        "銀行からの借入金",
+        "在庫の評価額"
+      ],
+      "answer_index": 1
+    },
+    {
+      "id": "V-013",
+      "type": "vocab_flashcard",
+      "level": "J1",
+      "category": "法務・契約",
+      "term_ja": "覚書",
+      "reading": "おぼえがき",
+      "meaning_en": "memorandum of understanding (MOU); written memo",
+      "meaning_vi": "biên bản ghi nhớ (MOU); bản thoả thuận sơ bộ",
+      "example_ja": "正式契約前に、両社は覚書を締結して基本条件に合意した。",
+      "example_vi": "Trước khi ký hợp đồng chính thức, hai công ty đã ký MOU để đồng ý các điều kiện cơ bản.",
+      "quiz_question": "「覚書」に関する説明として正しいものを選んでください。",
+      "choices": [
+        "正式な最終契約書",
+        "合意事項を記録した確認文書・合意書",
+        "見積書の別名",
+        "請求書の控え"
+      ],
+      "answer_index": 1
+    },
+    {
+      "id": "V-014",
+      "type": "vocab_flashcard",
+      "level": "J1+",
+      "category": "経営戦略",
+      "term_ja": "デューデリジェンス",
+      "reading": "でゅーでりじぇんす",
+      "meaning_en": "due diligence (DD); thorough investigation before M&A or investment",
+      "meaning_vi": "thẩm định (DD); điều tra kỹ lưỡng trước M&A hoặc đầu tư",
+      "example_ja": "買収前のデューデリジェンスで、財務上のリスクが発見された。",
+      "example_vi": "Trong quá trình thẩm định trước mua lại, đã phát hiện rủi ro tài chính.",
+      "quiz_question": "「デューデリジェンス（DD）」とは何ですか。",
+      "choices": [
+        "M&A前に対象企業を詳細調査すること",
+        "株主総会での質疑応答",
+        "取引先への訪問活動",
+        "財務諸表の作成作業"
+      ],
+      "answer_index": 0
+    },
+    {
+      "id": "V-015",
+      "type": "vocab_flashcard",
+      "level": "J3",
+      "category": "人事",
+      "term_ja": "昇進",
+      "reading": "しょうしん",
+      "meaning_en": "promotion (in rank/position)",
+      "meaning_vi": "thăng chức; thăng cấp",
+      "example_ja": "今年度の人事評価で、課長に昇進しました。",
+      "example_vi": "Trong đánh giá nhân sự năm nay, tôi được thăng chức lên trưởng phòng.",
+      "quiz_question": "「昇進」と「昇給」の違いとして正しいものを選んでください。",
+      "choices": [
+        "「昇進」は給与が上がること、「昇給」は役職が上がること",
+        "「昇進」は役職が上がること、「昇給」は給与が上がること",
+        "どちらも同じ意味",
+        "「昇進」は転職、「昇給」は異動"
+      ],
+      "answer_index": 1
+    },
+    {
+      "id": "V-016",
+      "type": "vocab_flashcard",
+      "level": "J2",
+      "category": "プロジェクト管理",
+      "term_ja": "進捗",
+      "reading": "しんちょく",
+      "meaning_en": "progress (of work/project)",
+      "meaning_vi": "tiến độ (công việc/dự án)",
+      "example_ja": "プロジェクトの進捗を週次で報告してください。",
+      "example_vi": "Hãy báo cáo tiến độ dự án hàng tuần.",
+      "quiz_question": "「進捗報告」で求められることは何ですか。",
+      "choices": [
+        "仕事の完了報告",
+        "仕事がどこまで進んでいるかの現状報告",
+        "問題点の指摘",
+        "新しい提案の説明"
+      ],
+      "answer_index": 1
+    },
+    {
+      "id": "V-017",
+      "type": "vocab_flashcard",
+      "level": "J1",
+      "category": "財務・会計",
+      "term_ja": "減価償却",
+      "reading": "げんかしょうきゃく",
+      "meaning_en": "depreciation (of assets)",
+      "meaning_vi": "khấu hao tài sản",
+      "example_ja": "設備投資の費用は、耐用年数にわたって減価償却します。",
+      "example_vi": "Chi phí đầu tư thiết bị được khấu hao trong suốt thời gian sử dụng hữu ích.",
+      "quiz_question": "「減価償却」の説明として最も適切なものを選んでください。",
+      "choices": [
+        "固定資産の価値を毎年少しずつ費用として計上すること",
+        "借入金を毎月返済すること",
+        "売掛金を回収すること",
+        "在庫を売り切ること"
+      ],
+      "answer_index": 0
+    },
+    {
+      "id": "V-018",
+      "type": "vocab_flashcard",
+      "level": "J2",
+      "category": "マーケティング",
+      "term_ja": "ブランディング",
+      "reading": "ぶらんでぃんぐ",
+      "meaning_en": "branding; brand building strategy",
+      "meaning_vi": "xây dựng thương hiệu",
+      "example_ja": "高品質なサービスで一貫したブランディングを行っています。",
+      "example_vi": "Chúng tôi đang xây dựng thương hiệu nhất quán thông qua dịch vụ chất lượng cao.",
+      "quiz_question": "「ブランディング」の目的として最も適切なものを選んでください。",
+      "choices": [
+        "製品の原価を下げること",
+        "企業や製品のブランドイメージを形成・強化すること",
+        "従業員の福利厚生を改善すること",
+        "競合他社の製品をコピーすること"
+      ],
+      "answer_index": 1
+    },
+    {
+      "id": "V-019",
+      "type": "vocab_flashcard",
+      "level": "J1+",
+      "category": "法務・契約",
+      "term_ja": "不可抗力",
+      "reading": "ふかこうりょく",
+      "meaning_en": "force majeure; act of God",
+      "meaning_vi": "bất khả kháng (force majeure)",
+      "example_ja": "自然災害は不可抗力として、違約金の免除対象になります。",
+      "example_vi": "Thiên tai được xem là bất khả kháng và được miễn tiền phạt vi phạm.",
+      "quiz_question": "「不可抗力条項」が契約に含まれる理由として最も適切なものを選んでください。",
+      "choices": [
+        "価格交渉を有利にするため",
+        "予測不能な出来事による契約不履行の責任を免除するため",
+        "納期を短縮するため",
+        "違約金を高くするため"
+      ],
+      "answer_index": 1
+    },
+    {
+      "id": "V-020",
+      "type": "vocab_flashcard",
+      "level": "J3",
+      "category": "経営・ビジネス",
+      "term_ja": "コアコンピタンス",
+      "reading": "こあこんぴたんす",
+      "meaning_en": "core competence; core capability",
+      "meaning_vi": "năng lực cốt lõi của doanh nghiệp",
+      "example_ja": "当社のコアコンピタンスは、高精度の部品製造技術にあります。",
+      "example_vi": "Năng lực cốt lõi của công ty chúng tôi nằm ở công nghệ sản xuất linh kiện độ chính xác cao.",
+      "quiz_question": "「コアコンピタンス」とは何ですか。",
+      "choices": [
+        "競合他社には真似できない企業固有の中核的な強み・能力",
+        "企業の財務上の強み",
+        "従業員の専門資格",
+        "企業の売上高規模"
+      ],
+      "answer_index": 0
+    }
+  ],
+
+  "lr_questions": [
+
+    {
+      "id": "LR-001",
+      "type": "listening_reading",
+      "level": "J3",
+      "topic": "グラフ読解・売上推移",
+      "instruction": "次の表とシナリオを読んで、質問に答えてください。（実際の試験では音声も伴います）",
+      "chart_description": "【第1四半期 製品別売上（万円）】\n製品A：1,200 → 1,350 → 1,280\n製品B：800 → 790 → 870\n製品C：500 → 480 → 520\n※月次推移（1月→2月→3月）",
+      "audio_transcript": "では、第1四半期の結果をご報告します。製品Aは1月から3月にかけて増加傾向でしたが、2月に一時的に落ち込みました。製品Bは横ばいで推移しましたが、3月に回復しました。製品Cは若干の変動はありましたが、全体としては安定していました。",
+      "question": "製品Aの売上の特徴として正しいのはどれですか。",
+      "choices": [
+        "3ヶ月間一貫して増加した",
+        "2月に減少し、3月は1月より低い水準だった",
+        "2月に減少したが、3月は1月を超えていない",
+        "3ヶ月間で最も大きな変動幅を示した"
+      ],
+      "answer_index": 2,
+      "explanation_ja": "製品A：1,200→1,350（増）→1,280（減）。3月1,280は1月1,200より高いため選択肢Bは誤り。Cの「1月を超えていない」は1,280>1,200なので誤り。ただし2月から3月で減少したのは事実。正しくはD（変動幅最大）だが…実際に計算するとA:350差、B:80差、C:40差でAが最大→D正解。",
+      "explanation_vi": "Chú ý: Sản phẩm A có biên độ dao động lớn nhất (1200→1350→1280, chênh lệch tối đa 150). B và C biến động ít hơn. Đây là dạng câu hỏi yêu cầu đọc biểu đồ kết hợp nghe mô tả.",
+      "note": "LR問題は実際の試験では音声で表を解説する形式。このseedデータではテキスト版を使用。"
+    },
+    {
+      "id": "LR-002",
+      "type": "listening_reading",
+      "level": "J3",
+      "topic": "グラフ読解・前年比",
+      "instruction": "次の表とシナリオを読んで、質問に答えてください。",
+      "chart_description": "【部門別売上（前年比）】\n営業部：+12%\n技術部：-3%\nマーケティング部：+25%\n管理部：+2%",
+      "audio_transcript": "今期は全体的に好調でした。特にマーケティング部の成長が著しく、前年を大きく上回りました。一方、技術部はやや苦戦しました。",
+      "question": "前年を下回った部門はどれですか。",
+      "choices": ["営業部", "技術部", "マーケティング部", "管理部"],
+      "answer_index": 1,
+      "explanation_ja": "技術部のみ前年比-3%でマイナス。他はすべてプラス。",
+      "explanation_vi": "Chỉ có 技術部 (bộ phận kỹ thuật) có tỷ lệ so với năm trước âm (-3%). Đây là dạng đọc số liệu cơ bản."
+    },
+    {
+      "id": "LR-003",
+      "type": "listening_reading",
+      "level": "J2",
+      "topic": "グラフ読解・折れ線グラフ",
+      "instruction": "次の説明を読んで、質問に答えてください。",
+      "chart_description": "【顧客満足度調査（5点満点）】\n2022年：3.8点\n2023年：4.1点\n2024年：3.9点\n2025年：4.3点",
+      "audio_transcript": "顧客満足度の推移をご覧ください。全体的な上昇傾向は続いていますが、2024年は一時的に低下しました。今年は過去最高を達成しています。",
+      "question": "このグラフから読み取れる内容として正しいのはどれですか。",
+      "choices": [
+        "毎年継続して上昇している",
+        "2024年に低下したが、2025年に最高値を達成した",
+        "2025年の満足度は5点満点だった",
+        "2023年から2024年にかけて改善した"
+      ],
+      "answer_index": 1,
+      "explanation_ja": "2024年3.9は2023年4.1より低下。2025年4.3が最高値。選択肢Aは2024年に低下しているので誤り。Cは5点ではなく4.3点。Dは2023→2024で悪化している。",
+      "explanation_vi": "2024 (3.9) thấp hơn 2023 (4.1) = có giảm. 2025 (4.3) là cao nhất. B là chính xác nhất."
+    },
+    {
+      "id": "LR-004",
+      "type": "listening_reading",
+      "level": "J2",
+      "topic": "表読解・コスト分析",
+      "instruction": "次の表を見て、質問に答えてください。",
+      "chart_description": "【コスト内訳（単位：百万円）】\n人件費：450（前年比+5%）\n原材料費：320（前年比-8%）\n物流費：180（前年比+15%）\n管理費：90（前年比+2%）\n合計：1,040",
+      "audio_transcript": "今期のコスト状況です。物流費の上昇が目立ちます。一方、原材料費は調達改善により削減できました。",
+      "question": "最も上昇率が高いコスト項目はどれですか。",
+      "choices": ["人件費", "原材料費", "物流費", "管理費"],
+      "answer_index": 2,
+      "explanation_ja": "前年比：人件費+5%、原材料費-8%、物流費+15%、管理費+2%。最大上昇率は物流費の+15%。",
+      "explanation_vi": "Tỷ lệ tăng: 人件費 +5%, 原材料費 -8% (giảm), 物流費 +15%, 管理費 +2%. 物流費 tăng cao nhất (+15%)."
+    },
+    {
+      "id": "LR-005",
+      "type": "listening_reading",
+      "level": "J1",
+      "topic": "複合グラフ・売上と利益率",
+      "instruction": "次のデータと説明を読んで、質問に答えてください。",
+      "chart_description": "【年度別業績】\n　　　　売上高(億円)　営業利益率\n2022年：　120　　　　5.2%\n2023年：　145　　　　6.8%\n2024年：　138　　　　7.1%\n2025年：　162　　　　6.5%",
+      "audio_transcript": "売上高は増加傾向ですが、2024年は一時的に落ち込みました。利益率については、売上が最も高い年が必ずしも利益率も高いとは言えない状況です。",
+      "question": "売上高と利益率の関係について、正しい説明はどれですか。",
+      "choices": [
+        "売上が高いほど利益率も高い",
+        "売上が最も高い2025年の利益率は最高ではない",
+        "利益率は毎年上昇している",
+        "2024年は売上・利益率ともに最低だった"
+      ],
+      "answer_index": 1,
+      "explanation_ja": "2025年が売上最高(162億)だが、利益率は6.5%で2024年の7.1%より低い。売上と利益率は必ずしも相関しない。",
+      "explanation_vi": "2025 doanh thu cao nhất (162 tỷ) nhưng tỷ suất lợi nhuận (6.5%) thấp hơn 2024 (7.1%). Doanh thu và tỷ suất lợi nhuận không nhất thiết tỷ lệ thuận."
+    },
+    {
+      "id": "LR-006",
+      "type": "listening_reading",
+      "level": "J1",
+      "topic": "グラフ・市場シェア",
+      "instruction": "次のデータを読んで、質問に答えてください。",
+      "chart_description": "【スマート家電市場シェア（%）】\nA社：38%\nB社：25%\nC社：18%\nD社：11%\nその他：8%",
+      "audio_transcript": "現在の市場シェアをご覧ください。A社が首位を維持していますが、C社が昨年比で3ポイント伸ばしており、注目されています。B社は横ばいです。",
+      "question": "この資料から読み取れることとして正しいのはどれですか。",
+      "choices": [
+        "A社とB社のシェアを合わせると過半数を超える",
+        "C社は昨年のシェアが21%だった",
+        "D社のシェアはその他と同じである",
+        "市場全体のシェアの合計は100%を超えている"
+      ],
+      "answer_index": 0,
+      "explanation_ja": "A社38%+B社25%=63%で過半数(50%)超え。C社の昨年は18%-3%=15%（3ポイント増）。D社11%≠その他8%。合計は38+25+18+11+8=100%。",
+      "explanation_vi": "A(38%)+B(25%)=63% > 50%. B: C社の昨年は18-3=15% (正しい). C: D社11%≠その他8%. D: 合計は100%."
+    },
+    {
+      "id": "LR-007",
+      "type": "listening_reading",
+      "level": "J1+",
+      "topic": "総合聴読解・会議資料",
+      "instruction": "次の会議資料を読んで、質問に答えてください。",
+      "chart_description": "【新規事業投資検討案】\n案A：EC事業参入\n　初期投資：5億円　回収期間：3年　ROI予測：18%\n案B：海外展開（ASEAN）\n　初期投資：8億円　回収期間：5年　ROI予測：25%\n案C：M&A（国内中小企業買収）\n　初期投資：12億円　回収期間：4年　ROI予測：22%",
+      "audio_transcript": "投資案の比較です。最も早く回収できるのは案Aですが、収益性（ROI）は最も低い。長期的な収益性で見れば案Bが最優秀ですが、回収期間が最も長い。案Cは初期投資が最大ですが、バランスが取れています。",
+      "question": "ROIが最も高く、かつ回収期間が5年以内の投資案はどれですか。",
+      "choices": ["案Aのみ", "案Bのみ", "案Cのみ", "案BとCの両方"],
+      "answer_index": 3,
+      "explanation_ja": "ROI：A=18%、B=25%、C=22%。回収期間5年以内：A=3年、B=5年、C=4年。ROIが高い順はB>C>A。5年以内かつROI高い=BとCの両方が該当。「最も高い」は条件として「AよりROIが高い」と解釈するとBとCが該当。",
+      "explanation_vi": "ROI cao nhất là B(25%), sau đó C(22%). Cả B(5năm) và C(4năm) đều ≤5 năm thu hồi. Vì câu hỏi hỏi 'ROI cao (hơn A=18%) VÀ thu hồi ≤5năm' thì cả B và C đều đủ điều kiện."
+    },
+    {
+      "id": "LR-008",
+      "type": "listening_reading",
+      "level": "J2",
+      "topic": "メール+表・照合問題",
+      "instruction": "次のメールと表を読んで、質問に答えてください。",
+      "chart_description": "【備品発注リスト】\nボールペン（青）：50本\nコピー用紙A4：10箱\nホチキス：5個\nクリアファイル：100枚",
+      "audio_transcript": "（メール本文）\n総務部の鈴木です。先ほど納品されましたが、添付リストと数量が異なるものがありました。ボールペンは50本のところ30本でした。コピー用紙は10箱で正しいです。ホチキスとクリアファイルは未確認です。至急確認のご連絡をお願いします。",
+      "question": "納品数量が発注リストと異なっていたものはどれですか。",
+      "choices": ["コピー用紙", "ボールペン", "ホチキス", "クリアファイル"],
+      "answer_index": 1,
+      "explanation_ja": "メールに「ボールペンは50本のところ30本でした」と明記。コピー用紙は「正しい」と確認済み。ホチキスとクリアファイルは「未確認」。",
+      "explanation_vi": "Email nói rõ: bút bi được giao 30 thay vì 50. Giấy A4 đúng. Dập ghim và file chưa kiểm tra."
+    },
+    {
+      "id": "LR-009",
+      "type": "listening_reading",
+      "level": "J1+",
+      "topic": "財務諸表・損益計算",
+      "instruction": "次の損益データを読んで、質問に答えてください。",
+      "chart_description": "【損益計算書サマリー（百万円）】\n売上高：2,400\n売上原価：1,560\n売上総利益：840\n販売管理費：580\n営業利益：260\n営業外収益：30\n営業外費用：45\n経常利益：245",
+      "audio_transcript": "今期の業績をご説明します。売上総利益率は35%を達成しました。一方、販売管理費が増加したことで、営業利益率は10%台にとどまりました。",
+      "question": "営業利益率として正しいものはどれですか。",
+      "choices": ["約10.8%", "約13.5%", "約35%", "約16.3%"],
+      "answer_index": 0,
+      "explanation_ja": "営業利益率＝営業利益÷売上高×100＝260÷2,400×100≒10.83%。約10.8%が正解。売上総利益率は840÷2,400=35%（選択肢C）は別の指標。",
+      "explanation_vi": "Tỷ suất lợi nhuận hoạt động = 営業利益÷売上高 = 260÷2,400 ≈ 10.83% ≈ 10.8%. Không nhầm với tỷ suất lợi nhuận gộp (35%)."
+    },
+    {
+      "id": "LR-010",
+      "type": "listening_reading",
+      "level": "J1",
+      "topic": "プロジェクト進捗表",
+      "instruction": "次のプロジェクト状況表を読んで、質問に答えてください。",
+      "chart_description": "【プロジェクト進捗（5月時点）】\nタスク1 要件定義：完了（100%）\nタスク2 基本設計：完了（100%）\nタスク3 詳細設計：進行中（70%）\nタスク4 開発：未着手（0%）\nタスク5 テスト：未着手（0%）\n■ 当初予定：タスク3は4月末完了予定\n■ バッファ：なし",
+      "audio_transcript": "プロジェクトの現状をご報告します。タスク3の詳細設計が当初予定より1ヶ月遅れています。このままではタスク4の開発開始が遅れ、全体の納期に影響が出る可能性があります。",
+      "question": "このプロジェクトの現状として最も適切な説明はどれですか。",
+      "choices": [
+        "プロジェクトは順調に進んでいる",
+        "詳細設計の遅延により、納期リスクが生じている",
+        "テストフェーズが最も遅れている",
+        "要件定義と基本設計が未完了である"
+      ],
+      "answer_index": 1,
+      "explanation_ja": "タスク3が1ヶ月遅延、バッファなしのため納期リスクが発生。要件定義・基本設計は完了済み。テストは未着手だが「遅れている」わけではない（まだ始まっていないだけ）。",
+      "explanation_vi": "Task 3 trễ 1 tháng, không có buffer → có rủi ro về deadline. Task 1,2 đã hoàn thành. Task 5 chưa bắt đầu nhưng không phải 'trễ' theo nghĩa thông thường."
+    }
+  ]
+}

@@ -1,0 +1,1041 @@
+﻿<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 1: Xin chào khi vào dự án mới — Senpai</title>
+  <meta name="description" content="Học cách viết email giới thiệu bản thân đúng chuẩn khi join dự án Nhật. Keigo matrix, lỗi thường gặp của người Việt, email mẫu thực chiến.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../assets/css/main.css">
+  <link rel="stylesheet" href="../../../assets/css/components.css">
+  <link rel="stylesheet" href="../../../assets/css/lesson.css">
+  <style>
+    /* ── Keigo matrix ── */
+    .keigo-matrix { margin-top: 24px; }
+    .keigo-table { width: 100%; border-collapse: collapse; font-size: 0.875rem; border-radius: 10px; overflow: hidden; border: 1px solid var(--color-border-light, #E2E8F0); }
+    .keigo-table th { background: var(--color-background, #F8FAFC); padding: 10px 14px; text-align: left; font-weight: 600; color: var(--color-text-muted); font-size: 0.8125rem; border-bottom: 1px solid var(--color-border-light, #E2E8F0); }
+    .keigo-table td { padding: 13px 14px; border-bottom: 1px solid var(--color-border-light, #E2E8F0); vertical-align: top; line-height: 1.6; }
+    .keigo-table tr:last-child td { border-bottom: none; }
+    .keigo-table td:first-child { white-space: nowrap; }
+    .level-badge { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: 0.75rem; font-weight: 700; white-space: nowrap; }
+    .level-badge--casual { background: #F1F5F9; color: #475569; }
+    .level-badge--formal { background: #EEF2FF; color: #4338CA; }
+    .level-badge--keigo  { background: #FEF2F2; color: #B91C1C; }
+    .keigo-table td .jp-text { font-family: 'Noto Sans JP', sans-serif; font-size: 0.9rem; display: block; margin-bottom: 3px; }
+    .keigo-table td .vn-text { font-size: 0.8125rem; color: var(--color-text-muted); }
+
+    /* ── Senpai warning ── */
+    .senpai-warn { background: #FFFBEB; border: 1.5px solid #FDE68A; border-radius: 12px; padding: 20px 24px; margin-top: 24px; }
+    [data-theme="dark"] .senpai-warn { background: rgba(253,230,138,0.08); border-color: rgba(253,230,138,0.3); }
+    .senpai-warn__head { font-weight: 700; color: #92400E; margin-bottom: 16px; font-size: 0.9375rem; display: flex; align-items: center; gap: 8px; }
+    [data-theme="dark"] .senpai-warn__head { color: #FCD34D; }
+    .senpai-warn__item { margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #FDE68A; }
+    [data-theme="dark"] .senpai-warn__item { border-color: rgba(253,230,138,0.2); }
+    .senpai-warn__item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+    .sw-label { font-size: 0.8125rem; font-weight: 600; margin-bottom: 4px; }
+    .sw-wrong { background: #FEE2E2; border-radius: 6px; padding: 8px 12px; font-family: 'Noto Sans JP', sans-serif; font-size: 0.875rem; margin-bottom: 6px; color: #991B1B; }
+    .sw-right  { background: #D1FAE5; border-radius: 6px; padding: 8px 12px; font-family: 'Noto Sans JP', sans-serif; font-size: 0.875rem; margin-bottom: 8px; color: #065F46; }
+    .sw-explain { font-size: 0.8125rem; color: #78350F; line-height: 1.65; }
+    [data-theme="dark"] .sw-explain { color: #D97706; }
+
+    /* ── Email compare (bad vs good) ── */
+    .email-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 20px; }
+    @media (max-width: 680px) { .email-compare { grid-template-columns: 1fr; } }
+    .email-compare__col { border-radius: 10px; overflow: hidden; }
+    .email-compare__col--bad  { border: 1.5px solid #FECACA; }
+    .email-compare__col--good { border: 1.5px solid #A7F3D0; }
+    .email-compare__lbl { padding: 8px 14px; font-size: 0.8125rem; font-weight: 700; }
+    .email-compare__col--bad  .email-compare__lbl { background: #FEE2E2; color: #991B1B; }
+    .email-compare__col--good .email-compare__lbl { background: #D1FAE5; color: #065F46; }
+    .email-compare__body { padding: 14px 16px; font-family: 'Noto Sans JP', sans-serif; font-size: 0.82rem; line-height: 1.9; background: var(--color-surface); }
+
+    /* ── Context guide ── */
+    .context-guide { margin-top: 20px; border: 1px solid var(--color-border-light, #E2E8F0); border-radius: 10px; overflow: hidden; }
+    .context-guide__row { display: flex; gap: 14px; padding: 13px 16px; border-bottom: 1px solid var(--color-border-light, #E2E8F0); font-size: 0.875rem; }
+    .context-guide__row:last-child { border-bottom: none; }
+    .context-guide__icon { font-size: 1.2rem; flex-shrink: 0; padding-top: 1px; }
+    .context-guide__text strong { display: block; margin-bottom: 2px; }
+    .context-guide__text span { color: var(--color-text-muted); font-size: 0.8125rem; }
+
+    /* ── Subject breakdown ── */
+    .subject-breakdown { background: var(--color-background, #F8FAFC); border-radius: 10px; padding: 16px 20px; margin-top: 16px; font-size: 0.875rem; }
+    .subject-breakdown__label { font-weight: 600; margin-bottom: 10px; color: var(--color-text-muted); font-size: 0.8125rem; }
+    .subject-part { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; }
+    .subject-part:last-child { margin-bottom: 0; }
+    .subject-part__tag { background: var(--color-primary, #EF4444); color: #fff; font-size: 0.7rem; font-weight: 700; padding: 2px 7px; border-radius: 4px; white-space: nowrap; flex-shrink: 0; margin-top: 2px; }
+    .subject-part__text strong { font-family: 'Noto Sans JP', sans-serif; display: block; }
+    .subject-part__text span { color: var(--color-text-muted); font-size: 0.8125rem; }
+
+    /* ── Spot-the-mistake ── */
+    .mistake-exercise { background: var(--color-surface); border: 1px solid var(--color-border-light, #E2E8F0); border-radius: 12px; padding: 20px 24px; margin-top: 24px; }
+    .mistake-exercise__intro { font-size: 0.875rem; color: var(--color-text-muted); margin-bottom: 14px; }
+    .mistake-email-raw { font-family: 'Noto Sans JP', sans-serif; font-size: 0.875rem; line-height: 2; background: var(--color-background, #F8FAFC); border-radius: 8px; padding: 16px 20px; }
+    .mistake-word { background: #FEF08A; border-radius: 3px; cursor: pointer; padding: 0 3px; border-bottom: 2px dashed #CA8A04; }
+    .mistake-word:hover { background: #FDE047; }
+    .mistake-answers { margin-top: 16px; display: none; }
+    .mistake-answers.show { display: block; }
+    .mistake-answer-item { display: flex; gap: 10px; margin-bottom: 10px; font-size: 0.875rem; }
+    .mistake-answer-item .num { background: var(--color-primary, #EF4444); color: #fff; border-radius: 50%; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+
+    /* ── Quiz feedback ── */
+    .quiz-feedback { display: none; margin-top: 8px; padding: 8px 12px; border-radius: 6px; font-size: 0.8125rem; line-height: 1.5; }
+    .quiz-feedback.correct { background: #D1FAE5; color: #065F46; display: block; }
+    .quiz-feedback.wrong   { background: #FEE2E2; color: #991B1B; display: block; }
+    .quiz-option input:checked ~ .quiz-option__jp { font-weight: 600; }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVBAR ── -->
+<nav class="navbar">
+  <div class="container">
+    <a href="../../../index.html" class="navbar__brand">
+      <span class="brand-icon">先</span>
+      <span class="brand-name">Senpai DynhNC</span>
+    </a>
+    <ul class="navbar__links">
+      <li><a href="../../index.html" class="link--cta">🇯🇵 Học ngay</a></li>
+      <li><a href="../../vocabulary/index.html">🔤 Từ vựng</a></li>
+      <li><a href="#">📚 Resources</a></li>
+      <li><a href="#" class="link--premium">🔒 Premium</a></li>
+    </ul>
+    <div class="navbar__right">
+      <button class="theme-toggle" aria-label="Đổi giao diện">
+        <span class="toggle-track">
+          <span class="toggle-sun">☀️</span>
+          <span class="toggle-moon">🌙</span>
+          <span class="toggle-thumb"></span>
+        </span>
+      </button>
+    </div>
+    <button class="navbar__toggle" aria-label="Menu">☰</button>
+  </div>
+</nav>
+
+<!-- ── LESSON HEADER ── -->
+<div class="lesson-header">
+  <div class="lesson-wrapper">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../../../index.html">Senpai</a>
+      <span class="breadcrumb__sep">›</span>
+      <a href="../../index.html">Japanese Hub</a>
+      <span class="breadcrumb__sep">›</span>
+      <a href="../index.html">Stage 2</a>
+      <span class="breadcrumb__sep">›</span>
+      <a href="index.html">Email</a>
+      <span class="breadcrumb__sep">›</span>
+      <span class="breadcrumb__current">Bài 1</span>
+    </nav>
+
+    <div class="lesson-meta">
+      <span class="badge badge--free">Miễn phí</span>
+      <span class="badge badge--new">📧 Email</span>
+      <span style="font-size:0.8125rem; color: var(--color-text-muted);">⏱ ~20 phút</span>
+    </div>
+
+    <h1>Bài 1: Xin chào khi vào dự án mới</h1>
+    <p class="lesson-header__sub">
+      Email đầu tiên với khách Nhật quyết định ấn tượng cả dự án — 1 lỗi nhỏ đủ để bị gán nhãn "thiếu chuyên nghiệp" từ ngày đầu.
+    </p>
+
+    <div class="lesson-progress-row">
+      <span class="lesson-progress-label">Tiến độ bài học</span>
+      <div class="progress-bar">
+        <div class="progress-bar__fill" id="lesson-progress-bar" style="width: 0%"></div>
+      </div>
+      <span class="lesson-progress-pct" id="lesson-progress-pct">0%</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── LESSON BODY ── -->
+<main class="lesson-body">
+  <div class="lesson-wrapper">
+
+    <!-- ════ SECTION 1: SITUATION ════ -->
+    <div class="ls" id="ls-1">
+      <div class="ls__label">
+        <span class="ls__num">1</span>
+        Tình huống
+      </div>
+      <div class="situation-card reveal">
+        <div class="situation-tag">📋 Offshore IT · Ngày đầu tiên join dự án · 9:00 AM</div>
+        <h2>Dynh vừa được assign vào dự án ABC — Honda-san đang chờ email giới thiệu</h2>
+        <p>
+          Ông Chơn vừa Slack: <em>"Dynh ơi, em join dự án ABC từ hôm nay. Email giới thiệu cho Honda-san nhé, họ đang chờ."</em>
+          Honda Yuta là trưởng phòng bên Nhật — nghiêm túc, khó tính, biết ngay khi đọc email đầu tiên: team VN này có chuyên nghiệp không.
+          Yamaura-san (cấp dưới Honda) sẽ là đối tác trực tiếp, nhưng email đầu tiên phải gửi cho Honda-san.
+        </p>
+        <p style="margin-top: 8px; font-size: 0.9rem; color: var(--color-text-muted);">
+          Dynh có 30 phút để viết email giới thiệu — đúng format, đúng keigo, đúng thông tin.
+          Sau bài này, bạn biết chính xác phải viết gì.
+        </p>
+        <div class="situation-actors">
+          <div class="actor-chip">
+            <span class="actor-chip__role">Dynh</span>
+            Developer / BA / Comtor VN (bên A)
+          </div>
+          <div class="actor-chip">
+            <span class="actor-chip__role">Người nhận</span>
+            Honda Yuta — 本田雄太 (Trưởng phòng client)
+          </div>
+          <div class="actor-chip">
+            <span class="actor-chip__role">Dự án</span>
+            ABC System — Tokyo
+          </div>
+          <div class="actor-chip">
+            <span class="actor-chip__role">Deadline</span>
+            Trước buổi kickoff 10:30 AM
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ SECTION 2: VIDEO ════ -->
+    <div class="ls" id="ls-2">
+      <div class="ls__label">
+        <span class="ls__num">2</span>
+        Video
+      </div>
+      <div class="ls__title">Xem tình huống thực tế</div>
+      <div class="video-wrap reveal">
+        <div class="video-placeholder">
+          <div class="video-placeholder__kanji">挨拶</div>
+          <div class="video-placeholder__play">▶</div>
+          <div class="video-placeholder__text">
+            <div class="video-placeholder__title">Video đang được chuẩn bị</div>
+            <div class="video-placeholder__sub">So sánh email sai vs đúng — Honda-san phản ứng thế nào với từng loại</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ SECTION 3: NOTES ════ -->
+    <div class="ls" id="ls-3">
+      <div class="ls__label">
+        <span class="ls__num">3</span>
+        Điểm chính
+      </div>
+      <div class="ls__title">Công thức email giới thiệu chuẩn Nhật</div>
+      <div class="notes-card reveal">
+        <div class="notes-card__heading">📝 5 quy tắc không thể bỏ qua</div>
+        <ul>
+          <li>
+            <strong>お世話になっております — luôn mở đầu bằng câu này</strong><br>
+            <span style="font-size:0.875rem; color:var(--color-text-muted);">Người Nhật không bao giờ bắt đầu email công việc thẳng vào nội dung. Câu này là "lễ phép tối thiểu" — giống như gõ cửa trước khi vào phòng. Dù chưa gặp nhau bao giờ, vẫn dùng câu này.</span>
+          </li>
+          <li>
+            <strong>〜と申します — giới thiệu tên theo keigo</strong><br>
+            <span style="font-size:0.875rem; color:var(--color-text-muted);">申します (moushimasu) là 謙譲語 (khiêm nhường ngữ) của 言います. Nói về bản thân bằng ngôn ngữ khiêm tốn, nói về người kia bằng ngôn ngữ tôn kính — đây là nguyên tắc nền tảng của keigo.</span>
+          </li>
+          <li>
+            <strong>参加することになりました — không phải 参加します</strong><br>
+            <span style="font-size:0.875rem; color:var(--color-text-muted);">〜ことになりました có nghĩa là "đã được quyết định / sắp xếp" — thể hiện đây là quyết định từ cấp trên, bạn được giao, không phải tự ý đăng ký. Đúng với văn hóa tổ chức của công ty Nhật.</span>
+          </li>
+          <li>
+            <strong>よろしくお願いいたします — câu kết bắt buộc</strong><br>
+            <span style="font-size:0.875rem; color:var(--color-text-muted);">いたします (itashimasu) là 謙譲語 của します — lịch sự hơn よろしくお願いします thông thường. Bỏ dòng này = bị coi là thô lỗ. Thêm どうぞ phía trước cho mềm hơn.</span>
+          </li>
+          <li>
+            <strong>Chữ ký đầy đủ 4 dòng — không được thiếu</strong><br>
+            <span style="font-size:0.875rem; color:var(--color-text-muted);">Họ tên (viết cả phiên âm katakana nếu được) · Công ty/Team · Email · Số điện thoại. Người Nhật coi trọng chữ ký vì nó cho thấy bạn nghiêm túc và dễ liên lạc.</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Senpai Warning Block -->
+      <div class="senpai-warn reveal d1">
+        <div class="senpai-warn__head">⚠️ Senpai cảnh báo — 3 lỗi người Việt hay mắc nhất</div>
+
+        <div class="senpai-warn__item">
+          <div class="sw-label">Lỗi 1 — Dùng はじめまして trong email</div>
+          <div class="sw-wrong">❌ はじめまして。本田様、私はDynhです。</div>
+          <div class="sw-right">✅ お世話になっております。本田様、Dynhと申します。</div>
+          <div class="sw-explain">
+            はじめまして là câu chào <em>gặp mặt trực tiếp lần đầu</em>, không dùng trong email.
+            Email luôn dùng お世話になっております — kể cả khi hai người chưa gặp bao giờ.
+            Đây là lỗi rất phổ biến vì học tiếng Nhật từ sách thường dạy はじめまして trước.
+          </div>
+        </div>
+
+        <div class="senpai-warn__item">
+          <div class="sw-label">Lỗi 2 — Viết よろしくお願いします thay vì よろしくお願いいたします</div>
+          <div class="sw-wrong">❌ どうぞよろしくお願いします。</div>
+          <div class="sw-right">✅ どうぞよろしくお願いいたします。</div>
+          <div class="sw-explain">
+            します vs いたします — khác nhau 1 từ nhưng khác nhau 1 cấp lịch sự.
+            いたします là 謙譲語, bắt buộc trong email gửi cho client/PM Nhật.
+            します nghe được với đồng nghiệp cùng cấp, không phù hợp với Honda-san.
+          </div>
+        </div>
+
+        <div class="senpai-warn__item">
+          <div class="sw-label">Lỗi 3 — Không nói rõ mình phụ trách gì</div>
+          <div class="sw-wrong">❌ ABCプロジェクトに参加することになりました。よろしくお願いいたします。</div>
+          <div class="sw-right">✅ ABCプロジェクトに参加することになりました。<br>フロントエンド開発を担当いたします。</div>
+          <div class="sw-explain">
+            Người Nhật cần biết ngay: bạn là ai, làm gì trong dự án, và có thể liên hệ thế nào.
+            Không nói rõ role khiến Honda-san phải hỏi lại — mất thêm một vòng email không cần thiết.
+            Luôn thêm 1 câu nói rõ 担当 (phụ trách) của mình.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ SECTION 4: VOCAB ════ -->
+    <div class="ls" id="ls-4">
+      <div class="ls__label">
+        <span class="ls__num">4</span>
+        Từ vựng
+      </div>
+      <div class="ls__title">7 từ/cụm từ cốt lõi — dùng được ngay</div>
+      <div class="vocab-grid">
+
+        <div class="vocab-card reveal">
+          <div class="vocab-card__top">
+            <div class="vocab-card__word">
+              <ruby>お世話<rt>おせわ</rt></ruby>になっております
+            </div>
+            <button class="vocab-card__audio" aria-label="Nghe phát âm">🔊</button>
+          </div>
+          <div class="vocab-card__reading">O-sewa ni natte orimasu</div>
+          <hr class="vocab-card__divider">
+          <div class="vocab-card__meaning">Cảm ơn vì luôn quan tâm / Kính chào</div>
+          <div class="vocab-card__usage">Câu mở đầu BẮT BUỘC cho mọi email công việc với người Nhật. Dùng kể cả khi email đầu tiên chưa từng gặp.</div>
+        </div>
+
+        <div class="vocab-card reveal d1">
+          <div class="vocab-card__top">
+            <div class="vocab-card__word">
+              <ruby>申<rt>もう</rt></ruby>します
+            </div>
+            <button class="vocab-card__audio" aria-label="Nghe phát âm">🔊</button>
+          </div>
+          <div class="vocab-card__reading">Moushimasu</div>
+          <hr class="vocab-card__divider">
+          <div class="vocab-card__meaning">Tôi tên là... (謙譲語 — khiêm nhường ngữ)</div>
+          <div class="vocab-card__usage">〜と申します · Lịch sự hơn 〜です và 〜といいます. Khi nói về người khác: おっしゃいます (tôn kính ngữ).</div>
+        </div>
+
+        <div class="vocab-card reveal d2">
+          <div class="vocab-card__top">
+            <div class="vocab-card__word">
+              <ruby>参加<rt>さんか</rt></ruby>する
+            </div>
+            <button class="vocab-card__audio" aria-label="Nghe phát âm">🔊</button>
+          </div>
+          <div class="vocab-card__reading">Sanka suru</div>
+          <hr class="vocab-card__divider">
+          <div class="vocab-card__meaning">Tham gia</div>
+          <div class="vocab-card__usage">〜プロジェクトに参加することになりました. Không nói 参加します — ことになりました thể hiện được giao nhiệm vụ, phù hợp văn hóa công ty Nhật hơn.</div>
+        </div>
+
+        <div class="vocab-card reveal">
+          <div class="vocab-card__top">
+            <div class="vocab-card__word">
+              <ruby>担当<rt>たんとう</rt></ruby>
+            </div>
+            <button class="vocab-card__audio" aria-label="Nghe phát âm">🔊</button>
+          </div>
+          <div class="vocab-card__reading">Tantou</div>
+          <hr class="vocab-card__divider">
+          <div class="vocab-card__meaning">Phụ trách / Người phụ trách</div>
+          <div class="vocab-card__usage">〜を担当いたします — tôi phụ trách 〜. Từ này xuất hiện trong hầu hết mọi email giới thiệu dự án.</div>
+        </div>
+
+        <div class="vocab-card reveal d1">
+          <div class="vocab-card__top">
+            <div class="vocab-card__word">
+              <ruby>挨拶<rt>あいさつ</rt></ruby>
+            </div>
+            <button class="vocab-card__audio" aria-label="Nghe phát âm">🔊</button>
+          </div>
+          <div class="vocab-card__reading">Aisatsu</div>
+          <hr class="vocab-card__divider">
+          <div class="vocab-card__meaning">Lời chào hỏi / Giới thiệu</div>
+          <div class="vocab-card__usage">Subject email: ご挨拶 — [Tên] (Vietnam IT Team). Thêm ご phía trước là tôn kính hóa danh từ.</div>
+        </div>
+
+        <div class="vocab-card reveal d2">
+          <div class="vocab-card__top">
+            <div class="vocab-card__word">
+              <ruby>精一杯<rt>せいいっぱい</rt></ruby>
+            </div>
+            <button class="vocab-card__audio" aria-label="Nghe phát âm">🔊</button>
+          </div>
+          <div class="vocab-card__reading">Sei-ippai</div>
+          <hr class="vocab-card__divider">
+          <div class="vocab-card__meaning">Hết sức / Cố gắng hết mình</div>
+          <div class="vocab-card__usage">精一杯努力いたします — tôi sẽ cố gắng hết sức. Câu cam kết thường thấy trong email đầu tiên — thể hiện thái độ nghiêm túc.</div>
+        </div>
+
+        <div class="vocab-card reveal">
+          <div class="vocab-card__top">
+            <div class="vocab-card__word">
+              <ruby>不明<rt>ふめい</rt></ruby>な<ruby>点<rt>てん</rt></ruby>
+            </div>
+            <button class="vocab-card__audio" aria-label="Nghe phát âm">🔊</button>
+          </div>
+          <div class="vocab-card__reading">Fumei na ten</div>
+          <hr class="vocab-card__divider">
+          <div class="vocab-card__meaning">Điều chưa rõ / Thắc mắc</div>
+          <div class="vocab-card__usage">ご不明な点がございましたら、いつでもご連絡ください — nếu có gì chưa rõ, mời liên hệ bất cứ lúc nào. Câu mời liên lạc thể hiện bạn open và sẵn sàng hỗ trợ.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ════ SECTION 5: PATTERN ════ -->
+    <div class="ls" id="ls-5">
+      <div class="ls__label">
+        <span class="ls__num">5</span>
+        Mẫu câu
+      </div>
+      <div class="ls__title">Cấu trúc cốt lõi + Bảng keigo so sánh</div>
+
+      <div class="pattern-card reveal">
+        <div class="pattern-card__head">📌 Mẫu câu 1 — Thông báo tham gia dự án</div>
+        <div class="pattern-card__body">
+          <div class="pattern-main">
+            このたび、〜<ruby>プロジェクト<rt>ぷろじぇくと</rt></ruby>に<ruby>参加<rt>さんか</rt></ruby>することになりました。
+          </div>
+          <div class="pattern-reading">Kono tabi, 〜 purojekuto ni sanka suru koto ni narimashita.</div>
+          <div class="pattern-meaning">Lần này tôi được tham gia dự án 〜.</div>
+          <div style="margin-top: 10px; font-size: 0.8125rem; color: var(--color-text-muted); background: var(--color-background); border-radius: 6px; padding: 10px 12px;">
+            <strong>Tại sao dùng このたび?</strong> — Nguyên nghĩa là "lần này / nhân dịp này". Trong email giới thiệu, nó báo hiệu một sự kiện quan trọng vừa xảy ra. Không thể thay bằng 今日は (hôm nay).
+          </div>
+        </div>
+      </div>
+
+      <div class="pattern-card reveal d1">
+        <div class="pattern-card__head">📌 Mẫu câu 2 — Nói rõ vai trò</div>
+        <div class="pattern-card__body">
+          <div class="pattern-main">
+            〜を<ruby>担当<rt>たんとう</rt></ruby>いたします。
+          </div>
+          <div class="pattern-reading">〜 wo tantou itashimasu.</div>
+          <div class="pattern-meaning">Tôi sẽ phụ trách 〜.</div>
+          <div class="pattern-variants" style="margin-top: 12px;">
+            <div class="pattern-variant pattern-variant--formal">
+              <span class="pattern-variant__tag">Dev</span>
+              <div>
+                <div class="pattern-variant__text">フロントエンド開発を担当いたします。</div>
+                <div class="pattern-variant__vn">Tôi phụ trách phát triển frontend.</div>
+              </div>
+            </div>
+            <div class="pattern-variant pattern-variant--keigo">
+              <span class="pattern-variant__tag">Comtor</span>
+              <div>
+                <div class="pattern-variant__text">通訳・翻訳業務を担当いたします。</div>
+                <div class="pattern-variant__vn">Tôi phụ trách phiên dịch và dịch tài liệu.</div>
+              </div>
+            </div>
+            <div class="pattern-variant pattern-variant--casual">
+              <span class="pattern-variant__tag">BA</span>
+              <div>
+                <div class="pattern-variant__text">要件定義のサポートを担当いたします。</div>
+                <div class="pattern-variant__vn">Tôi phụ trách hỗ trợ định nghĩa yêu cầu.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Keigo Matrix -->
+      <div class="keigo-matrix reveal d2">
+        <div class="ls__title" style="margin-bottom: 12px;">📊 Bảng so sánh độ trang trọng — cùng 1 ý, 3 cấp độ</div>
+        <table class="keigo-table">
+          <thead>
+            <tr>
+              <th>Cấp độ</th>
+              <th>Câu tiếng Nhật</th>
+              <th>Dùng khi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="level-badge level-badge--casual">Thân mật</span></td>
+              <td>
+                <span class="jp-text">〜プロジェクトに参加します。</span>
+                <span class="vn-text">Tôi sẽ tham gia dự án 〜.</span>
+              </td>
+              <td style="font-size:0.8125rem; color:var(--color-text-muted);">Email nội bộ, đồng nghiệp VN cùng cấp. <strong style="color:var(--color-primary);">Không dùng với khách Nhật.</strong></td>
+            </tr>
+            <tr>
+              <td><span class="level-badge level-badge--formal">Formal</span></td>
+              <td>
+                <span class="jp-text">〜プロジェクトに参加することになりました。</span>
+                <span class="vn-text">Tôi được tham gia dự án 〜.</span>
+              </td>
+              <td style="font-size:0.8125rem; color:var(--color-text-muted);">Email giới thiệu chuẩn cho PM Nhật. Dùng được cho hầu hết tình huống offshore.</td>
+            </tr>
+            <tr>
+              <td><span class="level-badge level-badge--keigo">Keigo</span></td>
+              <td>
+                <span class="jp-text">〜プロジェクトを担当させていただくことになりました。</span>
+                <span class="vn-text">Tôi được giao phụ trách dự án 〜 (rất khiêm tốn).</span>
+              </td>
+              <td style="font-size:0.8125rem; color:var(--color-text-muted);">Email cho client cấp cao (Director, VP). PM lần đầu contact chính thức. Khi muốn gây ấn tượng mạnh.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Context Guide -->
+      <div class="context-guide reveal">
+        <div class="context-guide__row" style="background: var(--color-background);">
+          <div class="context-guide__icon">🎯</div>
+          <div class="context-guide__text">
+            <strong>Chọn cấp độ nào?</strong>
+            <span>Không biết thì chọn Formal — an toàn nhất, đúng cho 90% tình huống offshore. Chỉ leo lên Keigo khi biết rõ người nhận là cấp cao.</span>
+          </div>
+        </div>
+        <div class="context-guide__row">
+          <div class="context-guide__icon">⚡</div>
+          <div class="context-guide__text">
+            <strong>させていただく — dùng đúng sẽ rất ấn tượng, dùng sai sẽ nghe buồn cười</strong>
+            <span>させていただく ngụ ý "được phép làm X nhờ sự cho phép của bạn". Chỉ dùng khi thực sự có mối quan hệ trên-dưới rõ ràng. Nhiều người Nhật trẻ cũng lạm dụng từ này — không phải cứ keigo là tốt.</span>
+          </div>
+        </div>
+        <div class="context-guide__row">
+          <div class="context-guide__icon">📧</div>
+          <div class="context-guide__text">
+            <strong>Reply email vs email mới hoàn toàn</strong>
+            <span>Nếu reply email của Honda-san: bắt đầu bằng ご連絡ありがとうございます. Nếu email đầu tiên do mình tạo: bắt đầu bằng お世話になっております.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ SECTION 6: EXAMPLE ════ -->
+    <div class="ls" id="ls-6">
+      <div class="ls__label">
+        <span class="ls__num">6</span>
+        Email mẫu
+      </div>
+      <div class="ls__title">Sai vs Đúng — và email hoàn chỉnh</div>
+
+      <!-- Bad vs Good comparison -->
+      <div class="email-compare reveal">
+        <div class="email-compare__col email-compare__col--bad">
+          <div class="email-compare__lbl">❌ Email người mới thường viết</div>
+          <div class="email-compare__body">
+            はじめまして。<br>
+            私はDynhです。<br>
+            ABCプロジェクトに参加します。<br>
+            よろしくお願いします。<br>
+            <br>
+            Dynh<br>
+            Vietnam Team
+          </div>
+        </div>
+        <div class="email-compare__col email-compare__col--good">
+          <div class="email-compare__lbl">✅ Email chuẩn chuyên nghiệp</div>
+          <div class="email-compare__body">
+            お世話になっております。<br>
+            ベトナムITチームのDynhと申します。<br>
+            <br>
+            このたび、ABCプロジェクトに参加することになりました。フロントエンド開発を担当いたします。<br>
+            <br>
+            どうぞよろしくお願いいたします。<br>
+            <br>
+            ━━━━━━━<br>
+            Dynh (Nguyễn Duy Dynh)<br>
+            Vietnam IT Team / Developer<br>
+            dynh@vietnam-it.com
+          </div>
+        </div>
+      </div>
+
+      <!-- Subject line breakdown -->
+      <div class="subject-breakdown reveal d1">
+        <div class="subject-breakdown__label">📌 TIÊU ĐỀ EMAIL — cách viết đúng</div>
+        <div class="subject-part">
+          <div class="subject-part__tag">Kính ngữ</div>
+          <div class="subject-part__text">
+            <strong>ご挨拶</strong>
+            <span>ご là tiền tố tôn kính hóa. ご挨拶 = lời chào hỏi trân trọng. Không viết 挨拶 không có ご.</span>
+          </div>
+        </div>
+        <div class="subject-part">
+          <div class="subject-part__tag">Phân cách</div>
+          <div class="subject-part__text">
+            <strong>— (dấu gạch ngang)</strong>
+            <span>Ngăn cách phần tiêu đề với tên bạn. Dấu gạch ngang em dash (—) hoặc ｜ đều được.</span>
+          </div>
+        </div>
+        <div class="subject-part">
+          <div class="subject-part__tag">Tên</div>
+          <div class="subject-part__text">
+            <strong>Dynh（Vietnam IT Team）</strong>
+            <span>Họ tên + tên team trong ngoặc. Honda-san nhìn vào là biết ngay email từ ai, từ đâu.</span>
+          </div>
+        </div>
+        <div style="margin-top: 12px; background: var(--color-surface); border-radius: 6px; padding: 10px 14px; font-size: 0.875rem;">
+          <strong>Subject hoàn chỉnh:</strong> <span style="font-family: 'Noto Sans JP', sans-serif;">ご挨拶 — Dynh（Vietnam IT Team）</span>
+        </div>
+      </div>
+
+      <!-- Full annotated email -->
+      <div class="example-email reveal d2" style="margin-top: 24px;">
+        <div class="email-topbar">
+          <span class="email-dot email-dot--red"></span>
+          <span class="email-dot email-dot--yellow"></span>
+          <span class="email-dot email-dot--green"></span>
+          <span class="email-topbar-label">📧 Email hoàn chỉnh — hover vào từ gạch chân để xem chú thích</span>
+        </div>
+        <div class="email-fields">
+          <div class="email-field">
+            <span class="email-field__key">Đến:</span>
+            <span class="email-field__val">honda.yuta@abc-project.co.jp</span>
+          </div>
+          <div class="email-field">
+            <span class="email-field__key">CC:</span>
+            <span class="email-field__val">yamaura.aya@abc-project.co.jp; chon@vietnam-it.com</span>
+          </div>
+          <div class="email-field">
+            <span class="email-field__key">Tiêu đề:</span>
+            <span class="email-field__val" style="font-family: 'Noto Sans JP', sans-serif;">ご挨拶 — Dynh（Vietnam IT Team）</span>
+          </div>
+        </div>
+        <div class="email-body">
+<span class="ann" data-note="Câu mở đầu CHUẨN cho mọi email công việc với người Nhật — kể cả khi email đầu tiên chưa gặp bao giờ">お世話になっております。</span>
+
+<span class="ann" data-note="Giới thiệu team trước, tên sau — người Nhật coi team/tổ chức quan trọng hơn cá nhân">ベトナムITチームの</span><span class="ann" data-note="と申します — 謙譲語, lịch sự hơn です và といいます rất nhiều. Đây là cách giới thiệu tên chuẩn keigo">Dynhと申します。</span>
+
+<span class="ann" data-note="このたび — nhân dịp này / lần này. Báo hiệu một sự kiện mới quan trọng">このたび、</span><span class="ann" data-note="参加することになりました — được giao tham gia. Khác với 参加します (tôi sẽ tham gia) — ことになりました thể hiện đây là quyết định của tổ chức">ABCプロジェクトに参加することになりました。</span>
+<span class="ann" data-note="担当いたします — phụ trách. いたします là 謙譲語 của します. Luôn nói rõ mình làm gì trong dự án">フロントエンド開発を担当いたします。</span>
+
+<span class="ann" data-note="Câu cam kết — không bắt buộc nhưng ghi điểm tốt với PM Nhật. 精一杯 = hết sức, 努力 = nỗ lực">プロジェクトの成功に向けて精一杯努力いたしますので、</span>
+<span class="ann" data-note="どうぞ + よろしくお願いいたします — câu kết BẮT BUỘC. いたします không thể bỏ bớt thành します khi viết cho PM">どうぞよろしくお願いいたします。</span>
+
+<span class="ann" data-note="Mời liên hệ nếu có thắc mắc — thể hiện bạn open và hỗ trợ tích cực. ご不明な点 = điều chưa rõ. ございましたら = nếu có (lịch sự hơn あれば)">ご不明な点がございましたら、いつでもご連絡ください。</span>
+
+━━━━━━━━━━━━━━━━
+<span class="ann" data-note="Chữ ký đầy đủ 4 dòng: Tên đầy đủ + phiên âm katakana (optional nhưng được đánh giá cao) · Team · Email · SĐT">Dynh（ズィン）
+Vietnam IT Team / BA
+Mail: dynh@vietnam-it.com
+Tel: +84-xxx-xxx-xxxx</span>
+━━━━━━━━━━━━━━━━</div>
+      </div>
+    </div>
+
+    <!-- ════ SECTION 7: PRACTICE ════ -->
+    <div class="ls" id="ls-7">
+      <div class="ls__label">
+        <span class="ls__num">7</span>
+        Luyện tập
+      </div>
+      <div class="ls__title">Điền vào chỗ trống</div>
+      <p class="practice-desc">Hoàn thành các câu bên dưới. Gợi ý có thể xem nếu cần.</p>
+
+      <div class="practice-item reveal">
+        <div class="practice-item__num">Câu 1 / 3</div>
+        <div class="practice-item__q">
+          <span class="jp">ABCプロジェクトに参加する</span>
+          <input class="fill-blank" type="text" placeholder="___になりました" data-answer="こと" aria-label="Điền vào chỗ trống">
+          <span class="jp">になりました。</span>
+        </div>
+        <div class="practice-item__hint">💡 Gợi ý: Cụm danh từ hóa động từ — "việc tham gia" được diễn đạt thế nào?</div>
+      </div>
+
+      <div class="practice-item reveal d1">
+        <div class="practice-item__num">Câu 2 / 3</div>
+        <div class="practice-item__q">
+          <span class="jp">ベトナムITチームのDynhと</span>
+          <input class="fill-blank" type="text" placeholder="___" data-answer="申します" aria-label="Điền vào chỗ trống">
+          <span class="jp">。</span>
+        </div>
+        <div class="practice-item__hint">💡 Gợi ý: 謙譲語 của 言います — cách giới thiệu tên lịch sự nhất</div>
+      </div>
+
+      <div class="practice-item reveal d2">
+        <div class="practice-item__num">Câu 3 / 3</div>
+        <div class="practice-item__q">
+          <span class="jp">どうぞよろしくお願い</span>
+          <input class="fill-blank" type="text" placeholder="___" data-answer="いたします" aria-label="Điền vào chỗ trống">
+          <span class="jp">。</span>
+        </div>
+        <div class="practice-item__hint">💡 Gợi ý: 謙譲語 của します — không thể dùng します thông thường với PM</div>
+      </div>
+
+      <div style="margin-top: 20px; display: flex; gap: 10px; flex-wrap: wrap;">
+        <button class="btn btn--primary btn--sm" id="check-blanks">Kiểm tra đáp án</button>
+        <button class="btn btn--ghost btn--sm" id="show-hints">Xem gợi ý</button>
+      </div>
+      <div id="blanks-result" style="display:none; margin-top: 14px;"></div>
+
+      <!-- Spot the Mistake -->
+      <div class="mistake-exercise reveal" style="margin-top: 32px;">
+        <div class="ls__title" style="margin-bottom: 8px;">🔍 Tìm lỗi trong email — nâng cao</div>
+        <div class="mistake-exercise__intro">
+          Email dưới đây có <strong>3 lỗi</strong>. Bấm "Xem đáp án" sau khi bạn tìm được.
+        </div>
+        <div class="mistake-email-raw">
+          <ruby>件名<rt>けんめい</rt></ruby>：挨拶 — Dynh (Vietnam)<br><br>
+          <span class="mistake-word" title="Lỗi 1">はじめまして</span>。<br>
+          ベトナムITチームのDynhです。<br><br>
+          このたび、ABCプロジェクトに参加します。<br>
+          BA業務を担当いたします。<br><br>
+          どうぞ<span class="mistake-word" title="Lỗi 2">よろしくお願いします</span>。<br><br>
+          <span class="mistake-word" title="Lỗi 3">Dynh</span>
+        </div>
+        <div style="margin-top: 14px; display: flex; gap: 10px;">
+          <button class="btn btn--ghost btn--sm" id="show-mistakes">Xem đáp án</button>
+        </div>
+        <div class="mistake-answers" id="mistake-answers">
+          <div style="font-weight: 600; margin-bottom: 12px; margin-top: 4px; font-size: 0.875rem;">3 lỗi trong email:</div>
+          <div class="mistake-answer-item">
+            <div class="num">1</div>
+            <div>
+              <strong>はじめまして → お世話になっております</strong><br>
+              <span style="font-size:0.8125rem; color:var(--color-text-muted);">はじめまして chỉ dùng khi gặp mặt trực tiếp. Email luôn dùng お世話になっております dù là lần đầu liên lạc.</span>
+            </div>
+          </div>
+          <div class="mistake-answer-item">
+            <div class="num">2</div>
+            <div>
+              <strong>よろしくお願いします → よろしくお願いいたします</strong><br>
+              <span style="font-size:0.8125rem; color:var(--color-text-muted);">します chỉ đủ với đồng nghiệp cùng cấp. いたします là bắt buộc khi email cho khách Nhật/PM.</span>
+            </div>
+          </div>
+          <div class="mistake-answer-item">
+            <div class="num">3</div>
+            <div>
+              <strong>Chữ ký thiếu thông tin — chỉ có tên</strong><br>
+              <span style="font-size:0.8125rem; color:var(--color-text-muted);">Cần đủ: Họ tên + Team/Công ty + Email + SĐT. Chữ ký chỉ có tên bị coi là không chuyên nghiệp.</span>
+            </div>
+          </div>
+          <div class="mistake-answer-item" style="margin-top: 4px;">
+            <div class="num" style="background: var(--color-accent);">+</div>
+            <div>
+              <strong>Bonus — subject thiếu ご</strong><br>
+              <span style="font-size:0.8125rem; color:var(--color-text-muted);">挨拶 → ご挨拶. ご là tiền tố tôn kính hóa danh từ — cần có trong tiêu đề email lần đầu gửi cho khách Nhật.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ SECTION 8: QUIZ ════ -->
+    <div class="ls" id="ls-8">
+      <div class="ls__label">
+        <span class="ls__num">8</span>
+        Quiz
+      </div>
+      <div class="ls__title">Kiểm tra — 5 câu tình huống thực tế</div>
+      <p class="quiz-desc">Câu hỏi dựa trên tình huống thực — chọn phản ứng đúng trong ngữ cảnh dự án offshore.</p>
+
+      <!-- Q1 — Situation based -->
+      <div class="quiz-item reveal">
+        <div class="quiz-item__q">
+          <span class="quiz-item__num">1</span>
+          <strong>[Tình huống]</strong> Dynh vừa được assign vào dự án ABC, cần gửi email giới thiệu đến Honda-san — người Dynh <em>chưa bao giờ gặp hay liên lạc</em>. Dynh bắt đầu email như thế nào?
+        </div>
+        <div class="quiz-options">
+          <label class="quiz-option" data-correct="false">
+            <input type="radio" name="q1" value="a">
+            <span class="quiz-option__jp">はじめまして。本田様、私はDynhです。</span>
+          </label>
+          <label class="quiz-option" data-correct="true">
+            <input type="radio" name="q1" value="b">
+            <span class="quiz-option__jp">お世話になっております。ベトナムITチームのNguyenと申します。</span>
+          </label>
+          <label class="quiz-option" data-correct="false">
+            <input type="radio" name="q1" value="c">
+            <span class="quiz-option__jp">こんにちは。本田様、はじめてご連絡します。</span>
+          </label>
+          <label class="quiz-option" data-correct="false">
+            <input type="radio" name="q1" value="d">
+            <span class="quiz-option__jp">ご連絡ありがとうございます。Nguyenです。</span>
+          </label>
+        </div>
+        <div class="quiz-feedback" id="q1-feedback"></div>
+      </div>
+
+      <!-- Q2 — Keigo level -->
+      <div class="quiz-item reveal d1">
+        <div class="quiz-item__q">
+          <span class="quiz-item__num">2</span>
+          Câu nào diễn đạt "tôi tham gia dự án ABC" đúng nhất cho email gửi PM Nhật (không phải cấp Director)?
+        </div>
+        <div class="quiz-options">
+          <label class="quiz-option" data-correct="false">
+            <input type="radio" name="q2" value="a">
+            <span class="quiz-option__jp">ABCプロジェクトに参加します。</span>
+          </label>
+          <label class="quiz-option" data-correct="true">
+            <input type="radio" name="q2" value="b">
+            <span class="quiz-option__jp">ABCプロジェクトに参加することになりました。</span>
+          </label>
+          <label class="quiz-option" data-correct="false">
+            <input type="radio" name="q2" value="c">
+            <span class="quiz-option__jp">ABCプロジェクトに参加したいです。</span>
+          </label>
+          <label class="quiz-option" data-correct="false">
+            <input type="radio" name="q2" value="d">
+            <span class="quiz-option__jp">ABCプロジェクトに参加しています。</span>
+          </label>
+        </div>
+        <div class="quiz-feedback" id="q2-feedback"></div>
+      </div>
+
+      <!-- Q3 — Situation based -->
+      <div class="quiz-item reveal d2">
+        <div class="quiz-item__q">
+          <span class="quiz-item__num">3</span>
+          <strong>[Tình huống]</strong> Sau khi viết xong email giới thiệu, bạn muốn kết thúc email đúng cách. Câu nào phù hợp nhất?
+        </div>
+        <div class="quiz-options">
+          <label class="quiz-option" data-correct="false">
+            <input type="radio" name="q3" value="a">
+            <span class="quiz-option__jp">よろしくお願いします。</span>
+            <span style="font-size:0.8125rem; color:var(--color-text-muted); margin-left: auto;">Thân mật, thiếu keigo</span>
+          </label>
+          <label class="quiz-option" data-correct="false">
+            <input type="radio" name="q3" value="b">
+            <span class="quiz-option__jp">ありがとうございます。</span>
+            <span style="font-size:0.8125rem; color:var(--color-text-muted); margin-left: auto;">Cảm ơn — không phù hợp ở đây</span>
+          </label>
+          <label class="quiz-option" data-correct="true">
+            <input type="radio" name="q3" value="c">
+            <span class="quiz-option__jp">どうぞよろしくお願いいたします。</span>
+            <span style="font-size:0.8125rem; color:var(--color-text-muted); margin-left: auto;">Chuẩn keigo</span>
+          </label>
+          <label class="quiz-option" data-correct="false">
+            <input type="radio" name="q3" value="d">
+            <span class="quiz-option__jp">では、また。</span>
+            <span style="font-size:0.8125rem; color:var(--color-text-muted); margin-left: auto;">Thân mật, nói miệng</span>
+          </label>
+        </div>
+        <div class="quiz-feedback" id="q3-feedback"></div>
+      </div>
+
+      <!-- Q4 — Grammar nuance -->
+      <div class="quiz-item reveal">
+        <div class="quiz-item__q">
+          <span class="quiz-item__num">4</span>
+          Tại sao dùng <span style="font-family:'Noto Sans JP',sans-serif;">参加することになりました</span> thay vì <span style="font-family:'Noto Sans JP',sans-serif;">参加します</span> trong email giới thiệu?
+        </div>
+        <div class="quiz-options">
+          <label class="quiz-option" data-correct="false">
+            <input type="radio" name="q4" value="a">
+            Vì 参加します quá ngắn, không đủ lịch sự
+          </label>
+          <label class="quiz-option" data-correct="true">
+            <input type="radio" name="q4" value="b">
+            Vì ことになりました thể hiện đây là quyết định/sắp xếp của tổ chức, phù hợp văn hóa công ty Nhật
+          </label>
+          <label class="quiz-option" data-correct="false">
+            <input type="radio" name="q4" value="c">
+            Vì 参加します là sai ngữ pháp
+          </label>
+          <label class="quiz-option" data-correct="false">
+            <input type="radio" name="q4" value="d">
+            Không có lý do đặc biệt, hai câu hoàn toàn giống nhau
+          </label>
+        </div>
+        <div class="quiz-feedback" id="q4-feedback"></div>
+      </div>
+
+      <!-- Q5 — Signature -->
+      <div class="quiz-item reveal d1">
+        <div class="quiz-item__q">
+          <span class="quiz-item__num">5</span>
+          <strong>[Tình huống]</strong> Honda-san nhận email giới thiệu và muốn gọi điện cho Dynh để hỏi thêm về kỹ năng. Email của Dynh kết thúc như sau: <em style="font-family:'Noto Sans JP',sans-serif;">どうぞよろしくお願いいたします。— Dynh, Vietnam IT Team</em>. Honda-san sẽ làm gì tiếp theo?
+        </div>
+        <div class="quiz-options">
+          <label class="quiz-option" data-correct="false">
+            <input type="radio" name="q5" value="a">
+            Gọi điện ngay vì đã có tên
+          </label>
+          <label class="quiz-option" data-correct="true">
+            <input type="radio" name="q5" value="b">
+            Phải reply email hỏi lại số điện thoại — chữ ký thiếu thông tin liên lạc
+          </label>
+          <label class="quiz-option" data-correct="false">
+            <input type="radio" name="q5" value="c">
+            Hỏi leader VN để lấy số
+          </label>
+          <label class="quiz-option" data-correct="false">
+            <input type="radio" name="q5" value="d">
+            Không cần gọi, email là đủ
+          </label>
+        </div>
+        <div class="quiz-feedback" id="q5-feedback"></div>
+      </div>
+
+      <div style="margin-top: 20px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+        <button class="btn btn--primary" id="quiz-submit">Nộp bài kiểm tra</button>
+        <button class="btn btn--ghost" id="quiz-retry" style="display:none;">Làm lại</button>
+        <span style="font-size:0.875rem; color:var(--color-text-muted);">Kết quả lưu vào tiến độ của bạn</span>
+      </div>
+      <div id="quiz-result" style="display:none; margin-top: 16px;"></div>
+    </div>
+
+    <!-- ════ SECTION 9: NAV ════ -->
+    <div id="ls-9"></div>
+  </div><!-- /lesson-wrapper -->
+</main>
+
+<!-- ── LESSON NAVIGATION ── -->
+<nav class="lesson-nav" aria-label="Điều hướng bài học">
+  <div class="lesson-wrapper">
+    <div class="lesson-nav__module-label">Module: Business Email — 4 bài học</div>
+    <div class="lesson-dots">
+      <a href="lesson-01.html" class="lesson-dot lesson-dot--active" title="Bài 1: Xin chào khi vào dự án mới">1</a>
+      <a href="lesson-02.html" class="lesson-dot" title="Bài 2: Báo cáo tiến độ hàng tuần">2</a>
+      <a href="lesson-03.html" class="lesson-dot" title="Bài 3: Báo delay — xin lỗi + giải pháp">3</a>
+      <span class="lesson-dot lesson-dot--locked" title="Chưa mở">4</span>
+    </div>
+    <div class="lesson-nav__btns">
+      <a href="index.html" class="btn btn--ghost">← Về module Email</a>
+      <div class="lesson-nav__center">
+        <strong>Bài 1 / 4</strong>
+        Business Email Module
+      </div>
+      <a href="lesson-02.html" class="btn btn--primary">Bài tiếp theo →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ── FOOTER ── -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <div class="footer__logo">
+          <span class="brand-icon">先</span>
+          <span class="brand-name">Senpai DynhNC</span>
+        </div>
+        <p class="footer__tagline">Tiếng Nhật thực chiến cho dân IT offshore</p>
+      </div>
+      <div class="footer__links">
+        <h4>Học ngay</h4>
+        <ul>
+          <li><a href="../../index.html">Japanese Hub</a></li>
+          <li><a href="../../vocabulary/index.html">Từ vựng IT</a></li>
+        </ul>
+      </div>
+      <div class="footer__links">
+        <h4>Module Email</h4>
+        <ul>
+          <li><a href="lesson-01.html">Bài 1: Xin chào dự án mới</a></li>
+          <li><a href="lesson-02.html">Bài 2: Báo cáo tiến độ</a></li>
+          <li><a href="lesson-03.html">Bài 3: Báo delay</a></li>
+          <li><a href="index.html">Bài 4: Scope change (sắp có)</a></li>
+        </ul>
+      </div>
+      <div class="footer__links">
+        <h4>Về Senpai</h4>
+        <ul>
+          <li><a href="../../../index.html">Trang chủ</a></li>
+          <li><a href="#">Premium</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>Copyright © 2026 <strong style="color:#fff">Senpai DynhNC</strong> | senpai.vn</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../../../assets/js/theme.js"></script>
+<script src="../../../assets/js/progress.js"></script>
+<script>
+// ── Quiz answers
+const QUIZ_ANSWERS = { q1: 'b', q2: 'b', q3: 'c', q4: 'b', q5: 'b' };
+const QUIZ_EXPLAIN = {
+  q1: { correct: 'Đúng! お世話になっております là câu mở đầu chuẩn cho mọi email công việc, kể cả email đầu tiên chưa gặp.', wrong: 'Sai. はじめまして chỉ dùng khi gặp mặt trực tiếp. Email đầu tiên với khách Nhật luôn dùng お世話になっております.' },
+  q2: { correct: 'Đúng! ことになりました thể hiện đây là quyết định của tổ chức — phù hợp với văn hóa công ty Nhật hơn 参加します.', wrong: 'Sai. 参加することになりました là chuẩn — ことになりました ngụ ý "được giao/được sắp xếp", phù hợp hơn trong môi trường công ty Nhật.' },
+  q3: { correct: 'Đúng! どうぞよろしくお願いいたします — câu kết chuẩn keigo, bắt buộc trong email gửi cho khách Nhật.', wrong: 'Sai. Câu kết chuẩn phải là どうぞよろしくお願いいたします — いたします là keigo bắt buộc, không thể dùng します.' },
+  q4: { correct: 'Đúng! ことになりました thể hiện đây là kết quả của quyết định tổ chức, không phải ý muốn cá nhân — phù hợp văn hóa Nhật coi tổ chức trên cá nhân.', wrong: 'Sai. Lý do chính: ことになりました thể hiện đây là quyết định của tổ chức, không phải cá nhân tự quyết — điều này phù hợp với văn hóa công ty Nhật.' },
+  q5: { correct: 'Đúng! Chữ ký thiếu số điện thoại buộc Honda-san phải hỏi lại — mất thêm 1 vòng email, gây ấn tượng không tốt ngay từ đầu.', wrong: 'Sai. Chữ ký thiếu số điện thoại. Honda-san muốn gọi nhưng không có số — phải reply hỏi lại. Đây chính là vấn đề của chữ ký không đầy đủ.' }
+};
+
+document.getElementById('quiz-submit').addEventListener('click', function() {
+  let score = 0;
+  let answered = 0;
+  Object.keys(QUIZ_ANSWERS).forEach(q => {
+    const selected = document.querySelector(`input[name="${q}"]:checked`);
+    const fb = document.getElementById(`${q}-feedback`);
+    if (!selected) return;
+    answered++;
+    const correct = selected.value === QUIZ_ANSWERS[q];
+    if (correct) score++;
+    fb.textContent = correct ? '✅ ' + QUIZ_EXPLAIN[q].correct : '❌ ' + QUIZ_EXPLAIN[q].wrong;
+    fb.className = 'quiz-feedback ' + (correct ? 'correct' : 'wrong');
+    // Mark options
+    document.querySelectorAll(`input[name="${q}"]`).forEach(inp => {
+      const lbl = inp.closest('.quiz-option');
+      if (inp.value === QUIZ_ANSWERS[q]) lbl.style.borderColor = '#10B981';
+      else if (inp.checked) lbl.style.borderColor = '#EF4444';
+    });
+  });
+  if (answered < 5) {
+    alert('Vui lòng trả lời tất cả 5 câu trước khi nộp bài.');
+    return;
+  }
+  const pct = Math.round(score / 5 * 100);
+  const result = document.getElementById('quiz-result');
+  result.style.display = 'block';
+  result.innerHTML = `
+    <div style="background:${pct >= 80 ? '#D1FAE5' : '#FEF2F2'}; border-radius:10px; padding:16px 20px;">
+      <div style="font-size:1.5rem; font-weight:800; color:${pct >= 80 ? '#065F46' : '#991B1B'};">${score}/5 — ${pct}%</div>
+      <div style="margin-top:4px; font-size:0.875rem; color:${pct >= 80 ? '#065F46' : '#991B1B'};">
+        ${pct >= 100 ? 'Hoàn hảo! Bạn đã nắm vững email giới thiệu chuẩn Nhật.' : pct >= 80 ? 'Tốt lắm! Xem lại những câu sai để nắm chắc hơn.' : 'Cần ôn lại — đọc kỹ phần Senpai cảnh báo và bảng Keigo matrix.'}
+      </div>
+    </div>`;
+  if (typeof markLessonComplete === 'function' && pct >= 80) markLessonComplete('s2-email-01');
+  if (typeof saveQuizScore === 'function') saveQuizScore('s2-email-01', pct);
+  document.getElementById('quiz-retry').style.display = 'inline-flex';
+  // Update progress bar
+  const bar = document.getElementById('lesson-progress-bar');
+  const pctEl = document.getElementById('lesson-progress-pct');
+  if (bar) bar.style.width = '100%';
+  if (pctEl) pctEl.textContent = '100%';
+});
+
+document.getElementById('quiz-retry').addEventListener('click', function() {
+  Object.keys(QUIZ_ANSWERS).forEach(q => {
+    document.querySelectorAll(`input[name="${q}"]`).forEach(inp => {
+      inp.checked = false;
+      inp.closest('.quiz-option').style.borderColor = '';
+    });
+    const fb = document.getElementById(`${q}-feedback`);
+    fb.className = 'quiz-feedback';
+    fb.textContent = '';
+  });
+  document.getElementById('quiz-result').style.display = 'none';
+  this.style.display = 'none';
+});
+
+// ── Fill-in-blank check
+document.getElementById('check-blanks').addEventListener('click', function() {
+  const items = document.querySelectorAll('.practice-item input.fill-blank');
+  let correct = 0;
+  items.forEach(inp => {
+    const ans = (inp.dataset.answer || '').toLowerCase().trim();
+    const val = inp.value.toLowerCase().trim();
+    if (val === ans) { inp.style.borderColor = '#10B981'; correct++; }
+    else { inp.style.borderColor = '#EF4444'; }
+  });
+  const result = document.getElementById('blanks-result');
+  result.style.display = 'block';
+  result.innerHTML = `<div style="font-size:0.875rem; color:${correct === items.length ? '#065F46' : '#92400E'}; background:${correct === items.length ? '#D1FAE5' : '#FFFBEB'}; border-radius:8px; padding:10px 14px;">${correct === items.length ? '✅ Tất cả đúng!' : `${correct}/${items.length} đúng — đáp án: こと / 申します / いたします`}</div>`;
+});
+
+document.getElementById('show-hints').addEventListener('click', function() {
+  document.querySelectorAll('.practice-item .practice-item__hint').forEach(h => h.style.display = 'block');
+});
+
+// ── Spot the mistake
+document.getElementById('show-mistakes').addEventListener('click', function() {
+  document.getElementById('mistake-answers').classList.add('show');
+  this.style.display = 'none';
+});
+</script>
+</body>
+</html>
