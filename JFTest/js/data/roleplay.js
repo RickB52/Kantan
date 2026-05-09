@@ -7,6 +7,7 @@ window.ROLEPLAY_DATA = [
     type: "roleplay",
     program: "jf3",
     estimatedTime: "15 min",
+    timings: { prep: 120, perform: 180 },
     category: "HR",
     tags: ["オンボーディング", "メンター制度", "人事"],
     question: {
@@ -70,6 +71,7 @@ window.ROLEPLAY_DATA = [
     type: "roleplay",
     program: "jf3",
     estimatedTime: "15 min",
+    timings: { prep: 120, perform: 180 },
     category: "PM",
     tags: ["仕様変更", "スコープ管理", "顧客交渉"],
     question: {
@@ -133,6 +135,7 @@ window.ROLEPLAY_DATA = [
     type: "roleplay",
     program: "jf3",
     estimatedTime: "15 min",
+    timings: { prep: 120, perform: 180 },
     category: "Quality",
     tags: ["品質管理", "バグ報告", "再発防止"],
     question: {
@@ -196,6 +199,7 @@ window.ROLEPLAY_DATA = [
     type: "roleplay",
     program: "jf3",
     estimatedTime: "15 min",
+    timings: { prep: 120, perform: 180 },
     category: "Client",
     tags: ["クレーム対応", "顧客対応", "障害報告"],
     question: {
@@ -259,6 +263,7 @@ window.ROLEPLAY_DATA = [
     type: "roleplay",
     program: "jf3",
     estimatedTime: "15 min",
+    timings: { prep: 120, perform: 180 },
     category: "Delivery",
     tags: ["納期管理", "遅延", "スケジュール交渉"],
     question: {
@@ -322,6 +327,7 @@ window.ROLEPLAY_DATA = [
     type: "roleplay",
     program: "jf3",
     estimatedTime: "15 min",
+    timings: { prep: 120, perform: 180 },
     category: "HR",
     tags: ["退職", "リテンション", "キャリア面談"],
     question: {
@@ -385,6 +391,7 @@ window.ROLEPLAY_DATA = [
     type: "roleplay",
     program: "jf3",
     estimatedTime: "15 min",
+    timings: { prep: 120, perform: 180 },
     category: "PM",
     tags: ["スプリント計画", "アジャイル", "リソース管理"],
     question: {
@@ -448,6 +455,7 @@ window.ROLEPLAY_DATA = [
     type: "roleplay",
     program: "jf3",
     estimatedTime: "15 min",
+    timings: { prep: 120, perform: 180 },
     category: "Quality",
     tags: ["テスト計画", "QAプロセス", "品質改善"],
     question: {
@@ -511,6 +519,7 @@ window.ROLEPLAY_DATA = [
     type: "roleplay",
     program: "jf3",
     estimatedTime: "15 min",
+    timings: { prep: 120, perform: 180 },
     category: "Client",
     tags: ["キックオフ", "プロジェクト開始", "スコープ確認"],
     question: {
@@ -574,6 +583,7 @@ window.ROLEPLAY_DATA = [
     type: "roleplay",
     program: "jf3",
     estimatedTime: "15 min",
+    timings: { prep: 120, perform: 180 },
     category: "Delivery",
     tags: ["リリース管理", "Go-Live", "リスク管理"],
     question: {
@@ -628,5 +638,525 @@ window.ROLEPLAY_DATA = [
         { title: "リリース後の祝杯を約束する", example: "「明日の朝、成功したらみんなで乾杯しましょう！」といったポジティブな声かけが、チームの士気を高め、緊張を和らげます。" }
       ]
     }
+  },
+{
+  id: 11,
+  titleJP: "病欠の連絡と仕事の引継ぎ",
+  theme: "上司への欠勤連絡",
+  level: "N3-N2",
+  type: "roleplay",
+  program: "jf2",
+  estimatedTime: "8 min",
+  category: "Keigo",
+  timings: { prep: 60, perform: 120 },
+  tags: ["病欠", "引継ぎ", "電話対応"],
+  question: {
+    situation: "あなたは今朝、熱があって体調が悪いため、会社を休むことにしました。上司に電話して、今日の会議を別の人に代わってもらうようお願いし、急ぎの仕事を同僚に引き継いでもらう必要があります。",
+    role: { you: "体調不良の社員", partner: "上司" },
+    tasks: ["病欠することを伝え、謝罪する", "今日の会議への対応を依頼する", "急ぎの仕事の引継ぎを依頼する"]
+  },
+  answer: {
+    script: {
+      opening: "おはようございます。〇〇です。朝早くに申し訳ありません。実は、今朝から熱がありまして、大変申し訳ないのですが、本日はお休みをいただくことは可能でしょうか。",
+      main: "ありがとうございます。つきましては、本日10時からの山田商事様との定例会議なのですが、私の代わりにどなたかに出席していただくことはできますでしょうか。関連資料は共有フォルダの「プロジェクトA」に入れてあります。また、本日中に対応が必要な請求書の処理を、同僚の佐藤さんにお願いしたいのですが、よろしいでしょうか。後ほど佐藤さんには直接連絡いたします。",
+      closing: "ご迷惑をおかけして、大変申し訳ありません。ゆっくり休んで、また明日から頑張ります。失礼いたします。"
+    },
+    qa: [
+      { q: "病院には行くのか？", a: "はい、この後、病院に行こうと思っております。診断結果が出ましたら、改めてご連絡いたします。" },
+      { q: "会議の件、誰か他のメンバーで対応できそうか？", a: "はい、佐藤さんか鈴木さんでしたら、プロジェクトの経緯を理解しているので、問題なく対応可能かと存じます。" }
+    ],
+    vocabulary: [
+      { term: "引継ぎ (ひきつぎ)", meaning: "Bàn giao" },
+      { term: "体調不良 (たいちょうふりょう)", meaning: "Không khỏe, tình trạng sức khỏe xấu" },
+      { term: "請求書 (せいきゅうしょ)", meaning: "Hóa đơn, giấy đòi tiền" },
+      { term: "共有フォルダ (きょうゆうフォルダ)", meaning: "Thư mục chia sẻ" },
+      { term: "経緯 (けいい)", meaning: "Quá trình, đầu đuôi câu chuyện" }
+    ],
+    phrases: [
+      { phrase: "～をいただくことは可能でしょうか", usage: "Cách nói lịch sự khi xin phép điều gì đó. (Liệu tôi có thể nhận được... không ạ?)" },
+      { phrase: "ご迷惑をおかけして、大変申し訳ありません", usage: "Mẫu câu xin lỗi trang trọng khi gây phiền phức. (Thành thật xin lỗi vì đã gây phiền toái cho ngài.)" },
+      { phrase: "つきましては", usage: "Dùng để bắt đầu một chủ đề liên quan đến điều vừa nói. (Về việc đó thì...)" },
+      { phrase: "～と存じます (～とぞんじます)", usage: "Cách nói khiêm tốn của 「～と思います」. (Tôi cho rằng...)" },
+      { phrase: "改めてご連絡いたします (あらためてごれんらくいたします)", usage: "Sẽ liên lạc lại sau. (Tôi sẽ liên lạc lại sau.)" }
+    ],
+    whyGood: [
+      "結論（休みたいこと）から伝えている。",
+      "休む理由（体調不良）を明確に述べている。",
+      "休むことによる業務への影響（会議、急ぎの仕事）を考え、具体的な対応策を依頼している。",
+      "関係者への配慮（同僚に直接連絡する）が見られる。"
+    ],
+    tips: [
+      { title: "連絡は始業前に", example: "欠勤の連絡は、可能な限り始業時刻の10～15分前までには入れましょう。メールではなく、電話で直接伝えるのが基本です。" },
+      { title: "簡潔に、要点を絞る", example: "体調が悪い中、長々と話す必要はありません。「休む理由」「休む期間」「仕事の引継ぎ」の3点を簡潔に伝えましょう。" }
+    ]
   }
+},
+{
+  id: 12,
+  titleJP: "会議日程の調整依頼メール",
+  theme: "社内での日程調整",
+  level: "N3-N2",
+  type: "roleplay",
+  program: "jf2",
+  estimatedTime: "8 min",
+  category: "Email",
+  timings: { prep: 60, perform: 120 },
+  tags: ["メール", "日程調整", "社内コミュニケーション"],
+  question: {
+    situation: "あなたは、新プロジェクトのキックオフミーティングを開催したいと考えています。関係者である山田部長と、同僚の佐藤さん、鈴木さんの都合を確認し、会議の日程を調整するためのメールを作成する必要があります。",
+    role: { you: "会議の主催者", partner: "メールの受信者（山田部長、佐藤さん、鈴木さん）" },
+    tasks: ["会議の目的と参加者を明確に伝える", "複数の日程候補を提示する", "返信期限を設ける"]
+  },
+  answer: {
+    script: {
+      opening: "山田部長、佐藤さん、鈴木さん、お疲れ様です。〇〇です。新プロジェクト「プロジェクトX」のキックオフミーティングを、下記の要領で実施したく存じます。",
+      main: "つきましては、皆様のご都合のよい日時を伺いたく、いくつか候補を挙げさせていただきました。下記の中でご都合の悪い時間帯がございましたら、今週金曜日（5/15）までにお知らせいただけますでしょうか。\n\n【会議名】プロジェクトX キックオフミーティング\n【目的】プロジェクトの全体像、スケジュール、役割分担の共有\n【候補日時】\n・5/18 (月) 10:00-11:00\n・5/19 (火) 14:00-15:00\n・5/20 (水) 16:00-17:00",
+      closing: "皆様からのご返信を元に、最終的な日時を確定し、改めて会議室の場所と合わせてご連絡いたします。お忙しいところ恐縮ですが、ご確認のほど、よろしくお願いいたします。"
+    },
+    qa: [
+      { q: "もし全部の日程が都合悪かったらどうしますか？", a: "その場合は、お手数ですが、皆様のご都合のよい時間帯をいくつかお教えいただけますでしょうか。再度調整させていただきます。" },
+      { q: "会議のアジェンダはありますか？", a: "はい、詳細なアジェンダは、日程が確定次第、改めて皆様に共有させていただきます。" }
+    ],
+    vocabulary: [
+      { term: "要領 (ようりょう)", meaning: "Nội dung chính, đề cương" },
+      { term: "候補 (こうほ)", meaning: "Sự ứng cử, lựa chọn, phương án" },
+      { term: "時間帯 (じかんたい)", meaning: "Khoảng thời gian, múi giờ" },
+      { term: "恐縮ですが (きょうしゅくですが)", meaning: "Tôi rất lấy làm tiếc/ngại nhưng..." },
+      { term: "アジェンダ", meaning: "Chương trình nghị sự, nội dung cuộc họp" }
+    ],
+    phrases: [
+      { phrase: "～したく存じます", usage: "Cách nói khiêm tốn của 「～したいです」. (Tôi muốn...)" },
+      { phrase: "いくつか候補を挙げさせていただきました", usage: "Mẫu câu lịch sự khi đưa ra nhiều phương án. (Tôi đã xin phép được đưa ra một vài phương án.)" },
+      { phrase: "ご都合の悪い時間帯がございましたら", usage: "Dùng khi hỏi về thời gian không tiện của đối phương. (Nếu có khoảng thời gian nào không tiện...)" },
+      { phrase: "～までにお知らせいただけますでしょうか", usage: "Cách nói lịch sự khi đặt ra deadline cho việc trả lời. (Liệu ngài có thể cho tôi biết trước...)" },
+      { phrase: "ご確認のほど、よろしくお願いいたします", usage: "Mẫu câu kết thúc email phổ biến, nhờ đối phương xác nhận. (Rất mong ngài xem xét và xác nhận.)" }
+    ],
+    whyGood: [
+      "件名だけでメールの内容が分かるようになっている（例：「【日程調整】プロジェクトX キックオフミーティングのご連絡」）。",
+      "会議の目的が明確で、参加する必要性が分かりやすい。",
+      "候補日時を複数提示し、相手が選びやすいように配慮している。",
+      "回答の期限を設けることで、調整をスムーズに進めようとしている。"
+    ],
+    tips: [
+      { title: "調整さんなどのツールを使う", example: "参加者が多い場合は、「調整さん」や「TimeTree」のような日程調整ツールを活用すると、全員の空き時間を簡単に見つけることができます。" },
+      { title: "相手の役職を考慮する", example: "部長など役職が高い人が参加する場合は、その人のスケジュールを優先して候補を挙げると、調整がスムーズに進むことが多いです。" }
+    ]
+  }
+},
+{
+  id: 13,
+  titleJP: "会議での進捗報告と課題の共有",
+  theme: "定例会での状況説明",
+  level: "N3-N2",
+  type: "roleplay",
+  program: "jf2",
+  estimatedTime: "8 min",
+  category: "Meeting",
+  timings: { prep: 60, perform: 120 },
+  tags: ["会議", "進捗報告", "課題共有"],
+  question: {
+    situation: "あなたはプロジェクトの定例会議に参加しています。あなたの担当タスクは順調に進んでいますが、一部、他チームの協力が必要な点で遅れが生じています。あなたは、自分のパートの進捗を報告し、課題を共有して協力を仰ぐ必要があります。",
+    role: { you: "プロジェクト担当者", partner: "プロジェクトマネージャー、他チームのメンバー" },
+    tasks: ["担当タスクの進捗状況を報告する", "課題となっている点を具体的に説明する", "他チームへの協力依頼を明確に伝える"]
+  },
+  answer: {
+    script: {
+      opening: "はい、私、〇〇の担当分についてご報告します。メイン機能であるA機能の開発は、予定通り今週末に完了する見込みです。",
+      main: "一方で、B機能に関して一点課題がございます。B機能の実装に必要なAPIの準備が、インフラチーム側で遅れていると伺っております。このままだと、来週からの結合テストに影響が出る可能性がございます。",
+      closing: "つきましては、インフラチームの皆様に、APIのリリース予定日を改めてご教示いただけますと幸いです。よろしくお願いいたします。"
+    },
+    qa: [
+      { q: "APIの遅れの原因は何ですか？", a: "申し訳ありません、詳細な原因までは把握しておりません。インフラチームの方にご確認いただけますでしょうか。" },
+      { q: "もしAPIの準備が間に合わなかったら、どうしますか？", a: "その場合は、APIのダミー（モック）を作成して、まずはフロントエンド側の開発を進めることを検討します。しかし、最終的には実物のAPIでのテストが必要となります。" }
+    ],
+    vocabulary: [
+      { term: "見込み (みこみ)", meaning: "Dự kiến, triển vọng" },
+      { term: "一方で (いっぽうで)", meaning: "Mặt khác, ngược lại" },
+      { term: "結合テスト (けつごうテスト)", meaning: "Kiểm thử tích hợp (Integration Test)" },
+      { term: "ご教示いただけますと幸いです (ごきょうじいただけますとさいわいです)", meaning: "Sẽ thật may mắn nếu ngài chỉ dạy/cho tôi biết." },
+      { term: "ダミー（モック）", meaning: "Dummy (Mock), dữ liệu giả" }
+    ],
+    phrases: [
+      { phrase: "～は予定通りです", usage: "Dùng để báo cáo một việc đang tiến triển đúng kế hoạch. (...đang đúng tiến độ.)" },
+      { phrase: "～について一点課題がございます", usage: "Dùng khi muốn trình bày một vấn đề. (Về việc... đang có một vấn đề.)" },
+      { phrase: "～に影響が出る可能性がございます", usage: "Dùng để nói về nguy cơ ảnh hưởng đến một việc khác. (Có khả năng sẽ gây ảnh hưởng đến...)" },
+      { phrase: "つきましては", usage: "Do đó, vì vậy (dùng để bắt đầu một yêu cầu, đề nghị). (Vì vậy...)" },
+      { phrase: "～までは把握しておりません", usage: "Dùng khi thừa nhận mình không nắm được thông tin chi tiết. (Tôi không nắm được đến mức...)" }
+    ],
+    whyGood: [
+      "報告が「順調な点」と「課題点」に分かれていて分かりやすい。",
+      "課題を「〇〇が遅れている」と客観的な事実として伝えている。",
+      "課題がもたらす影響（結合テストへの影響）を明確に述べている。",
+      "「APIのリリース予定日を教えてほしい」と、具体的なアクションを依頼している。"
+    ],
+    tips: [
+      { title: "PREP法を意識する", example: "Point（結論）→ Reason（理由）→ Example（具体例）→ Point（結論）の順で話すと、報告が論理的で分かりやすくなります。" },
+      { title: "課題は「相談」の形で", example: "「〇〇さんのせいで遅れています」と個人を責めるのではなく、「〇〇の点で困っているのですが、どうすればよいでしょうか」と相談の形で話すと、相手も協力しやすくなります。" }
+    ]
+  }
+},
+{
+  id: 14,
+  titleJP: "出張報告書の作成と提出",
+  theme: "上司への業務報告",
+  level: "N3-N2",
+  type: "roleplay",
+  program: "jf2",
+  estimatedTime: "8 min",
+  category: "Report",
+  timings: { prep: 60, perform: 120 },
+  tags: ["報告書", "出張", "ドキュメント作成"],
+  question: {
+    situation: "あなたは、先週大阪の顧客先へ出張に行きました。その結果を報告書にまとめ、上司に提出する必要があります。口頭で簡単に報告し、報告書を提出する許可を得てください。",
+    role: { you: "出張帰りの社員", partner: "上司" },
+    tasks: ["出張が無事終わったことを報告する", "出張の主な成果を簡潔に伝える", "詳細な報告書を提出する旨を伝える"]
+  },
+  answer: {
+    script: {
+      opening: "部長、ただいま戻りました。先週の大阪出張、無事終了いたしました。",
+      main: "ありがとうございます。出張の主な成果ですが、懸案だったA案件について、お客様から正式に内諾をいただくことができました。また、来期のB案件についても、前向きな感触を得られました。",
+      closing: "詳細については、出張報告書としてまとめましたので、後ほどメールでお送りしてもよろしいでしょうか。ご確認のほど、よろしくお願いいたします。"
+    },
+    qa: [
+      { q: "A案件、よくやったな。条件面での変更はなかったか？", a: "はい、概ね事前に調整した通りの条件でご納得いただけました。一部、納期について調整が必要ですが、問題ない範囲かと存じます。" },
+      { q: "お土産は買ってきてくれたかね？", a: "はい、もちろんです。皆様で召し上がってください。ささやかですが、たこ焼き味のクッキーです。" }
+    ],
+    vocabulary: [
+      { term: "懸案 (けなん)", meaning: "Vấn đề tồn đọng, chưa giải quyết" },
+      { term: "内諾 (ないだく)", meaning: "Sự chấp thuận không chính thức, đồng ý ngầm" },
+      { term: "感触 (かんしょく)", meaning: "Cảm giác, ấn tượng (khi tiếp xúc)" },
+      { term: "概ね (おおむね)", meaning: "Nhìn chung, đại khái" },
+      { term: "ささやかですが", meaning: "Chỉ là một chút tấm lòng nhưng..." }
+    ],
+    phrases: [
+      { phrase: "ただいま戻りました", usage: "Lời chào khi trở về công ty/văn phòng. (Tôi đã về rồi đây.)" },
+      { phrase: "無事終了いたしました (ぶじしゅうりょういたしました)", usage: "Dùng để báo cáo một việc gì đó đã kết thúc tốt đẹp. (Đã kết thúc một cách tốt đẹp.)" },
+      { phrase: "～について、前向きな感触を得られました", usage: "Dùng khi muốn nói về một kết quả có triển vọng tốt. (Về việc..., đã nhận được phản hồi tích cực.)" },
+      { phrase: "～てもよろしいでしょうか", usage: "Cách nói lịch sự khi xin phép làm điều gì đó. (Tôi làm... có được không ạ?)" },
+      { phrase: "ご確認のほど、よろしくお願いいたします", usage: "Câu kết thúc quen thuộc, nhờ đối phương kiểm tra, xác nhận. (Rất mong nhận được sự xác nhận của ngài.)" }
+    ],
+    whyGood: [
+      "まず出張が無事終わったことを報告している。",
+      "成果を「A案件の内諾」「B案件の感触」と具体的に、結論から伝えている。",
+      "口頭報告は簡潔に済ませ、詳細は報告書にまとめるという形をとっている。",
+      "上司への気配り（お土産）も忘れていない。"
+    ],
+    tips: [
+      { title: "報告書は5W1Hで", example: "報告書は、When（いつ）、Where（どこで）、Who（誰が）、What（何を）、Why（なぜ）、How（どうした）を明確に記載すると、分かりやすくなります。" },
+      { title: "所感を忘れずに", example: "事実の報告だけでなく、「今回の出張を通じて、お客様は〇〇を重視していると感じた」といった、自分なりの考察や感想（所感）を付け加えると、報告書の価値が上がります。" }
+    ]
+  }
+},
+{
+  id: 15,
+  titleJP: "取引先からの電話の一次対応と取次",
+  theme: "電話での丁寧な応対",
+  level: "N3-N2",
+  type: "roleplay",
+  program: "jf2",
+  estimatedTime: "8 min",
+  category: "Phone",
+  timings: { prep: 60, perform: 120 },
+  tags: ["電話対応", "取次", "ビジネスマナー"],
+  question: {
+    situation: "あなたは会社のオフィスで仕事中です。電話が鳴り、あなたが取りました。相手は取引先の山田商事の田中様で、営業部の鈴木さん宛ての電話でした。しかし、鈴木さんは今、席を外しています。あなたは、田中様に状況を説明し、対応する必要があります。",
+    role: { you: "電話を受けた社員", partner: "取引先の田中様" },
+    tasks: ["会社名と自分の名前を名乗る", "相手の会社名と名前、要件を復唱して確認する", "担当者（鈴木さん）が不在であることを伝え、代わりの対応を提案する"]
+  },
+  answer: {
+    script: {
+      opening: "お電話ありがとうございます。株式会社〇〇でございます。",
+      main: "はい、山田商事の田中様ですね。いつもお世話になっております。申し訳ございません、営業部の鈴木は、あいにくただいま席を外しております。よろしければ、戻り次第こちらからお電話を差し上げるよう、申し伝えますが、いかがでしょうか。",
+      closing: "かしこまりました。念のため、田中様の電話番号をいただけますでしょうか。はい、090-XXXX-XXXXですね。復唱します、090-XXXX-XXXX。では、鈴木が戻り次第、申し伝えます。本日はお電話ありがとうございました。失礼いたします。"
+    },
+    qa: [
+      { q: "鈴木さんは何時ごろ戻られますか？", a: "申し訳ありません、何時ごろ戻るかまでは分かりかねます。おそらく30分以内には戻るかと存じますが…。" },
+      { q: "急ぎの用件なのですが、他の方でも分かりますか？", a: "左様でございますか。よろしければ、どのようなご用件かお伺いし、分かる者にお繋ぎいたしますが、いかがでしょうか。" }
+    ],
+    vocabulary: [
+      { term: "取次 (とりつぎ)", meaning: "Việc chuyển (điện thoại, lời nhắn)" },
+      { term: "あいにく", meaning: "Thật không may, đáng tiếc" },
+      { term: "申し伝えます (もうしつたえます)", meaning: "Sẽ nhắn lại, sẽ chuyển lời (khiêm tốn ngữ)" },
+      { term: "復唱します (ふくしょうします)", meaning: "Xin phép được nhắc lại" },
+      { term: "分かりかねます (わかりかねます)", meaning: "Khó có thể biết được, không thể biết được" }
+    ],
+    phrases: [
+      { phrase: "いつもお世話になっております", usage: "Câu chào hỏi cửa miệng trongビジネス日本語. (Cảm ơn vì đã luôn được ngài giúp đỡ.)" },
+      { phrase: "～は席を外しております", usage: "Cách nói lịch sự khi ai đó không có ở chỗ ngồi. (...đang không có ở chỗ ngồi ạ.)" },
+      { phrase: "こちらからお電話を差し上げるよう", usage: "Dùng khi đề nghị sẽ gọi lại từ phía mình. (Để từ phía chúng tôi sẽ gọi điện lại...)" },
+      { phrase: "念のため (ねんのため)", usage: "Để cho chắc chắn. (Để cho chắc...)" },
+      { phrase: "どのようなご用件でしょうか", usage: "Cách hỏi lịch sự về nội dung, yêu cầu của đối phương. (Xin hỏi ngài có việc gì ạ?)" }
+    ],
+    whyGood: [
+      "第一声で会社名をはっきりと名乗っている。",
+      "相手の情報を復唱し、聞き間違いがないか確認している。",
+      "担当者が不在であることを謝罪し、「折り返し電話させる」という代替案を提示している。",
+      "連絡先を復唱して確認し、ミスを防ごうとしている。"
+    ],
+    tips: [
+      { title: "電話は3コール以内に出る", example: "電話を長く待たせるのは失礼にあたります。3コール以内に出るのがビジネスマナーです。もし間に合わなかったら、「大変お待たせいたしました」と一言添えましょう。" },
+      { title: "明るい声で、ハキハキと", example: "電話では表情が見えない分、声のトーンが重要です。普段よりも少し高めの、明るい声を意識して、ハキハキと話しましょう。" }
+    ]
+  }
+},
+{
+  id: 16,
+  titleJP: "新しい同僚への自己紹介と挨拶",
+  theme: "職場での第一印象",
+  level: "N3-N2",
+  type: "roleplay",
+  program: "jf2",
+  estimatedTime: "8 min",
+  category: "Greeting",
+  timings: { prep: 60, perform: 120 },
+  tags: ["自己紹介", "挨拶", "人間関係"],
+  question: {
+    situation: "あなたのチームに、今日から新しいメンバーが加わりました。あなたは、その新しい同僚に自己紹介をし、歓迎の意を伝える必要があります。相手に良い印象を与え、早くチームに馴染んでもらえるように話しかけましょう。",
+    role: { you: "既存のチームメンバー", partner: "新しい同僚" },
+    tasks: ["自分の名前と担当業務を伝える", "歓迎の気持ちを表現する", "サポートを申し出て、相手の不安を和らげる"]
+  },
+  answer: {
+    script: {
+      opening: "はじめまして、〇〇と申します。今日から同じチームになりました。どうぞよろしくお願いします。",
+      main: "私は主に、このプロジェクトのフロントエンド開発を担当しています。△△さんは、サーバーサイドをご担当されると伺いました。ご一緒にお仕事できるのを、楽しみにしています。",
+      closing: "慣れない環境で、最初は何かと大変かと思いますが、分からないことがあったら、何でも気軽に聞いてくださいね。これから、どうぞよろしくお願いします。"
+    },
+    qa: [
+      { q: "（相手から）前職ではどんなことをされていたんですか？", a: "前職では、ECサイトの開発をメインでやっていました。なので、このプロジェクトは新しい挑戦で、とてもワクワクしています。" },
+      { q: "（相手から）お昼ご飯はどうされていますか？", a: "普段は、近くの定食屋に行くことが多いですね。もしよかったら、今日、ご一緒しませんか？安くて美味しいお店があるんです。" }
+    ],
+    vocabulary: [
+      { term: "申します (もうします)", meaning: "Nói, tên là (khiêm tốn ngữ)" },
+      { term: "フロントエンド", meaning: "Front-end" },
+      { term: "サーバーサイド", meaning: "Server-side" },
+      { term: "慣れない (なれない)", meaning: "Chưa quen, không quen" },
+      { term: "定食屋 (ていしょくや)", meaning: "Quán ăn phục vụ theo suất (Teishoku)" }
+    ],
+    phrases: [
+      { phrase: "どうぞよろしくお願いします", usage: "Câu chào cửa miệng khi bắt đầu một mối quan hệ. (Rất mong được anh giúp đỡ.)" },
+      { phrase: "ご一緒にお仕事できるのを、楽しみにしています", usage: "Thể hiện sự mong đợi được làm việc cùng nhau. (Tôi rất mong chờ được làm việc cùng anh/chị.)" },
+      { phrase: "何かと大変かと思いますが", usage: "Dùng để thể hiện sự thông cảm với khó khăn của đối phương. (Tôi nghĩ chắc anh/chị sẽ có nhiều vất vả, nhưng...)" },
+      { phrase: "何でも気軽に聞いてください", usage: "Dùng để khuyến khích đối phương hỏi khi có vấn đề, tạo cảm giác thân thiện. (Có gì thì cứ thoải mái hỏi tôi nhé.)" },
+      { phrase: "もしよかったら、ご一緒しませんか？", usage: "Cách nói lịch sự khi rủ rê ai đó. (Nếu được thì, đi cùng nhau không?)" }
+    ],
+    whyGood: [
+      "まず自分の名前を名乗り、挨拶をしている。",
+      "自分の役割を伝え、相手の役割も理解していることを示している。",
+      "「楽しみにしています」とポジティブな言葉で歓迎の意を表している。",
+      "「何でも聞いてください」とサポートを申し出て、相手が安心できるように配慮している。"
+    ],
+    tips: [
+      { title: "相手の出身地や趣味などを聞く", example: "仕事以外の共通点が見つかると、一気に距離が縮まることがあります。「ご出身はどちらですか？」「休日は何をされているんですか？」など、当たり障りのない質問から始めてみましょう。" },
+      { title: "ランチに誘う", example: "一緒に食事をすることは、コミュニケーションの基本です。新しい人をランチに誘い、チームの輪の中に入れてあげましょう。" }
+    ]
+  }
+},
+{
+  id: 17,
+  titleJP: "同僚への仕事の依頼",
+  theme: "丁寧な頼み方",
+  level: "N3-N2",
+  type: "roleplay",
+  program: "jf2",
+  estimatedTime: "8 min",
+  category: "Request",
+  timings: { prep: 60, perform: 120 },
+  tags: ["依頼", "お願い", "チームワーク"],
+  question: {
+    situation: "あなたは今、自分のタスクで手一杯で、どうしても手が足りません。そこで、少し手の空いていそうな同僚の佐藤さんに、資料作成の一部を手伝ってもらえないか、お願いに行くことにしました。",
+    role: { you: "仕事を依頼したい社員", partner: "同僚の佐藤さん" },
+    tasks: ["相手の状況を気遣う言葉をかける", "依頼したい仕事の内容と背景を説明する", "期限を明確に伝え、相手の都合を確認する"]
+  },
+  answer: {
+    script: {
+      opening: "佐藤さん、今、ちょっとよろしいですか？",
+      main: "ありがとうございます。実は、今抱えているA案件の提案書作成で少し困っていまして…。もし佐藤さんの今のお仕事が落ち着いているようでしたら、資料のリサーチ部分だけ、少しお力をお借りできないかと思いまして…。",
+      closing: "もし可能でしたら、明日の午前中までにお願いしたいのですが、ご都合いかがでしょうか。もちろん、難しければ、はっきり断ってくださいね。"
+    },
+    qa: [
+      { q: "（相手から）具体的に、何をリサーチすればいいですか？", a: "はい、競合製品であるB社とC社の最新の価格動向について、ウェブで調べて、簡単なサマリーを作っていただけると大変助かります。" },
+      { q: "（相手から）ごめん、今ちょっと立て込んでて…。", a: "あ、そうですよね。お忙しいところ、大変失礼いたしました。また別の方法を考えますので、お気になさらないでください。" }
+    ],
+    vocabulary: [
+      { term: "手一杯 (ていっぱい)", meaning: "Bận ngập đầu, không thể làm thêm việc khác" },
+      { term: "手が足りない (てがたりない)", meaning: "Thiếu người, thiếu nhân lực" },
+      { term: "提案書 (ていあんしょ)", meaning: "Bản đề án, bản đề xuất" },
+      { term: "リサーチ", meaning: "Nghiên cứu, tìm hiểu" },
+      { term: "立て込む (たてこむ)", meaning: "Bận rộn, nhiều việc dồn dập" }
+    ],
+    phrases: [
+      { phrase: "今、ちょっとよろしいですか？", usage: "Cách nói quen thuộc khi bắt chuyện với người đang làm việc. (Bây giờ anh/chị có tiện một chút không ạ?)" },
+      { phrase: "お力をお借りできないかと思いまして", usage: "Cách nói lịch sự, khiêm tốn khi nhờ vả. (Tôi đang nghĩ là không biết có thể mượn sức của anh/chị được không.)" },
+      { phrase: "もし可能でしたら", usage: "Dùng để bắt đầu một yêu cầu, cho thấy mình đang ý tứ. (Nếu có thể...)" },
+      { phrase: "ご都合いかがでしょうか (ごつごういかがでしょうか)", usage: "Cách hỏi lịch sự về sự tiện lợi của đối phương. (Lịch trình của anh/chị thế nào ạ?)" },
+      { phrase: "難しければ、はっきり断ってくださいね", usage: "Câu nói thể hiện sự quan tâm, giúp đối phương dễ dàng từ chối hơn. (Nếu khó thì cứ từ chối thẳng thừng nhé.)" }
+    ],
+    whyGood: [
+      "「今よろしいですか？」と、まず相手の状況を確認している。",
+      "依頼の背景（なぜ手伝ってほしいのか）を正直に伝えている。",
+      "「リサーチ部分だけ」と、依頼する作業の範囲を限定し、相手の負担を軽く見せている。",
+      "「難しければ断ってください」と一言添えることで、相手が断りやすい状況を作っている。"
+    ],
+    tips: [
+      { title: "感謝の気持ちを伝える", example: "手伝ってもらったら、「助かりました、ありがとうございます！」と必ず感謝の気持ちを伝えましょう。次回も気持ちよく協力してもらえます。" },
+      { title: "ギブアンドテイクを意識する", example: "いつも頼ってばかりではなく、相手が困っているときには、こちらから「何か手伝うことありますか？」と声をかけるようにしましょう。" }
+    ]
+  }
+},
+{
+  id: 18,
+  titleJP: "システムトラブルの報告と謝罪",
+  theme: "社内でのトラブル報告",
+  level: "N3-N2",
+  type: "roleplay",
+  program: "jf2",
+  estimatedTime: "8 min",
+  category: "Trouble",
+  timings: { prep: 60, perform: 120 },
+  tags: ["トラブル", "報告", "謝罪"],
+  question: {
+    situation: "あなたが操作していた社内システムで、誤って重要なデータを削除してしまいました。すぐに上司に報告し、謝罪した上で、今後の対応について指示を仰ぐ必要があります。",
+    role: { you: "ミスをした社員", partner: "上司" },
+    tasks: ["トラブルの事実を正直に報告する", "自分のミスであることを認め、謝罪する", "今後の対応について指示を仰ぐ"]
+  },
+  answer: {
+    script: {
+      opening: "部長、大変申し訳ありません。今、お時間よろしいでしょうか。急ぎご報告したいことがございます。",
+      main: "先ほど、顧客管理システムの操作中に、私の不注意で、〇〇に関するデータを誤って削除してしまいました。誠に申し訳ございません。",
+      closing: "バックアップからの復旧が可能かどうか、現在システム部に確認を依頼しております。その他に、今すぐ私がすべきことがございましたら、ご指示いただけますでしょうか。"
+    },
+    qa: [
+      { q: "（上司から）なぜそんなことになったんだ？", a: "はい、本来であればテスト環境で実行すべき操作を、誤って本番環境で実行してしまいました。完全に私の確認不足です。申し訳ございません。" },
+      { q: "（上司から）顧客への影響は？", a: "削除したのは社内管理用のデータのため、直接的にお客様のサービス利用に影響はございません。しかし、営業活動に支障が出る可能性がございます。" }
+    ],
+    vocabulary: [
+      { term: "誤って (あやまって)", meaning: "Do nhầm lẫn, do sai sót" },
+      { term: "不注意 (ふちゅうい)", meaning: "Sự bất cẩn, không chú ý" },
+      { term: "バックアップ", meaning: "Sao lưu, bản sao lưu" },
+      { term: "復旧 (ふっきゅう)", meaning: "Sự phục hồi, khôi phục" },
+      { term: "支障 (ししょう)", meaning: "Sự trở ngại, cản trở" }
+    ],
+    phrases: [
+      { phrase: "大変申し訳ありません", usage: "Cách nói xin lỗi trang trọng. (Tôi vô cùng xin lỗi.)" },
+      { phrase: "私の不注意で", usage: "Dùng để thừa nhận lỗi là do sự bất cẩn của mình. (Do sự bất cẩn của tôi...)" },
+      { phrase: "ご指示いただけますでしょうか (ごしじいただけますでしょうか)", usage: "Cách nói lịch sự khi xin chỉ thị, hướng dẫn. (Liệu ngài có thể cho tôi chỉ thị được không?)" },
+      { phrase: "完全に私の確認不足です", usage: "Dùng để hoàn toàn thừa nhận lỗi sai về phía mình. (Hoàn toàn là do sự thiếu kiểm tra của tôi.)" },
+      { phrase: "直接的に～影響はございません", usage: "Dùng để nói về việc không có ảnh hưởng trực tiếp. (Không có ảnh hưởng trực tiếp đến...)" }
+    ],
+    whyGood: [
+      "トラブル発生後、すぐに報告している。",
+      "言い訳をせず、自分のミスであることを正直に認めて謝罪している。",
+      "現状（システム部に確認依頼中）を報告し、次のアクション（指示を仰ぐ）を明確にしている。",
+      "影響範囲（顧客への直接影響はない）を冷静に分析し、報告している。"
+    ],
+    tips: [
+      { title: "悪い報告ほど早く", example: "ミスやトラブルは、隠せば隠すほど事態が悪化します。発覚したら、すぐに上司に報告し、指示を仰ぐのが鉄則です。" },
+      { title: "事実と感情を分ける", example: "パニックにならず、まずは「何が起きたのか」という事実を客観的に整理して報告しましょう。謝罪は必要ですが、感情的になりすぎるのは避けましょう。" }
+    ]
+  }
+},
+{
+  id: 19,
+  titleJP: "上司への相談と意見交換",
+  theme: "キャリアに関する悩み相談",
+  level: "N3-N2",
+  type: "roleplay",
+  program: "jf2",
+  estimatedTime: "8 min",
+  category: "Keigo",
+  timings: { prep: 60, perform: 120 },
+  tags: ["相談", "キャリア", "1on1ミーティング"],
+  question: {
+    situation: "あなたは現在の仕事にやりがいを感じているものの、今後のキャリアパスについて少し悩んでいます。マネージャーを目指すべきか、専門職としてスキルを磨くべきか…。あなたは、信頼している上司との1on1ミーティングで、この悩みを相談することにしました。",
+    role: { you: "キャリアに悩む社員", partner: "上司" },
+    tasks: ["日頃の感謝を伝える", "自分のキャリアの悩みについて、正直に打ち明ける", "上司からのアドバイスを求める"]
+  },
+  answer: {
+    script: {
+      opening: "部長、お時間いただきありがとうございます。本日は、今後の私のキャリアについて、少しご相談させていただけないかと思い、お時間をいただきました。",
+      main: "現在の〇〇プロジェクトは、非常にやりがいがあり、多くのことを学ばせていただいております。一方で、将来的に自分がマネジメントの道に進むべきか、それとも技術を極めるスペシャリストの道に進むべきか、少し迷っております。",
+      closing: "部長から見て、私の強みや、今後期待される役割は、どのようなものだとお考えでしょうか。率直なご意見をいただけますと幸いです。"
+    },
+    qa: [
+      { q: "（上司から）どうしてそう思うようになったんだ？", a: "はい、最近、後輩に教える機会が増え、人の成長を助けることにも喜びを感じる一方で、新しい技術に触れると、もっと深く学びたいという気持ちも強くなり、自分の適性について考えるようになりました。" },
+      { q: "（上司から）具体的に、どんなスペシャリストになりたいとか、イメージはあるのか？", a: "はい、もしスペシャリストの道を選ぶなら、セキュリティ分野に特に興味があります。最近、関連する資格の勉強も少しずつ始めています。" }
+    ],
+    vocabulary: [
+      { term: "やりがい", meaning: "Việc đáng làm, xứng đáng" },
+      { term: "キャリアパス", meaning: "Con đường sự nghiệp" },
+      { term: "専門職 (せんもんしょく)", meaning: "Nghề chuyên môn, chuyên gia" },
+      { term: "打ち明ける (うちあける)", meaning: "Thú nhận, nói ra bí mật" },
+      { term: "率直な (そっちょくな)", meaning: "Thẳng thắn, trực tính" }
+    ],
+    phrases: [
+      { phrase: "～についてご相談させていただけないかと思い", usage: "Cách nói lịch sự khi muốn bắt đầu một cuộc相談. (Tôi đang nghĩ không biết liệu có thể相談 về việc...)" },
+      { phrase: "～べきか、～べきか、迷っております", usage: "Dùng khi đang phân vân giữa hai lựa chọn. (Tôi đang phân vân không biết nên... hay nên...)" },
+      { phrase: "部長から見て", usage: "Dùng khi muốn hỏi ý kiến từ góc nhìn của đối phương. (Từ góc nhìn của trưởng phòng...)" },
+      { phrase: "率直なご意見をいただけますと幸いです", usage: "Dùng khi muốn nhận được ý kiến thẳng thắn. (Sẽ thật may mắn nếu tôi nhận được ý kiến thẳng thắn của ngài.)" },
+      { phrase: "～に興味があります", usage: "Thể hiện sự quan tâm, hứng thú. (Tôi có hứng thú với...)" }
+    ],
+    whyGood: [
+      "まず感謝の気持ちと、相談したいテーマを明確に伝えている。",
+      "現状への満足（やりがい）を伝えた上で、将来の悩みについて話しており、ポジティブな印象を与える。",
+      "「自分はこうしたい」と決めつけるのではなく、「どう思われますか？」と相手の意見を求めている。",
+      "自分の考え（後輩指導、セキュリティへの興味）も具体的に伝えられており、丸投げではない。"
+    ],
+    tips: [
+      { title: "相談相手を選ぶ", example: "キャリア相談は、誰にでもすれば良いというものではありません。あなたのことを見てくれていて、かつ信頼できる上司や先輩を選んで相談しましょう。" },
+      { title: "自分の考えを整理しておく", example: "相談に行く前に、「自分はどうしたいのか」「何に悩んでいるのか」を紙に書き出すなどして、自分の考えを整理しておくと、話がスムーズに進み、より的確なアドバイスがもらえます。" }
+    ]
+  }
+},
+{
+  id: 20,
+  titleJP: "会議での意見の述べ方と質問の仕方",
+  theme: "会議での積極的な発言",
+  level: "N3-N2",
+  type: "roleplay",
+  program: "jf2",
+  estimatedTime: "8 min",
+  category: "Meeting",
+  timings: { prep: 60, perform: 120 },
+  tags: ["会議", "意見", "質問"],
+  question: {
+    situation: "あなたは、プロジェクトの会議に参加しています。ある提案について、あなたは少し懸念点があると感じています。黙っていることもできますが、プロジェクトのためには、勇気を出して自分の意見を述べ、質問をすべきだと考えました。",
+    role: { you: "会議参加者", partner: "発表者、他の参加者" },
+    tasks: ["クッション言葉を使い、丁寧に発言を切り出す", "提案に賛成する部分と、懸念している点を明確に区別して話す", "具体的な質問で、論点を明確にする"]
+  },
+  answer: {
+    script: {
+      opening: "よろしいでしょうか。先ほどのご提案について、一点質問がございます。",
+      main: "〇〇という目的を達成するために、A案は非常に良い着眼点だと感じました。一方で、その実現方法について、少し懸念点がございます。A案ですと、既存のシステムBに大きな改修が必要となり、テストにかかる工数が増大するのではないでしょうか。",
+      closing: "そこで質問なのですが、このテスト工数の増加について、どのようにお考えでしょうか。何か対策案などがあれば、お聞かせいただけますと幸いです。"
+    },
+    qa: [
+      { q: "（発表者から）良い質問ですね。その点については…", a: "ご説明ありがとうございます。テスト工数の件、理解いたしました。それであれば、特に問題はなさそうですね。安心しました。" },
+      { q: "（他の参加者から）私も同じ点が気になっていました。", a: "〇〇さんも懸念されていましたか。やはり、この点はもう少し議論が必要かもしれませんね。" }
+    ],
+    vocabulary: [
+      { term: "懸念点 (けねんてん)", meaning: "Điểm lo ngại, quan ngại" },
+      { term: "着眼点 (ちゃくがんてん)", meaning: "Điểm nhìn, quan điểm, cách nhìn nhận vấn đề" },
+      { term: "改修 (かいしゅう)", meaning: "Sự sửa chữa, cải tạo" },
+      { term: "工数 (こうすう)", meaning: "Công số, effort" },
+      { term: "論点 (ろんてん)", meaning: "Luận điểm, điểm mấu chốt của vấn đề" }
+    ],
+    phrases: [
+      { phrase: "よろしいでしょうか", usage: "Cách nói lịch sự khi muốn cắt ngang hoặc bắt đầu phát言. (Cho phép tôi nói một chút được không?)" },
+      { phrase: "～は非常に良い着眼点だと感じました", usage: "Dùng để khen ngợi ý tưởng của người khác trước khi đưa ra ý kiến của mình. (Tôi cảm thấy... là một quan điểm rất hay.)" },
+      { phrase: "一方で (いっぽうで)", usage: "Mặt khác, ngược lại. Dùng để đưa ra ý kiến trái ngược. (Mặt khác...)" },
+      { phrase: "～のではないでしょうか", usage: "Cách nói mềm mỏng khi đưa ra ý kiến của mình, mang tính chất hỏi. (Chẳng phải là... hay sao?)" },
+      { phrase: "どのようにお考えでしょうか", usage: "Cách hỏi lịch sự về suy nghĩ, ý kiến của đối phương. (Ngài nghĩ như thế nào ạ?)" }
+    ],
+    whyGood: [
+      "発言の前に「よろしいでしょうか」と許可を求めている。",
+      "まず提案の良い点（良い着眼点）を褒めることで、相手が意見を聞き入れやすい雰囲気を作っている。",
+      "懸念点を「～ではないでしょうか」と、断定的でない柔らかい表現で伝えている。",
+      "単に懸念を述べるだけでなく、「テスト工数をどう考えるか」という具体的な質問に落とし込んでいる。"
+    ],
+    tips: [
+      { title: "会議の前にアジェンダを読み込む", example: "会議で積極的に発言するためには、事前の準備が不可欠です。アジェンダを読み込み、自分の意見や質問したいことを予め整理しておきましょう。" },
+      { title: "短い発言を心がける", example: "会議で長々と一人で話し続けるのは禁物です。要点を簡潔にまとめ、1分以内で話すように心がけましょう。" }
+    ]
+  }
+}
 ]
