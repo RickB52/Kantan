@@ -21,6 +21,74 @@ const renderBackButton = (text, hash) => {
     return `<button onclick="window.location.hash=''" class="btn-back">‹ Về trang chủ</button>`;
 };
 
+function formatTime(s) {
+    const m = Math.floor(s / 60);
+    const sec = s % 60;
+    return `${String(m).padStart(2, '0')}:${String(sec).padStart(2, '0')}`;
+}
+
+function startCountdown(seconds, displayEl, onEnd) {
+    let remaining = seconds;
+    displayEl.textContent = formatTime(remaining);
+    const interval = setInterval(() => {
+        remaining--;
+        displayEl.textContent = formatTime(remaining);
+        if (remaining <= 30) displayEl.classList.add('urgent');
+        if (remaining <= 0) {
+            clearInterval(interval);
+            onEnd();
+        }
+    }, 1000);
+    return interval;
+}
+
+function initSlider(scope = document) {
+    const deck = scope ? scope.querySelector('.slide-deck') : document.querySelector('.slide-deck');
+    if (!deck) return;
+
+    const slides = Array.from(deck.querySelectorAll('.slide'));
+    const dots = Array.from(deck.querySelectorAll('.slide-dot'));
+    let current = 0;
+    let timerInterval = null;
+
+    function goTo(n) {
+        slides[current].classList.remove('active');
+        if (dots[current]) dots[current].classList.remove('active');
+        current = n;
+        slides[current].classList.add('active');
+        if (dots[current]) dots[current].classList.add('active');
+    }
+
+    deck.addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-slide-action]');
+        if (!btn) return;
+        const action = btn.dataset.slideAction;
+
+        if (action === 'next' && current < slides.length - 1) {
+            goTo(current + 1);
+        } else if (action === 'prev' && current > 0) {
+            goTo(current - 1);
+        } else if (action === 'start-timer') {
+            const seconds = parseInt(btn.dataset.seconds || '60', 10);
+            if (current + 1 < slides.length) {
+                goTo(current + 1);
+                const displayEl = slides[current].querySelector('.timer-display');
+                if (displayEl) {
+                    if (timerInterval) clearInterval(timerInterval);
+                    timerInterval = startCountdown(seconds, displayEl, () => {
+                        if (current < slides.length - 1) goTo(current + 1);
+                    });
+                }
+            }
+        } else if (action === 'skip-timer') {
+            if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
+            if (current < slides.length - 1) goTo(current + 1);
+        }
+    });
+
+    goTo(0);
+}
+
 function renderHomepage(params) {
     // This function is no longer used, as the homepage is static in index.html.
     return '';
@@ -85,117 +153,105 @@ function renderExamList({ program, type }) {
 
 
 function renderRolePlayDetail({ exam }) {
-    if (!exam) return `
-        ${renderSpaNavbar()}
-        <div class="container">
-            <h1>Exam not found</h1>
-            ${renderBackButton('‹ Về trang chủ')}
-        </div>
-    `;
+    if (!exam) return `${renderSpaNavbar()}<div class="container"><h1>Exam not found</h1>${renderBackButton('‹ Về trang chủ')}</div>`;
+
+    const prepSec = exam.timings ? exam.timings.prep : 120;
+    const performSec = exam.timings ? exam.timings.perform : 180;
+    const isJF3 = exam.program === 'jf3';
+
+    const memoSlide = isJF3 && exam.answer.memo ? `
+        <div class="slide">
+          <div class="slide-header"><span class="slide-badge">Memo (2分準備)</span></div>
+          <div class="slide-body">
+            <div class="memo-grid">
+              <div class="memo-item"><div class="memo-label">結論</div><p>${exam.answer.memo.conclusion}</p></div>
+              <div class="memo-item"><div class="memo-label">根拠</div><p>${exam.answer.memo.basis}</p></div>
+              <div class="memo-item"><div class="memo-label">リスク</div><p>${exam.answer.memo.risk}</p></div>
+              <div class="memo-item"><div class="memo-label">対策</div><p>${exam.answer.memo.countermeasure}</p></div>
+            </div>
+          </div>
+          <div class="slide-nav"><button data-slide-action="prev">← Quay lại</button><button data-slide-action="next">Xem Script →</button></div>
+        </div>` : '';
+
+    const vocabItems = (exam.answer.vocabulary || []).map(v =>
+        `<div class="vocab-item"><span class="vocab-term">${v.term}</span><span class="vocab-meaning">${v.meaning}</span></div>`
+    ).join('');
+    const phraseItems = (exam.answer.phrases || []).map(p =>
+        `<div class="phrase-item"><span class="phrase-text">${p.phrase}</span><span class="phrase-usage">${p.usage}</span></div>`
+    ).join('');
+    const whyItems = (exam.answer.whyGood || []).map(w => `<li>${w}</li>`).join('');
+    const tipItems = (exam.answer.tips || []).map(t =>
+        `<div class="tip-item"><div class="tip-title">${t.title}</div><div class="tip-example">${t.example}</div></div>`
+    ).join('');
+    const qaItems = (exam.answer.qa || []).map(item =>
+        `<div class="qa-item"><div class="qa-q">Q: ${item.q}</div><div class="qa-a">A: ${item.a}</div></div>`
+    ).join('');
+    const taskItems = (exam.question.tasks || []).map((t, i) =>
+        `<div class="task-item"><span class="task-num">${i + 1}</span><p>${t}</p></div>`
+    ).join('');
+
     return `
         ${renderSpaNavbar()}
-        <div class="container">
-            <header class="page-header reveal">
-                 ${renderBackButton(`‹ Về danh sách`, `#/${exam.program}/${exam.type}`)}
-            </header>
-            <main>
-                <section class="question-slide glass-card reveal">
-                    <h2>${exam.titleJP}</h2>
-                    <p class="theme">${exam.theme}</p>
-                    <div class="badges">
-                        <span class="badge type-badge">${exam.type}</span>
-                        <span class="badge level-badge">${exam.level}</span>
-                    </div>
-                    <div class="question-details">
-                        <div class="detail-block situation">
-                            <h3>状況 (Situation)</h3>
-                            <p>${exam.question.situation}</p>
-                        </div>
-                        <div class="detail-block role">
-                            <h3>Role</h3>
-                            <p><strong>You:</strong> ${exam.question.role.you}</p>
-                            <p><strong>Partner:</strong> ${exam.question.role.partner}</p>
-                        </div>
-                        <div class="detail-block tasks">
-                             <h3>タスク (Tasks)</h3>
-                             <ul>${exam.question.tasks.map(t => `<li>${t}</li>`).join('')}</ul>
-                        </div>
-                    </div>
-                </section>
-
-                <button class="toggle-answer-btn glass-card reveal">模範解答とポイントを見る</button>
-                
-                <div class="answer-content">
-                    ${renderMemoCard(exam.answer.memo)}
-                    ${renderScriptSection(exam.answer.script, 'roleplay')}
-                    ${renderQAAccordion(exam.answer.qa)}
-                    ${renderVocabularyGrid(exam.answer.vocabulary)}
-                    ${renderPhrasesGrid(exam.answer.phrases)}
-                    ${renderWhyGood(exam.answer.whyGood)}
-                    ${renderTips(exam.answer.tips)}
-                </div>
-            </main>
-        </div>
-    `;
+        <div class="container slide-deck-container">
+          <div class="slide-deck">
+            <div class="slide-dots">
+              ${Array.from({ length: isJF3 ? 11 : 10 }, (_, i) => `<span class="slide-dot${i === 0 ? ' active' : ''}"></span>`).join('')}
+            </div>
+            <div class="slide active"><div class="slide-cover"><div class="exam-meta"><span class="badge badge-level">${exam.level}</span><span class="badge badge-program">${exam.program.toUpperCase()}</span><span class="badge badge-category">${exam.category}</span></div><h1 class="exam-title">${exam.titleJP}</h1><p class="exam-theme">${exam.theme}</p><div class="timings-display"><div class="timing-item"><span class="timing-label">準備</span><span class="timing-value">${prepSec / 60}分</span></div><div class="timing-sep">→</div><div class="timing-item"><span class="timing-label">Roleplay</span><span class="timing-value">${performSec / 60}分</span></div></div><button class="btn-primary" data-slide-action="next">▶ Bắt đầu</button></div></div>
+            <div class="slide"><div class="slide-header"><span class="slide-badge">状況 (Tình huống)</span></div><div class="slide-body"><p class="situation-text">${exam.question.situation}</p></div><div class="slide-nav"><button data-slide-action="prev">← Quay lại</button><button data-slide-action="next">Tiếp theo →</button></div></div>
+            <div class="slide"><div class="slide-header"><span class="slide-badge">役割 (Vai trò)</span></div><div class="slide-body"><div class="role-grid"><div class="role-you"><div class="role-label">あなた</div><p>${exam.question.role.you}</p></div><div class="role-partner"><div class="role-label">相手</div><p>${exam.question.role.partner}</p></div></div></div><div class="slide-nav"><button data-slide-action="prev">← Quay lại</button><button data-slide-action="next">Tiếp theo →</button></div></div>
+            <div class="slide"><div class="slide-header"><span class="slide-badge">タスク (Nhiệm vụ)</span></div><div class="slide-body">${taskItems}</div><div class="slide-nav"><button data-slide-action="prev">← Quay lại</button><button data-slide-action="start-timer" data-seconds="${prepSec}">▶ Bắt đầu chuẩn bị</button></div></div>
+            <div class="slide timer-slide"><div class="timer-label">Chuẩn bị (${prepSec / 60} phút)</div><div class="timer-display">00:00</div><div class="slide-nav"><button data-slide-action="start-timer" data-seconds="${performSec}">▶ Bắt đầu Roleplay</button><button data-slide-action="skip-timer">⏭ Bỏ qua</button></div></div>
+            <div class="slide timer-slide"><div class="timer-label">Roleplay (${performSec / 60} phút)</div><div class="timer-display">00:00</div><div class="slide-nav"><button data-slide-action="next">📖 Xem đáp án</button><button data-slide-action="skip-timer">⏹ Kết thúc</button></div></div>
+            ${memoSlide}
+            <div class="slide"><div class="slide-header"><span class="slide-badge">模範会話 (Mẫu lời thoại)</span></div><div class="slide-body script-body">${Object.entries(exam.answer.script || {}).map(([k, v]) => `<div class="script-part"><div class="script-label">${k}</div><p>${v}</p></div>`).join('')}</div><div class="slide-nav"><button data-slide-action="prev">← Quay lại</button><button data-slide-action="next">Q&A →</button></div></div>
+            <div class="slide"><div class="slide-header"><span class="slide-badge">Q&A</span></div><div class="slide-body">${qaItems}</div><div class="slide-nav"><button data-slide-action="prev">← Quay lại</button><button data-slide-action="next">Từ vựng →</button></div></div>
+            <div class="slide"><div class="slide-header"><span class="slide-badge">語彙・表現</span></div><div class="slide-body two-col"><div class="col"><h3>語彙</h3>${vocabItems}</div><div class="col"><h3>フレーズ</h3>${phraseItems}</div></div><div class="slide-nav"><button data-slide-action="prev">← Quay lại</button><button data-slide-action="next">Nhận xét →</button></div></div>
+            <div class="slide"><div class="slide-header"><span class="slide-badge">評価ポイント</span></div><div class="slide-body"><div class="why-good"><h3>なぜ良いか</h3><ul>${whyItems}</ul></div><div class="tips">${tipItems}</div></div><div class="slide-nav"><button data-slide-action="prev">← Quay lại</button><a href="#/${exam.program}/roleplay" class="btn-secondary">← Danh sách đề</a></div></div>
+          </div>
+        </div>`;
 }
 
 function renderPresentationDetail({ exam }) {
-    if (!exam) return `
-        ${renderSpaNavbar()}
-        <div class="container">
-            <h1>Exam not found</h1>
-            ${renderBackButton('‹ Về trang chủ')}
-        </div>
-    `;
-     return `
-        ${renderSpaNavbar()}
-        <div class="container">
-            <header class="page-header reveal">
-                 ${renderBackButton(`‹ Về danh sách`, `#/${exam.program}/${exam.type}`)}
-            </header>
-            <main>
-                <section class="question-slide glass-card reveal">
-                    <h2>${exam.titleJP}</h2>
-                    <p class="theme">${exam.theme}</p>
-                    <div class="badges">
-                        <span class="badge type-badge">${exam.type}</span>
-                        <span class="badge level-badge">${exam.level}</span>
-                    </div>
-                    <div class="question-details-grid">
-                        <div class="detail-block role-card">
-                            <h3>Role Card</h3>
-                            <p><strong>You:</strong> ${exam.question.roleCard.you}</p>
-                            <p><strong>Audience:</strong> ${exam.question.roleCard.audience}</p>
-                            <p><strong>Situation:</strong> ${exam.question.roleCard.situation}</p>
-                            <p><strong>Task:</strong> ${exam.question.roleCard.task}</p>
-                        </div>
-                        <div class="detail-block given-info">
-                             <h3>Given Slide Info</h3>
-                             <p><strong>Current Status:</strong> ${exam.question.givenInfo.currentStatus}</p>
-                             <p><strong>Deadline:</strong> ${exam.question.givenInfo.deadline}</p>
-                             <p><strong>Constraints:</strong> ${exam.question.givenInfo.constraints}</p>
-                             <p><strong>Expected Outcome:</strong> ${exam.question.givenInfo.expectedOutcome}</p>
-                        </div>
-                    </div>
-                </section>
+    if (!exam) return `${renderSpaNavbar()}<div class="container"><h1>Exam not found</h1>${renderBackButton('‹ Về trang chủ')}</div>`;
 
-                <button class="toggle-answer-btn glass-card reveal">模範解答とポイントを見る</button>
-                
-                <div class="answer-content">
-                    ${renderOutlineStepper(exam.answer.outline)}
-                    ${renderScriptSection(exam.answer.script, 'presentation')}
-                    ${renderSummaryCard(exam.answer.summary)}
-                    ${renderQAAccordion(exam.answer.qa)}
-                    ${renderVocabularyGrid(exam.answer.vocabulary)}
-                    ${renderPhrasesGrid(exam.answer.phrases)}
-                    ${renderWhyGood(exam.answer.whyGood)}
-                    ${renderTips(exam.answer.tips)}
-                </div>
-            </main>
-        </div>
-    `;
+    const prepSec = exam.timings ? exam.timings.prep : 120;
+    const presentSec = exam.timings ? exam.timings.present : 180;
+    const qaSec = exam.timings ? exam.timings.qa : 240;
+    const isJF3 = exam.program === 'jf3';
+    const roleCard = exam.question.roleCard || {};
+    const givenInfo = exam.question.givenInfo || {};
+    const slideCount = isJF3 ? 13 : 12;
+    const qaTimerSlide = isJF3 ? `<div class="slide timer-slide"><div class="timer-label">Q&A (${qaSec / 60} phút)</div><div class="timer-display">00:00</div><div class="slide-nav"><button data-slide-action="next">📖 Xem đáp án</button><button data-slide-action="skip-timer">⏹ Kết thúc</button></div></div>` : '';
+    const taskItems = [roleCard.task].filter(Boolean).map((t, i) => `<div class="task-item"><span class="task-num">${i + 1}</span><p>${t}</p></div>`).join('');
+    const infoItems = [['Current Status', givenInfo.currentStatus], ['Deadline', givenInfo.deadline], ['Constraints', givenInfo.constraints], ['Expected Outcome', givenInfo.expectedOutcome]].map(([label, value]) => `<div class="memo-item"><div class="memo-label">${label}</div><p>${value || ''}</p></div>`).join('');
+    const outlineItems = (exam.answer.outline || []).map((s, i) => `<div class="task-item"><span class="task-num">${i + 1}</span><p>${s}</p></div>`).join('');
+    const summary = exam.answer.summary || {};
+    const summaryItems = [['Conclusion', summary.conclusion], ['Reason', summary.reason], ['Countermeasure', summary.countermeasure], ['Effect', summary.effect]].map(([label, value]) => `<div class="memo-item"><div class="memo-label">${label}</div><p>${value || ''}</p></div>`).join('');
+    const qaItems = (exam.answer.qa || []).map(item => `<div class="qa-item"><div class="qa-q">Q: ${item.q}</div><div class="qa-a">A: ${item.a}</div></div>`).join('');
+    const vocabItems = (exam.answer.vocabulary || []).map(v => `<div class="vocab-item"><span class="vocab-term">${v.term}</span><span class="vocab-meaning">${v.meaning}</span></div>`).join('');
+    const phraseItems = (exam.answer.phrases || []).map(p => `<div class="phrase-item"><span class="phrase-text">${p.phrase}</span><span class="phrase-usage">${p.usage}</span></div>`).join('');
+    const whyItems = (exam.answer.whyGood || []).map(w => `<li>${w}</li>`).join('');
+    const tipItems = (exam.answer.tips || []).map(t => `<div class="tip-item"><div class="tip-title">${t.title}</div><div class="tip-example">${t.example}</div></div>`).join('');
+
+    return `
+        ${renderSpaNavbar()}
+        <div class="container slide-deck-container"><div class="slide-deck"><div class="slide-dots">${Array.from({ length: slideCount }, (_, i) => `<span class="slide-dot${i === 0 ? ' active' : ''}"></span>`).join('')}</div>
+          <div class="slide active"><div class="slide-cover"><div class="exam-meta"><span class="badge badge-level">${exam.level}</span><span class="badge badge-program">${exam.program.toUpperCase()}</span><span class="badge badge-category">${exam.category}</span></div><h1 class="exam-title">${exam.titleJP}</h1><p class="exam-theme">${exam.theme}</p><div class="timings-display"><div class="timing-item"><span class="timing-label">準備</span><span class="timing-value">${prepSec / 60}分</span></div><div class="timing-sep">→</div><div class="timing-item"><span class="timing-label">発表</span><span class="timing-value">${presentSec / 60}分</span></div>${isJF3 ? `<div class="timing-sep">→</div><div class="timing-item"><span class="timing-label">Q&A</span><span class="timing-value">${qaSec / 60}分</span></div>` : ''}</div><button class="btn-primary" data-slide-action="next">▶ Bắt đầu</button></div></div>
+          <div class="slide"><div class="slide-header"><span class="slide-badge">Role Card</span></div><div class="slide-body memo-grid"><div class="memo-item"><div class="memo-label">You</div><p>${roleCard.you || ''}</p></div><div class="memo-item"><div class="memo-label">Audience</div><p>${roleCard.audience || ''}</p></div><div class="memo-item"><div class="memo-label">Situation</div><p>${roleCard.situation || ''}</p></div><div class="memo-item"><div class="memo-label">Task</div><p>${roleCard.task || ''}</p></div></div><div class="slide-nav"><button data-slide-action="prev">← Quay lại</button><button data-slide-action="next">Tiếp theo →</button></div></div>
+          <div class="slide"><div class="slide-header"><span class="slide-badge">Given Info</span></div><div class="slide-body memo-grid">${infoItems}</div><div class="slide-nav"><button data-slide-action="prev">← Quay lại</button><button data-slide-action="next">Tiếp theo →</button></div></div>
+          <div class="slide"><div class="slide-header"><span class="slide-badge">タスク (Nhiệm vụ)</span></div><div class="slide-body">${taskItems}</div><div class="slide-nav"><button data-slide-action="prev">← Quay lại</button><button data-slide-action="start-timer" data-seconds="${prepSec}">▶ Bắt đầu chuẩn bị</button></div></div>
+          <div class="slide timer-slide"><div class="timer-label">Chuẩn bị (${prepSec / 60} phút)</div><div class="timer-display">00:00</div><div class="slide-nav"><button data-slide-action="start-timer" data-seconds="${presentSec}">▶ Bắt đầu Presentation</button><button data-slide-action="skip-timer">⏭ Bỏ qua</button></div></div>
+          <div class="slide timer-slide"><div class="timer-label">Presentation (${presentSec / 60} phút)</div><div class="timer-display">00:00</div><div class="slide-nav">${isJF3 ? `<button data-slide-action="start-timer" data-seconds="${qaSec}">▶ Bắt đầu Q&A</button>` : `<button data-slide-action="next">📖 Xem đáp án</button>`}<button data-slide-action="skip-timer">⏹ Kết thúc</button></div></div>
+          ${qaTimerSlide}
+          <div class="slide"><div class="slide-header"><span class="slide-badge">Outline</span></div><div class="slide-body">${outlineItems}</div><div class="slide-nav"><button data-slide-action="prev">← Quay lại</button><button data-slide-action="next">Script →</button></div></div>
+          <div class="slide"><div class="slide-header"><span class="slide-badge">Presentation Script</span></div><div class="slide-body script-body">${Object.entries(exam.answer.script || {}).map(([k, v]) => `<div class="script-part"><div class="script-label">${k}</div><p>${v}</p></div>`).join('')}</div><div class="slide-nav"><button data-slide-action="prev">← Quay lại</button><button data-slide-action="next">Summary →</button></div></div>
+          <div class="slide"><div class="slide-header"><span class="slide-badge">Summary (PREP)</span></div><div class="slide-body memo-grid">${summaryItems}</div><div class="slide-nav"><button data-slide-action="prev">← Quay lại</button><button data-slide-action="next">Q&A →</button></div></div>
+          <div class="slide"><div class="slide-header"><span class="slide-badge">Q&A</span></div><div class="slide-body">${qaItems}</div><div class="slide-nav"><button data-slide-action="prev">← Quay lại</button><button data-slide-action="next">Từ vựng →</button></div></div>
+          <div class="slide"><div class="slide-header"><span class="slide-badge">語彙・表現</span></div><div class="slide-body two-col"><div class="col"><h3>語彙</h3>${vocabItems}</div><div class="col"><h3>フレーズ</h3>${phraseItems}</div></div><div class="slide-nav"><button data-slide-action="prev">← Quay lại</button><button data-slide-action="next">Nhận xét →</button></div></div>
+          <div class="slide"><div class="slide-header"><span class="slide-badge">評価ポイント</span></div><div class="slide-body"><div class="why-good"><h3>なぜ良いか</h3><ul>${whyItems}</ul></div><div class="tips">${tipItems}</div></div><div class="slide-nav"><button data-slide-action="prev">← Quay lại</button><a href="#/${exam.program}/presentation" class="btn-secondary">← Danh sách đề</a></div></div>
+        </div></div>`;
 }
-
 // --- Sub-components ---
 
 function renderMemoCard(memo) {
@@ -280,3 +336,4 @@ function toggleAnswer(buttonEl, contentEl) {
       contentEl.style.maxHeight = '0';
   }
 }
+

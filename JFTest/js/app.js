@@ -12,6 +12,8 @@ const routes = {
     '#/jf3/presentation': 'renderExamList',
     '#/jf3/roleplay/:id': 'renderRolePlayDetail',
     '#/jf3/presentation/:id': 'renderPresentationDetail',
+    '#/jf2/roleplay/:id': 'renderRolePlayDetail',
+    '#/jf2/presentation/:id': 'renderPresentationDetail',
 };
 
 function router() {
@@ -47,7 +49,7 @@ function router() {
         rendererName = routes[routeKey];
         const examId = parseInt(pathSegments[2], 10);
         const dataType = pathSegments[1] === 'roleplay' ? window.ROLEPLAY_DATA : window.PRESENTATION_DATA;
-        const exam = dataType.find(e => e.id === examId);
+        const exam = dataType.find(e => e.id === examId && e.program === pathSegments[0]);
         params = { exam };
     }
 
@@ -87,6 +89,11 @@ function initPage(scope = document) {
             toggleAnswer(button, content);
         });
     });
+
+    // Init slide deck if present in this scope
+    if (typeof initSlider === 'function') {
+        initSlider(scope);
+    }
 }
 
 
