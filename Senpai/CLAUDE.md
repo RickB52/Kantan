@@ -1,5 +1,28 @@
 ﻿# CLAUDE.md — Senpai | Tiếng Nhật Thực Chiến
 
+> Đọc `D:\Kantan\CLAUDE.md` TRƯỚC — ecosystem rules, multi-agent workflow, backup rule.
+
+---
+
+## 🧠 Multi-Agent Context (project này)
+
+```
+Claude      → PO / Architect / Reviewer (KHÔNG tự code)
+CodeX       → Lesson HTML, quiz, UI components (task-codex-senpai.md)
+GeminiUltra → Multi-file, content heavy, batch lessons (task-geminiultra-senpai.md)
+```
+
+Dispatch:
+```powershell
+powershell -ExecutionPolicy Bypass -File "D:\Dynh\Claude-Gemini\scripts\assign.ps1" `
+    -Engineers <codex|geminiultra|codex,geminiultra> -Project senpai
+```
+
+Task files: `D:\Dynh\Claude-Gemini\current\task-{worker}-senpai.md`
+⚠️ Overwrite task file cũ trước khi dispatch!
+
+---
+
 ## Project
 **Senpai** — "Học từ người đã trải qua"  
 Nền tảng học tiếng Nhật công sở thực chiến cho dân IT làm dự án Nhật.

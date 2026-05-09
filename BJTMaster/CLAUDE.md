@@ -43,6 +43,25 @@
 └──────────────────┘         └──────────────────┘
 ```
 
+### 0.1b. Dispatch command (Kantan multi-agent system)
+
+```powershell
+# Chạy từ D:\Dynh\Claude-Gemini
+powershell -ExecutionPolicy Bypass -File ".\scripts\assign.ps1" `
+    -Engineers <codex|geminiultra|codex,geminiultra> -Project bjtmaster
+```
+
+Task files: `D:\Dynh\Claude-Gemini\current\task-{worker}-bjtmaster.md`
+⚠️ Overwrite task file cũ trước khi dispatch — tránh chạy nhầm task session trước!
+
+Workers:
+- **CodeX** (`codex`) → NestJS API endpoints, unit logic, fix nhỏ, precision
+- **GeminiUltra** (`gemini`) → Multi-file scaffold, Next.js pages, DB schema, heavy token
+
+Full multi-agent spec: `D:\Kantan\CLAUDE.md` → section 🧠 Multi-Agent
+
+---
+
 ### 0.2. Nguyên tắc giao task (Claude → Gemini/CodeX)
 
 1. **Task phải độc lập**: 2 task song song không được đụng cùng file/module để tránh merge conflict.
