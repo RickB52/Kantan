@@ -1,6 +1,6 @@
 # JFTest Session Notes
 
-## Cập nhật lần cuối: 2026-05-12
+## Cập nhật lần cuối: 2026-05-12 (session 2 — BJTMaster S3 scaffold)
 
 ---
 
@@ -88,6 +88,11 @@ dae762f (REVERTED) GeminiUltra 20 JF2 entries — encoding corrupted
 6c63677 [kantan] docs: update CLAUDE.md to reflect current state
 2a44653 [jftest] feat: vertical progressive reveal UI
 7298719 [landing] feat: full responsive design - hamburger nav + mobile/tablet breakpoints
+e5a7f3b [jftest] feat: exam slide card UI (roleplay + presentation)
+1f88795 [bjtmaster] feat: G1 monorepo root (package.json, tsconfig.base, eslint, prettier)
+1a9a8ec [bjtmaster] feat: G2+G3 packages/types + packages/core (SRS algorithm)
+b788ae6 [bjtmaster] feat: G4 apps/api NestJS foundation (health + auth JWT)
+ae057b3 [bjtmaster] docs: update CLAUDE.md — S3 scaffold complete (G1-G4)
 ```
 
 ---
