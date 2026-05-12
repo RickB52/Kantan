@@ -8,7 +8,7 @@ Monorepo chứa 1 Landing Page + 3 app học tiếng Nhật độc lập, mỗi 
 |--------------|------------|-------------------------|-----------------------------|-----------------|
 | `/landing`   | Landing    | `kantan.app`            | HTML/CSS/JS vanilla         | ✅ Live          |
 | `/JFTest`    | JFTest     | `jftest.kantan.app`     | HTML/CSS/JS vanilla SPA     | 🔧 In progress  |
-| `/BJTMaster` | BJTMaster  | `bjtmaster.kantan.app`  | NestJS + Next.js + Docker   | 🔧 Phase 1 S3   |
+| `/BJTMaster` | BJTMaster  | `bjtmaster.kantan.app`  | NestJS + Next.js + Docker   | 🔧 Phase 1 S3 ✅ |
 | `/Senpai`    | Senpai     | `senpai.kantan.app`     | HTML/CSS/JS vanilla         | ✅ MVP ready     |
 
 > Khi có domain thật: thay toàn bộ `kantan.app` trong file này và các config deploy.
@@ -136,13 +136,18 @@ D:\Kantan\
 │   │   └── presentation.js← 10 JF3 (id 1-10) + 10 JF2 (id 11-20)
 │   ├── docs/session-notes.md
 │   └── history/
-├── BJTMaster/             ← BJT exam app (Phase 1 S3 — monorepo scaffold)
+├── BJTMaster/             ← BJT exam app (Phase 1 S3 ✅ — scaffold xong, S4 tiếp theo)
 │   ├── CLAUDE.md
 │   ├── docker-compose.yml
 │   ├── .env.example
-│   ├── package.json           ← pnpm workspace root (sau S3)
-│   ├── apps/api/              ← NestJS backend (sau S3)
-│   └── packages/              ← Shared types + core SRS (sau S3)
+│   ├── package.json           ← pnpm workspace root ✅
+│   ├── pnpm-workspace.yaml    ✅
+│   ├── tsconfig.base.json     ✅
+│   ├── apps/
+│   │   └── api/               ← NestJS (health + auth JWT) ✅ G4
+│   └── packages/
+│       ├── types/             ← @bjt/types (User, Question, SRS) ✅ G2
+│       └── core/              ← @bjt/core (SM-2 SRS algorithm + tests) ✅ G3
 └── Senpai/                ← Tiếng Nhật công sở (MVP ready)
     └── CLAUDE.md
 ```
