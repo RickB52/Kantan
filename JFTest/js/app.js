@@ -57,6 +57,7 @@ function router() {
 
     if (renderer) {
         app.innerHTML = renderer(params);
+        window.scrollTo({ top: 0, behavior: 'instant' });
         initPage(spaRoot);
     } else {
         app.innerHTML = `<div class="container"><h1>404 Not Found</h1><p>Page not found.</p></div>`;
