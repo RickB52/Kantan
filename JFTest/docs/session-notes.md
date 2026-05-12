@@ -1,81 +1,68 @@
 # JFTest Session Notes
 
-## Cập nhật lần cuối: 2026-05-09
+## Cập nhật lần cuối: 2026-05-12
 
 ---
 
 ## Trạng thái hiện tại
 
 ### Data files
-- `js/data/roleplay.js`: **10 entries JF3** (id 1-10, program:"jf3") ✅
-- `js/data/presentation.js`: **10 entries JF3** ✅
-- JF2 roleplay: ✅ **HOÀN TẤT** — Đã thêm thành công 20 entries (id 1-20, program:"jf2") với encoding UTF-8 chuẩn.
+- `js/data/roleplay.js`: **10 JF3** (id 1-10) + **10 JF2** (id 11-20) = 20 entries ✅
+- `js/data/presentation.js`: **10 JF3** (id 1-10) + **10 JF2** (id 11-20) = 20 entries ✅
 - JF2 presentation: ❌ Chưa có source docx → để sau
 
 ### Routing (`js/app.js`)
 - JF2 & JF3 detail routes: ✅ đều có
-- Router program filter bug: 🔄 **ĐANG FIX** — CodeX đang sửa `find(e => e.id === examId && e.program === pathSegments[0])`
+- Router program filter: ✅ `find(e => e.id === examId && e.program === pathSegments[0])`
+- `initReveal()` thay thế `initSlider()`: ✅
 
 ### UI
-- Exam detail: All-in-one page — **Slide Deck UI + Timer**: 🔄 **ĐANG BUILD** (CodeX)
-- `css/style.css`: ✅ Noto Sans JP font override, bỏ nested glass-card
+- Exam detail: **Vertical Progressive Reveal** ✅ (CodeX commit `2a44653`)
+  - Sections stack dọc, bấm nút reveal section tiếp theo
+  - Nội dung cũ giữ nguyên trên page (scroll để xem lại)
+  - Auto-scroll đến section vừa reveal
+  - Timer: đếm ngược prep → perform (JF2/JF3 adaptive)
+- `css/style.css`: ✅ reveal CSS (animation, timer), bỏ slide deck CSS cũ
 
-### Landing page (`/landing/index.html`)
+### Landing page
 - ✅ JFTest card → link + status "Live (Internal)"
+- ✅ Full responsive (hamburger nav + 900px + 640px breakpoints) — commit `7298719`
 
 ---
 
-## Kết quả Round 1 (2026-05-09)
+## Kết quả Session 2026-05-12
 
-| Worker | Task | Status | Notes |
-|--------|------|--------|-------|
-| GeminiUltra (cũ, `1e1c368`) | JF2 data 10+10 entries | ✅ Merged | id 11-20, encoding OK |
-| GeminiUltra (mới, `dae762f`) | 20 JF2 roleplay từ docx | ❌ Reverted | Encoding corrupted (?????). Reverted `6828956` |
-| Antigravity (mới nhất) | 20 JF2 roleplay từ docx | ✅ Merged | Đã thêm 20 entries JF2 (id 1-20), encoding UTF-8 chuẩn |
-| CodeX (`906685d`) | Router fix + Slide Deck UI | ✅ Merged | Tất cả 3 files OK |
+| Worker | Task | Commit | Status |
+|--------|------|--------|--------|
+| CodeX | Vertical progressive reveal UI (components.js + app.js + style.css) | `2a44653` | ✅ |
+| CodeX | Landing page full responsive (hamburger + 2 breakpoints) | `7298719` | ✅ |
 
-**State hiện tại:**
-- roleplay.js: 10 JF3 (id 1-10) + 10 JF2 cũ (id 11-20) + 20 JF2 mới (id 1-20) = 40 entries, encoding ✅
-- presentation.js: 10 JF3 (id 1-10) + 10 JF2 (id 11-20) = 20 entries, encoding ✅
-- app.js: router filter `e.program === pathSegments[0]` ✅ + initSlider call ✅
-- components.js: slide deck UI ✅ + initSlider/startCountdown/formatTime ✅
-- style.css: slide + timer CSS appended ✅
+**Thay đổi chính trong session:**
+- `js/components.js`: Thay `initSlider` → `initReveal`. Render functions (`renderRolePlayDetail`, `renderPresentationDetail`) viết lại hoàn toàn theo pattern vertical reveal
+- `js/app.js`: Thay `initSlider(scope)` → `initReveal(scope)`
+- `css/style.css`: Bỏ toàn bộ slide deck CSS (`.slide-deck`, `.slide`, `.slide-dot`), thêm reveal CSS (`.reveal-section.hidden`, `.reveal-section.revealed`, `@keyframes revealDown`, `.timer-display`)
+- `landing/index.html`: Thêm hamburger button + mobile menu + 2 media query blocks + JS toggle
 
-**ID scheme thực tế:**
-- JF2 entries dùng id 11-20 (từ run cũ) — không phải 1-20 như dự kiến
-- URL: `#/jf2/roleplay/11` ... `#/jf2/roleplay/20`
-- Router filter theo program → không conflict với JF3
-
-**Encoding issue với GeminiUltra:**
-- Lần này CŨNG bị corrupted mặc dù task file đã có warning rõ ràng
-- Cần thêm hướng dẫn cụ thể hơn: thử dùng `-Encoding utf8NoBOM` hoặc dùng `[System.Text.Encoding]::new(65001, $false)`
+**ID scheme (không đổi):**
+- JF3: id 1-10, program:"jf3" → URL `#/jf3/roleplay/1` ... `/10`
+- JF2: id 11-20, program:"jf2" → URL `#/jf2/roleplay/11` ... `/20`
+- Router filter theo `program` → không conflict
 
 ---
 
-## Kế hoạch v2.0 — ĐÃ DISPATCH ROUND 1
+## Kế hoạch Round 2
 
-### Phase 1 — Round 1 (đã dispatch 2026-05-09)
-
-#### Antigravity / GeminiUltra — JF2 Roleplay Data ✅ Hoàn tất
-- 20 entries JF2 (id 1-20, program:"jf2") — từ source `Source/JF2/JF2_Roleplay/JF2_Roleplay.docx`
-- Categories: Horenso, BusinessManners, Punctuality, Communication, TeamCulture, Keigo, Preparation, Reporting
-- Timings: `{ prep: 60, perform: 120 }` (JF2 = 1 + 2 phút)
-- Không có `memo` field (JF2 đặc điểm)
-
-#### CodeX — Router Fix + Slide UI ✅ Dispatched
-- Fix `app.js`: `find(e => e.id === examId && e.program === pathSegments[0])`
-- Refactor `components.js`: renderRolePlayDetail + renderPresentationDetail → slide deck
-- Thêm `css/style.css`: slide/timer CSS
-- Timer logic: JF2 (60s prep + 120s perform), JF3 (120s + 180s), Presentation JF3 (+240s Q&A)
-
----
-
-### Phase 2 — Round 2 (sau khi review Round 1)
-
-- GeminiUltra: JF2 Presentation data (10 entries) — cần tạo source docx trước
+### JFTest content tiếp theo
+- GeminiUltra: **20 JF2 roleplay** từ source docx (id 21-40 hoặc refactor scheme)
+  - Source: `Source/JF2/JF2_Roleplay/JF2_Roleplay.docx`
+  - ⚠️ Encoding issue 3 lần — cần approach mới (Antigravity hoặc Claude đọc trực tiếp)
+- GeminiUltra: JF2 Presentation data (cần tạo source docx trước)
 - GeminiUltra: +10 JF3 roleplay + +10 JF3 presentation (→ 20 mỗi loại)
-- GeminiUltra: Thêm `timings` field vào 10 entries JF3 hiện có
 - CodeX: Keyboard navigation (←→ arrows), mobile touch swipe
+
+### Bổ sung `timings` vào JF3 entries
+- Hiện tại 10 entries JF3 chưa có `timings` field
+- Cần thêm: `{ prep: 120, perform: 180 }` (roleplay) hoặc `{ prep: 120, present: 180, qa: 240 }` (presentation)
 
 ---
 
@@ -84,33 +71,34 @@
 ```
 JF2: 20 roleplay + 20 presentation = 40 đề
 JF3: 20 roleplay + 20 presentation = 40 đề
-Tổng: 80 đề, đầy đủ timer, slide UI, tiếng Nhật chuẩn N3-N1
+Tổng: 80 đề, đầy đủ timer, vertical reveal UI, tiếng Nhật chuẩn N3-N1
 ```
 
 ---
 
-## Files đã thay đổi trong session này
+## Git commits (chronological)
 
-| File | Thay đổi |
-|------|---------|
-| `landing/index.html` | JFTest card → link tới app, status Live |
-| `js/data/roleplay.js` | Restore 10 JF3 scenarios (UTF-8) |
-| `js/data/presentation.js` | Restore 10 JF3 scenarios (UTF-8) |
-| `css/style.css` | Thêm Noto Sans JP font override, bỏ nested glass-card |
-| `js/components.js` | Bỏ glass-card khỏi vocab/phrase items |
-
-## Git commits
 ```
-9a3419e [jftest] fix: restore Japanese content + Noto Sans JP CSS
-e8e7002 [landing] fix: link JFTest card to actual local app
 c041422 feat: initial commit
+e8e7002 [landing] fix: link JFTest card to actual local app
+9a3419e [jftest] fix: restore Japanese content + Noto Sans JP CSS
+1e1c368 (prev session) JF2 data 10 entries (id 11-20, encoding OK)
+dae762f (REVERTED) GeminiUltra 20 JF2 entries — encoding corrupted
+6828956 revert: revert GeminiUltra corrupted JF2 data
+6c63677 [kantan] docs: update CLAUDE.md to reflect current state
+2a44653 [jftest] feat: vertical progressive reveal UI
+7298719 [landing] feat: full responsive design - hamburger nav + mobile/tablet breakpoints
 ```
 
 ---
 
 ## Ghi chú kỹ thuật
 
-- `assign.ps1` naming convention: `task-{worker}-{project}.md`  
-  → Để dispatch CodeX cho jftest: cần `task-codex-jftest.md` + `-Project jftest`
-- Luôn dùng `-ExecutionPolicy Bypass` khi call assign.ps1
-- GeminiUltra phải write file với `[System.IO.File]::WriteAllText(..., [Encoding]::UTF8)` để tránh encoding corruption
+- **Vertical reveal pattern**: `.reveal-deck` > `.reveal-section.visible` (first visible) + `.reveal-section.hidden` (rest)
+  - Actions: `data-reveal-action="show-next|start-timer|skip-timer|start-perform-timer"`
+  - JS function: `initReveal(scope)` — global, gọi trong `initPage(scope)` sau render
+- **Encoding (CRITICAL)**: GeminiUltra đã bị corrupt 3 lần
+  - Solution tốt nhất: Claude đọc docx → viết nội dung vào task file → worker chỉ cần format JS
+  - Backup: dùng `New-Object System.Text.UTF8Encoding $false` (no-BOM constructor)
+- `assign.ps1` naming: `task-{worker}-{project}.md` + `-Project <project>`
+- Luôn dùng `-ExecutionPolicy Bypass`

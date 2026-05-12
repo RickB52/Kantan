@@ -224,12 +224,59 @@ function renderRolePlayDetail({ exam }) {
                 <p class="exam-theme">${exam.theme}</p>
                 <div class="timings-display"><div class="timing-item"><span class="timing-label">準備</span><span class="timing-value">${prepSec / 60}分</span></div><div class="timing-sep">→</div><div class="timing-item"><span class="timing-label">Roleplay</span><span class="timing-value">${performSec / 60}分</span></div></div>
               </div>
-              <div class="section-action"><button data-reveal-action="show-next">▶ Bắt đầu</button></div>
+              <div class="section-action"><button data-reveal-action="show-next">🔍 Xem đề thi</button></div>
             </div>
 
-            <div class="reveal-section hidden"><div class="section-header"><span class="section-badge">状況 (Tình huống)</span></div><div class="section-body"><p class="situation-text">${exam.question.situation}</p></div><div class="section-action"><button data-reveal-action="show-next">Tiếp theo →</button></div></div>
-            <div class="reveal-section hidden"><div class="section-header"><span class="section-badge">役割 (Vai trò)</span></div><div class="section-body"><div class="role-grid"><div class="role-you"><div class="role-label">あなた</div><p>${exam.question.role.you}</p></div><div class="role-partner"><div class="role-label">相手</div><p>${exam.question.role.partner}</p></div></div></div><div class="section-action"><button data-reveal-action="show-next">Tiếp theo →</button></div></div>
-            <div class="reveal-section hidden"><div class="section-header"><span class="section-badge">タスク (Nhiệm vụ)</span></div><div class="section-body">${taskItems}</div><div class="section-action"><button data-reveal-action="start-timer" data-seconds="${prepSec}">▶ Bắt đầu chuẩn bị</button></div></div>
+            <div class="reveal-section hidden">
+              <div class="exam-slide">
+                <div class="exam-slide-header">
+                  <div class="exam-slide-header-left">
+                    <span class="exam-slide-logo">JF Standard Test</span>
+                    <span class="exam-slide-type">ロールプレイ</span>
+                  </div>
+                  <span class="exam-slide-num">#${exam.id}</span>
+                </div>
+                <div class="exam-slide-body">
+                  <div class="exam-slide-block">
+                    <div class="exam-slide-block-label">状況</div>
+                    <div class="exam-slide-block-content">${exam.question.situation}</div>
+                  </div>
+                  <div class="exam-slide-block">
+                    <div class="exam-slide-block-label">役割</div>
+                    <div class="exam-slide-role-grid">
+                      <div class="exam-slide-role-item">
+                        <div class="exam-slide-role-name">あなた</div>
+                        <p class="exam-slide-role-desc">${exam.question.role.you}</p>
+                      </div>
+                      <div class="exam-slide-role-item">
+                        <div class="exam-slide-role-name">相手</div>
+                        <p class="exam-slide-role-desc">${exam.question.role.partner}</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="exam-slide-block">
+                    <div class="exam-slide-block-label">タスク</div>
+                    <div class="exam-slide-task-list">
+                      ${(exam.question.tasks || []).map((t, i) => `
+                        <div class="exam-slide-task-item">
+                          <span class="exam-slide-task-num">${i + 1}</span>
+                          <span>${t}</span>
+                        </div>`).join('')}
+                    </div>
+                  </div>
+                </div>
+                <div class="exam-slide-footer">
+                  <div class="exam-slide-footer-timing">
+                    <span class="exam-slide-footer-time">準備 <strong>${prepSec / 60}分</strong></span>
+                    <span class="exam-slide-footer-time">ロールプレイ <strong>${performSec / 60}分</strong></span>
+                  </div>
+                  <span class="exam-slide-footer-note">内容を確認してから準備を始めてください</span>
+                </div>
+              </div>
+              <div class="section-action">
+                <button data-reveal-action="start-timer" data-seconds="${prepSec}">▶ Bắt đầu chuẩn bị ${prepSec / 60} phút</button>
+              </div>
+            </div>
             <div class="reveal-section hidden timer-section"><div class="section-header"><span class="section-badge">準備時間</span></div><div class="timer-label">Chuẩn bị - ${prepSec / 60} phút</div><div class="timer-display">--:--</div><div class="section-action"><button data-reveal-action="start-perform-timer" data-seconds="${performSec}">▶ Bắt đầu Roleplay</button><button data-reveal-action="skip-timer" class="btn-ghost">⏭ Bỏ qua</button></div></div>
             <div class="reveal-section hidden timer-section"><div class="section-header"><span class="section-badge">ロールプレイ</span></div><div class="timer-label">Roleplay - ${performSec / 60} phút</div><div class="timer-display">--:--</div><div class="section-action"><button data-reveal-action="show-next">📖 Xem đáp án</button><button data-reveal-action="skip-timer" class="btn-ghost">⏹ Kết thúc</button></div></div>
             ${memoSection}
@@ -267,9 +314,74 @@ function renderPresentationDetail({ exam }) {
         ${renderSpaNavbar()}
         <div class="container reveal-deck-container">
           <div class="reveal-deck">
-            <div class="reveal-section visible"><div class="section-cover"><div class="exam-meta"><span class="badge badge-level">${exam.level}</span><span class="badge badge-program">${exam.program.toUpperCase()}</span><span class="badge badge-category">${exam.category}</span></div><h1 class="exam-title">${exam.titleJP}</h1><p class="exam-theme">${exam.theme}</p><div class="timings-display"><div class="timing-item"><span class="timing-label">準備</span><span class="timing-value">${prepSec / 60}分</span></div><div class="timing-sep">→</div><div class="timing-item"><span class="timing-label">発表</span><span class="timing-value">${presentSec / 60}分</span></div>${isJF3 ? `<div class="timing-sep">→</div><div class="timing-item"><span class="timing-label">Q&A</span><span class="timing-value">${qaSec / 60}分</span></div>` : ''}</div></div><div class="section-action"><button data-reveal-action="show-next">▶ Bắt đầu</button></div></div>
-            <div class="reveal-section hidden"><div class="section-header"><span class="section-badge">Role Card</span></div><div class="section-body memo-grid"><div class="memo-item"><div class="memo-label">You</div><p>${roleCard.you || ''}</p></div><div class="memo-item"><div class="memo-label">Audience</div><p>${roleCard.audience || ''}</p></div><div class="memo-item"><div class="memo-label">Situation</div><p>${roleCard.situation || ''}</p></div><div class="memo-item"><div class="memo-label">Task</div><p>${roleCard.task || ''}</p></div></div><div class="section-action"><button data-reveal-action="show-next">Tiếp theo →</button></div></div>
-            <div class="reveal-section hidden"><div class="section-header"><span class="section-badge">Given Info</span></div><div class="section-body memo-grid">${infoItems}</div><div class="section-action"><button data-reveal-action="start-timer" data-seconds="${prepSec}">▶ Bắt đầu chuẩn bị</button></div></div>
+            <div class="reveal-section visible"><div class="section-cover"><div class="exam-meta"><span class="badge badge-level">${exam.level}</span><span class="badge badge-program">${exam.program.toUpperCase()}</span><span class="badge badge-category">${exam.category}</span></div><h1 class="exam-title">${exam.titleJP}</h1><p class="exam-theme">${exam.theme}</p><div class="timings-display"><div class="timing-item"><span class="timing-label">準備</span><span class="timing-value">${prepSec / 60}分</span></div><div class="timing-sep">→</div><div class="timing-item"><span class="timing-label">発表</span><span class="timing-value">${presentSec / 60}分</span></div>${isJF3 ? `<div class="timing-sep">→</div><div class="timing-item"><span class="timing-label">Q&A</span><span class="timing-value">${qaSec / 60}分</span></div>` : ''}</div></div><div class="section-action"><button data-reveal-action="show-next">🔍 Xem đề thi</button></div></div>
+            <div class="reveal-section hidden">
+              <div class="exam-slide">
+                <div class="exam-slide-header">
+                  <div class="exam-slide-header-left">
+                    <span class="exam-slide-logo">JF Standard Test</span>
+                    <span class="exam-slide-type">プレゼンテーション</span>
+                  </div>
+                  <span class="exam-slide-num">#${exam.id}</span>
+                </div>
+                <div class="exam-slide-body">
+                  <div class="exam-slide-block">
+                    <div class="exam-slide-block-label">Role Card</div>
+                    <div class="exam-slide-info-grid">
+                      <div class="exam-slide-info-item">
+                        <div class="exam-slide-info-label">あなた</div>
+                        <p class="exam-slide-info-value">${roleCard.you || ''}</p>
+                      </div>
+                      <div class="exam-slide-info-item">
+                        <div class="exam-slide-info-label">相手</div>
+                        <p class="exam-slide-info-value">${roleCard.audience || ''}</p>
+                      </div>
+                      <div class="exam-slide-info-item">
+                        <div class="exam-slide-info-label">状況</div>
+                        <p class="exam-slide-info-value">${roleCard.situation || ''}</p>
+                      </div>
+                      <div class="exam-slide-info-item">
+                        <div class="exam-slide-info-label">タスク</div>
+                        <p class="exam-slide-info-value">${roleCard.task || ''}</p>
+                      </div>
+                    </div>
+                  </div>
+                  <hr class="exam-slide-divider" />
+                  <div class="exam-slide-block">
+                    <div class="exam-slide-block-label">Given Information</div>
+                    <div class="exam-slide-info-grid">
+                      <div class="exam-slide-info-item">
+                        <div class="exam-slide-info-label">Current Status</div>
+                        <p class="exam-slide-info-value">${givenInfo.currentStatus || ''}</p>
+                      </div>
+                      <div class="exam-slide-info-item">
+                        <div class="exam-slide-info-label">Deadline</div>
+                        <p class="exam-slide-info-value">${givenInfo.deadline || ''}</p>
+                      </div>
+                      <div class="exam-slide-info-item">
+                        <div class="exam-slide-info-label">Constraints</div>
+                        <p class="exam-slide-info-value">${givenInfo.constraints || ''}</p>
+                      </div>
+                      <div class="exam-slide-info-item">
+                        <div class="exam-slide-info-label">Expected Outcome</div>
+                        <p class="exam-slide-info-value">${givenInfo.expectedOutcome || ''}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="exam-slide-footer">
+                  <div class="exam-slide-footer-timing">
+                    <span class="exam-slide-footer-time">準備 <strong>${prepSec / 60}分</strong></span>
+                    <span class="exam-slide-footer-time">発表 <strong>${presentSec / 60}分</strong></span>
+                    ${isJF3 ? `<span class="exam-slide-footer-time">Q&A <strong>${qaSec / 60}分</strong></span>` : ''}
+                  </div>
+                  <span class="exam-slide-footer-note">内容を確認してから準備を始めてください</span>
+                </div>
+              </div>
+              <div class="section-action">
+                <button data-reveal-action="start-timer" data-seconds="${prepSec}">▶ Bắt đầu chuẩn bị ${prepSec / 60} phút</button>
+              </div>
+            </div>
             <div class="reveal-section hidden timer-section"><div class="section-header"><span class="section-badge">準備時間</span></div><div class="timer-label">Chuẩn bị - ${prepSec / 60} phút</div><div class="timer-display">--:--</div><div class="section-action"><button data-reveal-action="start-perform-timer" data-seconds="${presentSec}">▶ Bắt đầu phát biểu</button><button data-reveal-action="skip-timer" class="btn-ghost">⏭ Bỏ qua</button></div></div>
             <div class="reveal-section hidden timer-section"><div class="section-header"><span class="section-badge">発表</span></div><div class="timer-label">Presentation - ${presentSec / 60} phút</div><div class="timer-display">--:--</div><div class="section-action">${isJF3 ? `<button data-reveal-action="start-perform-timer" data-seconds="${qaSec}">Q&A →</button>` : `<button data-reveal-action="show-next">📖 Xem đáp án</button>`}<button data-reveal-action="skip-timer" class="btn-ghost">⏹ Kết thúc</button></div></div>
             ${qaTimerSection}
