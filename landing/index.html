@@ -410,6 +410,136 @@
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: var(--c-g300); border-radius: 3px; }
+
+    /* HAMBURGER + MOBILE MENU */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column; justify-content: center; align-items: center;
+      gap: 5px;
+      width: 40px; height: 40px; padding: 0;
+      background: none; border: none; cursor: pointer;
+      border-radius: 8px; transition: background 150ms;
+    }
+    .nav-hamburger:hover { background: var(--c-g100); }
+    .nav-hamburger span {
+      display: block; width: 22px; height: 2px;
+      background: var(--c-g700); border-radius: 2px;
+      transition: transform 250ms, opacity 250ms;
+      transform-origin: center;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      padding: 12px 20px 20px;
+      background: rgba(255,255,255,.97);
+      backdrop-filter: blur(16px);
+      border-top: 1px solid var(--c-g200);
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-link {
+      padding: 13px 4px; font-size: 16px; font-weight: 500;
+      color: var(--c-g700); text-decoration: none;
+      border-bottom: 1px solid var(--c-g100);
+      transition: color 150ms;
+    }
+    .mobile-link:hover { color: var(--c-p600); }
+    .mobile-divider { height: 12px; }
+    .mobile-cta {
+      display: block; text-align: center;
+      padding: 13px 20px; border-radius: 10px;
+      background: var(--c-p600); color: white;
+      font-size: 15px; font-weight: 600; text-decoration: none;
+      transition: background 150ms;
+    }
+    .mobile-cta:hover { background: var(--c-p700); }
+
+    /* RESPONSIVE - TABLET <= 900px */
+    @media (max-width: 900px) {
+      .nav-inner { padding: 0 24px; }
+      .nav-links { gap: 20px; }
+
+      .hero { padding: 120px 32px 80px; }
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+      .hero-h1 { font-size: 46px; }
+      .hero-apps { display: none; }
+
+      section { padding: 80px 32px; }
+      .stats-section { padding: 64px 32px; }
+      .cta-section { padding: 80px 32px; }
+      footer { padding: 64px 32px 32px; }
+
+      .apps-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+
+      .features-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+
+      .stats-inner { grid-template-columns: repeat(2, 1fr); }
+      .stat-item { border-left: none !important; }
+      .stat-item:nth-child(2) { border-left: 1px solid rgba(255,255,255,.1) !important; }
+      .stat-item:nth-child(3), .stat-item:nth-child(4) {
+        border-top: 1px solid rgba(255,255,255,.1);
+      }
+      .stat-item:nth-child(4) { border-left: 1px solid rgba(255,255,255,.1) !important; }
+
+      .cefr-grid { grid-template-columns: 1fr; gap: 48px; }
+
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+      .footer-brand { grid-column: 1 / -1; }
+    }
+
+    /* RESPONSIVE - MOBILE <= 640px */
+    @media (max-width: 640px) {
+      .nav-inner { padding: 0 16px; height: 60px; }
+      .nav-links  { display: none; }
+      .nav-actions { display: none; }
+      .nav-hamburger { display: flex; }
+
+      .hero { padding: 88px 16px 60px; }
+      .hero-h1 { font-size: 34px; letter-spacing: -0.025em; }
+      .hero-sub { font-size: 15px; }
+      .hero-stats { gap: 20px; flex-wrap: wrap; }
+      .hero-stat { min-width: calc(50% - 10px); }
+      .hero-stat-num { font-size: 22px; }
+      .hero-actions { flex-direction: column; align-items: stretch; }
+      .btn-hero-primary, .btn-hero-ghost { justify-content: center; }
+
+      section { padding: 60px 16px; }
+      .stats-section { padding: 52px 16px; }
+      .cta-section { padding: 60px 16px; }
+      footer { padding: 52px 16px 28px; }
+
+      .section-h2 { font-size: 28px; }
+      .section-lead { font-size: 15px; }
+      .section-header { margin-bottom: 40px; }
+
+      .apps-grid { grid-template-columns: 1fr; gap: 16px; }
+
+      .features-grid { grid-template-columns: 1fr; gap: 16px; }
+      .feature-card { padding: 24px 20px; }
+
+      .stat-num { font-size: 36px; }
+      .stat-label { font-size: 12px; }
+
+      .cta-card { padding: 40px 24px; border-radius: 20px; }
+      .cta-card h2 { font-size: 26px; }
+      .cta-card p { font-size: 14px; margin-bottom: 28px; }
+      .cta-actions { flex-direction: column; align-items: stretch; }
+      .cta-actions a { justify-content: center; }
+
+      .footer-top { grid-template-columns: 1fr; gap: 32px; }
+      .footer-brand { grid-column: auto; }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+
+      .cefr-bar-wrap { width: 60px; }
+
+      .mobile-menu { padding: 8px 16px 16px; }
+    }
   </style>
 </head>
 <body>
@@ -430,6 +560,16 @@
         <a href="https://senpai.kantan.app" class="btn-nav-ghost">Thử ngay</a>
         <a href="#apps" class="btn-nav-solid">Khám phá →</a>
       </div>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Mở menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+      <a href="#apps" class="mobile-link">Ứng dụng</a>
+      <a href="#features" class="mobile-link">Tại sao Kantan</a>
+      <a href="#roadmap" class="mobile-link">Lộ trình</a>
+      <div class="mobile-divider"></div>
+      <a href="https://senpai.kantan.app" class="mobile-cta">🚀 Thử ngay - Miễn phí</a>
     </div>
   </nav>
 
@@ -822,6 +962,26 @@
     }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
     targets.forEach(el => observer.observe(el));
+
+    // Hamburger menu toggle
+    const hamburger = document.getElementById('navHamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (hamburger && mobileMenu) {
+      hamburger.addEventListener('click', () => {
+        const isOpen = hamburger.classList.toggle('open');
+        mobileMenu.classList.toggle('open', isOpen);
+        hamburger.setAttribute('aria-expanded', isOpen);
+        mobileMenu.setAttribute('aria-hidden', !isOpen);
+      });
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          hamburger.classList.remove('open');
+          mobileMenu.classList.remove('open');
+          hamburger.setAttribute('aria-expanded', 'false');
+          mobileMenu.setAttribute('aria-hidden', 'true');
+        });
+      });
+    }
   </script>
 </body>
 </html>
