@@ -90,9 +90,9 @@ function initPage(scope = document) {
         });
     });
 
-    // Init slide deck if present in this scope
-    if (typeof initSlider === 'function') {
-        initSlider(scope);
+    // Init reveal deck if present in this scope
+    if (typeof initReveal === 'function') {
+        initReveal(scope);
     }
 }
 
