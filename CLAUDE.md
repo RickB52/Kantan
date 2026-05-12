@@ -132,8 +132,8 @@ D:\Kantan\
 │   ├── js/app.js
 │   ├── js/components.js
 │   ├── js/data/
-│   │   ├── roleplay.js    ← 10 JF3 scenarios
-│   │   └── presentation.js← 10 JF3 scenarios
+│   │   ├── roleplay.js    ← 10 JF3 (id 1-10) + 10 JF2 (id 11-20)
+│   │   └── presentation.js← 10 JF3 (id 1-10) + 10 JF2 (id 11-20)
 │   ├── docs/session-notes.md
 │   └── history/
 ├── BJTMaster/             ← BJT exam app (Phase 0)

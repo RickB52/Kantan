@@ -80,7 +80,7 @@ JFTest/
 #/jf3/presentation       → renderExamList (JF3 presentation list)
 #/jf3/roleplay/:id       → renderRolePlayDetail
 #/jf3/presentation/:id   → renderPresentationDetail
-⚠️ JF2 detail routes CHƯA CÓ — cần thêm /jf2/roleplay/:id và /jf2/presentation/:id
+✅ JF2 detail routes đã có — /jf2/roleplay/:id và /jf2/presentation/:id
 ```
 
 ---
@@ -145,33 +145,49 @@ JFTest/
 
 | Hạng mục | Trạng thái |
 |----------|-----------|
-| JF3 RolePlay data | ✅ 10 entries (tiếng Nhật N2-N1 chuẩn) |
-| JF3 Presentation data | ✅ 10 entries |
-| JF2 data | ❌ 0 entries — CHƯA TẠO |
-| JF2 detail routes | ❌ CHƯA THÊM vào app.js |
-| Slide UI + Timer | ❌ CHƯA — đang dùng all-in-one page |
-| `timings` field | ❌ CHƯA thêm vào data |
-| CSS Noto Sans JP | ✅ đã thêm explicit font override |
+| JF3 RolePlay data | ✅ 10 entries (id 1-10, N2-N1, encoding OK) |
+| JF3 Presentation data | ✅ 10 entries (id 1-10) |
+| JF2 RolePlay data | ✅ 10 entries (id 11-20, N3-N2, encoding OK) |
+| JF2 Presentation data | ✅ 10 entries (id 11-20) |
+| JF2 detail routes | ✅ `/jf2/roleplay/:id` và `/jf2/presentation/:id` có trong app.js |
+| Router program filter | ✅ `find(e => e.id === examId && e.program === pathSegments[0])` |
+| Slide UI + Timer | ✅ Slide deck với dots, countdown timer, JF2/JF3 adaptive |
+| `timings` field | ✅ Có trong tất cả entries |
+| CSS Noto Sans JP | ✅ đã thêm explicit font override + slide/timer CSS |
 | Landing link | ✅ JFTest card → ../JFTest/index.html |
+| initSlider() | ✅ Gọi trong initPage(scope) |
+
+**⚠️ ID scheme hiện tại:**
+- JF2 entries dùng id 11-20 (cùng mảng với JF3 id 1-10)
+- Router filter theo `program` → không conflict
+- URL: `#/jf2/roleplay/11` ... `#/jf2/roleplay/20`
 
 ---
 
-## Kế hoạch v2.0 (tiếp theo)
+## Kế hoạch tiếp theo
 
 Xem chi tiết: `docs/session-notes.md`
 
-**Round 1 — Song song:**
-- GeminiUltra: JF2 data (10 roleplay + 10 presentation) + thêm `timings` vào JF3 + fix JF2 routes
-- CodeX: Slide UI + Timer countdown (components.js + style.css)
+**Round 2 — Nội dung:**
+- GeminiUltra: Thêm 10 JF2 roleplay entries từ source docx (id 21-30 hoặc id 1-10 nếu đổi scheme)
+  - Source: `D:\Kantan\JFTest\Source\JF2\JF2_Roleplay\JF2_Roleplay.docx` (20 scenarios)
+  - Lần trước bị encoding corrupt → cần thử cách khác (xem ghi chú bên dưới)
+- GeminiUltra: JF2 Presentation data (cần tạo source docx)
+- GeminiUltra: +10 JF3 roleplay + +10 JF3 presentation (→ 20 mỗi loại)
 
-**Round 2:**
-- +10 JF3 roleplay + +10 JF3 presentation (→ 20 mỗi loại)
-- Target cuối: JF2 + JF3 = 20 mỗi loại → 80 đề tổng
+**Target cuối:** JF2 + JF3 = 20 mỗi loại → 80 đề tổng
 
 ---
 
 ## Ghi chú kỹ thuật quan trọng
 
-- **Encoding**: Worker PHẢI dùng `[System.IO.File]::WriteAllText(..., [Encoding]::UTF8)` khi write data files — bài học từ lần trước (toàn bộ tiếng Nhật bị corrupt thành `?`)
-- **Nested glass-card**: Không dùng `.glass-card` bên trong `.glass-card` — vocab/phrase cards đã fix
-- **initSlider()**: Phải gọi trong `initPage(scope)` sau khi render để bind events đúng
+- **Encoding (CRITICAL)**: GeminiUltra ĐÃ bị corrupt 2 lần dù có warning. Thử dùng:
+  ```powershell
+  $utf8NoBom = New-Object System.Text.UTF8Encoding $false
+  [System.IO.File]::WriteAllText($path, $content, $utf8NoBom)
+  ```
+  Hoặc dùng Gemini CLI với `--output` flag thay vì PowerShell write.
+- **Nested glass-card**: Không dùng `.glass-card` bên trong `.glass-card` — đã fix
+- **initSlider()**: Gọi trong `initPage(scope)` sau khi render — đã implement
+- **Slide timer flow**: Timer slide hiển thị `--:--` mặc định; bắt đầu đếm khi user bấm nút start-timer
+- **JF2 không có memo**: `renderRolePlayDetail` kiểm tra `isJF3 && exam.answer.memo` trước khi render slide memo
