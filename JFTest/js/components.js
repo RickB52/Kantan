@@ -216,18 +216,12 @@ function renderRolePlayDetail({ exam }) {
     return `
         ${renderSpaNavbar()}
         <div class="container reveal-deck-container">
+          <div class="exam-deck-nav">
+            <a href="#/${exam.program}/roleplay" class="btn-back">‹ Danh sách đề</a>
+            <div class="exam-deck-meta"><span class="badge badge-level">${exam.level}</span><span class="badge badge-program">${exam.program.toUpperCase()}</span></div>
+          </div>
           <div class="reveal-deck">
             <div class="reveal-section visible">
-              <div class="section-cover">
-                <div class="exam-meta"><span class="badge badge-level">${exam.level}</span><span class="badge badge-program">${exam.program.toUpperCase()}</span><span class="badge badge-category">${exam.category}</span></div>
-                <h1 class="exam-title">${exam.titleJP}</h1>
-                <p class="exam-theme">${exam.theme}</p>
-                <div class="timings-display"><div class="timing-item"><span class="timing-label">準備</span><span class="timing-value">${prepSec / 60}分</span></div><div class="timing-sep">→</div><div class="timing-item"><span class="timing-label">Roleplay</span><span class="timing-value">${performSec / 60}分</span></div></div>
-              </div>
-              <div class="section-action"><button data-reveal-action="show-next">🔍 Xem đề thi</button></div>
-            </div>
-
-            <div class="reveal-section hidden">
               <div class="exam-slide">
                 <div class="exam-slide-header">
                   <div class="exam-slide-header-left">
@@ -313,9 +307,12 @@ function renderPresentationDetail({ exam }) {
     return `
         ${renderSpaNavbar()}
         <div class="container reveal-deck-container">
+          <div class="exam-deck-nav">
+            <a href="#/${exam.program}/presentation" class="btn-back">‹ Danh sách đề</a>
+            <div class="exam-deck-meta"><span class="badge badge-level">${exam.level}</span><span class="badge badge-program">${exam.program.toUpperCase()}</span></div>
+          </div>
           <div class="reveal-deck">
-            <div class="reveal-section visible"><div class="section-cover"><div class="exam-meta"><span class="badge badge-level">${exam.level}</span><span class="badge badge-program">${exam.program.toUpperCase()}</span><span class="badge badge-category">${exam.category}</span></div><h1 class="exam-title">${exam.titleJP}</h1><p class="exam-theme">${exam.theme}</p><div class="timings-display"><div class="timing-item"><span class="timing-label">準備</span><span class="timing-value">${prepSec / 60}分</span></div><div class="timing-sep">→</div><div class="timing-item"><span class="timing-label">発表</span><span class="timing-value">${presentSec / 60}分</span></div>${isJF3 ? `<div class="timing-sep">→</div><div class="timing-item"><span class="timing-label">Q&A</span><span class="timing-value">${qaSec / 60}分</span></div>` : ''}</div></div><div class="section-action"><button data-reveal-action="show-next">🔍 Xem đề thi</button></div></div>
-            <div class="reveal-section hidden">
+            <div class="reveal-section visible">
               <div class="exam-slide">
                 <div class="exam-slide-header">
                   <div class="exam-slide-header-left">

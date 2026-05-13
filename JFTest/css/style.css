@@ -1031,6 +1031,18 @@ ul {
    Mô phỏng slide PowerPoint ban giám khảo chiếu
 ==================================================================================================================== */
 
+/* Exam deck top nav (back button + badges) */
+.exam-deck-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0 16px;
+}
+.exam-deck-meta {
+  display: flex;
+  gap: 8px;
+}
+
 .exam-slide {
   background: #ffffff;
   border-radius: 6px;
